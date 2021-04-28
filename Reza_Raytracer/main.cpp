@@ -19,6 +19,7 @@ int main()
 
 	for(int y = img_height - 1; y >= 0; y--)
 	{
+		std::cout << "\rScanlines remaining: " << y << ' ' << std::flush;
 		for (int x = 0; x < img_width; x++)
 		{
 			auto r = double(x) / (img_width - 1);
@@ -34,6 +35,8 @@ int main()
 	}
 	
 	my_file.close();
+
+	// http://chanhaeng.blogspot.com/2018/12/how-to-use-stbimagewrite.html
 	
 	//cout << "Hello World\n";
 
