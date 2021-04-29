@@ -22,12 +22,11 @@ int main()
 {
 	const int width = 200;
 	const int height = 200;
-#define CHANNEL_NUM 3
-
-	/*** NOTICE!! You have to use uint8_t array to pass in stb function  ***/
-	// Because the size of color is normally 255, 8bit.
-	// If you don't use this one, you will get a weird imge.
-	uint8_t* pixels = new uint8_t[width * height * CHANNEL_NUM];
+	int channel_num = 3;
+	
+//#define CHANNEL_NUM 3
+	
+	uint8_t* pixels = new uint8_t[width * height * channel_num];
 
 	int index = 0;
 	for (int j = height - 1; j >= 0; --j)
@@ -48,10 +47,10 @@ int main()
 	}
 
 	// if CHANNEL_NUM is 4, you can use alpha channel in png
-	stbi_write_png("stbpng.png", width, height, CHANNEL_NUM, pixels, width * CHANNEL_NUM);
+	stbi_write_png("test.png", width, height, channel_num, pixels, width * channel_num);
 
 	// You have to use 3 comp for complete jpg file. If not, the image will be grayscale or nothing.
-	stbi_write_jpg("stbjpg3.jpg", width, height, 3, pixels, 100);
+	//stbi_write_jpg("stbjpg3.jpg", width, height, 3, pixels, 100);
 	delete[] pixels;
 
 	return 0;
