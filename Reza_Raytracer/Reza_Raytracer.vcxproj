@@ -140,12 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="STBWrapper.cpp" />
+    <ClCompile Include="ImageHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="STBWrapper.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="Ray3.h" />
+    <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

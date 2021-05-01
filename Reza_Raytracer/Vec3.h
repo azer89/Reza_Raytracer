@@ -6,6 +6,9 @@
  * Adapted from Ray Tracing in One Weekend by Peter Shirley <ptrshrl@gmail.com>
  */
 
+#include <cmath>
+#include <ostream>
+
 using std::sqrt;
 
 class Vec3
