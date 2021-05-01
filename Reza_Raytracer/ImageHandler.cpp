@@ -16,10 +16,16 @@ ImageHandler::ImageHandler(int img_width, int img_height)
 	this->num_channel = 3; // 4 if you want alpha
 	
 	this->pixels = std::make_unique<uint8_t[]>(this->img_width * this->img_height * this->num_channel);
+	//pixels = new uint8_t[img_width * img_height * num_channel];
 	this->pixel_iterator = 0;
 }
 
-void ImageHandler::SetPixel(uint8_t r, uint8_t g, uint8_t b)
+ImageHandler::~ImageHandler()
+{
+	//delete[] pixels;
+}
+
+void ImageHandler::SetPixel(double r, double g, double b)
 {
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * r);
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * g);
@@ -34,13 +40,6 @@ void ImageHandler::WriteToPNG(const std::string& filename/*,
 {
 	// chanhaeng.blogspot.com/2018/12/how-to-use-stbimagewrite.html
 	
-	int channel_num = 3;
-	/*stbi_write_png(filename.c_str(), 
-				   width, 
-				   height, 
-				   channel_num, 
-				   pixels, 
-				   width * channel_num);*/
 	stbi_write_png(filename.c_str(), 
 		img_width,
 		img_height,

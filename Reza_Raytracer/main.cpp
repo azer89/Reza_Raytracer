@@ -13,7 +13,7 @@ int main()
 	
 	//uint8_t* pixels = new uint8_t[width * height * channel_num];
 
-	int index = 0;
+	//int index = 0;
 	for (int y = height - 1; y >= 0; --y)
 	{
 		// adding progress text
