@@ -24,9 +24,8 @@ public:
 	ImageHandler(int img_width, int img_height);
 	~ImageHandler();
 
-	void SetPixel(double r, double g, double b);
-	
-	void WriteToPNG(const std::string& filename/*, uint8_t* pixels, int width, int height*/);
+	void SetPixel(double r, double g, double b);	
+	void WriteToPNG(const std::string& filename);
 };
 
 #endif

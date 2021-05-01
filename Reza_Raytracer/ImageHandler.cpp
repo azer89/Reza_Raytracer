@@ -33,10 +33,7 @@ void ImageHandler::SetPixel(double r, double g, double b)
 }
 
 
-void ImageHandler::WriteToPNG(const std::string& filename/*,
-	                        uint8_t* pixels, 
-	                        int width, 
-	                        int height*/)
+void ImageHandler::WriteToPNG(const std::string& filename)
 {
 	// chanhaeng.blogspot.com/2018/12/how-to-use-stbimagewrite.html
 	
