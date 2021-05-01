@@ -1,5 +1,8 @@
 
 #include "HittableList.h"
+#include "Sphere.h"
+
+using std::make_unique;
 
 bool HittableList::Hit(const Ray3& r, 
 					   double t_min, 
@@ -20,5 +23,11 @@ bool HittableList::Hit(const Ray3& r,
     }
 
     return hit_anything;
+}
+
+void HittableList::CreateWorld()
+{
+    objects.push_back(make_unique<Sphere>(Point3(0, 0, -1), 0.5));
+    objects.push_back(make_unique<Sphere>(Point3(0, -100.5, -1), 100));
 }
 

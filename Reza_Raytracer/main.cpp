@@ -33,9 +33,10 @@ int main()
 
 	 // World
 	HittableList world;
-	world.Add(make_shared<Sphere>(Point3(0, 0, -1), 0.5));
-	//world.Add(make_shared<Sphere>(Point3(1.5, 0, -1), 0.5));
-	world.Add(make_shared<Sphere>(Point3(0, -100.5, -1), 100));
+	world.CreateWorld();
+	//world.Add(make_shared<Sphere>(Point3(0, 0, -1), 0.5));
+	////world.Add(make_shared<Sphere>(Point3(1.5, 0, -1), 0.5));
+	//world.Add(make_shared<Sphere>(Point3(0, -100.5, -1), 100));
 	
 	// Camera
 	const auto viewport_height = 2.0;
