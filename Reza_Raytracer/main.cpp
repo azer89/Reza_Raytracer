@@ -7,7 +7,7 @@
 #include "Ray3.h"
 
 
-bool DoesRayHitSphere(const Point3& center, double radius, const Ray3& r)
+double RaySphereIntersection(const Point3& center, double radius, const Ray3& r)
 {
 
 	/*
@@ -24,22 +24,43 @@ bool DoesRayHitSphere(const Point3& center, double radius, const Ray3& r)
 	*/
 	
 	Vec3 oc = r.Origin() - center;
-	auto a = Dot(r.Direction(), r.Direction());
+
+	// original version
+	/*auto a = Dot(r.Direction(), r.Direction());
 	auto b = 2.0 * Dot(oc, r.Direction());
 	auto c = Dot(oc, oc) - radius * radius;
-	auto discriminant = b * b - 4 * a * c;
-	return (discriminant > 0);
+	auto discriminant = b * b - 4 * a * c;*/
+
+	// improved
+	auto a = r.Direction().LengthSquared(); // because r * r = ||r||
+	auto half_b = Dot(oc, r.Direction());
+	auto c = oc.LengthSquared() - radius * radius;
+	auto discriminant = half_b * half_b - a * c;
+	
+	if(discriminant < 0)
+	{
+		return -1;
+	}
+
+	// original version
+	//return (-b - sqrt(discriminant)) / (2.0 * a);
+	// improved
+	return (-half_b - sqrt(discriminant)) / a;
 }
 
 Color RayColor(const Ray3& r)
 {
-	if (DoesRayHitSphere(Point3(0, 0, -1), 0.5, r))
+	Point3 sphere_center(0, 0, -1);
+	double sphere_radius = 0.5;
+	double t = RaySphereIntersection(sphere_center, sphere_radius, r);
+	if (t > 0)
 	{
-		return Color(1, 0, 0);
+		Vec3 normal_vec = UnitVector(r.At(t) - sphere_center);
+		return 0.5 * Color(normal_vec.x() + 1, normal_vec.y() + 1, normal_vec.z() + 1);
 	}
 	
 	Vec3 unit_direction = UnitVector(r.Direction());
-	auto t = 0.5 * (unit_direction.y() + 1.0);
+	t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }
 
