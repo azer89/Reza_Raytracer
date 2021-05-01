@@ -3,26 +3,29 @@
 
 // chanhaeng.blogspot.com/2018/12/how-to-use-stbimagewrite.html
 
-//#define STB_IMAGE_IMPLEMENTATION
-//#include "stb_image.h"
-//
-//#define STBI_MSC_SECURE_CRT
-//#define STB_IMAGE_WRITE_IMPLEMENTATION
-//#include "stb_image_write.h"
+//#include <fstream>
+//#include <sstream>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+#define STBI_MSC_SECURE_CRT
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
 
 void STBWrapper::WriteToPNG(const std::string& filename, 
-	                        uint8_t* data, 
+	                        uint8_t* pixels, 
 	                        int width, 
 	                        int height)
 {
-	/*const int n_channel = 3;
-	
-	stbi_write_png(filename.c_str(),
-		           width, 
-		           height, 
-		           n_channel,
-		           &data, 
-		width * n_channel);*/
+	// if channel_num is 4, you can use alpha channel in png
+	int channel_num = 3;
+	stbi_write_png(filename.c_str(), 
+				   width, 
+				   height, 
+				   channel_num, 
+				   pixels, 
+				   width * channel_num);
 }
 
 
