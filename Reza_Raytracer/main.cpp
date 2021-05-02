@@ -21,7 +21,11 @@ Color RayColor(const Ray3& r, const HittableList& world, int depth)
 	// t_min = 0.001 is used to remove shadow acne
 	if (world.Hit(r, 0.001, infinity, rec))
 	{
-		Point3 target = rec.p + rec.normal + RandomVec3InUnitSphere();
+		// lighter shadow
+		//Point3 target = rec.p + RandomVec3InHemisphere(rec.normal);
+
+		// better shadow
+		Point3 target = rec.p + rec.normal + RandomUnitVector();
 
 		// Recursive
 		return 0.5 * RayColor(Ray3(rec.p, target - rec.p), world, depth - 1);

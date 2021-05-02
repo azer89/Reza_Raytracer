@@ -82,25 +82,7 @@ public:
 using Point3 = Vec3;   // 3D point
 using Color  = Vec3;    // RGB color
 
-inline Vec3 RandomVec3()
-{
-    return Vec3(RandomDouble(), RandomDouble(), RandomDouble());
-}
 
-inline Vec3 RandomVec3(double min, double max)
-{
-    return Vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
-}
-
-inline Vec3 RandomVec3InUnitSphere()
-{
-    while (true) 
-    {
-        auto p = RandomVec3(-1, 1);
-        if (p.LengthSquared() >= 1) continue;
-        return p;
-    }
-}
 
 // Vec3 Utility Functions
 
@@ -156,6 +138,44 @@ inline Vec3 Cross(const Vec3& u, const Vec3& v)
 inline Vec3 UnitVector(Vec3 v)
 {
     return v / v.Length();
+}
+
+inline Vec3 RandomVec3()
+{
+    return Vec3(RandomDouble(), RandomDouble(), RandomDouble());
+}
+
+inline Vec3 RandomVec3(double min, double max)
+{
+    return Vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
+}
+
+inline Vec3 RandomVec3InUnitSphere()
+{
+    while (true)
+    {
+        auto p = RandomVec3(-1, 1);
+        if (p.LengthSquared() >= 1) continue;
+        return p;
+    }
+}
+
+inline Vec3 RandomUnitVector()
+{
+    return UnitVector(RandomVec3InUnitSphere());
+}
+
+inline Vec3 RandomVec3InHemisphere(const Vec3& normal)
+{
+    Vec3 in_unit_sphere = RandomVec3InUnitSphere();
+    if (Dot(in_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+    {
+        return in_unit_sphere;
+    }
+    //else
+    //{
+    return -in_unit_sphere;
+    //}
 }
 
 #endif
