@@ -1,5 +1,6 @@
 
 #include "ImageHandler.h"
+#include "UsefulThings.h"
 
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -27,6 +28,10 @@ ImageHandler::~ImageHandler()
 
 void ImageHandler::SetPixel(double r, double g, double b)
 {
+	r = Clamp(r, 0.0, 0.999);
+	g = Clamp(g, 0.0, 0.999);
+	b = Clamp(b, 0.0, 0.999);
+	
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * r);
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * g);
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * b);

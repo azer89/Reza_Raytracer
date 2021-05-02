@@ -3,11 +3,10 @@
 #include <iostream>
 
 #include "ImageHandler.h"
-
 #include "UsefulThings.h"
-
 #include "HittableList.h"
 #include "Sphere.h"
+#include "Camera.h"
 
 
 Color RayColor(const Ray3& r, const HittableList& world)
@@ -25,29 +24,18 @@ Color RayColor(const Ray3& r, const HittableList& world)
 
 int main()
 {
+	// Camera
+	Camera camera;
+	const int samples_per_pixel = 100;
+	
 	// Image
-	const auto aspect_ratio = 16.0 / 9.0;
-	const int image_width = 800;
-	const int image_height = static_cast<int>(image_width / aspect_ratio);
+	const int image_width = 600;
+	const int image_height = static_cast<int>(image_width / camera.GetAspectRatio());
 	ImageHandler imgHandler(image_width, image_height); // set up image handler
 
 	 // World
 	HittableList world;
 	world.CreateWorld();
-	//world.Add(make_shared<Sphere>(Point3(0, 0, -1), 0.5));
-	////world.Add(make_shared<Sphere>(Point3(1.5, 0, -1), 0.5));
-	//world.Add(make_shared<Sphere>(Point3(0, -100.5, -1), 100));
-	
-	// Camera
-	const auto viewport_height = 2.0;
-	const auto viewport_width = aspect_ratio * viewport_height;
-	const auto focal_length = 1.0;
-
-	const auto origin = Point3(0, 0, 0);
-	const auto horizontal = Vec3(viewport_width, 0, 0);
-	const auto vertical = Vec3(0, viewport_height, 0);
-	const auto lower_left_corner = origin - (horizontal / 2) - (vertical / 2) - Vec3(0, 0, focal_length);
-	
 
 	for (int y = image_height - 1; y >= 0; --y)
 	{
@@ -56,11 +44,14 @@ int main()
 		
 		for (int x = 0; x < image_width; ++x)
 		{
-			auto u = double(x) / (image_width - 1);
-			auto v = double(y) / (image_height - 1);
-			Ray3 r(origin, lower_left_corner + u * horizontal + v * vertical - origin);
-			Color pixel_color = RayColor(r, world);
-
+			Color pixel_color(0, 0, 0);
+			for(int s = 0; s < samples_per_pixel; s++)
+			{
+				auto u = (double(x) + RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + RandomDouble()) / (image_height - 1);
+				Ray3 r = camera.GetRay(u, v);
+				pixel_color += RayColor(r, world);
+			}
 			imgHandler.SetPixel(pixel_color.x(), pixel_color.y(), pixel_color.z());
 		}
 	}
