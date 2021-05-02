@@ -26,6 +26,12 @@ inline double RandomDouble()
     return distribution(generator);
 }
 
+inline double RandomDouble(double min, double max)
+{
+    // Returns a random real in [min,max).
+    return min + (max - min) * RandomDouble();
+}
+
 inline double DegreesToRadians(double degrees)
 {
     return degrees * pi / 180.0;

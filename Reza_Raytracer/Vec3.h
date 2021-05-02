@@ -11,6 +11,8 @@
 
 using std::sqrt;
 
+#include "UsefulThings.h"
+
 class Vec3
 {
 public:
@@ -79,6 +81,26 @@ public:
 // Type aliases for Vec3
 using Point3 = Vec3;   // 3D point
 using Color  = Vec3;    // RGB color
+
+inline Vec3 RandomVec3()
+{
+    return Vec3(RandomDouble(), RandomDouble(), RandomDouble());
+}
+
+inline Vec3 RandomVec3(double min, double max)
+{
+    return Vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
+}
+
+inline Vec3 RandomVec3InUnitSphere()
+{
+    while (true) 
+    {
+        auto p = RandomVec3(-1, 1);
+        if (p.LengthSquared() >= 1) continue;
+        return p;
+    }
+}
 
 // Vec3 Utility Functions
 

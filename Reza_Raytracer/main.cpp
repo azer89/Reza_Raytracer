@@ -9,13 +9,30 @@
 #include "Camera.h"
 
 
-Color RayColor(const Ray3& r, const HittableList& world)
+// This is a recursive function
+Color RayColor(const Ray3& r, const HittableList& world, int depth)
 {
+	// If we've exceeded the ray bounce limit, no more light is gathered.
+	if (depth <= 0)
+		return Color(0, 0, 0);
+
+	// Recursive
 	HitRecord rec;
+	// t_min = 0.001 is used to remove shadow acne
+	if (world.Hit(r, 0.001, infinity, rec))
+	{
+		Point3 target = rec.p + rec.normal + RandomVec3InUnitSphere();
+
+		// Recursive
+		return 0.5 * RayColor(Ray3(rec.p, target - rec.p), world, depth - 1);
+	}
+	
+	// Non recursive
+	/*HitRecord rec;
 	if (world.Hit(r, 0, infinity, rec)) 
 	{
 		return 0.5 * (rec.normal + Color(1, 1, 1));
-	}
+	}*/
 	
 	Vec3 unit_direction = UnitVector(r.Direction());
 	auto t = 0.5 * (unit_direction.y() + 1.0);
@@ -26,13 +43,15 @@ int main()
 {
 	// Camera
 	Camera camera;
-	const int samples_per_pixel = 10;
-	auto scale = 1.0 / samples_per_pixel;
+	
 	
 	// Image
 	const int image_width = 600;
 	const int image_height = static_cast<int>(image_width / camera.GetAspectRatio());
 	ImageHandler imgHandler(image_width, image_height); // set up image handler
+	const int samples_per_pixel = 100;
+	auto scale = 1.0 / samples_per_pixel;
+	const int max_depth = 50;
 
 	 // World
 	HittableList world;
@@ -51,11 +70,13 @@ int main()
 				auto u = (double(x) + RandomDouble()) / (image_width - 1);
 				auto v = (double(y) + RandomDouble()) / (image_height - 1);
 				Ray3 r = camera.GetRay(u, v);
-				pixel_color += RayColor(r, world);
+				pixel_color += RayColor(r, world, max_depth); // recursive function
 			}
-			imgHandler.SetPixel(pixel_color.x() * scale, 
-								pixel_color.y() * scale,
-								pixel_color.z() * scale);
+
+			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
+			imgHandler.SetPixel(sqrt(pixel_color.x() * scale), 
+								sqrt(pixel_color.y() * scale),
+								sqrt(pixel_color.z() * scale));
 		}
 	}
 
