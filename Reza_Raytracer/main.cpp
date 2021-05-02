@@ -25,10 +25,18 @@ Color RayColor(const Ray3& r, const HittableList& world, int depth)
 		//Point3 target = rec.p + RandomVec3InHemisphere(rec.normal);
 
 		// better shadow
-		Point3 target = rec.p + rec.normal + RandomUnitVector();
+		//Point3 target = rec.p + rec.normal + RandomUnitVector();
 
 		// Recursive
-		return 0.5 * RayColor(Ray3(rec.p, target - rec.p), world, depth - 1);
+		//return 0.5 * RayColor(Ray3(rec.p, target - rec.p), world, depth - 1);
+
+		Ray3 scattered;
+		Color attenuation;
+		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
+		{
+			return attenuation * RayColor(scattered, world, depth - 1);
+		}
+		return Color(0, 0, 0);
 	}
 	
 	// Non recursive

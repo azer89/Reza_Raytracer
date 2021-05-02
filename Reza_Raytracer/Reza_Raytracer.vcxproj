@@ -149,6 +149,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Ray3.h" />
     <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="Sphere.h" />
