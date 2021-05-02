@@ -26,7 +26,8 @@ int main()
 {
 	// Camera
 	Camera camera;
-	const int samples_per_pixel = 100;
+	const int samples_per_pixel = 10;
+	auto scale = 1.0 / samples_per_pixel;
 	
 	// Image
 	const int image_width = 600;
@@ -52,7 +53,9 @@ int main()
 				Ray3 r = camera.GetRay(u, v);
 				pixel_color += RayColor(r, world);
 			}
-			imgHandler.SetPixel(pixel_color.x(), pixel_color.y(), pixel_color.z());
+			imgHandler.SetPixel(pixel_color.x() * scale, 
+								pixel_color.y() * scale,
+								pixel_color.z() * scale);
 		}
 	}
 
