@@ -1,9 +1,23 @@
 
 #include "Camera.h"
 
+
+/*
+double aspect_ratio;
+double viewport_height;
+double viewport_width;
+double focal_length;
+
+Point3 origin;
+Vec3 horizontal;
+Vec3 vertical;
+Point3 lower_left_corner;
+ */
 Camera::Camera(double vfov, // vertical field-of-view in degrees
 			double aspect_ratio)
 {
+    this->aspect_ratio = aspect_ratio;
+	
     auto theta = DegreesToRadians(vfov);
     auto h = tan(theta / 2);
     viewport_height = 2.0 * h;
