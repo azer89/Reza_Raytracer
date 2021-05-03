@@ -6,7 +6,9 @@
 class Camera
 {
 public:
-    Camera();
+    Camera(double vfov, // vertical field-of-view in degrees
+        double aspect_ratio);
+	
 
     Ray3 GetRay(double u, double v) const;
 
