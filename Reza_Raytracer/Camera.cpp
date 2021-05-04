@@ -13,22 +13,44 @@ Vec3 horizontal;
 Vec3 vertical;
 Point3 lower_left_corner;
  */
-Camera::Camera(double vfov, // vertical field-of-view in degrees
-			double aspect_ratio)
+Camera::Camera()
 {
-    this->aspect_ratio = aspect_ratio;
+    /*
+    (-2,2,1)
+    (0,0,-1)
+    (0,1,0)
+     */
+    lookfrom = Point3(2, 3, 2);
+    lookat = Point3(0, 0, -1);
+    vup = Vec3(0, 1, 0);
+	
+    this->vfov = 30; // in degree
+    this->aspect_ratio = 16.0 / 9.0;
 	
     auto theta = DegreesToRadians(vfov);
+
+	/*
+	tan theta = h / z
+	where
+		z is vector pointing to scene
+		h is the width or height
+	assume z = 1
+	then
+		h = tan theta * z
+		h = tan theta * 1
+	 */
     auto h = tan(theta / 2);
     viewport_height = 2.0 * h;
     viewport_width = aspect_ratio * viewport_height;
 
-    focal_length = 1.0;
+    auto w = UnitVector(lookfrom - lookat);
+    auto u = UnitVector(Cross(vup, w));
+    auto v = Cross(w, u);
 
-    origin = Point3(0, 0, 0);
-    horizontal = Vec3(viewport_width, 0.0, 0.0);
-    vertical = Vec3(0.0, viewport_height, 0.0);
-    lower_left_corner = origin - horizontal / 2 - vertical / 2 - Vec3(0, 0, focal_length);
+    origin = lookfrom;
+    horizontal = viewport_width * u;
+    vertical = viewport_height * v;
+    lower_left_corner = origin - horizontal / 2 - vertical / 2 - w;
 }
 
 /*
@@ -45,7 +67,8 @@ Camera::Camera()
     lower_left_corner = origin - horizontal / 2 - vertical / 2 - Vec3(0, 0, focal_length);
 }*/
 
-Ray3 Camera::GetRay(double u, double v) const
+Ray3 Camera::GetRay(double s, double t) const
 {
-    return Ray3(origin, lower_left_corner + u * horizontal + v * vertical - origin);
+    //return Ray3(origin, lower_left_corner + u * horizontal + v * vertical - origin);
+     return  Ray3(origin, lower_left_corner + s * horizontal + t * vertical - origin);
 }

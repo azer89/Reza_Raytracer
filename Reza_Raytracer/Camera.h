@@ -6,11 +6,10 @@
 class Camera
 {
 public:
-    Camera(double vfov, // vertical field-of-view in degrees
-        double aspect_ratio);
+    Camera();
 	
 
-    Ray3 GetRay(double u, double v) const;
+    Ray3 GetRay(double s, double t) const;
 
 	double GetAspectRatio() const
 	{
@@ -18,6 +17,11 @@ public:
 	}
 
 private:
+    Point3 lookfrom;
+    Point3 lookat;
+    Vec3   vup;
+	
+    double vfov;
     double aspect_ratio;
     double viewport_height;
     double viewport_width;
