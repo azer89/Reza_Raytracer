@@ -2,17 +2,6 @@
 #include "Camera.h"
 
 
-/*
-double aspect_ratio;
-double viewport_height;
-double viewport_width;
-double focal_length;
-
-Point3 origin;
-Vec3 horizontal;
-Vec3 vertical;
-Point3 lower_left_corner;
- */
 Camera::Camera()
 {
     /*
@@ -43,9 +32,10 @@ Camera::Camera()
     viewport_height = 2.0 * h;
     viewport_width = aspect_ratio * viewport_height;
 
-    auto w = UnitVector(lookfrom - lookat);
-    auto u = UnitVector(Cross(vup, w));
-    auto v = Cross(w, u);
+	// u, v, w are the orthonormal basis
+    auto w = UnitVector(lookfrom - lookat); // z
+    auto u = UnitVector(Cross(vup, w)); // x
+    auto v = Cross(w, u);                 // y
 
     origin = lookfrom;
     horizontal = viewport_width * u;

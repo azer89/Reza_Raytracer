@@ -144,6 +144,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImageHandler.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="XYRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="UsefulThings.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="XYRectangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

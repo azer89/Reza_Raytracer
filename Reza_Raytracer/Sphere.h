@@ -12,11 +12,15 @@ public:
     {	    
     }
 
+	// shared_ptr is passed by value 
 	Sphere(Point3 cen, double r, shared_ptr<Material> m)
     {
         center = cen;
         radius = r;
-        mat_ptr = m;
+
+    	// stackoverflow.com/questions/41871115/why-would-i-stdmove-an-stdshared-ptr
+    	// why do I move a shared_ptr?
+        mat_ptr = std::move(m);
     }
 
     virtual bool Hit(const Ray3& r, 

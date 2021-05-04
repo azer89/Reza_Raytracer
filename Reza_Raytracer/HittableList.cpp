@@ -1,7 +1,8 @@
 
 #include "HittableList.h"
+
 #include "Sphere.h"
-#include "Material.h"
+#include "XYRectangle.h"
 
 using std::make_unique;
 
@@ -28,6 +29,7 @@ bool HittableList::Hit(const Ray3& r,
 
 void HittableList::CreateWorld()
 {
+    auto material_light = make_shared<DiffuseLight>(Color(0.6, 0.7, 0.6));
     auto material_ground = make_shared<Lambertian>(Color(0.6, 0.7, 0.6));
     auto material_center = make_shared<Lambertian>(Color(0.3, 0.3, 0.7));
 	
@@ -35,5 +37,8 @@ void HittableList::CreateWorld()
     objects.push_back(make_unique<Sphere>(Point3(-1.1, 0, -1), 0.5, material_center));
     objects.push_back(make_unique<Sphere>(Point3(1.1, 0, -1), 0.5, material_center));
     objects.push_back(make_unique<Sphere>(Point3(0, -100.5, -1), 100, material_ground) );
+
+
+	objects.push_back(make_unique<XYRectangle>(-0.25, 0.25, 0.15, 0.65, -1.75, material_light));
 }
 

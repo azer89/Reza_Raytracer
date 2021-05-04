@@ -14,6 +14,12 @@ public:
 						 const HitRecord& rec, 
 						 Color& attenuation, 
 						 Ray3& scattered ) const = 0;
+
+	// For light source or a texture, see derived classes
+    virtual Color Emitted(double u, double v, const Point3& p) const
+	{
+        return Color(0, 0, 0);
+    }
 };
 
 class Lambertian : public Material
@@ -45,6 +51,34 @@ public:
 
 public:
     Color albedo;
+};
+
+class DiffuseLight : public Material
+{
+public:
+    DiffuseLight(const Color& a) 
+    {
+        color = a;
+    }
+
+    virtual bool Scatter(const Ray3& r_in,
+        const HitRecord& rec,
+        Color& attenuation,
+        Ray3& scattered) const override
+    {
+        return false;
+    }
+
+    virtual Color Emitted(double u, double v, const Point3& p) const override
+	{
+        return color;
+    	//return emit->value(u, v, p);
+    }
+
+
+public:
+    Color color;
+
 };
 
 #endif

@@ -61,9 +61,9 @@ int main()
 	const int image_width = 600;
 	const int image_height = static_cast<int>(image_width / camera.GetAspectRatio());
 	ImageHandler imgHandler(image_width, image_height); // set up image handler
-	const int samples_per_pixel = 100;
+	const int samples_per_pixel = 10; // 100
 	auto scale = 1.0 / samples_per_pixel;
-	const int max_depth = 50;
+	const int max_depth = 5;
 
 	 // World
 	HittableList world;
