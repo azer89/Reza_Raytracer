@@ -154,6 +154,7 @@
     <ClInclude Include="Ray3.h" />
     <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="UsefulThings.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="XYRectangle.h" />

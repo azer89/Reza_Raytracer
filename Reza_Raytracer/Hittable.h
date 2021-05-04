@@ -13,6 +13,10 @@ struct HitRecord
     double t;
     bool front_face;
 
+	// texture
+    double u;
+    double v;
+
 	// make sure the normal always against the ray 
     inline void SetFaceNormal(const Ray3& r, const Vec3& outward_normal)
 	{

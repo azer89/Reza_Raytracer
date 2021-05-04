@@ -2,6 +2,7 @@
 #define __MATERIAL_H__
 
 #include "UsefulThings.h"
+#include "Texture.h"
 
 struct HitRecord;
 
@@ -56,9 +57,9 @@ public:
 class DiffuseLight : public Material
 {
 public:
-    DiffuseLight(const Color& a) 
+    DiffuseLight(const Color& c) 
     {
-        color = a;
+        emit = make_shared<SolidColor>(c);
     }
 
     virtual bool Scatter(const Ray3& r_in,
@@ -70,14 +71,13 @@ public:
     }
 
     virtual Color Emitted(double u, double v, const Point3& p) const override
-	{
-        return color;
-    	//return emit->value(u, v, p);
+	{        
+    	return emit->Value(u, v, p);
     }
 
 
 public:
-    Color color;
+    shared_ptr<Texture> emit;
 
 };
 
