@@ -19,9 +19,10 @@ bool XYRectangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec)
         return false;
     }
 
-	// For texture, not yet implemented
-    //rec.u = (x - x0) / (x1 - x0);
-    //rec.v = (y - y0) / (y1 - y0);
+
+	// Hit Record
+    rec.u = (x - x0) / (x1 - x0);
+    rec.v = (y - y0) / (y1 - y0);
 
 	rec.t = t;
 
