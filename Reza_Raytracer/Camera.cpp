@@ -33,6 +33,7 @@ Camera::Camera()
     viewport_width = aspect_ratio * viewport_height;
 
 	// u, v, w are the orthonormal basis
+	// note that vup,v, w lie on the same plane
     auto w = UnitVector(lookfrom - lookat); // z
     auto u = UnitVector(Cross(vup, w)); // x
     auto v = Cross(w, u);                 // y
@@ -59,6 +60,14 @@ Camera::Camera()
 
 Ray3 Camera::GetRay(double s, double t) const
 {
+    /*
+    Point3 origin;
+    Point3 lower_left_corner;
+    Vec3 horizontal;
+    Vec3 vertical;
+     */
+	
     //return Ray3(origin, lower_left_corner + u * horizontal + v * vertical - origin);
-     return  Ray3(origin, lower_left_corner + s * horizontal + t * vertical - origin);
+	return Ray3(origin, 
+				lower_left_corner + (s * horizontal) + (t * vertical) - origin );
 }

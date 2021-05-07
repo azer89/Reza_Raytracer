@@ -8,7 +8,6 @@ class Camera
 public:
     Camera();
 	
-
     Ray3 GetRay(double s, double t) const;
 
 	double GetAspectRatio() const
