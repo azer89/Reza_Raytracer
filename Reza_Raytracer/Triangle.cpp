@@ -47,6 +47,11 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
     double t = Dot(v0v2, qvec) * invDet; // v0v2.dotProduct(qvec)* invDet;
 
+    if (t < t_min || t_max < t)
+    {
+        return false;
+    }
+	
     // Hit Record
     rec.u = u;
     rec.v = v;
