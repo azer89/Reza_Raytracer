@@ -8,8 +8,8 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 	// can be precomputed
     Vec3 v0v1 = v1 - v0;
     Vec3 v0v2 = v2 - v0;
-    Vec3 pvec = Cross(r.Direction(), v0v2);  // dir.crossProduct(v0v2);
-    double det = Dot(v0v1, pvec);          // v0v1.dotProduct(pvec);
+    Vec3 pvec = Cross(r.Direction(), v0v2);
+    double det = Dot(v0v1, pvec); 
 
     constexpr double kEpsilon = std::numeric_limits<double>::epsilon();
 	
@@ -31,22 +31,24 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
     double invDet = 1 / det;
 
-    Vec3 tvec = r.Origin() - v0;             //  orig - v0;
-    double u = Dot(tvec, pvec) * invDet; // tvec.dotProduct(pvec)* invDet;
+    Vec3 tvec = r.Origin() - v0;
+    double u = Dot(tvec, pvec) * invDet; 
     if (u < 0 || u > 1)
     {
         return false;
     }
 
-    Vec3 qvec = Cross(tvec, v0v1);                  // tvec.crossProduct(v0v1);
-    double v = Dot(r.Direction(), qvec) * invDet; // dir.dotProduct(qvec)* invDet;
+    Vec3 qvec = Cross(tvec, v0v1);     
+    double v = Dot(r.Direction(), qvec) * invDet; 
     if (v < 0 || u + v > 1)
     {
         return false;
     }
 
-    double t = Dot(v0v2, qvec) * invDet; // v0v2.dotProduct(qvec)* invDet;
+    double t = Dot(v0v2, qvec) * invDet;
 
+	// FOr intersecting objects,
+	// we take the closest one
     if (t < t_min || t_max < t)
     {
         return false;
