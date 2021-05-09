@@ -8,6 +8,8 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 	// can be precomputed
     Vec3 v0v1 = v1 - v0;
     Vec3 v0v2 = v2 - v0;
+
+	// scalar triple product
     Vec3 pvec = Cross(r.Direction(), v0v2);
     double det = Dot(v0v1, pvec); 
 
@@ -47,8 +49,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
     double t = Dot(v0v2, qvec) * invDet;
 
-	// FOr intersecting objects,
-	// we take the closest one
+	// For multiple objects, we take the closest one
     if (t < t_min || t_max < t)
     {
         return false;
@@ -57,8 +58,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     // Hit Record
     rec.u = u;
     rec.v = v;
-    rec.t = t;
-
+    rec.t = t;	
     auto outward_normal = Cross(v0v1, v0v2);
     rec.SetFaceNormal(r, outward_normal);
     rec.mat_ptr = mp;
