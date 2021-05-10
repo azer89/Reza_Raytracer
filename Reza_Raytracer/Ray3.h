@@ -1,3 +1,4 @@
+
 #ifndef __RAY_3_H__
 #define __RAY_3_H__
 
@@ -22,6 +23,7 @@ public:
     {}
 
     Point3 Origin() const { return origin; }
+	
     Vec3 Direction() const { return direction; }
 
     Point3 At(double t) const
