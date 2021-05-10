@@ -1,7 +1,7 @@
 
-#include "TestTest.h"
+#include "AABB.h"
 
-bool TestTest::Hit_AABB(const Ray3& r, double t_min, double t_max)
+bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 {
 	// readable version
 	/*for (int a = 0; a < 3; a++)

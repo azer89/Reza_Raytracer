@@ -145,12 +145,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImageHandler.cpp" />
     <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="TestTest.cpp" />
+    <ClCompile Include="AABB.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="XYRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AABB.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
@@ -158,7 +157,7 @@
     <ClInclude Include="Ray3.h" />
     <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="Sphere.h" />
-    <ClInclude Include="TestTest.h" />
+    <ClInclude Include="AABB.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UsefulThings.h" />
