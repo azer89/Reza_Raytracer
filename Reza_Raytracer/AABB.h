@@ -2,11 +2,10 @@
 #define __AABB__
 
 #include "Vec3.h"
+#include "Ray3.h"
 
 class AABB
 {
-	
-	
 public:
 	
 	AABB()
@@ -77,7 +76,6 @@ public:
 private:
 	Point3 maximum;
 	Point3 minimum;
-	
 };
 
 #endif
