@@ -46,7 +46,7 @@ bool Sphere::Hit(const Ray3& r,
     auto root = (-half_b - sqrtd) / a;
     if (root < t_min || t_max < root) 
     {
-    	// not good, compute teh other root
+    	// not good, compute the other root
         root = (-half_b + sqrtd) / a;
         if (root < t_min || t_max < root)
         {
