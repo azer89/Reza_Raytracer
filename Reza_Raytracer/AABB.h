@@ -28,9 +28,9 @@ class AABB
 	
 	bool Hit(const Ray3& r, double t_min, double t_max) const;
 
-	private:
-		Point3 maximum;
-		Point3 minimum;
+private:
+	Point3 maximum;
+	Point3 minimum;
 };
 
 #endif
