@@ -86,5 +86,15 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
 bool Triangle::BoundingBox(AABB& output_box) const
 {
-    return false;
+    Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),
+			 fmin(v0.y(), fmin(v1.y(), v2.y())), 
+			 fmin(v0.z(), fmin(v1.z(), v2.z())));
+
+    Vec3 max(fmax(v0.x(), fmax(v1.x(), v2.x())),
+             fmax(v0.y(), fmax(v1.y(), v2.y())),
+             fmax(v0.z(), fmax(v1.z(), v2.z())));
+	
+    output_box = AABB(min, max);
+
+    return true;
 }

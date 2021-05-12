@@ -66,5 +66,8 @@ bool Sphere::Hit(const Ray3& r,
 
 bool Sphere::BoundingBox(AABB& output_box) const
 {
-    return false;
+    output_box = AABB(center - Vec3(radius, radius, radius),
+					  center + Vec3(radius, radius, radius));
+	
+    return true;
 }

@@ -39,8 +39,8 @@ public:
     virtual bool BoundingBox(AABB& output_box) const override;
 
 public:
-    //vector<shared_ptr<Hittable>> objects;
-    vector<unique_ptr<Hittable>> objects;
+    vector<shared_ptr<Hittable>> objects;
+    //vector<unique_ptr<Hittable>> objects;
 };
 
 #endif
