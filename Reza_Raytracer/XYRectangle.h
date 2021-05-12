@@ -26,6 +26,9 @@ public:
     };
 
     virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
+
+    virtual bool BoundingBox(AABB& output_box) const override;
+
 public:
     shared_ptr<Material> mp;
     double x0, x1, y0, y1, k;

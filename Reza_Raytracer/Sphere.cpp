@@ -63,3 +63,8 @@ bool Sphere::Hit(const Ray3& r,
 	
     return true;
 }
+
+bool Sphere::BoundingBox(AABB& output_box) const
+{
+    return false;
+}

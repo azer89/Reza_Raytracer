@@ -28,6 +28,11 @@ bool HittableList::Hit(const Ray3& r,
     return hit_anything;
 }
 
+bool HittableList::BoundingBox(AABB& output_box) const
+{
+    return false;
+}
+
 void HittableList::CreateWorld()
 {
     //auto material_light = make_shared<DiffuseLight>(Color(0.6, 0.7, 0.6));

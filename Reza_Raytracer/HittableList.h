@@ -36,6 +36,8 @@ public:
 					 double t_max, 
 					 HitRecord& rec) const override;
 
+    virtual bool BoundingBox(AABB& output_box) const override;
+
 public:
     //vector<shared_ptr<Hittable>> objects;
     vector<unique_ptr<Hittable>> objects;

@@ -28,6 +28,8 @@ public:
 					 double t_max, 
 					 HitRecord& rec) const override;
 
+    virtual bool BoundingBox(AABB& output_box) const override;
+
 public:
     Point3 center;
     double radius;

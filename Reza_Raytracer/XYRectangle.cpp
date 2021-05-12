@@ -33,3 +33,10 @@ bool XYRectangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec)
 	
     return true;
 }
+
+bool XYRectangle::BoundingBox(AABB& output_box) const
+{
+    return false;
+}
+
+
