@@ -18,7 +18,7 @@ public:
     {
     }
 
-    BVHNode(const std::vector<unique_ptr<Hittable>>& src_objects, 
+    BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, 
             size_t start, 
             size_t end);
 

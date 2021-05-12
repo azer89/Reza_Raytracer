@@ -19,6 +19,8 @@ const double pi = 3.1415926535897932385;
 
 // Utility Functions
 
+
+
 inline double RandomDouble()
 {
     static std::uniform_real_distribution<double> distribution(0.0, 1.0);
@@ -30,6 +32,12 @@ inline double RandomDouble(double min, double max)
 {
     // Returns a random real in [min,max).
     return min + (max - min) * RandomDouble();
+}
+
+// Returns a random integer in [min,max]
+inline int RandomInt(int min, int max)
+{
+    return static_cast<int>(random_double(min, max + 1));
 }
 
 inline double DegreesToRadians(double degrees)

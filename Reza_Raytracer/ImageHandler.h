@@ -13,7 +13,6 @@ private:
 	// need to be able to reset pixel_iterator
 	int pixel_iterator;
 	std::unique_ptr<uint8_t[]> pixels;
-	//uint8_t* pixels;
 	
 	int img_width;
 	int img_height;
