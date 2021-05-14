@@ -13,6 +13,14 @@
 
 class BVHNode : public Hittable 
 {
+private:
+    // only the leaf that has an actual object,
+    // other else is BVHNode
+    shared_ptr<Hittable> left;
+    shared_ptr<Hittable> right;
+
+    AABB box;
+
 public:
     BVHNode();
 
@@ -35,10 +43,7 @@ public:
 
     virtual bool BoundingBox(AABB& output_box) const override;
 
-public:
-    shared_ptr<Hittable> left;
-    shared_ptr<Hittable> right;
-    AABB box;
+
 };
 
 
