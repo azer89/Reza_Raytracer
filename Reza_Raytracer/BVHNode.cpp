@@ -68,3 +68,9 @@ bool BVHNode::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) con
 
     return hit_left || hit_right;
 }
+
+bool BVHNode::BoundingBox(AABB& output_box) const
+{
+    output_box = box;
+    return true;
+}

@@ -6,7 +6,7 @@
 //#include "Ray3.h"
 
 #include "Hittable.h"
-#include "HittableList.h"
+//#include "HittableList.h"
 
 #include <iostream>
 
@@ -16,10 +16,11 @@ class BVHNode : public Hittable
 public:
     BVHNode();
 
-    BVHNode(const HittableList& list)
+    // cyclic dependency
+    /*BVHNode(const HittableList& list)
         : BVHNode(list.objects, 0, list.objects.size())
     {
-    }
+    }*/
 
     BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, 
             size_t start, 
@@ -35,11 +36,7 @@ public:
     AABB box;
 };
 
-bool BVHNode::BoundingBox(AABB& output_box) const 
-{
-    output_box = box;
-    return true;
-}
+
 
 inline bool BoxCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b, int axis) 
 {
@@ -55,17 +52,17 @@ inline bool BoxCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> 
 }
 
 
-bool BoxXCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b) 
+inline bool BoxXCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b)
 {
     return BoxCompare(a, b, 0);
 }
 
-bool BoxYCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b) 
+inline bool BoxYCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b)
 {
     return BoxCompare(a, b, 1);
 }
 
-bool BoxZCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b) 
+inline bool BoxZCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b)
 {
     return BoxCompare(a, b, 2);
 }

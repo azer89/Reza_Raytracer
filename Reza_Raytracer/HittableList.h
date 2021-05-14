@@ -2,6 +2,7 @@
 #define __HITTABLE_LIST_H__
 
 #include "Hittable.h"
+#include "BVHNode.h"
 
 #include <memory>
 #include <vector>
@@ -9,6 +10,8 @@
 using std::unique_ptr;
 using std::shared_ptr;
 using std::vector;
+
+//class BVHNode;
 
 class HittableList : public Hittable
 {
@@ -39,6 +42,8 @@ public:
     virtual bool BoundingBox(AABB& output_box) const override;
 
 public:
+    unique_ptr<BVHNode> bvhRoot;
+
     vector<shared_ptr<Hittable>> objects;
     //vector<unique_ptr<Hittable>> objects;
 };

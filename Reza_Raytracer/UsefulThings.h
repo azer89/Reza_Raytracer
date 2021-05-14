@@ -55,6 +55,4 @@ inline double Clamp(double x, double min, double max)
     return x;
 }
 
-
-
 #endif
