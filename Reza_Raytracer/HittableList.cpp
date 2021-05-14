@@ -4,6 +4,7 @@
 #include "Sphere.h"
 #include "XYRectangle.h"
 #include "Triangle.h"
+//#include "BVHNode.h"
 
 using std::make_unique;
 

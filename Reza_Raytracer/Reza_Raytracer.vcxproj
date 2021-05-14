@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="main.cpp" />

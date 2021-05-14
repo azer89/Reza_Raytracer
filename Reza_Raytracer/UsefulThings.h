@@ -6,6 +6,11 @@
 #include <memory>
 #include <random>
 
+// Common Headers
+
+//#include "Ray3.h"
+//#include "Vec3.h"
+
 // Usings
 
 using std::shared_ptr;
@@ -18,8 +23,6 @@ const double infinity = std::numeric_limits<double>::infinity();
 const double pi = 3.1415926535897932385;
 
 // Utility Functions
-
-
 
 inline double RandomDouble()
 {
@@ -37,7 +40,7 @@ inline double RandomDouble(double min, double max)
 // Returns a random integer in [min,max]
 inline int RandomInt(int min, int max)
 {
-    return static_cast<int>(random_double(min, max + 1));
+    return static_cast<int>(RandomDouble(min, max + 1));
 }
 
 inline double DegreesToRadians(double degrees)
@@ -52,9 +55,6 @@ inline double Clamp(double x, double min, double max)
     return x;
 }
 
-// Common Headers
 
-#include "Ray3.h"
-#include "Vec3.h"
 
 #endif

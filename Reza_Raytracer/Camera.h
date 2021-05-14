@@ -1,7 +1,9 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "UsefulThings.h"
+//#include "UsefulThings.h"
+#include "Ray3.h"
+#include "Vec3.h"
 
 class Camera
 {

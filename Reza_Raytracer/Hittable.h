@@ -1,6 +1,7 @@
 #ifndef HITTABLE_H
 #define HITTABLE_H
 
+#include "Vec3.h"
 #include "Ray3.h"
 #include "AABB.h"
 

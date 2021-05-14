@@ -3,7 +3,7 @@
 #define __STB_WRAPPER__
 
 #include <string>
-#include <vector>
+//#include <vector>
 #include <memory>
 
 // this class handles the output image

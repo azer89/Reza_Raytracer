@@ -2,7 +2,7 @@
 #define __Triangle__
 
 #include "Hittable.h"
-#include "Vec3.h"
+//#include "Vec3.h"
 #include "Material.h"
 
 class Triangle : public Hittable

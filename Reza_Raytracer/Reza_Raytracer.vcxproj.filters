@@ -39,6 +39,9 @@
     <ClCompile Include="AABB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BVHNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec3.h">
