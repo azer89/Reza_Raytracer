@@ -12,8 +12,11 @@ bool HittableList::Hit(const Ray3& r,
 					   double t_min, 
 					   double t_max, HitRecord& rec) const
 {
-    HitRecord temp_rec;
-    bool hit_anything = false;
+    //HitRecord temp_rec;
+
+    bool hit_anything = bvhRoot->Hit(r, t_min, t_max, rec);
+
+    /*bool hit_anything = false;
     auto closest_so_far = t_max; // very clever!
 
     for (const auto& object : objects) 
@@ -24,7 +27,7 @@ bool HittableList::Hit(const Ray3& r,
             closest_so_far = temp_rec.t;
             rec = temp_rec;
         }
-    }
+    }*/
 
     return hit_anything;
 }
@@ -50,6 +53,9 @@ void HittableList::CreateWorld()
 										    Point3(0.5, 0.5, -0.5),
 										    Point3(-0.5, 0.5, -0.5),
 										    material_center));
+
+    // init BVH
+    bvhRoot = make_shared<BVHNode>(objects);
 }
 
 bool HittableList::BoundingBox(AABB& output_box) const

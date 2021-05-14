@@ -18,6 +18,7 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, size_t st
 
     size_t object_span = end - start;
 
+    // creating a tree
     if (object_span == 1) 
     {
         left = right = objects[start];

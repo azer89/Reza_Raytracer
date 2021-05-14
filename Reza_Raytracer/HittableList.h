@@ -42,7 +42,7 @@ public:
     virtual bool BoundingBox(AABB& output_box) const override;
 
 public:
-    unique_ptr<BVHNode> bvhRoot;
+    shared_ptr<BVHNode> bvhRoot;
 
     vector<shared_ptr<Hittable>> objects;
     //vector<unique_ptr<Hittable>> objects;
