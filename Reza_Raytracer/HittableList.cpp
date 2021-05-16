@@ -19,10 +19,10 @@ bool HittableList::Hit(const Ray3& r,
     
 
     // BVH version
-    //bool hit_anything = bvhRoot->Hit(r, t_min, t_max, rec);
+    bool hit_anything = bvhRoot->Hit(r, t_min, t_max, rec);
 
     // Brute force version
-    HitRecord temp_rec;
+    /*HitRecord temp_rec;
     bool hit_anything = false;
     auto closest_so_far = t_max; // very clever!
 
@@ -34,7 +34,7 @@ bool HittableList::Hit(const Ray3& r,
             closest_so_far = temp_rec.t;
             rec = temp_rec;
         }
-    }
+    }*/
 
     return hit_anything;
 }
@@ -72,6 +72,8 @@ void HittableList::CreateWorld()
     Point3 offset(0, 0.3, -1);*/
 
     const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
+    //double scale = 0.75;
+    //Point3 offset(0, -0.7, -0.7);
     double scale = 0.75;
     Point3 offset(0, -0.7, -0.7);
 

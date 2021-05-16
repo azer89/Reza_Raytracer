@@ -9,10 +9,15 @@ Camera::Camera()
     (0,0,-1)
     (0,1,0)
      */
-    lookfrom = Point3(2, 1.5, 2);
+    /*lookfrom = Point3(2, 1.5, 2);
     lookat = Point3(0, 0, -1);
     vup = Vec3(0, 1, 0);
-	
+	*/
+
+    lookfrom = Point3(0, 0, 2);
+    lookat = Point3(0, 0, -1);
+    vup = Vec3(0, 1, 0);
+
     this->vfov = 30; // in degree
     this->aspect_ratio = 16.0 / 9.0;
 	

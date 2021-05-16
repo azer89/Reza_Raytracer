@@ -56,7 +56,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			int i2 = std::stoi( Split(arrayStr[2], '/')[0] );
 			int i3 = std::stoi( Split(arrayStr[3], '/')[0] );
 
-			faces.push_back({i1, i2, i3});
+			faces.push_back({i1 - 1, i2 - 1, i3 - 1});
 
 			/*faces.push_back({ std::stoi(arrayStr[1]),
 							    std::stoi(arrayStr[2]),
