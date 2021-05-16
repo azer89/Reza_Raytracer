@@ -14,7 +14,7 @@ Camera::Camera()
     vup = Vec3(0, 1, 0);
 	*/
 
-    lookfrom = Point3(0, 0, 2.2);
+    lookfrom = Point3(0, 0, 2.3);
     lookat = Point3(0, 0, -1);
     vup = Vec3(0, 1, 0);
 

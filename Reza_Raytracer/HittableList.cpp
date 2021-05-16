@@ -72,10 +72,13 @@ void HittableList::CreateWorld()
     Point3 offset(0, 0.3, -1);*/
 
     const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
-    //double scale = 0.75;
-    //Point3 offset(0, -0.7, -0.7);
     double scale = 0.75;
-    Point3 offset(0, -0.7, -0.7);
+    Point3 offset(0, -0.73, -0.7);
+    /*
+    lookfrom = Point3(0, 0, 2.3);
+    lookat = Point3(0, 0, -1);
+    vup = Vec3(0, 1, 0);
+    */
 
     o_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
