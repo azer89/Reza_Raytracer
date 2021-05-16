@@ -16,13 +16,14 @@ bool HittableList::Hit(const Ray3& r,
 					   double t_max, 
                        HitRecord& rec) const
 {
-    //HitRecord temp_rec;
+    
 
     // BVH version
-    bool hit_anything = bvhRoot->Hit(r, t_min, t_max, rec);
+    //bool hit_anything = bvhRoot->Hit(r, t_min, t_max, rec);
 
     // Brute force version
-    /*bool hit_anything = false;
+    HitRecord temp_rec;
+    bool hit_anything = false;
     auto closest_so_far = t_max; // very clever!
 
     for (const auto& object : objects) 
@@ -33,7 +34,7 @@ bool HittableList::Hit(const Ray3& r,
             closest_so_far = temp_rec.t;
             rec = temp_rec;
         }
-    }*/
+    }
 
     return hit_anything;
 }
@@ -66,9 +67,13 @@ void HittableList::CreateWorld()
     std::vector< std::vector<int>> faces;
 
     OBJReader o_reader;
-    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//torus.obj";
-    double scale = 0.5;
-    Point3 offset(0, 0.3, -1);
+    /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//torus.obj";
+    double scale = 0.75;
+    Point3 offset(0, 0.3, -1);*/
+
+    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
+    double scale = 0.75;
+    Point3 offset(0, -0.7, -0.7);
 
     o_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
