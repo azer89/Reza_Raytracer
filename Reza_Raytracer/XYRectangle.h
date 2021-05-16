@@ -1,5 +1,5 @@
-#ifndef __XY_Rectangle__
-#define __XY_Rectangle__
+#ifndef __XY_RECTANGLE_H__
+#define __XY_RECTANGLE_H__
 
 #include "Hittable.h"
 #include "Vec3.h"

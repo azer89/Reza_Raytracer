@@ -1,5 +1,5 @@
-#ifndef __AABB__
-#define __AABB__
+#ifndef __AABB_H__
+#define __AABB_H__
 
 #include "Ray3.h"
 

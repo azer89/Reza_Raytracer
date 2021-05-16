@@ -1,6 +1,6 @@
 
-#ifndef __STB_WRAPPER__
-#define __STB_WRAPPER__
+#ifndef __IMAGE_WRAPPER_H__
+#define __IMAGE_WRAPPER_H__
 
 #include <string>
 //#include <vector>

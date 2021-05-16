@@ -1,5 +1,5 @@
-#ifndef __TEXTURE__
-#define __TEXTURE__
+#ifndef __TEXTURE_H__
+#define __TEXTURE_H__
 
 #include "Vec3.h"
 

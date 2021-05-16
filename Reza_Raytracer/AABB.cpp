@@ -63,8 +63,8 @@ int AABB::LongestAxis() const
 
 double AABB::Area() const
 {
-	float a = maximum.x() - minimum.x();
-	float b = maximum.y() - minimum.y();
-	float c = maximum.z() - minimum.z();
+	double a = maximum.x() - minimum.x();
+	double b = maximum.y() - minimum.y();
+	double c = maximum.z() - minimum.z();
 	return 2 * (a * b + b * c + c * a);
 }

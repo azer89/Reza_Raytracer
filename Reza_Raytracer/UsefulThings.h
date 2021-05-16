@@ -1,5 +1,5 @@
-#ifndef __USEFUL_THINGS__
-#define __USEFUL_THINGS__
+#ifndef __USEFUL_THINGS_H__
+#define __USEFUL_THINGS_H__
 
 #include <cmath>
 #include <limits>

@@ -1,5 +1,5 @@
-#ifndef __Triangle__
-#define __Triangle__
+#ifndef __TRIANGLE_H__
+#define __TRIANGLE_H__
 
 #include "Hittable.h"
 //#include "Vec3.h"

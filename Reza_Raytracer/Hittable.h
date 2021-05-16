@@ -1,5 +1,5 @@
-#ifndef HITTABLE_H
-#define HITTABLE_H
+#ifndef __HITTABLE_H__
+#define __HITTABLE_H__
 
 #include "Vec3.h"
 #include "Ray3.h"

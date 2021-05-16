@@ -86,5 +86,8 @@
     <ClInclude Include="BVHNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OBJReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
