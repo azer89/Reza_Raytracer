@@ -9,7 +9,7 @@ Camera::Camera()
     (0,0,-1)
     (0,1,0)
      */
-    lookfrom = Point3(2, 3, 2);
+    lookfrom = Point3(2, 1.5, 2);
     lookat = Point3(0, 0, -1);
     vup = Vec3(0, 1, 0);
 	

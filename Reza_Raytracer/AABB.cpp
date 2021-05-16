@@ -42,3 +42,29 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 	}
 	return true;
 }
+
+int AABB::LongestAxis() const
+{
+	float x = maximum.x() - minimum.x();
+	float y = maximum.y() - minimum.y();
+	float z = maximum.z() - minimum.z();
+
+	if (x > y && x > z)
+	{
+		return 0;
+	}
+	else if (y > z)
+	{
+		return 1;
+	}
+
+	return 2;
+}
+
+double AABB::Area() const
+{
+	float a = maximum.x() - minimum.x();
+	float b = maximum.y() - minimum.y();
+	float c = maximum.z() - minimum.z();
+	return 2 * (a * b + b * c + c * a);
+}

@@ -47,13 +47,13 @@ void HittableList::CreateWorld()
     //objects.push_back(make_shared<Sphere>(Point3(0, 0, -1),    2.5, material_center) );*/
     objects.push_back(make_shared<Sphere>(Point3(0, -100, -1), 100, material_ground) );
         
-    objects.push_back(make_shared<Triangle>(Point3( 0, 0.25, 0),
-											Point3(1, 0.25, -1),
+    objects.push_back(make_shared<Triangle>(Point3( 0, 0.25,  0),
+											Point3( 1, 0.25, -1),
 										    Point3(-1, 0.25, -1),        
 										    material_center));
 
-    objects.push_back(make_shared<Triangle>(Point3(0, 0, -0.5),
-										    Point3(0.5, 0.5, -0.5),
+    objects.push_back(make_shared<Triangle>(Point3(   0,  0,  -0.5),
+										    Point3( 0.5, 0.5, -0.5),
 										    Point3(-0.5, 0.5, -0.5),
 										    material_center));
 

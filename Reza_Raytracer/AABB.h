@@ -26,6 +26,10 @@ public:
 	{
 		return maximum;
 	}
+
+	int LongestAxis() const;
+
+	double Area() const;
 	
 	bool Hit(const Ray3& r, double t_min, double t_max) const;
 

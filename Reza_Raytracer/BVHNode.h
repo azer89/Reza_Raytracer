@@ -16,10 +16,17 @@ class BVHNode : public Hittable
 private:
     // only the leaf that has an actual object,
     // other else is BVHNode
-    shared_ptr<Hittable> left;
-    shared_ptr<Hittable> right;
+    shared_ptr<Hittable> left_node;
+    shared_ptr<Hittable> right_node;
 
-    AABB box;
+    
+
+public:
+    // for debugging purpose
+    // the number of actual objects the node contains
+    size_t num_actual_object = 0;
+
+    AABB node_box;
 
 public:
     BVHNode();
@@ -35,9 +42,15 @@ public:
     {
     }
 
-    BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, 
-            size_t start, 
+    BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects,
+            size_t start,
             size_t end);
+
+    // original constructor
+    void 
+    BVHNode_Old(const std::vector<shared_ptr<Hittable>>& src_objects, 
+                size_t start, 
+                size_t end);
 
     virtual bool Hit( const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
 
