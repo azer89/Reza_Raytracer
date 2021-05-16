@@ -5,7 +5,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 {
     /*
     www.scratchapixel.com/lessons/3d-basic-rendering/
-	ray-tracing-rendering-a-triangle/
+    ray-tracing-rendering-a-triangle/
     moller-trumbore-ray-triangle-intersection
     */
 	
@@ -17,13 +17,13 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 	/*
 	You have three vectors
 
-		a1      b1      c1
-	a = a2  b = b2  c = c2
-		a3      b3      c3
+        a1      b1      c1
+    a = a2  b = b2  c = c2
+        a3      b3      c3
 	
         |a1 b2 c1|
-	det |a2 b2 c2| = (a x b) . c
-		|a3 b3 c3|
+    det |a2 b2 c2| = (a x b) . c
+        |a3 b3 c3|
 
 	x is cross product, . is dot product
 	*/
