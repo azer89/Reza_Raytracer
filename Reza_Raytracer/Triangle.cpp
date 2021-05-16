@@ -9,12 +9,12 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     moller-trumbore-ray-triangle-intersection
     */
 	
-	// can be precomputed
+    // can be precomputed
     Vec3 v0v1 = v1 - v0;
     Vec3 v0v2 = v2 - v0;
 
-	// scalar triple product
-	/*
+    // scalar triple product
+    /*
 	You have three vectors
 
         a1      b1      c1
@@ -26,27 +26,27 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
         |a3 b3 c3|
 
 	x is cross product, . is dot product
-	*/
+    */
     Vec3 pvec = Cross(r.Direction(), v0v2);
     double det = Dot(v0v1, pvec); 
 
     constexpr double kEpsilon = std::numeric_limits<double>::epsilon();
 	
-	//#ifdef CULLING 
-	// if the determinant is negative the triangle is backfacing
-	// if the determinant is close to 0, the ray misses the triangle
+    //#ifdef CULLING 
+    // if the determinant is negative the triangle is backfacing
+    // if the determinant is close to 0, the ray misses the triangle
     if (det < kEpsilon)
     {
         return false;
     }
-	//#else 
+    //#else 
     // ray and triangle are parallel if det is close to 0
-	// fabs is extremely slow
+    // fabs is extremely slow
     /*if (fabs(det) < kEpsilon)
     {
         return false;
     }*/
-	//#endif
+    //#endif
 
     double invDet = 1 / det;
 
@@ -66,7 +66,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
     double t = Dot(v0v2, qvec) * invDet;
 
-	// For multiple objects, we take the closest one
+    // For multiple objects, we take the closest one
     if (t < t_min || t_max < t)
     {
         return false;
