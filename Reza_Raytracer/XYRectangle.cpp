@@ -2,6 +2,8 @@
 
 #include "XYRectangle.h"
 
+#include <iostream>
+
 bool XYRectangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
 {
     auto t = (k - r.Origin().z()) / r.Direction().z();
@@ -19,7 +21,6 @@ bool XYRectangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec)
         return false;
     }
 
-
 	// Hit Record
     rec.u = (x - x0) / (x1 - x0);
     rec.v = (y - y0) / (y1 - y0);
@@ -36,6 +37,7 @@ bool XYRectangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec)
 
 bool XYRectangle::BoundingBox(AABB& output_box) const
 {
+    std::cerr << "not implemented\n";
     return false;
 }
 

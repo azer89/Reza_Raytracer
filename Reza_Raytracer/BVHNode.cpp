@@ -10,7 +10,7 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, size_t st
     auto objects = src_objects; // Create a modifiable array of the source scene objects
 
     // comparator is just a ternary operator
-    // the type is bool (*comparator)(shared_ptr<Hittable> a, shared_ptr<Hittable> b)
+    // bool (*comparator)(shared_ptr<Hittable> a, shared_ptr<Hittable> b)
     int axis = RandomInt(0, 2);
     auto comparator = (axis == 0) ? BoxXCompare
                     : (axis == 1) ? BoxYCompare
@@ -21,6 +21,7 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, size_t st
     // creating a tree
     if (object_span == 1) 
     {
+        // pointing to the same object
         left = right = objects[start];
     }
     else if (object_span == 2) 
@@ -38,10 +39,11 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, size_t st
     }
     else 
     {
+        // binary partitioning
         std::sort(objects.begin() + start, objects.begin() + end, comparator);
 
         auto mid = start + object_span / 2;
-        left = make_shared<BVHNode>(objects, start, mid);
+        left  = make_shared<BVHNode>(objects, start, mid);
         right = make_shared<BVHNode>(objects, mid, end);
     }
 

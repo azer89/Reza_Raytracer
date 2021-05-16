@@ -31,17 +31,17 @@ Color RayColor(const Ray3& r, const HittableList& world, int depth)
 
 		Ray3 scattered;
 		Color attenuation;
-		Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p); // does not work
+		//Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p); 
 		
 		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
 		{
 			return attenuation * RayColor(scattered, world, depth - 1);
-			return emitted + attenuation * RayColor(scattered, world, depth - 1); // does not work
+			//return emitted + attenuation * RayColor(scattered, world, depth - 1); // does not work
 		}
-		else
-		{
-			return emitted;
-		}
+		//else
+		//{
+		//	return emitted;
+		//}
 	}
 
 	// Non recursive
