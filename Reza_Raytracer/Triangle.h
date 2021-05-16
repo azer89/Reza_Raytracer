@@ -12,11 +12,14 @@ public:
     {
     }
 
+
     Triangle(Vec3 _v0,
 		     Vec3 _v1,
 		     Vec3 _v2,
-        shared_ptr<Material> mat)
-        : v0(_v0), v1(_v1), v2(_v2)
+             shared_ptr<Material> mat)
+        : v0(_v0), 
+          v1(_v1), 
+          v2(_v2)
     {
         // stackoverflow.com/questions/41871115/why-would-i-stdmove-an-stdshared-ptr
         // why do I move a shared_ptr?

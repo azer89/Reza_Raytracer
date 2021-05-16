@@ -42,9 +42,9 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects,
         num_actual_object = 1;
 
         // debugging
-        std::cout << "Single AABB area = " << node_box.Area() << 
-            " Min = (" << node_box.Min()[0] << ", " << node_box.Min()[1] << ", " << node_box.Min()[2] << ")" <<
-            " Max = (" << node_box.Max()[0] << ", " << node_box.Max()[1] << ", " << node_box.Max()[2] << ")" << '\n';
+        //std::cout << "Single AABB area = " << node_box.Area() << 
+        //    " Min = (" << node_box.Min()[0] << ", " << node_box.Min()[1] << ", " << node_box.Min()[2] << ")" <<
+        //    " Max = (" << node_box.Max()[0] << ", " << node_box.Max()[1] << ", " << node_box.Max()[2] << ")" << '\n';
     }
     else if (object_span == 2)
     {
@@ -66,13 +66,13 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects,
         right_node->BoundingBox(right_box);
 
         // debugging
-        std::cout << "Left AABB area = " << left_box.Area() <<
-            " Min = (" << left_box.Min()[0] << ", " << left_box.Min()[1] << ", " << left_box.Min()[2] << ")" <<
-            " Max = (" << left_box.Max()[0] << ", " << left_box.Max()[1] << ", " << left_box.Max()[2] << ")" << '\n';
+        //std::cout << "Left AABB area = " << left_box.Area() <<
+        //    " Min = (" << left_box.Min()[0] << ", " << left_box.Min()[1] << ", " << left_box.Min()[2] << ")" <<
+        //    " Max = (" << left_box.Max()[0] << ", " << left_box.Max()[1] << ", " << left_box.Max()[2] << ")" << '\n';
 
-        std::cout << "Right AABB area = " << right_box.Area() <<
-            " Min = (" << right_box.Min()[0] << ", " << right_box.Min()[1] << ", " << right_box.Min()[2] << ")" <<
-            " Max = (" << right_box.Max()[0] << ", " << right_box.Max()[1] << ", " << right_box.Max()[2] << ")" << '\n';
+        //std::cout << "Right AABB area = " << right_box.Area() <<
+        //    " Min = (" << right_box.Min()[0] << ", " << right_box.Min()[1] << ", " << right_box.Min()[2] << ")" <<
+        //    " Max = (" << right_box.Max()[0] << ", " << right_box.Max()[1] << ", " << right_box.Max()[2] << ")" << '\n';
     }
     else
     {

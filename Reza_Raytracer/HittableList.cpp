@@ -4,7 +4,10 @@
 #include "Sphere.h"
 #include "XYRectangle.h"
 #include "Triangle.h"
+#include "OBJReader.h"
 //#include "BVHNode.h"
+
+#include <string>
 
 using std::make_unique;
 
@@ -45,9 +48,9 @@ void HittableList::CreateWorld()
       objects.push_back(make_shared<Sphere>(Point3(-1.1, 0, -1), 0.5, material_center) );
       objects.push_back(make_shared<Sphere>(Point3(1.1, 0, -1),  0.5, material_center) );
     //objects.push_back(make_shared<Sphere>(Point3(0, 0, -1),    2.5, material_center) );*/
-    objects.push_back(make_shared<Sphere>(Point3(0, -100, -1), 100, material_ground) );
+    //objects.push_back(make_shared<Sphere>(Point3(0, -100, -1), 100, material_ground) );
         
-    objects.push_back(make_shared<Triangle>(Point3( 0, 0.25,  0),
+    /*objects.push_back(make_shared<Triangle>(Point3( 0, 0.25,  0),
 											Point3( 1, 0.25, -1),
 										    Point3(-1, 0.25, -1),        
 										    material_center));
@@ -56,6 +59,33 @@ void HittableList::CreateWorld()
 										    Point3( 0.5, 0.5, -0.5),
 										    Point3(-0.5, 0.5, -0.5),
 										    material_center));
+    */
+
+    // Load triangle mesh
+    std::vector<Vec3> vertices;
+    std::vector< std::vector<int>> faces;
+
+    OBJReader o_reader;
+    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//torus.obj";
+    double scale = 0.5;
+    Point3 offset(0, 0.3, -1);
+
+    o_reader.ReadOBJ(filename, vertices, faces);
+    for (int i = 0; i < faces.size(); i++)
+    {
+        int i1 = faces[i][0];
+        int i2 = faces[i][1];
+        int i3 = faces[i][2];
+
+        Point3 p1 = vertices[i1] * scale + offset;
+        Point3 p2 = vertices[i2] * scale + offset;
+        Point3 p3 = vertices[i3] * scale + offset;
+
+        objects.push_back(make_shared<Triangle>(p1,
+                                                p2,
+                                                p3,
+                                                material_center));
+    }
 
     // init BVH
     bvhRoot = make_shared<BVHNode>(objects);
