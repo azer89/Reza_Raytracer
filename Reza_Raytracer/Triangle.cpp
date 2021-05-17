@@ -32,21 +32,12 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
     constexpr double kEpsilon = std::numeric_limits<double>::epsilon();
 	
-    //#ifdef CULLING 
     // if the determinant is negative the triangle is backfacing
     // if the determinant is close to 0, the ray misses the triangle
-    /*if (det < kEpsilon)
-    {
-        return false;
-    }*/
-    //#else 
-    // ray and triangle are parallel if det is close to 0
-    // fabs is extremely slow
     if (abs(det) < kEpsilon)
     {
         return false;
     }
-    //#endif
 
     double invDet = 1 / det;
 

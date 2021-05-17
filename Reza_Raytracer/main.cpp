@@ -92,7 +92,7 @@ int main()
 	ImageHandler imgHandler(image_width, image_height); // set up image handler
 	const int samples_per_pixel = 100; // 100
 	auto scale = 1.0 / samples_per_pixel;
-	const int max_depth = 50; // 50
+	const int max_depth = 5; // 50
 
 	 // World
 	HittableList world;
