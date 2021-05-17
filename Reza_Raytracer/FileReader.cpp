@@ -1,5 +1,7 @@
 
-#include "OBJReader.h"
+#include "FileReader.h"
+
+#include "tinyxml2.h"
 
 
 #include <fstream>
@@ -30,7 +32,8 @@ inline bool StartWith(const std::string& prefix,
 	return false;
 }
 
-void OBJReader::ReadOBJ(const std::string& filename, 
+// currently only supports "v" and "f" 
+void FileReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices,
 						std::vector< std::vector<int>>& faces)
 {
@@ -59,6 +62,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			int i2 = std::stoi( Split(str_array[2], '/')[0] );
 			int i3 = std::stoi( Split(str_array[3], '/')[0] );
 
+			// OBJ indexing starts with 1
 			faces.push_back({i1 - 1, 
 							 i2 - 1, 
 							 i3 - 1});

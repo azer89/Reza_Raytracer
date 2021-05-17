@@ -4,7 +4,7 @@
 #include "Sphere.h"
 #include "XYRectangle.h"
 #include "Triangle.h"
-#include "OBJReader.h"
+#include "FileReader.h"
 //#include "BVHNode.h"
 
 #include <string>
@@ -66,7 +66,7 @@ void HittableList::CreateWorld()
     std::vector<Vec3> vertices;
     std::vector< std::vector<int>> faces;
 
-    OBJReader o_reader;
+    FileReader f_reader;
     /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//torus.obj";
     double scale = 0.75;
     Point3 offset(0, 0.3, -1);*/
@@ -83,7 +83,7 @@ void HittableList::CreateWorld()
     vup = Vec3(0, 1, 0);
     */
 
-    o_reader.ReadOBJ(filename, vertices, faces);
+    f_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
     {
         int i1 = faces[i][0];

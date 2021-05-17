@@ -145,9 +145,10 @@
     <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImageHandler.cpp" />
-    <ClCompile Include="OBJReader.cpp" />
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="AABB.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="XYRectangle.cpp" />
   </ItemGroup>
@@ -157,12 +158,15 @@
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
     <ClInclude Include="Material.h" />
-    <ClInclude Include="OBJReader.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="Ray3.h" />
     <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="AABB.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UsefulThings.h" />
     <ClInclude Include="Vec3.h" />

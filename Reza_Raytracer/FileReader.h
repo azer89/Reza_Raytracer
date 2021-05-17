@@ -6,13 +6,13 @@
 #include <vector>
 #include <string>
 
-class OBJReader
+class FileReader
 {
 	
 
 public:
 
-	OBJReader()
+	FileReader()
 	{
 	}
 
