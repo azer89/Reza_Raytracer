@@ -71,9 +71,12 @@ void HittableList::CreateWorld()
     double scale = 0.75;
     Point3 offset(0, 0.3, -1);*/
 
-    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
+    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_low_res.obj";
     double scale = 0.75;
     Point3 offset(0, -0.73, -0.7);
+    /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
+    double scale = 0.75;
+    Point3 offset(0, -0.73, -0.7);*/
     /*
     lookfrom = Point3(0, 0, 2.3);
     lookat = Point3(0, 0, -1);
