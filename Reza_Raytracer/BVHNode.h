@@ -37,12 +37,12 @@ public:
     {
     }*/
 
-    BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects)
+    BVHNode(std::vector<shared_ptr<Hittable>>& src_objects)
         : BVHNode(src_objects, 0, src_objects.size())
     {
     }
 
-    BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects,
+    BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
             size_t start,
             size_t end);
 

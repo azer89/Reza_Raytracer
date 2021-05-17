@@ -6,19 +6,19 @@
 
 // improved constructor without random
 // github.com/RayTracing/TheRestOfYourLife/blob/master/src/bvh.h
-BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects, 
+BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects, 
                  size_t start, 
                  size_t end)
 {
     // need to be optimized because we duplicate shared_ptrs
-    auto objects = src_objects; 
+    //auto objects = src_objects; 
 
     // assign first object's BB to box
-    objects[start]->BoundingBox(node_box);
+    src_objects[start]->BoundingBox(node_box);
     AABB dummy_box;
     for(int i = start + 1; i < end; i++)
     {
-        bool has_bb = objects[i]->BoundingBox(dummy_box);
+        bool has_bb = src_objects[i]->BoundingBox(dummy_box);
         if (!has_bb)
         {
             std::cerr << "No bounding box in bvh_node constructor.\n";
@@ -38,27 +38,29 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects,
     if (object_span == 1)
     {
         // pointing to the same object
-        left_node = right_node = objects[start];
+        left_node = right_node = src_objects[start];
         num_actual_object = 1;
 
         // debugging
-        //std::cout << "Single AABB area = " << node_box.Area() << 
-        //    " Min = (" << node_box.Min()[0] << ", " << node_box.Min()[1] << ", " << node_box.Min()[2] << ")" <<
-        //    " Max = (" << node_box.Max()[0] << ", " << node_box.Max()[1] << ", " << node_box.Max()[2] << ")" << '\n';
+        /*std::cout << "Single AABB area = " << node_box.Area() << 
+            " Min = (" << node_box.Min()[0] << ", " << node_box.Min()[1] << ", " << node_box.Min()[2] << ")" <<
+            " Max = (" << node_box.Max()[0] << ", " << node_box.Max()[1] << ", " << node_box.Max()[2] << ")" << '\n';
+        */
     }
     else if (object_span == 2)
     {
-        if (comparator(objects[start], objects[start + 1]))
+        if (comparator(src_objects[start], src_objects[start + 1]))
         {
-            left_node  = objects[start];
-            right_node = objects[start + 1];
+            left_node  = src_objects[start];
+            right_node = src_objects[start + 1];
         }
         else
         {
-            left_node  = objects[start + 1];
-            right_node = objects[start];
+            left_node  = src_objects[start + 1];
+            right_node = src_objects[start];
         }
 
+        // debugging
         num_actual_object = 2;
         AABB left_box;
         left_node->BoundingBox(left_box);
@@ -66,22 +68,27 @@ BVHNode::BVHNode(const std::vector<shared_ptr<Hittable>>& src_objects,
         right_node->BoundingBox(right_box);
 
         // debugging
-        //std::cout << "Left AABB area = " << left_box.Area() <<
-        //    " Min = (" << left_box.Min()[0] << ", " << left_box.Min()[1] << ", " << left_box.Min()[2] << ")" <<
-        //    " Max = (" << left_box.Max()[0] << ", " << left_box.Max()[1] << ", " << left_box.Max()[2] << ")" << '\n';
+        /*
+        std::cout << "Left AABB area = " << left_box.Area() <<
+            " Min = (" << left_box.Min()[0] << ", " << left_box.Min()[1] << ", " << left_box.Min()[2] << ")" <<
+            " Max = (" << left_box.Max()[0] << ", " << left_box.Max()[1] << ", " << left_box.Max()[2] << ")" << '\n';
 
-        //std::cout << "Right AABB area = " << right_box.Area() <<
-        //    " Min = (" << right_box.Min()[0] << ", " << right_box.Min()[1] << ", " << right_box.Min()[2] << ")" <<
-        //    " Max = (" << right_box.Max()[0] << ", " << right_box.Max()[1] << ", " << right_box.Max()[2] << ")" << '\n';
+        std::cout << "Right AABB area = " << right_box.Area() <<
+            " Min = (" << right_box.Min()[0] << ", " << right_box.Min()[1] << ", " << right_box.Min()[2] << ")" <<
+            " Max = (" << right_box.Max()[0] << ", " << right_box.Max()[1] << ", " << right_box.Max()[2] << ")" << '\n';
+        */
     }
     else
     {
         // binary partitioning
-        std::sort(objects.begin() + start, objects.begin() + end, comparator);
+        // we are sorting a vector of shared_ptrs, 
+        // it's ugly code because we modify a resourse we don't own
+        // but technically there's no problem
+        std::sort(src_objects.begin() + start, src_objects.begin() + end, comparator);
 
         auto mid = start + object_span / 2;
-        left_node  = make_shared<BVHNode>(objects, start, mid);
-        right_node = make_shared<BVHNode>(objects, mid, end);
+        left_node  = make_shared<BVHNode>(src_objects, start, mid);
+        right_node = make_shared<BVHNode>(src_objects, mid, end);
     }
 
 }

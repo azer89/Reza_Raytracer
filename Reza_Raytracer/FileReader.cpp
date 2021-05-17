@@ -1,6 +1,8 @@
 
 #include "FileReader.h"
 
+// C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml
+// tinyxml2.docsforge.com/master/examples/#read-attributes-and-text-information
 #include "tinyxml2.h"
 
 
