@@ -83,7 +83,7 @@ void HittableList::CreateWorld()
     vup = Vec3(0, 1, 0);
     */
 
-    std::cout << "read obj file " << filename << '\n';
+    std::cout << "Reading obj file " << filename << '\n';
     f_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
     {
@@ -103,7 +103,9 @@ void HittableList::CreateWorld()
     std::cout << "done reading\n\n";
 
     // init BVH
+    std::cout << "Building BVH\n";
     bvhRoot = make_shared<BVHNode>(objects);
+    std::cout << "BVH done\n\n";
 }
 
 bool HittableList::BoundingBox(AABB& output_box) const
