@@ -126,5 +126,7 @@ int main()
 	imgHandler.WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 	//STBWrapper::WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png", pixels, width, height);
 
+	std::cin.get();
+
 	return 0;
 }

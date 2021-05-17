@@ -71,7 +71,7 @@ void HittableList::CreateWorld()
     double scale = 0.75;
     Point3 offset(0, 0.3, -1);*/
 
-    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_low_res.obj";
+    const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny.obj";
     double scale = 0.75;
     Point3 offset(0, -0.73, -0.7);
     /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
@@ -83,6 +83,7 @@ void HittableList::CreateWorld()
     vup = Vec3(0, 1, 0);
     */
 
+    std::cout << "read obj file " << filename << '\n';
     f_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
     {
@@ -99,6 +100,7 @@ void HittableList::CreateWorld()
                                                 p3,
                                                 material_center));
     }
+    std::cout << "done reading\n\n";
 
     // init BVH
     bvhRoot = make_shared<BVHNode>(objects);
