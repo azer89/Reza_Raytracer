@@ -20,10 +20,11 @@ public:
 private:
     Point3 lookfrom;
     Point3 lookat;
-    Vec3   vup;
-	
+    Vec3   vup;	
+
     double vfov;
     double aspect_ratio;
+
     double viewport_height;
     double viewport_width;
     double focal_length;

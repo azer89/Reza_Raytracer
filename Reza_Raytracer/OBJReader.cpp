@@ -1,9 +1,7 @@
 
-#include "FileReader.h"
+#include "OBJReader.h"
 
-// C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml
-// tinyxml2.docsforge.com/master/examples/#read-attributes-and-text-information
-#include "tinyxml2.h"
+
 
 
 #include <fstream>
@@ -35,7 +33,7 @@ inline bool StartWith(const std::string& prefix,
 }
 
 // currently only supports "v" and "f" 
-void FileReader::ReadOBJ(const std::string& filename,
+void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices,
 						std::vector< std::vector<int>>& faces)
 {

@@ -145,9 +145,10 @@
     <ClCompile Include="HittableList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImageHandler.cpp" />
-    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="OBJReader.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="AABB.cpp" />
+    <ClCompile Include="XMLParameters.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="XYRectangle.cpp" />
@@ -158,19 +159,23 @@
     <ClInclude Include="Hittable.h" />
     <ClInclude Include="HittableList.h" />
     <ClInclude Include="Material.h" />
-    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="OBJReader.h" />
     <ClInclude Include="Ray3.h" />
     <ClInclude Include="ImageHandler.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="AABB.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="XMLParameters.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UsefulThings.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="XYRectangle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\scenes\main.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

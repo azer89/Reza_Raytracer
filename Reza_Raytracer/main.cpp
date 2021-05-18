@@ -7,6 +7,7 @@
 #include "HittableList.h"
 #include "Sphere.h"
 #include "Camera.h"
+#include "XMLParameters.h"
 
 // This is a recursive function
 Color RayColor(const Ray3& r, const HittableList& world, int depth)

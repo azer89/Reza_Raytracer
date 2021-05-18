@@ -6,14 +6,15 @@
 #include <vector>
 #include <string>
 
-class FileReader
+class OBJReader
 {
 	
 
 public:
 
-	FileReader()
+	OBJReader()
 	{
+
 	}
 
 	void ReadOBJ(const std::string& filename,
