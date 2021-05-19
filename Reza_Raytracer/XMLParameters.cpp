@@ -45,17 +45,13 @@ void XMLParameters::LoadParametersFromXML()
         cerr << "Cannot find " << file << '\n';
     }
 
+    // camera
     XMLNode* root = doc.FirstChild();
     XMLElement* camera_element = root->FirstChildElement("camera");
     if (camera_element == nullptr)
     {
-        cerr << "Cannot find came in the xml file\n";
+        cerr << "Cannot find camera in the xml file\n";
     }
-    /*
-    Point3 camera_lookfrom;
-	Point3 camera_lookat;
-	Vec3   camera_vup;
-    */
     XMLElement* lookfrom_element = camera_element->FirstChildElement("lookfrom");
     XMLElement* lookat_element = camera_element->FirstChildElement("lookat");
     XMLElement* vup_element = camera_element->FirstChildElement("vup");
