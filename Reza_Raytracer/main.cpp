@@ -83,6 +83,10 @@ Color RayColorWithLightSource(const Ray3& r, const Color& background, const Hitt
 
 int main()
 {
+	// XML
+	XMLParameters xml_params;
+	xml_params.LoadParametersFromXML();
+
 	// Camera
 	Camera camera;
 	

@@ -83,7 +83,7 @@ void HittableList::CreateWorld()
     vup = Vec3(0, 1, 0);
     */
 
-    std::cout << "Reading obj file " << filename << '\n';
+    
     obj_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
     {
@@ -100,7 +100,7 @@ void HittableList::CreateWorld()
                                                 p3,
                                                 material_center));
     }
-    std::cout << "done reading\n\n";
+    
 
     // init BVH
     std::cout << "Building BVH\n";

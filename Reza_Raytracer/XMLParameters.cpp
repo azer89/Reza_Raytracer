@@ -12,15 +12,15 @@
 using namespace tinyxml2;
 using namespace std;
 
-inline Vec3 GetVec3(XMLElement& element)
+inline Vec3 GetVec3(XMLElement* element)
 {
     double x;
     double y;
     double z;
 
-    element.QueryDoubleAttribute("x", &x);
-    element.QueryDoubleAttribute("y", &y);
-    element.QueryDoubleAttribute("z", &z);
+    element->QueryDoubleAttribute("x", &x);
+    element->QueryDoubleAttribute("y", &y);
+    element->QueryDoubleAttribute("z", &z);
 
     return Vec3(x, y, z);
 }
@@ -60,7 +60,13 @@ void XMLParameters::LoadParametersFromXML()
     XMLElement* lookat_element = camera_element->FirstChildElement("lookat");
     XMLElement* vup_element = camera_element->FirstChildElement("vup");
     
-
+    XMLParameters::camera_lookfrom = GetVec3(lookfrom_element);
+    XMLParameters::camera_lookat   = GetVec3(lookat_element);
+    XMLParameters::camera_vup      = GetVec3(vup_element);
     
-    //if (pRoot == nullptr) throw XML_ERROR_FILE_READ_ERROR;
+    cout << "Done parsing\n\n";
 }
+
+Point3 XMLParameters::camera_lookfrom = Point3();
+Point3 XMLParameters::camera_lookat = Point3();
+Vec3 XMLParameters::camera_vup = Vec3();

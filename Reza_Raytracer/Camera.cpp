@@ -1,6 +1,7 @@
 
 #include "Camera.h"
 
+#include "XMLParameters.h"
 
 Camera::Camera()
 {
@@ -14,9 +15,13 @@ Camera::Camera()
     vup = Vec3(0, 1, 0);
 	*/
 
-    lookfrom = Point3(0, 0, 2.3);
-    lookat = Point3(0, 0, -1);
-    vup = Vec3(0, 1, 0);
+    //lookfrom = Point3(0, 0, 2.3);
+    //lookat = Point3(0, 0, -1);
+    //vup = Vec3(0, 1, 0);
+    lookfrom = XMLParameters::camera_lookfrom;
+    lookat = XMLParameters::camera_lookat;
+    vup = XMLParameters::camera_vup;
+
 
     this->vfov = 30; // in degree
     this->aspect_ratio = 16.0 / 9.0;

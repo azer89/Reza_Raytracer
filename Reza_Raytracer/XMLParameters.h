@@ -14,9 +14,9 @@ public:
 	static void LoadParametersFromXML();
 
 public:
-	Point3 camera_lookfrom;
-	Point3 camera_lookat;
-	Vec3   camera_vup;
+	static Point3 camera_lookfrom;
+	static Point3 camera_lookat;
+	static Vec3   camera_vup;
 };
 
 #endif
