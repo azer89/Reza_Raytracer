@@ -1,4 +1,6 @@
-Implementation of https://raytracing.github.io/
+Started from https://raytracing.github.io/
+
+Included dependencies are tinyxml2 and stb. Just compile and run. 
 
 Some results:
 
