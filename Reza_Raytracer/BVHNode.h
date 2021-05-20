@@ -47,10 +47,10 @@ public:
             size_t end);
 
     // original constructor
-    void 
+    /*void 
     BVHNode_Old(const std::vector<shared_ptr<Hittable>>& src_objects, 
                 size_t start, 
-                size_t end);
+                size_t end);*/
 
     virtual bool Hit( const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
 

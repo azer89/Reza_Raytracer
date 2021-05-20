@@ -14,9 +14,15 @@ public:
 	static void LoadParametersFromXML();
 
 public:
+	// camera
 	static Point3 camera_lookfrom;
 	static Point3 camera_lookat;
 	static Vec3   camera_vup;
+
+	// renderer
+	static double renderer_image_width;
+	static double renderer_samples_per_pixel;
+	static double renderer_max_depth;
 };
 
 #endif
