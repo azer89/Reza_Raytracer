@@ -75,17 +75,17 @@ inline bool BoxCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> 
 }
 
 
-inline bool BoxXCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b)
+inline bool BoxXCompare(const shared_ptr<Hittable>& a, const shared_ptr<Hittable>& b)
 {
     return BoxCompare(a, b, 0);
 }
 
-inline bool BoxYCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b)
+inline bool BoxYCompare(const shared_ptr<Hittable>& a, const shared_ptr<Hittable>& b)
 {
     return BoxCompare(a, b, 1);
 }
 
-inline bool BoxZCompare(const shared_ptr<Hittable> a, const shared_ptr<Hittable> b)
+inline bool BoxZCompare(const shared_ptr<Hittable>& a, const shared_ptr<Hittable>& b)
 {
     return BoxCompare(a, b, 2);
 }
