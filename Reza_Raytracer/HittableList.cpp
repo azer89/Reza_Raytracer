@@ -8,6 +8,7 @@
 //#include "BVHNode.h"
 
 #include <string>
+#include <chrono>
 
 using std::make_unique;
 
@@ -104,8 +105,11 @@ void HittableList::CreateWorld()
 
     // init BVH
     std::cout << "Building BVH\n";
+    auto start1 = std::chrono::steady_clock::now();
     bvhRoot = make_shared<BVHNode>(objects);
-    std::cout << "BVH done\n\n";
+    auto end1 = std::chrono::steady_clock::now();
+    std::cout << "BVH done in " << std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1).count() << " ms\n\n";
+    //std::cout << "BVH done\n\n";
 }
 
 bool HittableList::BoundingBox(AABB& output_box) const

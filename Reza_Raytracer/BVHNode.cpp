@@ -1,7 +1,8 @@
 
+#include "BVHNode.h"
+
 #include <algorithm>
 
-#include "BVHNode.h"
 
 
 // improved constructor without random
@@ -10,6 +11,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
                  size_t start, 
                  size_t end)
 {
+
     // need to be optimized because we duplicate shared_ptrs
     //auto objects = src_objects; 
 
@@ -28,9 +30,16 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     }
 
     int axis = node_box.LongestAxis();
-    auto comparator = (axis == 0) ? BoxXCompare
+    auto comparator = [axis](const shared_ptr<Hittable>& a, 
+                             const shared_ptr<Hittable>& b)
+    {
+        return (axis == 0) ? BoxXCompare(a, b)
+             : (axis == 1) ? BoxYCompare(a, b)
+                           : BoxZCompare(a, b);
+    };
+    /*auto comparator = (axis == 0) ? BoxXCompare
                     : (axis == 1) ? BoxYCompare
-                                  : BoxZCompare;
+                                  : BoxZCompare;*/
 
     size_t object_span = end - start;
 
@@ -82,7 +91,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         // binary partitioning
         // we are sorting a vector of shared_ptrs, 
         // it's ugly code because we modify a resourse we don't own
-        // but technically there's no problem
+        // but I think there's no problem
         std::sort(src_objects.begin() + start, src_objects.begin() + end, comparator);
 
         auto mid = start + object_span / 2;
