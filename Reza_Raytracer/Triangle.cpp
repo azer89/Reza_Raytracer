@@ -74,12 +74,12 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     rec.u = u;
     rec.v = v;
     rec.t = t;	
-    auto outward_normal = Cross(v0v1, v0v2);
-    if (backfacing)
+    Vec3 outward_normal = Cross(v0v1, v0v2);
+    /*if (backfacing)
     {
         outward_normal = -outward_normal;
-    }
-    //rec.SetFaceNormal(r, outward_normal);
+    }*/
+    rec.SetFaceNormal(r, outward_normal);
     rec.normal = outward_normal;
     rec.mat_ptr = mp;
     rec.p = r.At(t);

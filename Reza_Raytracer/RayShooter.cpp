@@ -102,10 +102,9 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 			return attenuation * RayColor(scattered, depth - 1);
 			//return emitted + attenuation * RayColor(scattered, world, depth - 1); // does not work
 		}
-		//else
-		//{
-		//	return emitted;
-		//}
+		
+
+		return Color(0, 0, 0);
 	}
 
 	// Non recursive

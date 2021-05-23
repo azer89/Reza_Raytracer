@@ -33,7 +33,8 @@ public:
     virtual bool Scatter(const Ray3& r_in, 
 						 const HitRecord& rec, 
 						 Color& attenuation, 
-						 Ray3& scattered) const override
+						 Ray3& scattered) 
+        const override
 	{
         //Point3 scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
         //Point3 scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
@@ -64,15 +65,17 @@ public:
     virtual bool Scatter(const Ray3& r_in, 
                          const HitRecord& rec, 
                          Color& attenuation, 
-                         Ray3& scattered
-    ) const override 
+                         Ray3& scattered ) 
+        const override 
     {
-        Vec3 reflected = Reflect(UnitVector(r_in.Direction()), rec.normal);
+        //Vec3 reflected = Reflect(UnitVector(r_in.Direction()), rec.normal);
+        Vec3 reflected = rec.normal;
         scattered = Ray3(rec.p, reflected);
         attenuation = albedo;
 
         // if dot product is zero then the vectors are perpendicular
-        return (Dot(scattered.Direction(), rec.normal) > 0);
+        //return (Dot(scattered.Direction(), rec.normal) > 0);
+        return true;
     }
 
 public:
