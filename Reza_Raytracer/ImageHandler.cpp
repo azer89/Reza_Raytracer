@@ -2,7 +2,6 @@
 #include "ImageHandler.h"
 #include "UsefulThings.h"
 
-
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -23,9 +22,24 @@ ImageHandler::ImageHandler(int img_width, int img_height)
 
 ImageHandler::~ImageHandler()
 {
-	//delete[] pixels;
 }
 
+// new, parallelizable
+void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
+{
+	r = Clamp(r, 0.0, 0.999);
+	g = Clamp(g, 0.0, 0.999);
+	b = Clamp(b, 0.0, 0.999);
+
+	y = img_height - y - 1;
+	int index = (x + (y * img_width)) * num_channel;
+
+	pixels[index]	  = static_cast<uint8_t>(255.0 * r);
+	pixels[index + 1] = static_cast<uint8_t>(255.0 * g);
+	pixels[index + 2] = static_cast<uint8_t>(255.0 * b);
+}
+
+// old, don't use this
 void ImageHandler::SetPixel(double r, double g, double b)
 {
 	r = Clamp(r, 0.0, 0.999);
@@ -37,11 +51,9 @@ void ImageHandler::SetPixel(double r, double g, double b)
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * b);
 }
 
-
+// STB
 void ImageHandler::WriteToPNG(const std::string& filename)
 {
-	// chanhaeng.blogspot.com/2018/12/how-to-use-stbimagewrite.html
-	
 	stbi_write_png(filename.c_str(), 
 		img_width,
 		img_height,

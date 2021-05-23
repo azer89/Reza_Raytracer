@@ -89,8 +89,7 @@ int main()
 
 	// Camera
 	Camera camera;
-	
-	
+		
 	// Image
 	const int image_width = XMLParameters::renderer_image_width;
 	const int image_height = static_cast<int>(image_width / camera.GetAspectRatio());
@@ -124,12 +123,13 @@ int main()
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
 			imgHandler.SetPixel(sqrt(pixel_color.x() * scale), 
 								sqrt(pixel_color.y() * scale),
-								sqrt(pixel_color.z() * scale));
+								sqrt(pixel_color.z() * scale),
+								x, 
+								y);
 		}
 	}
 
 	imgHandler.WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
-	//STBWrapper::WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png", pixels, width, height);
 
 	std::cout << "\ndone :)\n";
 

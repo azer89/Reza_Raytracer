@@ -21,10 +21,19 @@ private:
 public:
 	// constructor
 	ImageHandler(int img_width, int img_height);
+	
+	// destructor
 	~ImageHandler();
 
-	void SetPixel(double r, double g, double b);	
+	// using STB
 	void WriteToPNG(const std::string& filename);
+
+	// old
+	void SetPixel(double r, double g, double b);	
+	
+	// new
+	void SetPixel(double r, double g, double b, int x, int y);
+	
 };
 
 #endif

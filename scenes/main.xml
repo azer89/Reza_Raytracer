@@ -8,8 +8,8 @@
 	</camera>
 	
 	<renderer>
-		<image_width value="1200"/>
-		<samples_per_pixel value="100"/>
+		<image_width value="400"/>
+		<samples_per_pixel value="10"/>
 		<max_depth value="5"/>
 	</renderer>
 	
