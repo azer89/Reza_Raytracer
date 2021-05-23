@@ -185,4 +185,9 @@ inline Vec3 RandomVec3InHemisphere(const Vec3& normal)
     //}
 }
 
+inline Vec3 Reflect(const Vec3& v, const Vec3& n) 
+{
+    return v - 2 * Dot(v, n) * n;
+}
+
 #endif

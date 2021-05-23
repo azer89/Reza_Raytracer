@@ -54,6 +54,31 @@ public:
     Color albedo;
 };
 
+class Metal : public Material 
+{
+public:
+    Metal(const Color& a) : albedo(a) 
+    {
+    }
+
+    virtual bool Scatter(const Ray3& r_in, 
+                         const HitRecord& rec, 
+                         Color& attenuation, 
+                         Ray3& scattered
+    ) const override 
+    {
+        Vec3 reflected = Reflect(UnitVector(r_in.Direction()), rec.normal);
+        scattered = Ray3(rec.p, reflected);
+        attenuation = albedo;
+
+        // if dot product is zero then the vectors are perpendicular
+        return (Dot(scattered.Direction(), rec.normal) > 0);
+    }
+
+public:
+    Color albedo;
+};
+
 class DiffuseLight : public Material
 {
 public:

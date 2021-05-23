@@ -22,9 +22,15 @@ public:
 		  direction(dir)
     {}
 
-    Point3 Origin() const { return origin; }
+    Point3 Origin() const 
+    { 
+        return origin; 
+    }
 	
-    Vec3 Direction() const { return direction; }
+    Vec3 Direction() const 
+    { 
+        return direction; 
+    }
 
     Point3 At(double t) const
 	{

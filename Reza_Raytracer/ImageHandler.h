@@ -28,12 +28,11 @@ public:
 	// using STB
 	void WriteToPNG(const std::string& filename);
 
-	// old
-	void SetPixel(double r, double g, double b);	
-	
 	// new
 	void SetPixel(double r, double g, double b, int x, int y);
-	
+
+	// old
+	void SetPixel(double r, double g, double b);	
 };
 
 #endif

@@ -21,9 +21,9 @@ RayShooter::RayShooter()
 	// renderer setting
 	this->image_width = XMLParameters::renderer_image_width;
 	this->image_height = static_cast<int>(this->image_width / camera->GetAspectRatio());
-	this->samples_per_pixel = XMLParameters::renderer_samples_per_pixel; // 100
+	this->samples_per_pixel = XMLParameters::renderer_samples_per_pixel;
 	this->scale = 1.0 / samples_per_pixel;
-	this->max_depth = XMLParameters::renderer_max_depth; // 50
+	this->max_depth = XMLParameters::renderer_max_depth;
 
 	// Image IO
 	imgHandler = make_unique<ImageHandler>(image_width, image_height); // set up image handler

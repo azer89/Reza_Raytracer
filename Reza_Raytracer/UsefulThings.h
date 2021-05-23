@@ -6,11 +6,6 @@
 #include <memory>
 #include <random>
 
-// Common Headers
-
-//#include "Ray3.h"
-//#include "Vec3.h"
-
 // Usings
 
 using std::shared_ptr;

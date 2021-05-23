@@ -44,6 +44,7 @@ void HittableList::CreateWorld()
 {
     //auto material_light = make_shared<DiffuseLight>(Color(0.6, 0.7, 0.6));
     auto material_ground = make_shared<Lambertian>(Color(0.6, 0.7, 0.6));
+    //auto material_center = make_shared<Lambertian>(Color(0.3, 0.3, 0.7));
     auto material_center = make_shared<Lambertian>(Color(0.3, 0.3, 0.7));
 	
     /*objects.push_back(make_shared<Sphere>(Point3(0, 0, -1),    0.5, material_center) );

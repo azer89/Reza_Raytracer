@@ -39,7 +39,7 @@ private:
 };
 
 
-inline AABB SurroundingBox(AABB box0, AABB box1)
+inline AABB SurroundingBox(const AABB& box0, const AABB& box1)
 {
 	Point3 small(fmin(box0.Min().x(), box1.Min().x()),
 				 fmin(box0.Min().y(), box1.Min().y()),

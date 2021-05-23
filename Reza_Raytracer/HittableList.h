@@ -11,7 +11,6 @@ using std::unique_ptr;
 using std::shared_ptr;
 using std::vector;
 
-//class BVHNode;
 
 class HittableList : public Hittable
 {
@@ -20,17 +19,8 @@ public:
     {	    
     }
 
-    /*HittableList(const shared_ptr<Hittable>& object)
-    {
-	    Add(object);
-    }*/
-
     void Clear() { objects.clear(); }
 
-    /*void Add(const shared_ptr<Hittable>& object)
-    {
-	    objects.push_back(object);
-    }*/
 
     void CreateWorld();
 
@@ -45,7 +35,6 @@ public:
     shared_ptr<BVHNode> bvhRoot;
 
     vector<shared_ptr<Hittable>> objects;
-    //vector<unique_ptr<Hittable>> objects;
 };
 
 #endif

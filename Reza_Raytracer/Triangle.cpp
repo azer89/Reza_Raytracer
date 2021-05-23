@@ -8,6 +8,11 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     ray-tracing-rendering-a-triangle/
     moller-trumbore-ray-triangle-intersection
     */
+
+    /*
+    github.com/mattgodbolt/pt-three-ways/
+    blob/main/src/oo/Triangle.cpp
+    */
 	
     // can be precomputed
     Vec3 v0v1 = v1 - v0;
@@ -30,14 +35,16 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     Vec3 pvec = Cross(r.Direction(), v0v2);
     double det = Dot(v0v1, pvec); 
 
-    constexpr double kEpsilon = std::numeric_limits<double>::epsilon();
+    constexpr double epsilon = std::numeric_limits<double>::epsilon();
 	
     // if the determinant is negative the triangle is backfacing
     // if the determinant is close to 0, the ray misses the triangle
-    if (abs(det) < kEpsilon)
+    if (abs(det) < epsilon)
     {
         return false;
     }
+
+    auto backfacing = det < epsilon;
 
     double invDet = 1 / det;
 
@@ -68,7 +75,12 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     rec.v = v;
     rec.t = t;	
     auto outward_normal = Cross(v0v1, v0v2);
-    rec.SetFaceNormal(r, outward_normal);
+    if (backfacing)
+    {
+        outward_normal = -outward_normal;
+    }
+    //rec.SetFaceNormal(r, outward_normal);
+    rec.normal = outward_normal;
     rec.mat_ptr = mp;
     rec.p = r.At(t);
 

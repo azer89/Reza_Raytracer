@@ -22,7 +22,6 @@ Camera::Camera()
     lookat = XMLParameters::camera_lookat;
     vup = XMLParameters::camera_vup;
 
-
     this->vfov = 30; // in degree
     this->aspect_ratio = 16.0 / 9.0;
 	

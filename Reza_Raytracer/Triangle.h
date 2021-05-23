@@ -12,7 +12,6 @@ public:
     {
     }
 
-
     Triangle(Vec3 _v0,
 		     Vec3 _v1,
 		     Vec3 _v2,
@@ -21,8 +20,6 @@ public:
           v1(_v1), 
           v2(_v2)
     {
-        // stackoverflow.com/questions/41871115/why-would-i-stdmove-an-stdshared-ptr
-        // why do I move a shared_ptr?
         this->mp = std::move(mat);
     };
 
@@ -32,7 +29,6 @@ public:
 
 public:
     shared_ptr<Material> mp;
-    //double x0, x1, y0, y1, k;
     Vec3 v0;
     Vec3 v1;
     Vec3 v2;

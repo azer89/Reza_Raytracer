@@ -8,10 +8,7 @@
 
 class OBJReader
 {
-	
-
 public:
-
 	OBJReader()
 	{
 

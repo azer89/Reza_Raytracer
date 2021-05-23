@@ -11,14 +11,10 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
                  size_t start, 
                  size_t end)
 {
-
-    // need to be optimized because we duplicate shared_ptrs
-    //auto objects = src_objects; 
-
     // assign first object's BB to box
     src_objects[start]->BoundingBox(node_box);
     AABB dummy_box;
-    for(int i = start + 1; i < end; i++)
+    for(size_t i = start + 1; i < end; i++)
     {
         bool has_bb = src_objects[i]->BoundingBox(dummy_box);
         if (!has_bb)
@@ -48,7 +44,6 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     {
         // pointing to the same object
         left_node = right_node = src_objects[start];
-        num_actual_object = 1;
 
         // debugging
         /*std::cout << "Single AABB area = " << node_box.Area() << 
@@ -70,8 +65,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         }
 
         // debugging
-        /*num_actual_object = 2;
-        AABB left_box;
+        /*AABB left_box;
         left_node->BoundingBox(left_box);
         AABB right_box;
         right_node->BoundingBox(right_box);
@@ -98,14 +92,10 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         left_node  = make_shared<BVHNode>(src_objects, start, mid);
         right_node = make_shared<BVHNode>(src_objects, mid, end);
     }
-
 }
 
-
-
 bool BVHNode::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
-{
-    
+{    
     if (!node_box.Hit(r, t_min, t_max))
     {
         return false;

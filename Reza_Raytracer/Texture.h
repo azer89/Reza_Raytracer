@@ -9,7 +9,8 @@ public:
     virtual Color Value(double u, double v, const Point3& p) const = 0;
 };
 
-class SolidColor : public Texture {
+class SolidColor : public Texture 
+{
 public:
     SolidColor()
     {	    

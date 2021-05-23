@@ -20,9 +20,9 @@ public:
 	static Vec3   camera_vup;
 
 	// renderer
-	static double renderer_image_width;
-	static double renderer_samples_per_pixel;
-	static double renderer_max_depth;
+	static int renderer_image_width;
+	static int renderer_samples_per_pixel;
+	static int renderer_max_depth;
 };
 
 #endif
