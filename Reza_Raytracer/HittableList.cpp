@@ -76,7 +76,7 @@ void HittableList::CreateWorld()
 
     const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny.obj";
     double scale = 0.75;
-    Point3 offset(0, -0.73, -0.7);
+    Point3 offset(0, -0.7, -0.7);
     /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
     double scale = 0.75;
     Point3 offset(0, -0.73, -0.7);*/

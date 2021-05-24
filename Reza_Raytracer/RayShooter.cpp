@@ -37,6 +37,8 @@ RayShooter::~RayShooter()
 {
 }
 
+
+
 void RayShooter::ShootRays()
 {
 	for (int y = image_height - 1; y >= 0; --y)
@@ -52,7 +54,6 @@ void RayShooter::ShootRays()
 				auto u = (double(x) + RandomDouble()) / (image_width - 1);
 				auto v = (double(y) + RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
-				//pixel_color += RayColorWithLightSource(r, background, world, max_depth); // recursive function
 				pixel_color += RayColor(r, max_depth); // recursive function
 			}
 
@@ -69,6 +70,8 @@ void RayShooter::ShootRays()
 
 	std::cout << "\ndone :)\n";
 }
+
+
 
 // This is a recursive function
 Color RayShooter::RayColor(const Ray3& r, int depth)
@@ -141,4 +144,46 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 		return emitted;
 
 	return emitted + attenuation * RayColorWithLightSource(scattered, background, world, depth - 1);
+}
+
+// for debugging normal vectors only
+void RayShooter::ShootRaysNormalOnly()
+{
+	for (int y = image_height - 1; y >= 0; --y)
+	{
+		std::cout << "\rScanlines remaining: " << y << ' ' << std::flush;
+
+		for (int x = 0; x < image_width; ++x)
+		{
+			auto u = (double(x) + RandomDouble()) / (image_width - 1);
+			auto v = (double(y) + RandomDouble()) / (image_height - 1);
+			Ray3 r = camera->GetRay(u, v);
+			Color pixel_color = RayColorNormalOnly(r);
+
+			imgHandler->SetPixel(pixel_color.x(),
+				pixel_color.y(),
+				pixel_color.z(),
+				x,
+				y);
+		}
+	}
+
+	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
+
+	std::cout << "\ndone :)\n";
+}
+
+// for debugging normal vectors only
+Color RayShooter::RayColorNormalOnly(const Ray3& r)
+{
+	HitRecord rec;
+	if (world->Hit(r, 0.001, infinity, rec))
+	{
+		Vec3 N = UnitVector(rec.normal);
+		return 0.5 * Color(N.x() + 1, N.y() + 1, N.z() + 1);
+	}
+
+	Vec3 unit_direction = UnitVector(r.Direction());
+	auto t = 0.5 * (unit_direction.y() + 1.0);
+	return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }

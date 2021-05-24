@@ -68,8 +68,7 @@ public:
                          Ray3& scattered ) 
         const override 
     {
-        //Vec3 reflected = Reflect(UnitVector(r_in.Direction()), rec.normal);
-        Vec3 reflected = rec.normal;
+        Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
         scattered = Ray3(rec.p, reflected);
         attenuation = albedo;
 
