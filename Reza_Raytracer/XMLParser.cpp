@@ -13,7 +13,7 @@
 using namespace tinyxml2;
 using namespace std;
 
-inline Vec3 GetVec3(XMLElement* element)
+inline Vec3 GetVec3(const XMLElement* element)
 {
     double x;
     double y;
@@ -26,7 +26,7 @@ inline Vec3 GetVec3(XMLElement* element)
     return Vec3(x, y, z);
 }
 
-inline int GetInt(XMLElement* element)
+inline int GetInt(const XMLElement* element)
 {
     int i;
 
@@ -36,7 +36,7 @@ inline int GetInt(XMLElement* element)
 }
 
 
-inline double GetDouble(XMLElement* element)
+inline double GetDouble(const XMLElement* element)
 {
     double d;
 
@@ -57,7 +57,7 @@ void XMLParser::LoadParametersFromXML()
 {
     XMLDocument doc;
 
-    string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
+    const string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
     cout << "Parsing " << file << '\n';
     XMLError eResult = doc.LoadFile(file.c_str());
     if (eResult != XML_SUCCESS)
