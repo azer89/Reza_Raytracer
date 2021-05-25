@@ -1,18 +1,11 @@
-#ifndef __XMLPARAMETERS_H__
-#define __XMLPARAMETERS_H__
+#ifndef __GLOBAL_PARAMETERS_H__
+#define __GLOBAL_PARAMETERS_H__
 
 #include "Vec3.h"
 
-// A class that contains parameters taken from main.xml
-// Also a wrapper to tinyxml2
-class XMLParameters
+
+struct GlobalParameters
 {
-public:
-	XMLParameters();
-	~XMLParameters();
-
-	static void LoadParametersFromXML();
-
 public:
 	// camera
 	static Point3 camera_lookfrom;
@@ -24,5 +17,6 @@ public:
 	static int renderer_samples_per_pixel;
 	static int renderer_max_depth;
 };
+
 
 #endif

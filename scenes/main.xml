@@ -8,16 +8,31 @@
 	</camera>
 	
 	<renderer>
-		<image_width value="1600"/>
-		<samples_per_pixel value="200"/>
-		<max_depth value="100"/>
+		<image_width value="400"/>
+		<samples_per_pixel value="100"/>
+		<max_depth value="10"/>
 	</renderer>
 	
 	<world>
-		<object type="obj"/>
-		<object type="obj"/>
-		<object type="sphere"/>
-		<object type="triangle"/>
+		<material name="lambertian">
+		</material>
+
+		<material name="metal">
+		</material>
+		
+		
+		<object type="obj">
+			<position	x="0" y ="0" z="0"/>
+		</object>
+		<object type="obj">
+			<position	x="0" y ="0" z="0"/>
+		</object>
+		<object type="sphere">
+			<position	x="0" y ="0" z="0"/>
+		</object>
+		<object type="triangle">
+			<position	x="0" y ="0" z="0"/>
+		</object>
 	</world>
 	
 </world>

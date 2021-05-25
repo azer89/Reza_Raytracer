@@ -5,25 +5,26 @@
 
 #include "Material.h"
 #include "UsefulThings.h"
-#include "XMLParameters.h"
+#include "XMLParser.h"
+#include "GlobalParameters.h"
 
 using namespace std;
 
 RayShooter::RayShooter()
 {
 	// XML
-	XMLParameters xml_params;
-	xml_params.LoadParametersFromXML();
+	XMLParser xml_parser;
+	xml_parser.LoadParametersFromXML();
 
 	// Camera
 	camera = std::make_unique<Camera>();
 
 	// renderer setting
-	this->image_width = XMLParameters::renderer_image_width;
-	this->image_height = static_cast<int>(this->image_width / camera->GetAspectRatio());
-	this->samples_per_pixel = XMLParameters::renderer_samples_per_pixel;
-	this->scale = 1.0 / samples_per_pixel;
-	this->max_depth = XMLParameters::renderer_max_depth;
+	this->image_width		= GlobalParameters::renderer_image_width;
+	this->image_height		= static_cast<int>(this->image_width / camera->GetAspectRatio());
+	this->samples_per_pixel = GlobalParameters::renderer_samples_per_pixel;
+	this->scale				= 1.0 / samples_per_pixel;
+	this->max_depth			= GlobalParameters::renderer_max_depth;
 
 	// Image IO
 	imgHandler = make_unique<ImageHandler>(image_width, image_height); // set up image handler
@@ -36,8 +37,6 @@ RayShooter::RayShooter()
 RayShooter::~RayShooter()
 {
 }
-
-
 
 void RayShooter::ShootRays()
 {
@@ -127,7 +126,9 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 {
 	// If we've exceeded the ray bounce limit, no more light is gathered.
 	if (depth <= 0)
+	{
 		return Color(0, 0, 0);
+	}
 
 	// Recursive
 	HitRecord rec;

@@ -1,7 +1,8 @@
 
 
 #include "Vec3.h"
-#include "XMLParameters.h"
+#include "XMLParser.h"
+#include "GlobalParameters.h"
 #include "tinyxml2.h"
 
 #include <iostream>
@@ -44,15 +45,15 @@ inline double GetDouble(XMLElement* element)
     return d;
 }
 
-XMLParameters::XMLParameters()
+XMLParser::XMLParser()
 {
 }
 
-XMLParameters::~XMLParameters()
+XMLParser::~XMLParser()
 {
 }
 
-void XMLParameters::LoadParametersFromXML()
+void XMLParser::LoadParametersFromXML()
 {
     XMLDocument doc;
 
@@ -77,9 +78,9 @@ void XMLParameters::LoadParametersFromXML()
     XMLElement* lookat_element   = camera_element->FirstChildElement("lookat");
     XMLElement* vup_element      = camera_element->FirstChildElement("vup");
     
-    XMLParameters::camera_lookfrom = GetVec3(lookfrom_element);
-    XMLParameters::camera_lookat   = GetVec3(lookat_element);
-    XMLParameters::camera_vup      = GetVec3(vup_element);
+    GlobalParameters::camera_lookfrom = GetVec3(lookfrom_element);
+    GlobalParameters::camera_lookat   = GetVec3(lookat_element);
+    GlobalParameters::camera_vup      = GetVec3(vup_element);
     
     // renderer
     XMLElement* renderer_element = root->FirstChildElement("renderer");
@@ -91,17 +92,10 @@ void XMLParameters::LoadParametersFromXML()
     XMLElement* samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
     XMLElement* max_depth_element         = renderer_element->FirstChildElement("max_depth");
 
-    XMLParameters::renderer_image_width       = GetInt(image_width_element);
-    XMLParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_element);
-    XMLParameters::renderer_max_depth         = GetInt(max_depth_element);
+    GlobalParameters::renderer_image_width       = GetInt(image_width_element);
+    GlobalParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_element);
+    GlobalParameters::renderer_max_depth         = GetInt(max_depth_element);
 
     cout << "Done parsing\n\n";
 }
 
-Point3 XMLParameters::camera_lookfrom = Point3();
-Point3 XMLParameters::camera_lookat   = Point3();
-Vec3 XMLParameters::camera_vup        = Vec3();
-
-int XMLParameters::renderer_image_width       = 0;
-int XMLParameters::renderer_samples_per_pixel = 0;
-int XMLParameters::renderer_max_depth         = 0;
