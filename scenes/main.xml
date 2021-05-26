@@ -13,26 +13,36 @@
 		<max_depth value="10"/>
 	</renderer>
 	
-	<world>
-		<material name="lambertian">
+	<materials>
+		<material name="material_ground" type="lambertian">
+			<color	r="0.6" g ="0.7" b="0.6"/>
 		</material>
 
-		<material name="metal">
+		<material name="material_side" type="metal">
+			<color	r="0.7" g ="0.3" b="0.3"/>
 		</material>
+
+		<material name="material_center" type="lambertian">
+			<color	r="0.3" g ="0.3" b="0.7"/>
+		</material>
+	</materials>
+	
+	<objects>
+		<object type="sphere" radius="0.5" material_name="material_center">
+			<position	x="0" y ="0" z="-1" />
+		</object>
+		<object type="sphere" radius="0.5" material_name="material_side">
+			<position	x="-1.1" y ="0" z="-1"/>
+		</object>
 		
+		<object type="sphere" radius="0.5" material_name="material_side">
+			<position	x="1.1" y ="0" z="-1"/>
+		</object>
+
+		<object type="sphere" radius="100" material_name="material_ground">
+			<position	x="0" y ="-100.5" z="-1"/>
+		</object>
 		
-		<object type="obj">
-			<position	x="0" y ="0" z="0"/>
-		</object>
-		<object type="obj">
-			<position	x="0" y ="0" z="0"/>
-		</object>
-		<object type="sphere">
-			<position	x="0" y ="0" z="0"/>
-		</object>
-		<object type="triangle">
-			<position	x="0" y ="0" z="0"/>
-		</object>
-	</world>
+	</objects>
 	
 </world>

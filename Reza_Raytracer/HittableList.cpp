@@ -5,10 +5,13 @@
 #include "XYRectangle.h"
 #include "Triangle.h"
 #include "OBJReader.h"
+
+#include "XMLParser.h"
 //#include "BVHNode.h"
 
 #include <string>
 #include <chrono>
+#include <unordered_map>
 
 using std::make_unique;
 
@@ -42,6 +45,9 @@ bool HittableList::Hit(const Ray3& r,
 
 void HittableList::CreateWorld()
 {
+    std::unordered_map<std::string, shared_ptr<Material>> mat_map;
+    XMLParser::LoadMaterials(mat_map);
+
     //auto material_light = make_shared<DiffuseLight>(Color(0.6, 0.7, 0.6));
     auto material_ground = make_shared<Lambertian>(Color(0.6, 0.7, 0.6));
     //auto material_center = make_shared<Lambertian>(Color(0.3, 0.3, 0.7));
@@ -78,6 +84,7 @@ void HittableList::CreateWorld()
     const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny.obj";
     double scale = 0.75;
     Point3 offset(0, -0.7, -0.7);
+
     /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
     double scale = 0.75;
     Point3 offset(0, -0.73, -0.7);*/
