@@ -2,7 +2,6 @@
 #define __HITTABLE_LIST_H__
 
 #include "Hittable.h"
-#include "BVHNode.h"
 
 #include <memory>
 #include <vector>
@@ -11,6 +10,7 @@ using std::unique_ptr;
 using std::shared_ptr;
 using std::vector;
 
+class BVHNode;
 
 class HittableList : public Hittable
 {
@@ -20,7 +20,6 @@ public:
     }
 
     void Clear() { objects.clear(); }
-
 
     void CreateWorld();
 

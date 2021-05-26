@@ -2,7 +2,6 @@
 #define __SPHERE_H__
 
 #include "Hittable.h"
-//#include "Vec3.h"
 #include "Material.h"
 
 class Sphere : public Hittable

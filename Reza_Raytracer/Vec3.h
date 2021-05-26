@@ -2,10 +2,6 @@
 #ifndef __VEC_3_H__
 #define __VEC_3_H__
 
-/*
- * Adapted from Ray Tracing in One Weekend by Peter Shirley <ptrshrl@gmail.com>
- */
-
 #include <cmath>
 #include <ostream>
 

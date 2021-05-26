@@ -3,14 +3,12 @@
 
 #include "Hittable.h"
 #include "Vec3.h"
+
 #include "Material.h"
 
 class XYRectangle : public Hittable
 {
 public:
-    XYRectangle()
-    {	    
-    }
 
     XYRectangle(double _x0, 
 				double _x1, 

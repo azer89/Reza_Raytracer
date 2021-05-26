@@ -3,7 +3,6 @@
 #define __IMAGE_WRAPPER_H__
 
 #include <string>
-//#include <vector>
 #include <memory>
 
 // this class handles the output image

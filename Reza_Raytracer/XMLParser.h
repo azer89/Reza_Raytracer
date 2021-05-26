@@ -3,12 +3,9 @@
 
 
 #include "Vec3.h"
-//#include "Material.h"
-//#include "Hittable.h"
 
 #include <unordered_map>
 #include <vector>
-
 
 class Material;
 class Hittable;

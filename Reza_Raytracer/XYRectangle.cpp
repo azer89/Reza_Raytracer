@@ -1,7 +1,6 @@
 
 
 #include "XYRectangle.h"
-
 #include <iostream>
 
 bool XYRectangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const

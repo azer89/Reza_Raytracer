@@ -3,9 +3,10 @@
 
 #include <memory>
 
-#include "ImageHandler.h"
 #include "HittableList.h"
-#include "Camera.h"
+
+class ImageHandler;
+class Camera;
 
 class RayShooter
 {
@@ -30,9 +31,9 @@ public:
 private:
 	Color RayColor(const Ray3& r, int depth);
 	Color RayColorNormalOnly(const Ray3& r);
-	Color RayColorWithLightSource(const Ray3& r, const Color& background, const HittableList& world, int depth);
-	
-
+	Color RayColorWithLightSource(const Ray3& r, 
+								  const Color& background, 
+								  const HittableList& world, int depth);
 };
 
 #endif

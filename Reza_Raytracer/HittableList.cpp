@@ -7,7 +7,7 @@
 #include "OBJReader.h"
 
 #include "XMLParser.h"
-//#include "BVHNode.h"
+#include "BVHNode.h"
 
 #include <string>
 #include <chrono>
@@ -48,18 +48,17 @@ void HittableList::CreateWorld()
     std::unordered_map<std::string, shared_ptr<Material>> mat_map;
     XMLParser::LoadMaterials(mat_map);
 
-    //auto material_light = make_shared<DiffuseLight>(Color(0.6, 0.7, 0.6));
     auto material_ground = make_shared<Lambertian>(Color(0.6, 0.7, 0.6));
-    //auto material_center = make_shared<Lambertian>(Color(0.3, 0.3, 0.7));
+
     auto material_side = make_shared<Metal>(Color(0.7, 0.3, 0.3));
     auto material_center = make_shared<Lambertian>(Color(0.3, 0.3, 0.7));
 	
     objects.push_back(make_shared<Sphere>(Point3(0, 0, -1),    0.5, material_center) );
     objects.push_back(make_shared<Sphere>(Point3(-1.1, 0, -1), 0.5, material_side) );
     objects.push_back(make_shared<Sphere>(Point3(1.1, 0, -1),  0.5, material_side) );
-    //objects.push_back(make_shared<Sphere>(Point3(0, 0, -1),    2.5, material_center) );
+
     objects.push_back(make_shared<Sphere>(Point3(0, -100.5, -1), 100, material_ground) );
-    //objects.push_back(make_shared<Sphere>(Point3(0, 0, -1), 0.5, material_center));
+
         
     /*objects.push_back(make_shared<Triangle>(Point3( 0, 0.25,  0),
 											Point3( 1, 0.25, -1),
@@ -77,24 +76,9 @@ void HittableList::CreateWorld()
     std::vector< std::vector<int>> faces;
 
     OBJReader obj_reader;
-    /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//torus.obj";
-    double scale = 0.75;
-    Point3 offset(0, 0.3, -1);*/
-
     const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny.obj";
     double scale = 0.75;
-    Point3 offset(0, -0.7, -0.7);
-
-    /*const std::string filename = "C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj";
-    double scale = 0.75;
-    Point3 offset(0, -0.73, -0.7);*/
-    /*
-    lookfrom = Point3(0, 0, 2.3);
-    lookat = Point3(0, 0, -1);
-    vup = Vec3(0, 1, 0);
-    */
-
-    
+    Point3 offset(0, -0.7, -0.7);    
     /*obj_reader.ReadOBJ(filename, vertices, faces);
     for (int i = 0; i < faces.size(); i++)
     {

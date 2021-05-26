@@ -3,7 +3,6 @@
 
 #include "Vec3.h"
 
-
 struct GlobalParameters
 {
 public:

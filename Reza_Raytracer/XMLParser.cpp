@@ -8,7 +8,8 @@
 
 
 #include "Hittable.h"
-
+#include "Sphere.h"
+#include "Triangle.h"
 #include "Material.h"
 
 #include <iostream>

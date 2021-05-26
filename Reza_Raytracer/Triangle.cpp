@@ -36,15 +36,15 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     double det = Dot(v0v1, pvec); 
 
     constexpr double epsilon = std::numeric_limits<double>::epsilon();
-	
-    // if the determinant is negative the triangle is backfacing
+	    
     // if the determinant is close to 0, the ray misses the triangle
     if (abs(det) < epsilon)
     {
         return false;
     }
 
-    auto backfacing = det < epsilon;
+    // if the determinant is negative the triangle is backfacing
+    bool backfacing = det < epsilon;
 
     double invDet = 1 / det;
 
@@ -75,7 +75,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     rec.v = v;
     rec.t = t;	
 
-    // calculate normal, warning not a unit vector
+    // calculate normal, warning, this is not a unit vector
     Vec3 outward_normal = Cross(v0v1, v0v2);
     if (backfacing)
     {

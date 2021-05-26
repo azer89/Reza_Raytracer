@@ -1,12 +1,14 @@
 
 
 #include "RayShooter.h"
-
-
+#include "ImageHandler.h"
+#include "Camera.h"
 #include "Material.h"
 #include "UsefulThings.h"
 #include "XMLParser.h"
 #include "GlobalParameters.h"
+
+#include <iostream>
 
 using namespace std;
 
