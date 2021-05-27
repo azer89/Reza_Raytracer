@@ -141,8 +141,8 @@ void XMLParser::LoadMaterials(std::unordered_map<std::string, shared_ptr<Materia
 
     // root
     XMLNode* root = doc.FirstChild();
-    XMLElement* mat_root = root->FirstChildElement("materials");
-    XMLElement* mat_elem = mat_root->FirstChildElement("material");
+    XMLElement* mat_parent_elem = root->FirstChildElement("materials");
+    XMLElement* mat_elem = mat_parent_elem->FirstChildElement("material");
     while (mat_elem != nullptr)
     {
         string name_str = GetString(mat_elem, "name");
@@ -165,21 +165,69 @@ void XMLParser::LoadMaterials(std::unordered_map<std::string, shared_ptr<Materia
     cout << "Done parsing materials\n\n";
 }
 //
-void XMLParser::LoadObjects(std::vector<shared_ptr<Hittable>>& objects)
+void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+                                        std::vector<shared_ptr<Hittable>>& objects)
 {
-//    XMLDocument doc;
-//
-//    const string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
-//    cout << "Parsing materials on " << file << '\n';
-//    XMLError eResult = doc.LoadFile(file.c_str());
-//    if (eResult != XML_SUCCESS)
-//    {
-//        cerr << "Cannot find " << file << '\n';
-//    }
-//
-//    // root
-//    XMLNode* root = doc.FirstChild();
-//
-//    cout << "Done parsing materials\n\n";
+    XMLDocument doc;
+    const string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
+    cout << "Parsing object on " << file << '\n';
+    XMLError eResult = doc.LoadFile(file.c_str());
+    if (eResult != XML_SUCCESS)
+    {
+        cerr << "Cannot find " << file << '\n';
+    }
+    // root
+    XMLNode* root = doc.FirstChild();
+
+    /*
+     * materials
+     */
+    XMLElement* mat_parent_elem = root->FirstChildElement("materials");
+    XMLElement* mat_elem = mat_parent_elem->FirstChildElement("material");
+    while (mat_elem != nullptr)
+    {
+        string name_str = GetString(mat_elem, "name");
+        string type_str = GetString(mat_elem, "type");
+        XMLElement* color_elem = mat_elem->FirstChildElement("color");
+        Color mat_color = GetColor(color_elem);
+
+        if (type_str == "lambertian")
+        {
+            mat_map[name_str] = make_shared<Lambertian>(mat_color);
+        }
+        else if (type_str == "metal")
+        {
+            mat_map[name_str] = make_shared<Metal>(mat_color);
+        }
+
+        mat_elem = mat_elem->NextSiblingElement();
+    }
+
+    /* 
+     * objects
+     */
+    XMLElement* obj_parent_elem = root->FirstChildElement("objects");
+    XMLElement* obj_elem = obj_parent_elem->FirstChildElement("object");
+    while (obj_elem != nullptr)
+    {
+        string type_str =  GetString(obj_elem, "type");
+        string material_str = GetString(obj_elem, "material_name");
+
+        if (type_str == "sphere")
+        {
+            Point3 pos = GetVec3(obj_elem->FirstChildElement("position"));
+            double radius = stod(GetString(obj_elem, "radius"));
+
+            objects.push_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
+        }
+        else if (type_str == "obj")
+        {
+            // TODO
+        }
+
+        obj_elem = obj_elem->NextSiblingElement();
+    }
+
+    cout << "Done parsing objects\n\n";
 }
 

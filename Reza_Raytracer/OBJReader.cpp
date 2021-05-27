@@ -1,9 +1,6 @@
 
 #include "OBJReader.h"
 
-
-
-
 #include <fstream>
 #include <sstream>
 #include <iostream>

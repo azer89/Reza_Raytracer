@@ -29,14 +29,14 @@
 	
 	<objects>
 		<object type="sphere" radius="0.5" material_name="material_center">
-			<position	x="0" y ="0" z="-1" />
+			<position	x="0" y ="0" z="-0.6" />
 		</object>
 		<object type="sphere" radius="0.5" material_name="material_side">
-			<position	x="-1.1" y ="0" z="-1"/>
+			<position	x="-1.1" y ="0" z="-1.4"/>
 		</object>
 		
 		<object type="sphere" radius="0.5" material_name="material_side">
-			<position	x="1.1" y ="0" z="-1"/>
+			<position	x="1.1" y ="0" z="-1.4"/>
 		</object>
 
 		<object type="sphere" radius="100" material_name="material_ground">
