@@ -18,10 +18,10 @@ public:
 	//XMLParser();
 	//~XMLParser();
 
-	static void LoadParametersFromXML();
+	void LoadParametersFromXML();
 
-	static void LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
-										std::vector<shared_ptr<Hittable>>& objects);
+	void LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+								 std::vector<shared_ptr<Hittable>>& objects);
 
 };
 

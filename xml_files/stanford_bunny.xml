@@ -2,16 +2,15 @@
 <world>
 	
 	<camera>		
-		<lookfrom	x="0" y ="2" z="2.3"/>
+		<lookfrom	x="0" y ="2" z="2"/>
 		<lookat		x="0" y ="0" z="-1"/>
 		<vup		x="0" y ="1" z="0"/>
 	</camera>
 	
 	<renderer>
-		<image_width value="1600"/>
-		<samples_per_pixel value="300"/>
-		<max_depth value="50"/>
-		<multithreading value="0"/>
+		<image_width value="400"/>
+		<samples_per_pixel value="100"/>
+		<max_depth value="10"/>
 	</renderer>
 	
 	<materials>
@@ -32,7 +31,7 @@
 		<object type="obj" 
 				material_name="material_side" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny.obj">
-			<position	x="0" y ="-0.5" z="-0.7" />
+			<position	x="0" y ="0.0" z="-0.7" />
 			<scale	value="0.75" />
 		</object>
 

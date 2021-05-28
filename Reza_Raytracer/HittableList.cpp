@@ -46,7 +46,9 @@ bool HittableList::Hit(const Ray3& r,
 void HittableList::CreateWorld()
 {
     std::unordered_map<std::string, shared_ptr<Material>> mat_map;
-    XMLParser::LoadMaterialsAndObjects(mat_map, objects);    
+    XMLParser xml_parser;
+
+    xml_parser.LoadMaterialsAndObjects(mat_map, objects);
 
     // init BVH
     std::cout << "Building BVH\n";

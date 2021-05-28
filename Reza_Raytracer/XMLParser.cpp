@@ -127,6 +127,51 @@ void XMLParser::LoadParametersFromXML()
     cout << "Done parsing\n\n";
 }
 
+void AddSphere(XMLElement* elem, 
+    const std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+    std::vector<shared_ptr<Hittable>>& objects)
+{
+    string material_str = GetString(elem, "material_name");
+    Point3 pos = GetVec3(elem->FirstChildElement("position"));
+    double radius = stod(GetString(elem, "radius"));
+
+    objects.push_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
+}
+
+void AddTriangleMesh(XMLElement* elem, 
+    const std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+    std::vector<shared_ptr<Hittable>>& objects)
+{
+    string material_str = GetString(elem, "material_name");
+
+    std::vector<Vec3> vertices;
+    std::vector< std::vector<int>> faces;
+
+    string filename = GetString(elem, "filename");
+    Point3 pos = GetVec3(elem->FirstChildElement("position"));
+    double scale = GetDouble(elem->FirstChildElement("scale"));
+
+    OBJReader obj_reader;
+    obj_reader.ReadOBJ(filename, vertices, faces);
+    for (int i = 0; i < faces.size(); i++)
+    {
+        int i1 = faces[i][0];
+        int i2 = faces[i][1];
+        int i3 = faces[i][2];
+
+        Point3 p1 = vertices[i1] * scale + pos;
+        Point3 p2 = vertices[i2] * scale + pos;
+        Point3 p3 = vertices[i3] * scale + pos;
+
+        objects.push_back(make_shared<Triangle>(
+            p1,
+            p2,
+            p3,
+            mat_map[material_str]));
+    }
+    // obj ends
+}
+
 void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
                                         std::vector<shared_ptr<Hittable>>& objects)
 {
@@ -173,18 +218,24 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
     while (obj_elem != nullptr)
     {
         string type_str =  GetString(obj_elem, "type");
-        string material_str = GetString(obj_elem, "material_name");
-
+        
         // TODO: create individual function for each object type
         if (type_str == "sphere")
         {
+            AddSphere(obj_elem, mat_map, objects);
+
+            /*string material_str = GetString(obj_elem, "material_name");
             Point3 pos = GetVec3(obj_elem->FirstChildElement("position"));
             double radius = stod(GetString(obj_elem, "radius"));
+            objects.push_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));*/
 
-            objects.push_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
         }
         else if (type_str == "obj")
         {
+            AddTriangleMesh(obj_elem, mat_map, objects);
+
+            /*string material_str = GetString(obj_elem, "material_name");
+
             std::vector<Vec3> vertices;
             std::vector< std::vector<int>> faces;
 
@@ -209,7 +260,7 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
                     p2,
                     p3,
                     mat_map[material_str]));
-            }
+            }*/
             // obj ends
         } 
 
