@@ -1,0 +1,1 @@
+The program only reads main.xml

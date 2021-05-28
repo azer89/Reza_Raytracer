@@ -20,8 +20,6 @@ public:
 
 	static void LoadParametersFromXML();
 
-	static void LoadMaterials(std::unordered_map<std::string, shared_ptr<Material>>& mat_map);
-
 	static void LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
 										std::vector<shared_ptr<Hittable>>& objects);
 

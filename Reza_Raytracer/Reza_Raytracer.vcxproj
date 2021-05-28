@@ -179,7 +179,7 @@
     <ClInclude Include="XYRectangle.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\scenes\main.xml" />
+    <Xml Include="..\xml_files\main.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

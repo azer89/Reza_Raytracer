@@ -84,7 +84,7 @@ void XMLParser::LoadParametersFromXML()
 {
     XMLDocument doc;
 
-    const string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
+    const string file = "C://Users//azer//workspace//Reza_Raytracer//xml_files//main.xml";
     cout << "Parsing " << file << '\n';
     XMLError eResult = doc.LoadFile(file.c_str());
     if (eResult != XML_SUCCESS)
@@ -127,49 +127,11 @@ void XMLParser::LoadParametersFromXML()
     cout << "Done parsing\n\n";
 }
 
-void XMLParser::LoadMaterials(std::unordered_map<std::string, shared_ptr<Material>>& mat_map)
-{
-    XMLDocument doc;
-
-    const string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
-    cout << "Parsing materials on " << file << '\n';
-    XMLError eResult = doc.LoadFile(file.c_str());
-    if (eResult != XML_SUCCESS)
-    {
-        cerr << "Cannot find " << file << '\n';
-    }
-
-    // root
-    XMLNode* root = doc.FirstChild();
-    XMLElement* mat_parent_elem = root->FirstChildElement("materials");
-    XMLElement* mat_elem = mat_parent_elem->FirstChildElement("material");
-    while (mat_elem != nullptr)
-    {
-        string name_str = GetString(mat_elem, "name");
-        string type_str = GetString(mat_elem, "type");
-        XMLElement* color_elem = mat_elem->FirstChildElement("color");
-        Color mat_color = GetColor(color_elem);
-
-        if (type_str == "lambertian")
-        {
-            mat_map[name_str] = make_shared<Lambertian>(mat_color);
-        }
-        else if (type_str == "metal")
-        {
-            mat_map[name_str] = make_shared<Metal>(mat_color);
-        }
-
-        mat_elem = mat_elem->NextSiblingElement();
-    }
-
-    cout << "Done parsing materials\n\n";
-}
-//
 void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
                                         std::vector<shared_ptr<Hittable>>& objects)
 {
     XMLDocument doc;
-    const string file = "C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml";
+    const string file = "C://Users//azer//workspace//Reza_Raytracer//xml_files//main.xml";
     cout << "Parsing object on " << file << '\n';
     XMLError eResult = doc.LoadFile(file.c_str());
     if (eResult != XML_SUCCESS)
@@ -213,6 +175,7 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
         string type_str =  GetString(obj_elem, "type");
         string material_str = GetString(obj_elem, "material_name");
 
+        // TODO: create individual function for each object type
         if (type_str == "sphere")
         {
             Point3 pos = GetVec3(obj_elem->FirstChildElement("position"));
@@ -222,8 +185,33 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
         }
         else if (type_str == "obj")
         {
-            // TODO
-        }
+            std::vector<Vec3> vertices;
+            std::vector< std::vector<int>> faces;
+
+            string filename = GetString(obj_elem, "filename");
+            Point3 pos = GetVec3(obj_elem->FirstChildElement("position"));
+            double scale = GetDouble(obj_elem->FirstChildElement("scale"));
+            
+            OBJReader obj_reader;
+            obj_reader.ReadOBJ(filename, vertices, faces);
+            for (int i = 0; i < faces.size(); i++)
+            {
+                int i1 = faces[i][0];
+                int i2 = faces[i][1];
+                int i3 = faces[i][2];
+
+                Point3 p1 = vertices[i1] * scale + pos;
+                Point3 p2 = vertices[i2] * scale + pos;
+                Point3 p3 = vertices[i3] * scale + pos;
+
+                objects.push_back(make_shared<Triangle>(
+                    p1,
+                    p2,
+                    p3,
+                    mat_map[material_str]));
+            }
+            // obj ends
+        } 
 
         obj_elem = obj_elem->NextSiblingElement();
     }

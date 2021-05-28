@@ -130,7 +130,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\scenes\main.xml">
+    <Xml Include="..\xml_files\main.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

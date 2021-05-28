@@ -35,7 +35,6 @@ void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices,
 						std::vector< std::vector<int>>& faces)
 {
-	std::cout << "Reading obj file " << filename << '\n';
 	std::ifstream f(filename);
 	while (!f.eof())
 	{
@@ -70,5 +69,4 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 	
 	f.close();
-	std::cout << "Done reading\n\n";
 }
