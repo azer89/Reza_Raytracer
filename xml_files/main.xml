@@ -8,9 +8,9 @@
 	</camera>
 	
 	<renderer>
-		<image_width value="1600"/>
-		<samples_per_pixel value="100"/>
-		<max_depth value="25"/>
+		<image_width value="2000"/>
+		<samples_per_pixel value="200"/>
+		<max_depth value="50"/>
 		<num_thread value="12"/>
 	</renderer>
 	

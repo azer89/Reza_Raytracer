@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <algorithm>
-#include <thread>
+
 #include <future>
 
 using namespace std;
@@ -44,6 +44,7 @@ RayShooter::~RayShooter()
 }
 
 // www.cplusplus.com/forum/beginner/240592/
+// solarianprogrammer.com/2012/10/17/cpp-11-async-tutorial/
 void RayShooter::ShootRaysMultithread()
 {
 	int num_thread = GlobalParameters::num_thread;
@@ -58,9 +59,10 @@ void RayShooter::ShootRaysMultithread()
 	// never modify these three vectors again
 	// because atomics and futures are not-copyable and not-movable
 	vector<atomic<int>> counter_atoms(num_thread);
-	vector<atomic<bool>> running_atoms(num_thread);
+	vector<atomic<bool>> running_atoms(num_thread); // TODO: can be deleted
 	vector<future<void>> futures(num_thread);
 
+	// backward
 	for (int i = num_thread; i > 0; i--)
 	{
 		int y_end = i * num_rows_per_thread;
@@ -83,7 +85,7 @@ void RayShooter::ShootRaysMultithread()
 	}
 
 	// The main thread keeps looping
-	// until all thread finish
+	// until all threads finish
 	bool is_running = true;
 	while (is_running)
 	{
