@@ -43,7 +43,8 @@ RayShooter::~RayShooter()
 {
 }
 
-void RayShooter::ShootRaysMultithreadAsync()
+// www.cplusplus.com/forum/beginner/240592/
+void RayShooter::ShootRaysMultithread()
 {
 	int num_thread = GlobalParameters::num_thread;
 

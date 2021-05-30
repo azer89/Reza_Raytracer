@@ -31,7 +31,7 @@ public:
 	void ShootRaysSingleThread();
 
 	// multi threads
-	void ShootRaysMultithreadAsync();
+	void ShootRaysMultithread();
 
 	// thread task
 	void ShootRaysByAThread(std::atomic<int>& counter_atom, 
