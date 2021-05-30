@@ -7,6 +7,7 @@ Features:
 * Lambertian and metal materials
 * Triangle mesh rendering
 * XML for creating scenes and specifying parameters 
+* Bounded Volume Hierarchy
 * CPU Multithreading
 
 Some results:
