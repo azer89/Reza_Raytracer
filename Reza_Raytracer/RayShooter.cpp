@@ -43,105 +43,85 @@ RayShooter::~RayShooter()
 {
 }
 
-// www.cplusplus.com/forum/beginner/240592/
-void RayShooter::ShootRaysMultithread()
+void RayShooter::ShootRaysMultithreadAsync()
 {
 	int num_thread = GlobalParameters::num_thread;
-	std::cout << "number of threads = " << num_thread << '\n';
 
+	// nice trick for a fast ceiling
 	int num_rows_per_thread = image_height / num_thread + (image_height % num_thread != 0);
 
-	// initializing futures
-	std::vector< std::future<void> > futures;
-	
-	// initialize atomics for printing progress
+	std::cout << "Multithread raytracing\n";
+	std::cout << "Number of threads = " << num_thread << '\n';
+
 	// WARNING
-	// never modify this vector again
-	// because an atomic is not-copyable and not-movable
+	// never modify these three vectors again
+	// because atomics and futures are not-copyable and not-movable
 	vector<atomic<int>> counter_atoms(num_thread);
-
-	/*for (int i = num_thread; i > 0; i--)
-	{
-		int start = i * num_rows_per_thread;
-		int end = start - num_rows_per_thread;
-		if (start > image_height) { start = image_height; }
-		start -= 1;
-		
-		cout << i << '\n';
-
-		ShootRaysInSegment(start, end);
-	}*/
+	vector<atomic<bool>> running_atoms(num_thread);
+	vector<future<void>> futures(num_thread);
 
 	for (int i = num_thread; i > 0; i--)
 	{
-		int start = i * num_rows_per_thread;
-		int end = start - num_rows_per_thread;
-		if (start > image_height) { start = image_height; }
-		start -= 1;
+		int y_end = i * num_rows_per_thread;
+		int y_start = y_end - num_rows_per_thread;
+		if (y_end > image_height) { y_end = image_height; }
+		y_end -= 1;
 
-
-
-		// run a thread
-		// stackoverflow.com/questions/11758414/class-and-stdasync-on-class-member-in-c/11758662
-		futures.push_back(std::async(std::launch::async, 
-			&RayShooter::ShootRaysByAThread,
-			this,
-			std::ref(counter_atoms[i]), 
-			start, 
-			end));
+		// TODO: check if emplace_back is correct
+		futures.emplace_back(
+			std::async(
+				std::launch::async,
+				&RayShooter::ShootRaysByAThread,
+				this,
+				std::ref(counter_atoms[i - 1]),
+				std::ref(running_atoms[i - 1]),
+				y_end,
+				y_start
+			)
+		);
 	}
 
-	int sum = 0;
-	std::cout << "image rows = " << image_height << '\n';
-	while (sum < image_height)
+	// The main thread keeps looping
+	// until all thread finish
+	bool is_running = true;
+	while (is_running)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-		sum = 0;
-		for (const auto& c_a : counter_atoms)
+		int sum = 0;
+		for (const auto& ca : counter_atoms)
 		{
-			sum += c_a;
+			sum += ca.load();
+		}
 
-			// print progress
-			std::cout << "\rrows processsed = " << sum << std::flush;
+		// print progress
+		std::cout << "\rRows processsed = " << sum << '/' << image_height << std::flush;
+
+		// are we done?
+		is_running = false;
+		for (const auto& ra : running_atoms)
+		{
+			is_running = is_running || ra.load();
 		}
 	}
 
-	std::cout << "\nAll threads are done\n";
+	std::cout << "\nDone\n";
 
+	// save a nice picture
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
-
 }
 
 
-void RayShooter::ShootRaysInSegment(int row_start, int row_end)
-{
-	for (int y = row_start; y >= row_end; --y)
-	{
-		for (int x = 0; x < image_width; ++x)
-		{
-			Color pixel_color(0, 0, 0);
-			for (int s = 0; s < samples_per_pixel; s++)
-			{
-				auto u = (double(x) + RandomDouble()) / (image_width - 1);
-				auto v = (double(y) + RandomDouble()) / (image_height - 1);
-				Ray3 r = camera->GetRay(u, v);
-				pixel_color += RayColor(r, max_depth); // recursive function
-			}
 
-			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
-			imgHandler->SetPixel(sqrt(pixel_color.x() * scale),
-				sqrt(pixel_color.y() * scale),
-				sqrt(pixel_color.z() * scale),
-				x,
-				y);
-		}
-	}
-}
-
-void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, int row_start, int row_end)
+void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, 
+									atomic<bool>& running_atom, 
+									int y_end, 
+									int y_start)
 {
-	for (int y = row_start; y >= row_end; --y)
+	running_atom = true;
+	counter_atom = 0;
+
+	for (int y = y_end; y >= y_start; --y)
 	{
 		for (int x = 0; x < image_width; ++x)
 		{
@@ -163,11 +143,17 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, int row_start, in
 		}
 
 		// increment atomic
+		// it's slower than regular int but whatever
 		counter_atom++;
 	}
+
+	running_atom = false;
 }
 
-void RayShooter::ShootRays()
+
+
+
+void RayShooter::ShootRaysSingleThread()
 {
 	for (int y = image_height - 1; y >= 0; --y)
 	{
@@ -196,10 +182,8 @@ void RayShooter::ShootRays()
 
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 
-	std::cout << "\ndone :)\n";
+	std::cout << "\nDone :)\n";
 }
-
-
 
 // This is a recursive function
 Color RayShooter::RayColor(const Ray3& r, int depth)
@@ -233,7 +217,6 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 			return attenuation * RayColor(scattered, depth - 1);
 			//return emitted + attenuation * RayColor(scattered, world, depth - 1); // does not work
 		}
-		
 
 		return Color(0, 0, 0);
 	}
@@ -317,3 +300,103 @@ Color RayShooter::RayColorNormalOnly(const Ray3& r)
 	auto t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 }
+
+/*void RayShooter::ShootRaysMultithread()
+{
+	int num_thread = GlobalParameters::num_thread;
+
+	// nice trick for a fast ceiling
+	int num_rows_per_thread = image_height / num_thread + (image_height % num_thread != 0);
+
+	std::cout << "Multithread raytracing\n";
+	std::cout << "Number of threads = " << num_thread << '\n';
+
+	// WARNING
+	// never modify these three vectors again
+	// because atomic and thread are not-copyable and not-movable
+	vector<atomic<int>> counter_atoms(num_thread);
+	vector<atomic<bool>> running_atoms(num_thread);
+	vector<thread> threads(num_thread);
+
+	for (int i = num_thread; i > 0; i--)
+	{
+		int y_end = i * num_rows_per_thread;
+		int y_start = y_end - num_rows_per_thread;
+		if (y_end > image_height) { y_end = image_height; }
+		y_end -= 1;
+
+		// check if emplace_back is correct
+		threads.emplace_back(
+			thread(
+				&RayShooter::ShootRaysByAThread,
+				this,
+				std::ref(counter_atoms[i - 1]),
+				std::ref(running_atoms[i - 1]),
+				y_end,
+				y_start
+			)
+		);
+	}
+
+	bool is_running = true;
+	while (is_running)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+		int sum = 0;
+		for (const auto& ca : counter_atoms)
+		{
+			sum += ca.load();
+		}
+
+		// print progress
+		std::cout << "\rRows processsed = " << sum << '/' << image_height << std::flush;
+
+		// are we done?
+		is_running = false;
+		for (const auto& ra : running_atoms)
+		{
+			is_running = is_running || ra.load();
+		}
+	}
+
+	// join all threads
+	for (auto& t : threads)
+	{
+		// I don't understand this part...
+		if(t.joinable())
+		{
+			t.join();
+		}
+	}
+
+	std::cout << "\nDone\n";
+
+	// save the nice picture
+	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
+}*/
+
+/*void RayShooter::ShootRaysInSegment(int row_start, int row_end)
+{
+	for (int y = row_start; y >= row_end; --y)
+	{
+		for (int x = 0; x < image_width; ++x)
+		{
+			Color pixel_color(0, 0, 0);
+			for (int s = 0; s < samples_per_pixel; s++)
+			{
+				auto u = (double(x) + RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + RandomDouble()) / (image_height - 1);
+				Ray3 r = camera->GetRay(u, v);
+				pixel_color += RayColor(r, max_depth); // recursive function
+			}
+
+			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
+			imgHandler->SetPixel(sqrt(pixel_color.x() * scale),
+				sqrt(pixel_color.y() * scale),
+				sqrt(pixel_color.z() * scale),
+				x,
+				y);
+		}
+	}
+}*/

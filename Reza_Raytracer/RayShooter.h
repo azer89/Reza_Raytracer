@@ -26,14 +26,28 @@ private:
 public:
 	RayShooter();
 	~RayShooter();
+			
+	// single thread
+	void ShootRaysSingleThread();
 
-	void ShootRays();
-	void ShootRaysByAThread(std::atomic<int>& counter_atom, int row_start, int row_end);
+	// multi threads
+	void ShootRaysMultithreadAsync();
 
-	void ShootRaysInSegment(int row_start, int row_end);
+	// thread task
+	void ShootRaysByAThread(std::atomic<int>& counter_atom, 
+							std::atomic<bool>& running_atom, 
+							int y_end, 
+							int y_start);
 
-	void ShootRaysMultithread();
+	// std::thread version
+	//void ShootRaysMultithread();
+
+	// for debugging
 	void ShootRaysNormalOnly();
+	
+	// for debugging
+	//void ShootRaysInSegment(int row_start, int row_end);
+	
 
 private:
 	Color RayColor(const Ray3& r, int depth);

@@ -9,7 +9,7 @@ int main()
 {
 	RayShooter rShooter;
 
-	rShooter.ShootRaysMultithread();
+	rShooter.ShootRaysMultithreadAsync();
 	//rShooter.ShootRays();
 
 
