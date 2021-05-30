@@ -1,6 +1,13 @@
 Started from https://raytracing.github.io/
 
-Included dependencies are tinyxml2 and stb. Just compile and run. 
+Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). Just compile and run. 
+
+Features:
+
+* Lambertian and metal materials
+* Triangle mesh rendering
+* XML for creating scenes and specifying parameters 
+* CPU Multithreading
 
 Some results:
 
