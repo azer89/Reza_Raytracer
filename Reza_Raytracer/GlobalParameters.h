@@ -15,6 +15,9 @@ public:
 	static int renderer_image_width;
 	static int renderer_samples_per_pixel;
 	static int renderer_max_depth;
+
+	// multithreading
+	static int num_thread;
 };
 
 

@@ -8,7 +8,10 @@
 int main()
 {
 	RayShooter rShooter;
-	rShooter.ShootRays();
+
+	rShooter.ShootRaysMultithread();
+	//rShooter.ShootRays();
+
 
 	std::cin.get();
 

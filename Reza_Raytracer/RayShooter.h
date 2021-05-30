@@ -2,6 +2,8 @@
 #define __RAY_SHOOTER_H__
 
 #include <memory>
+#include <thread> // is this needed?
+#include <atomic>
 
 #include "HittableList.h"
 
@@ -26,6 +28,11 @@ public:
 	~RayShooter();
 
 	void ShootRays();
+	void ShootRaysByAThread(std::atomic<int>& counter_atom, int row_start, int row_end);
+
+	void ShootRaysInSegment(int row_start, int row_end);
+
+	void ShootRaysMultithread();
 	void ShootRaysNormalOnly();
 
 private:

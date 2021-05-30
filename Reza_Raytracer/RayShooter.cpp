@@ -9,6 +9,9 @@
 #include "GlobalParameters.h"
 
 #include <iostream>
+#include <algorithm>
+#include <thread>
+#include <future>
 
 using namespace std;
 
@@ -38,6 +41,130 @@ RayShooter::RayShooter()
 
 RayShooter::~RayShooter()
 {
+}
+
+// www.cplusplus.com/forum/beginner/240592/
+void RayShooter::ShootRaysMultithread()
+{
+	int num_thread = GlobalParameters::num_thread;
+	std::cout << "number of threads = " << num_thread << '\n';
+
+	int num_rows_per_thread = image_height / num_thread + (image_height % num_thread != 0);
+
+	// initializing futures
+	std::vector< std::future<void> > futures;
+	
+	// initialize atomics for printing progress
+	// WARNING
+	// never modify this vector again
+	// because an atomic is not-copyable and not-movable
+	vector<atomic<int>> counter_atoms(num_thread);
+
+	/*for (int i = num_thread; i > 0; i--)
+	{
+		int start = i * num_rows_per_thread;
+		int end = start - num_rows_per_thread;
+		if (start > image_height) { start = image_height; }
+		start -= 1;
+		
+		cout << i << '\n';
+
+		ShootRaysInSegment(start, end);
+	}*/
+
+	for (int i = num_thread; i > 0; i--)
+	{
+		int start = i * num_rows_per_thread;
+		int end = start - num_rows_per_thread;
+		if (start > image_height) { start = image_height; }
+		start -= 1;
+
+
+
+		// run a thread
+		// stackoverflow.com/questions/11758414/class-and-stdasync-on-class-member-in-c/11758662
+		futures.push_back(std::async(std::launch::async, 
+			&RayShooter::ShootRaysByAThread,
+			this,
+			std::ref(counter_atoms[i]), 
+			start, 
+			end));
+	}
+
+	int sum = 0;
+	std::cout << "image rows = " << image_height << '\n';
+	while (sum < image_height)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+		sum = 0;
+		for (const auto& c_a : counter_atoms)
+		{
+			sum += c_a;
+
+			// print progress
+			std::cout << "\rrows processsed = " << sum << std::flush;
+		}
+	}
+
+	std::cout << "\nAll threads are done\n";
+
+	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
+
+}
+
+
+void RayShooter::ShootRaysInSegment(int row_start, int row_end)
+{
+	for (int y = row_start; y >= row_end; --y)
+	{
+		for (int x = 0; x < image_width; ++x)
+		{
+			Color pixel_color(0, 0, 0);
+			for (int s = 0; s < samples_per_pixel; s++)
+			{
+				auto u = (double(x) + RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + RandomDouble()) / (image_height - 1);
+				Ray3 r = camera->GetRay(u, v);
+				pixel_color += RayColor(r, max_depth); // recursive function
+			}
+
+			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
+			imgHandler->SetPixel(sqrt(pixel_color.x() * scale),
+				sqrt(pixel_color.y() * scale),
+				sqrt(pixel_color.z() * scale),
+				x,
+				y);
+		}
+	}
+}
+
+void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, int row_start, int row_end)
+{
+	for (int y = row_start; y >= row_end; --y)
+	{
+		for (int x = 0; x < image_width; ++x)
+		{
+			Color pixel_color(0, 0, 0);
+			for (int s = 0; s < samples_per_pixel; s++)
+			{
+				auto u = (double(x) + RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + RandomDouble()) / (image_height - 1);
+				Ray3 r = camera->GetRay(u, v);
+				pixel_color += RayColor(r, max_depth); // recursive function
+			}
+
+			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
+			imgHandler->SetPixel(sqrt(pixel_color.x() * scale),
+					sqrt(pixel_color.y() * scale),
+					sqrt(pixel_color.z() * scale),
+					x,
+					y);
+		}
+
+		// increment atomic
+		counter_atom++;
+	}
 }
 
 void RayShooter::ShootRays()
