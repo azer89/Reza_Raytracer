@@ -23,7 +23,8 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         node_box = SurroundingBox(node_box, dummy_box);
     }
 
-    int axis = node_box.LongestAxis();
+    //int axis = node_box.LongestAxis();
+    int axis = RandomInt(0, 2);
     auto comparator = [axis](const shared_ptr<Hittable>& a, 
                              const shared_ptr<Hittable>& b)
     {

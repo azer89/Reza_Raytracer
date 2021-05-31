@@ -116,6 +116,7 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 				auto v = (double(y) + RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
 				pixel_color += RayColor(r, max_depth); // recursive function
+				//pixel_color += RayColorNormalOnly(r);
 			}
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
