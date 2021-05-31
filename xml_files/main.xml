@@ -8,9 +8,9 @@
 	</camera>
 	
 	<renderer>
-		<image_width value="2000"/>
-		<samples_per_pixel value="200"/>
-		<max_depth value="50"/>
+		<image_width value="800"/>
+		<samples_per_pixel value="100"/>
+		<max_depth value="10"/>
 		<num_thread value="12"/>
 	</renderer>
 	
@@ -31,7 +31,7 @@
 	<objects>
 		<object type="obj" 
 				material_name="material_side" 
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny.obj">
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj">
 			<position	x="0" y ="-0.5" z="-0.7" />
 			<scale	value="0.75" />
 		</object>

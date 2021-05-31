@@ -55,57 +55,42 @@ void RayShooter::ShootRaysMultithread()
 	std::cout << "Multithread raytracing\n";
 	std::cout << "Number of threads = " << num_thread << '\n';
 
-	// WARNING
-	// never modify these three vectors again
-	// because atomics and futures are not-copyable and not-movable
-	vector<atomic<int>> counter_atoms(num_thread);
-	vector<atomic<bool>> running_atoms(num_thread); // TODO: can be deleted
+	vector<atomic<int>>  counter_atoms(num_thread);
 	vector<future<void>> futures(num_thread);
 
-	// backward
-	for (int i = num_thread; i > 0; i--)
+	for(int i = 0; i < num_thread; i++)
 	{
-		int y_end = i * num_rows_per_thread;
-		int y_start = y_end - num_rows_per_thread;
-		if (y_end > image_height) { y_end = image_height; }
-		y_end -= 1;
+		int y_start = i * num_rows_per_thread;
+		int y_end = y_start + num_rows_per_thread - 1;
+		if (y_end >= image_height) { y_end = image_height - 1; }
 
-		// TODO: check if emplace_back is correct
-		futures.emplace_back(
+		futures.push_back(
 			std::async(
 				std::launch::async,
 				&RayShooter::ShootRaysByAThread,
 				this,
-				std::ref(counter_atoms[i - 1]),
-				std::ref(running_atoms[i - 1]),
-				y_end,
-				y_start
+				std::ref(counter_atoms[i]),
+				y_start,
+				y_end
 			)
 		);
 	}
 
-	// The main thread keeps looping
-	// until all threads finish
-	bool is_running = true;
-	while (is_running)
+	// keep looping until all image rows are rendered
+	int sum_rows = 0;
+	while(sum_rows < image_height)
 	{
+		// update every 0.5 seconds
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-		int sum = 0;
+		sum_rows = 0;
 		for (const auto& ca : counter_atoms)
 		{
-			sum += ca.load();
+			sum_rows += ca.load();
 		}
 
 		// print progress
-		std::cout << "\rRows processsed = " << sum << '/' << image_height << std::flush;
-
-		// are we done?
-		is_running = false;
-		for (const auto& ra : running_atoms)
-		{
-			is_running = is_running || ra.load();
-		}
+		std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush;
 	}
 
 	std::cout << "\nDone\n";
@@ -114,14 +99,10 @@ void RayShooter::ShootRaysMultithread()
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 }
 
-
-
 void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, 
-									atomic<bool>& running_atom, 
-									int y_end, 
-									int y_start)
+									int y_start, 
+									int y_end)
 {
-	running_atom = true;
 	counter_atom = 0;
 
 	for (int y = y_end; y >= y_start; --y)
@@ -145,16 +126,10 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 					y);
 		}
 
-		// increment atomic
-		// it's slower than regular int but whatever
+		// atomic increment that's slower than regular int but whatever
 		counter_atom++;
 	}
-
-	running_atom = false;
 }
-
-
-
 
 void RayShooter::ShootRaysSingleThread()
 {

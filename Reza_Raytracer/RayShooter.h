@@ -35,9 +35,8 @@ public:
 
 	// thread task
 	void ShootRaysByAThread(std::atomic<int>& counter_atom, 
-							std::atomic<bool>& running_atom, 
-							int y_end, 
-							int y_start);
+			int y_start,
+			int y_end);
 
 	// std::thread version
 	//void ShootRaysMultithread();
