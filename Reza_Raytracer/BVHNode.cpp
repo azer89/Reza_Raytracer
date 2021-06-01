@@ -12,7 +12,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     // assign first object's BB to box
     src_objects[start]->BoundingBox(node_box);
     AABB dummy_box;
-    for(size_t i = start + 1; i < end; i++)
+    for(int i = start + 1; i < end; i++)
     {
         bool has_bb = src_objects[i]->BoundingBox(dummy_box);
         if (!has_bb)
@@ -23,8 +23,9 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         node_box = SurroundingBox(node_box, dummy_box);
     }
 
-    //int axis = node_box.LongestAxis();
-    int axis = RandomInt(0, 2);
+    // it seems that in order to make the splitting work,
+    // the AABBs for thin objects should be padded 
+    int axis = node_box.LongestAxis();
     auto comparator = [axis](const shared_ptr<Hittable>& a, 
                              const shared_ptr<Hittable>& b)
     {
@@ -32,9 +33,6 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
              : (axis == 1) ? BoxYCompare(a, b)
                            : BoxZCompare(a, b);
     };
-    /*auto comparator = (axis == 0) ? BoxXCompare
-                    : (axis == 1) ? BoxYCompare
-                                  : BoxZCompare;*/
 
     size_t object_span = end - start;
 

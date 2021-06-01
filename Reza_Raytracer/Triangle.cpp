@@ -1,19 +1,18 @@
 
 #include "Triangle.h"
 
-bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
-{
-    /*
-    www.scratchapixel.com/lessons/3d-basic-rendering/
-    ray-tracing-rendering-a-triangle/
-    moller-trumbore-ray-triangle-intersection
-    */
+/*
+www.scratchapixel.com/lessons/3d-basic-rendering/
+ray-tracing-rendering-a-triangle/
+moller-trumbore-ray-triangle-intersection
+*/
 
-    /*
-    github.com/mattgodbolt/pt-three-ways/
-    blob/main/src/oo/Triangle.cpp
-    */
-	
+/*
+github.com/mattgodbolt/pt-three-ways/
+blob/main/src/oo/Triangle.cpp
+*/
+bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
+{	
     // can be precomputed
     Vec3 v0v1 = v1 - v0;
     Vec3 v0v2 = v2 - v0;
@@ -94,13 +93,20 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
 bool Triangle::BoundingBox(AABB& output_box) const
 {
+    // need to pad the AABB to avoid zero thickness
+    Vec3 padding(0.0001, 0.0001, 0.0001);
+    
     Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),
-			 fmin(v0.y(), fmin(v1.y(), v2.y())), 
+			 fmin(v0.y(), fmin(v1.y(), v2.y())),
 			 fmin(v0.z(), fmin(v1.z(), v2.z())));
+
+    min = min - padding;
 
     Vec3 max(fmax(v0.x(), fmax(v1.x(), v2.x())),
              fmax(v0.y(), fmax(v1.y(), v2.y())),
              fmax(v0.z(), fmax(v1.z(), v2.z())));
+
+    max = max + padding;
 	
     output_box = AABB(min, max);
 
