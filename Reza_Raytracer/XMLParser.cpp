@@ -206,7 +206,10 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
         }
         else if (type_str == "metal")
         {
-            mat_map[name_str] = make_shared<Metal>(mat_color);
+            XMLElement* fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
+            double fuzzy = GetDouble(fuzzy_elem);
+
+            mat_map[name_str] = make_shared<Metal>(mat_color, fuzzy);
         }
 
         mat_elem = mat_elem->NextSiblingElement();

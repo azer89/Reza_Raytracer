@@ -2,15 +2,15 @@
 <world>
 	6
 	<camera>		
-		<lookfrom	x="0.0" y ="1" z="2.6"/>
-		<lookat		x="0" y ="0.15" z="-1"/>
+		<lookfrom	x="0.3" y ="3" z="3.0"/>
+		<lookat		x="0" y ="0" z="-0.8"/>
 		<vup		x="0" y ="1" z="0"/>
 	</camera>
 	
 	<renderer>
-		<image_width value="800"/>
-		<samples_per_pixel value="100"/>
-		<max_depth value="25"/>
+		<image_width value="2000"/>
+		<samples_per_pixel value="500"/>
+		<max_depth value="100"/>
 		<num_thread value="12"/>
 	</renderer>
 	
@@ -21,6 +21,7 @@
 
 		<material name="material_side" type="metal">
 			<color	r="0.7" g ="0.3" b="0.3"/>
+			<fuzzy value="0.3"/>
 		</material>
 
 		<material name="material_center" type="lambertian">
@@ -31,7 +32,7 @@
 	<objects>
 		<object type="obj" 
 				material_name="material_side" 
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj">
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//dragon.obj">
 			<position	x="0" y ="-0.5" z="-0.7" />
 			<scale	value="0.75" />
 		</object>

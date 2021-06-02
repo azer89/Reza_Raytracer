@@ -58,7 +58,9 @@ public:
 class Metal : public Material 
 {
 public:
-    Metal(const Color& a) : albedo(a) 
+    Metal(const Color& a, double f) :
+        albedo(a),
+        fuzzy(f < 1 ? f : 1)
     {
     }
 
@@ -69,7 +71,8 @@ public:
         const override 
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
-        scattered = Ray3(rec.p, reflected);
+        //scattered = Ray3(rec.p, reflected);
+        scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
         attenuation = albedo;
 
         // if dot product is zero then the vectors are perpendicular
@@ -79,6 +82,7 @@ public:
 
 public:
     Color albedo;
+    double fuzzy;
 };
 
 class DiffuseLight : public Material
