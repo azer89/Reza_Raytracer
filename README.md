@@ -12,6 +12,8 @@ Features:
 
 Some results:
 
-![alt tag](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_stanford_bunny_600.png)
+[<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
 
-![alt tag](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres_600.png)
+[<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_stanford_bunny_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_stanford_bunny.png)
+
+[<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres.png)
