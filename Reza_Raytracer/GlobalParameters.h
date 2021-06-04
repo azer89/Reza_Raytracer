@@ -11,6 +11,10 @@ public:
 	static Point3 camera_lookat;
 	static Vec3   camera_vup;
 
+	// background gradient
+	static Color back_color1;
+	static Color back_color2;
+
 	// renderer
 	static int renderer_image_width;
 	static int renderer_samples_per_pixel;

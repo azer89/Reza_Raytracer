@@ -94,6 +94,14 @@ void XMLParser::LoadParametersFromXML()
 
     // root
     XMLNode* root = doc.FirstChild();
+
+    // background gradient
+    XMLElement* back_gradient_element = root->FirstChildElement("background_gradient");
+    XMLElement* color1_element = back_gradient_element->FirstChildElement("color1");
+    XMLElement* color2_element = back_gradient_element->FirstChildElement("color2");
+
+    GlobalParameters::back_color1 = GetVec3(color1_element);
+    GlobalParameters::back_color2 = GetVec3(color2_element);
     
     // camera
     XMLElement* camera_element = root->FirstChildElement("camera");
