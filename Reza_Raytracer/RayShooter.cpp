@@ -209,8 +209,8 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 
 	Vec3 unit_direction = UnitVector(r.Direction());
 	auto t = 0.5 * (unit_direction.y() + 1.0);
-	return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
-	//return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
+	//return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
+	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
 
 // This is a recursive function
