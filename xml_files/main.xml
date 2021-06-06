@@ -1,4 +1,6 @@
 
+<!-- You need to set the path of this xml file on XMLParser.cpp -->
+
 <world>
 	<camera>		
 		<lookfrom	x="0.1" y ="3" z="2.7"/>

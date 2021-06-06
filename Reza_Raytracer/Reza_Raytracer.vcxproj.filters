@@ -122,6 +122,9 @@
     <ClInclude Include="GlobalParameters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HitRecord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\xml_files\main.xml">
