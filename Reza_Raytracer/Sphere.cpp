@@ -59,7 +59,9 @@ bool Sphere::Hit(const Ray3& r,
     //rec.normal = (rec.p - center) / radius;
     Vec3 outward_normal = (rec.p - center) / radius;
     rec.SetFaceNormal(r, outward_normal);
-    rec.mat_ptr = mat_ptr;
+
+    // raw pointer
+    rec.mat_ptr = material_ptr.get();
 	
     return true;
 }

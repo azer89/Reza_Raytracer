@@ -6,7 +6,6 @@
 #include "OBJReader.h"
 #include "tinyxml2.h"
 
-
 #include "Hittable.h"
 #include "Sphere.h"
 #include "Triangle.h"
@@ -49,9 +48,7 @@ inline Color GetColor(const XMLElement* element)
 inline int GetInt(const XMLElement* element, string name = "value")
 {
     int i;
-
     element->QueryIntAttribute(name.c_str(), &i);
-
     return i;
 }
 
@@ -59,26 +56,14 @@ inline int GetInt(const XMLElement* element, string name = "value")
 inline double GetDouble(const XMLElement* element, string name = "value")
 {
     double d;
-
     element->QueryDoubleAttribute(name.c_str(), &d);
-
     return d;
 }
-
-//#define TIXML_USE_STL
 
 inline string GetString(const XMLElement* element, string name)
 {
     return element->Attribute(name.c_str());
 }
-
-//XMLParser::XMLParser()
-//{
-//}
-
-//XMLParser::~XMLParser()
-//{
-//}
 
 void XMLParser::LoadParametersFromXML()
 {
@@ -92,10 +77,10 @@ void XMLParser::LoadParametersFromXML()
         cerr << "Cannot find " << file << '\n';
     }
 
-    // root
+    // ===== Root =====
     XMLNode* root = doc.FirstChild();
 
-    // background gradient
+    // ===== Background gradient colors =====
     XMLElement* back_gradient_element = root->FirstChildElement("background_gradient");
     XMLElement* color1_element = back_gradient_element->FirstChildElement("color1");
     XMLElement* color2_element = back_gradient_element->FirstChildElement("color2");
@@ -103,7 +88,7 @@ void XMLParser::LoadParametersFromXML()
     GlobalParameters::back_color1 = GetColor(color1_element);
     GlobalParameters::back_color2 = GetColor(color2_element);
     
-    // camera
+    // ===== Camera =====
     XMLElement* camera_element = root->FirstChildElement("camera");
     if (camera_element == nullptr)
     {
@@ -117,7 +102,7 @@ void XMLParser::LoadParametersFromXML()
     GlobalParameters::camera_lookat   = GetVec3(lookat_element);
     GlobalParameters::camera_vup      = GetVec3(vup_element);
     
-    // renderer
+    // ===== Renderer =====
     XMLElement* renderer_element = root->FirstChildElement("renderer");
     if (renderer_element == nullptr)
     {
@@ -193,12 +178,11 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
     {
         cerr << "Cannot find " << file << '\n';
     }
-    // root
+
+    // ===== Root =====
     XMLNode* root = doc.FirstChild();
 
-    /*
-     * materials
-     */
+    // ===== materials =====
     XMLElement* mat_parent_elem = root->FirstChildElement("materials");
     XMLElement* mat_elem = mat_parent_elem->FirstChildElement("material");
     while (mat_elem != nullptr)
@@ -223,9 +207,8 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
         mat_elem = mat_elem->NextSiblingElement();
     }
 
-    /* 
-     * objects
-     */
+     
+    // ===== Objects =====
     XMLElement* obj_parent_elem = root->FirstChildElement("objects");
     XMLElement* obj_elem = obj_parent_elem->FirstChildElement("object");
     while (obj_elem != nullptr)

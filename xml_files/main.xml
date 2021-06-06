@@ -12,20 +12,21 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="2000"/>
-		<samples_per_pixel value="1000"/>
-		<max_depth value="200"/>
+		<image_width value="1000"/>
+		<samples_per_pixel value="100"/>
+		<max_depth value="20"/>
 		<num_thread value="12"/>
 	</renderer>
 	
 	<materials>
 		<material name="material_ground" type="lambertian">
 			<color	r="1.0" g ="1.0" b="1.0"/>
+		<fuzzy value="0.3"/>
 		</material>
 
 		<material name="material_side" type="metal">
-			<color	r="0.7" g ="0.3" b="0.3"/>
-			<fuzzy value="0.3"/>
+			<color	r="1.0" g ="0.32" b="0.2"/>
+			<fuzzy value="0.1"/>
 		</material>
 
 		<material name="material_center" type="lambertian">

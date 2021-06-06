@@ -2,7 +2,6 @@
 #include "HittableList.h"
 
 #include "Sphere.h"
-#include "XYRectangle.h"
 #include "Triangle.h"
 #include "OBJReader.h"
 

@@ -7,19 +7,15 @@
 class Sphere : public Hittable
 {
 public:
-    Sphere()
-    {	    
-    }
 
-	// shared_ptr is passed by value 
-	Sphere(Point3 cen, double r, shared_ptr<Material> m)
+    // Constructor 
+	Sphere(Point3 cen, double r, shared_ptr<Material>& m)
     {
         center = cen;
         radius = r;
-
-    	// stackoverflow.com/questions/41871115/why-would-i-stdmove-an-stdshared-ptr
-    	// why do I move a shared_ptr?
-        mat_ptr = std::move(m);
+        
+        // Copy shared_ptr 
+        material_ptr = m;
     }
 
     virtual bool Hit(const Ray3& r, 
@@ -32,7 +28,7 @@ public:
 public:
     Point3 center;
     double radius;
-    shared_ptr<Material> mat_ptr;
+    shared_ptr<Material> material_ptr;
 };
 
 #endif

@@ -85,7 +85,8 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     // less optimal
     //rec.SetFaceNormal(r, outward_normal);
     
-    rec.mat_ptr = mp;
+    // Raw pointer
+    rec.mat_ptr = material_ptr.get();
     rec.p = r.At(t);
 
     return true;

@@ -153,7 +153,6 @@
     <ClCompile Include="XMLParser.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Triangle.cpp" />
-    <ClCompile Include="XYRectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BVHNode.h" />
@@ -176,7 +175,6 @@
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UsefulThings.h" />
     <ClInclude Include="Vec3.h" />
-    <ClInclude Include="XYRectangle.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\xml_files\main.xml" />

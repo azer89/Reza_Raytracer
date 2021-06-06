@@ -11,18 +11,19 @@ struct HitRecord
 {
     Point3 p;
     Vec3 normal;
-    shared_ptr<Material> mat_ptr;
+
+    Material* mat_ptr;
 
     // origin + t * direction
     double t;
     
     bool front_face;
 
-	// texture
+	// Texture
     double u;
     double v;
 
-	// make sure the normal always against the ray 
+	// Make sure the normal always against the ray 
     inline void SetFaceNormal(const Ray3& r, const Vec3& outward_normal)
 	{
         front_face = Dot(r.Direction(), outward_normal) < 0;
