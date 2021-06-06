@@ -5,6 +5,7 @@
 
 #include <memory>
 #include <vector>
+#include <unordered_map>
 
 using std::unique_ptr;
 using std::shared_ptr;
@@ -30,9 +31,14 @@ public:
 
     virtual bool BoundingBox(AABB& output_box) const override;
 
-public:
-    shared_ptr<BVHNode> bvhRoot;
+private:
+    // Root of the BVH
+    shared_ptr<BVHNode> bvh_root;
 
+    // Materials, you need their names descibed in the main.xml
+    std::unordered_map<std::string, shared_ptr<Material>> material_map;
+
+    // List of objects
     vector<shared_ptr<Hittable>> objects;
 };
 

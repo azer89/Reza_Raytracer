@@ -10,7 +10,6 @@
 
 #include <string>
 #include <chrono>
-#include <unordered_map>
 
 using std::make_unique;
 
@@ -22,7 +21,7 @@ bool HittableList::Hit(const Ray3& r,
     
 
     // BVH version
-    bool hit_anything = bvhRoot->Hit(r, t_min, t_max, rec);
+    bool hit_anything = bvh_root->Hit(r, t_min, t_max, rec);
 
     // Brute force version
     /*HitRecord temp_rec;
@@ -44,15 +43,15 @@ bool HittableList::Hit(const Ray3& r,
 
 void HittableList::CreateWorld()
 {
-    std::unordered_map<std::string, shared_ptr<Material>> mat_map;
+    
     XMLParser xml_parser;
 
-    xml_parser.LoadMaterialsAndObjects(mat_map, objects);
+    xml_parser.LoadMaterialsAndObjects(material_map, objects);
 
     // init BVH
     std::cout << "Building BVH\n";
     auto start1 = std::chrono::steady_clock::now();
-    bvhRoot = make_shared<BVHNode>(objects);
+    bvh_root = make_shared<BVHNode>(objects);
     auto end1 = std::chrono::steady_clock::now();
     std::cout << "BVH done in " << std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1).count() << " ms\n\n";
 }
