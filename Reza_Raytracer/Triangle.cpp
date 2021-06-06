@@ -76,6 +76,9 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
     // calculate normal, warning, this is not a unit vector
     Vec3 outward_normal = Cross(v0v1, v0v2);
+
+    // TODO: check if triangle vertices has baked normal vectors
+
     if (backfacing)
     {
         outward_normal = -outward_normal;

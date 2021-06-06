@@ -17,6 +17,12 @@ public:
 	void ReadOBJ(const std::string& filename,
 				 std::vector<Vec3>& vertices,
 				 std::vector< std::vector<int>>& faces);
+
+	void ReadOBJ(const std::string& filename,
+				 std::vector<Vec3>& vertices,
+				 std::vector<Vec3>& normals,
+				 std::vector< std::vector<int>>& vertex_indices,
+				 std::vector< std::vector<int>>& normal_indices);
 };
 
 #endif

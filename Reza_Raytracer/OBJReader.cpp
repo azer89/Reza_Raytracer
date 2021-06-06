@@ -30,7 +30,7 @@ inline bool StartWith(const std::string& prefix,
 	return false;
 }
 
-// currently only supports "v" and "f" 
+// Supports "v" and "f" 
 void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices,
 						std::vector< std::vector<int>>& faces)
@@ -66,7 +66,30 @@ void OBJReader::ReadOBJ(const std::string& filename,
 							 i3 - 1});
 		}
 	}
-
 	
+	f.close();
+}
+
+// Supports "v", "vn", and "f" 
+void OBJReader::ReadOBJ(const std::string& filename,
+						std::vector<Vec3>& vertices, // vertex list
+						std::vector<Vec3>& normals,  // normal vector list
+						std::vector< std::vector<int>>& vertex_indices, // triangle faces
+						std::vector< std::vector<int>>& normal_indices) // normal vector indices for triangles
+{
+	std::ifstream f(filename);
+	while (!f.eof())
+	{
+		std::string line;
+		std::getline(f, line);
+
+		if (line.size() == 0)
+		{
+			continue;
+		}
+
+		std::vector<std::string> str_array = Split(line, ' ');
+	}
+
 	f.close();
 }
