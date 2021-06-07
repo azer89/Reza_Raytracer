@@ -10,7 +10,7 @@ Features:
 * Bounded Volume Hierarchy
 * CPU Multithreading
 
-Some results:
+Pretty pictures (click for a higher resolution):
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
 
