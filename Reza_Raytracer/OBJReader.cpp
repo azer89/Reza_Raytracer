@@ -19,6 +19,24 @@ inline std::vector<std::string> Split(const std::string& s,  char delim)
 	return elems;
 }
 
+// if s is an empty string, then s_array.size() == 1 and s_array[0] == ""
+inline std::vector<std::string> Split(std::string s, std::string delim)
+{
+	std::vector<std::string> s_array;
+
+	auto start = 0;
+	auto end = s.find(delim);
+	while (end != s.npos)
+	{
+		s_array.push_back(s.substr(start, end - start));
+		start = end + delim.size();
+		end = s.find(delim, start);
+	}
+
+	s_array.push_back(s.substr(start, end - start));
+
+	return s_array;
+}
 
 inline bool StartWith(const std::string& prefix, 
 					  const std::string& argument)
