@@ -107,6 +107,42 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		}
 
 		std::vector<std::string> str_array = Split(line, ' ');
+
+		if (StartWith("vn", line) && str_array.size() == 4)
+		{
+			normals.push_back(Vec3(std::stod(str_array[1]),
+								   std::stod(str_array[2]),
+								   std::stod(str_array[3]) ));
+		}
+		else if (StartWith("v", line) && str_array.size() == 4)
+		{
+			vertices.push_back(Vec3(std::stod(str_array[1]),
+									std::stod(str_array[2]),
+									std::stod(str_array[3]) ));
+		}
+		else if (StartWith("f", line) && str_array.size() == 4)
+		{
+			auto s1 = Split(str_array[1], "//");
+			auto s2 = Split(str_array[2], "//");
+			auto s3 = Split(str_array[3], "//");
+
+			int i1 = std::stoi(s1[0]);
+			int i2 = std::stoi(s2[0]);
+			int i3 = std::stoi(s3[0]);
+
+			int n1 = std::stoi(s1[1]);
+			int n2 = std::stoi(s2[1]);
+			int n3 = std::stoi(s3[1]);
+
+			// OBJ indexing starts with 1
+			vertex_indices.push_back({ i1 - 1,
+									   i2 - 1,
+									   i3 - 1 });
+
+			normal_indices.push_back({ n1 - 1,
+									   n2 - 1,
+									   n3 - 1 });
+		}
 	}
 
 	f.close();

@@ -139,30 +139,73 @@ void AddTriangleMesh(XMLElement* elem,
 {
     string material_str = GetString(elem, "material_name");
 
-    std::vector<Vec3> vertices;
-    std::vector< std::vector<int>> faces;
+    //std::vector<Vec3> vertices;
+    //std::vector< std::vector<int>> faces;
+    std::vector<Vec3> vertices; // vertex list
+    std::vector<Vec3> normals;  // normal vector list
+    std::vector< std::vector<int>> vertex_indices; // triangle faces
+    std::vector< std::vector<int>> normal_indices; // normal vector indices for triangles
+
 
     string filename = GetString(elem, "filename");
     Point3 pos = GetVec3(elem->FirstChildElement("position"));
     double scale = GetDouble(elem->FirstChildElement("scale"));
 
     OBJReader obj_reader;
-    obj_reader.ReadOBJ(filename, vertices, faces);
-    for (int i = 0; i < faces.size(); i++)
+    //obj_reader.ReadOBJ(filename, vertices, faces);
+    obj_reader.ReadOBJ(filename, vertices, normals, vertex_indices, normal_indices);
+    if (normals.size() > 0)
     {
-        int i1 = faces[i][0];
-        int i2 = faces[i][1];
-        int i3 = faces[i][2];
+        cout << "Has normals\n";
 
-        Point3 p1 = vertices[i1] * scale + pos;
-        Point3 p2 = vertices[i2] * scale + pos;
-        Point3 p3 = vertices[i3] * scale + pos;
+        for (int i = 0; i < vertex_indices.size(); i++)
+        {
+            int i1 = vertex_indices[i][0];
+            int i2 = vertex_indices[i][1];
+            int i3 = vertex_indices[i][2];
 
-        objects.push_back(make_shared<Triangle>(
-            p1,
-            p2,
-            p3,
-            mat_map[material_str] ));
+            Point3 p1 = vertices[i1] * scale + pos;
+            Point3 p2 = vertices[i2] * scale + pos;
+            Point3 p3 = vertices[i3] * scale + pos;
+
+            i1 = normal_indices[i][0];
+            i2 = normal_indices[i][1];
+            i3 = normal_indices[i][2];
+
+            Vec3 n1 = normals[i1];
+            Vec3 n2 = normals[i2];
+            Vec3 n3 = normals[i3];
+
+            objects.push_back(make_shared<Triangle>(
+                            p1,
+                            p2,
+                            p3,
+                            n1,
+                            n2,
+                            n3,
+                            mat_map[material_str] ));
+        }
+    }
+    else
+    {
+        cout << "Does not have normals\n";
+
+        for (int i = 0; i < vertex_indices.size(); i++)
+        {
+            int i1 = vertex_indices[i][0];
+            int i2 = vertex_indices[i][1];
+            int i3 = vertex_indices[i][2];
+
+            Point3 p1 = vertices[i1] * scale + pos;
+            Point3 p2 = vertices[i2] * scale + pos;
+            Point3 p3 = vertices[i3] * scale + pos;
+
+            objects.push_back(make_shared<Triangle>(
+                            p1,
+                            p2,
+                            p3,
+                            mat_map[material_str] ));
+        }
     }
     // obj ends
 }

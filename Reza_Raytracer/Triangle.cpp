@@ -42,9 +42,6 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
         return false;
     }
 
-    // if the determinant is negative the triangle is backfacing
-    bool backfacing = det < epsilon;
-
     double invDet = 1 / det;
 
     Vec3 tvec = r.Origin() - v0;
@@ -75,14 +72,24 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     rec.t = t;	
 
     // calculate normal, warning, this is not a unit vector
-    Vec3 outward_normal = Cross(v0v1, v0v2);
-
-    // TODO: check if triangle vertices has baked normal vectors
-
-    if (backfacing)
+    Vec3 outward_normal;
+    
+    if (has_normals)
     {
-        outward_normal = -outward_normal;
+        double w = 1.0 - u - v;
+        outward_normal = (n0 * u) + (n1 * v) + (n2 * w);
     }
+    else
+    {
+        outward_normal = Cross(v0v1, v0v2);
+        // if the determinant is negative the triangle is backfacing
+        bool backfacing = det < epsilon;
+        if (backfacing)
+        {
+            outward_normal = -outward_normal;
+        }
+    }
+
     rec.normal = outward_normal;
 
     // less optimal

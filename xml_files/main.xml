@@ -1,9 +1,9 @@
-
-<!-- You need to set the path of this xml file on XMLParser.cpp -->
-
 <world>
+
+	<!-- You need to set the path of this xml file on XMLParser.cpp -->
+	
 	<camera>		
-		<lookfrom	x="0.1" y ="3" z="2.7"/>
+		<lookfrom	x="0.1" y ="2" z="2.7"/>
 		<lookat		x="0" y ="0" z="-0.9"/>
 		<vup		x="0" y ="1" z="0"/>
 	</camera>
@@ -29,7 +29,7 @@
 		</material>
 
 		<material name="material_side" type="metal">
-			<color	r="1.0" g ="0.32" b="0.2"/>
+			<color	r="0.7" g ="0.3" b="0.3"/>
 			<fuzzy value="0.1"/>
 		</material>
 
@@ -41,7 +41,7 @@
 	<objects>
 		<object type="obj" 
 				material_name="material_side" 
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//dragon.obj">
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//suzanne_n.obj">
 			<position	x="0" y ="-0.52" z="-0.7" />
 			<scale	value="0.75" />
 		</object>
