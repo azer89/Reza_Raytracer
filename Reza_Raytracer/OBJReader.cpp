@@ -19,8 +19,8 @@ inline std::vector<std::string> Split(const std::string& s,  char delim)
 	return elems;
 }
 
-// if s is an empty string, then s_array.size() == 1 and s_array[0] == ""
-inline std::vector<std::string> Split(std::string s, std::string delim)
+// elements can be empty strings if the input is invalid
+inline std::vector<std::string> Split(const std::string& s, const std::string& delim)
 {
 	std::vector<std::string> s_array;
 
