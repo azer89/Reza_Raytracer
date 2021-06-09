@@ -77,17 +77,19 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     if (has_normals)
     {
         double w = 1.0 - u - v;
-        outward_normal = (n0 * u) + (n1 * v) + (n2 * w);
+        outward_normal = (n0 * w) + (n1 * u) + (n2 * v);
     }
     else
     {
         outward_normal = Cross(v0v1, v0v2);
-        // if the determinant is negative the triangle is backfacing
-        bool backfacing = det < epsilon;
-        if (backfacing)
-        {
-            outward_normal = -outward_normal;
-        }
+        
+    }
+
+    // if the determinant is negative the triangle is backfacing
+    bool backfacing = det < epsilon;
+    if (backfacing)
+    {
+        outward_normal = -outward_normal;
     }
 
     rec.normal = outward_normal;
