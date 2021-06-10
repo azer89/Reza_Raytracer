@@ -130,18 +130,25 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			int i2 = std::stoi(s2[0]);
 			int i3 = std::stoi(s3[0]);
 
-			int n1 = std::stoi(s1[1]);
-			int n2 = std::stoi(s2[1]);
-			int n3 = std::stoi(s3[1]);
+			
 
 			// OBJ indexing starts with 1
 			vertex_indices.push_back({ i1 - 1,
 									   i2 - 1,
 									   i3 - 1 });
 
-			normal_indices.push_back({ n1 - 1,
-									   n2 - 1,
-									   n3 - 1 });
+			// TODO code a little bit ugly
+			// cannot find normal vectors
+			if(normals.size() > 0)
+			{
+				int n1 = std::stoi(s1[1]);
+				int n2 = std::stoi(s2[1]);
+				int n3 = std::stoi(s3[1]);
+
+				normal_indices.push_back({ n1 - 1,
+										   n2 - 1,
+										   n3 - 1 });
+			}
 		}
 	}
 
