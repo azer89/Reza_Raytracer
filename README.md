@@ -6,6 +6,7 @@ Features:
 
 * Lambertian and metal materials
 * Triangle mesh rendering
+* Smooth surface normals using barycentric interpolation
 * XML for creating scenes and specifying parameters 
 * Bounded Volume Hierarchy
 * CPU Multithreading
