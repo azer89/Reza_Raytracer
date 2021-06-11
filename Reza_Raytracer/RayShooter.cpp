@@ -115,8 +115,8 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 				auto u = (double(x) + RandomDouble()) / (image_width - 1);
 				auto v = (double(y) + RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
-				pixel_color += RayColor(r, max_depth); // recursive function
-				//pixel_color += RayColorNormalOnly(r);
+				//pixel_color += RayColor(r, max_depth); // recursive function
+				pixel_color += RayColorNormalOnly(r);
 			}
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
@@ -278,7 +278,7 @@ Color RayShooter::RayColorNormalOnly(const Ray3& r)
 
 	Vec3 unit_direction = UnitVector(r.Direction());
 	auto t = 0.5 * (unit_direction.y() + 1.0);
-	return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
+	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
 
 /*void RayShooter::ShootRaysMultithread()

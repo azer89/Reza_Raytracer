@@ -3,8 +3,8 @@
 	<!-- You need to set the path of this xml file on XMLParser.cpp -->
 	
 	<camera>		
-		<lookfrom	x="0.1" y ="2" z="2.7"/>
-		<lookat		x="0" y ="0" z="-0.9"/>
+		<lookfrom	x="0.1" y ="1" z="2.8"/>
+		<lookat		x="0" y ="0.1" z="-0.9"/>
 		<vup		x="0" y ="1" z="0"/>
 	</camera>
 
@@ -15,8 +15,8 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="1000"/>
-		<samples_per_pixel value="100"/>
+		<image_width value="2000"/>
+		<samples_per_pixel value="1"/>
 		<max_depth value="20"/>
 		<num_thread value="12"/>
 	</renderer>
@@ -41,14 +41,14 @@
 	<objects>
 		<object type="obj" 
 				material_name="material_side" 
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//suzanne_n.obj">
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj">
 			<position	x="0" y ="-0.52" z="-0.7" />
 			<scale	value="0.75" />
 		</object>
 
-		<object type="sphere" radius="100" material_name="material_ground">
+		<!--object type="sphere" radius="100" material_name="material_ground">
 			<position	x="0" y ="-100.5" z="-1"/>
-		</object>
+		</object-->
 		
 	</objects>
 	
