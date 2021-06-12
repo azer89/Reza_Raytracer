@@ -16,11 +16,7 @@ public:
         return aspect_ratio;
 	}
 
-private:
-    Point3 lookfrom;
-    Point3 lookat;
-    Vec3   vup;	
-
+private:   
     double vfov;
     double aspect_ratio;
 
@@ -32,6 +28,10 @@ private:
     Point3 lower_left_corner;
     Vec3 horizontal;
     Vec3 vertical;
+
+    Point3 lookfrom;
+    Point3 lookat;
+    Vec3   vup;
 };
 
 #endif

@@ -25,9 +25,9 @@ public:
 
     virtual bool BoundingBox(AABB& output_box) const override;
 
-public:
-    Point3 center;
+public:    
     double radius;
+    Point3 center;
     shared_ptr<Material> material_ptr;
 };
 
