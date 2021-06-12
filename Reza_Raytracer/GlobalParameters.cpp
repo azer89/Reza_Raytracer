@@ -1,4 +1,3 @@
-
 #include "GlobalParameters.h"
 
 Point3 GlobalParameters::camera_lookfrom = Point3();

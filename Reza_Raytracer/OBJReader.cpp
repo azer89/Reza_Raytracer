@@ -1,4 +1,3 @@
-
 #include "OBJReader.h"
 
 #include <fstream>
@@ -129,9 +128,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			int i1 = std::stoi(s1[0]);
 			int i2 = std::stoi(s2[0]);
 			int i3 = std::stoi(s3[0]);
-
 			
-
 			// OBJ indexing starts with 1
 			vertex_indices.push_back({ i1 - 1,
 									   i2 - 1,

@@ -139,8 +139,6 @@ void AddTriangleMesh(XMLElement* elem,
 {
     string material_str = GetString(elem, "material_name");
 
-    //std::vector<Vec3> vertices;
-    //std::vector< std::vector<int>> faces;
     std::vector<Vec3> vertices; // vertex list
     std::vector<Vec3> normals;  // normal vector list
     std::vector< std::vector<int>> vertex_indices; // triangle faces
@@ -152,7 +150,6 @@ void AddTriangleMesh(XMLElement* elem,
     double scale = GetDouble(elem->FirstChildElement("scale"));
 
     OBJReader obj_reader;
-    //obj_reader.ReadOBJ(filename, vertices, faces);
     obj_reader.ReadOBJ(filename, vertices, normals, vertex_indices, normal_indices);
     if (normals.size() > 0)
     {

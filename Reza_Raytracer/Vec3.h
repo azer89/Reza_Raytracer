@@ -85,8 +85,6 @@ public:
 using Point3 = Vec3;   // 3D point
 using Color  = Vec3;    // RGB color
 
-
-
 // Vec3 Utility Functions
 
 inline std::ostream& operator<<(std::ostream& out, const Vec3& v)
@@ -145,12 +143,16 @@ inline Vec3 UnitVector(Vec3 v)
 
 inline Vec3 RandomVec3()
 {
-    return Vec3(RandomDouble(), RandomDouble(), RandomDouble());
+    return Vec3(UsefulFunctions::RandomDouble(), 
+                UsefulFunctions::RandomDouble(), 
+                UsefulFunctions::RandomDouble());
 }
 
 inline Vec3 RandomVec3(double min, double max)
 {
-    return Vec3(RandomDouble(min, max), RandomDouble(min, max), RandomDouble(min, max));
+    return Vec3(UsefulFunctions::RandomDouble(min, max), 
+                UsefulFunctions::RandomDouble(min, max), 
+                UsefulFunctions::RandomDouble(min, max));
 }
 
 inline Vec3 RandomVec3InUnitSphere()
@@ -175,10 +177,8 @@ inline Vec3 RandomVec3InHemisphere(const Vec3& normal)
     {
         return in_unit_sphere;
     }
-    //else
-    //{
+
     return -in_unit_sphere;
-    //}
 }
 
 inline Vec3 Reflect(const Vec3& v, const Vec3& n) 

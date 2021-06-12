@@ -7,10 +7,6 @@
 class Triangle : public Hittable
 {
 public:
-    /*Triangle()
-    {
-    }*/
-
     Triangle(Vec3 _v0,
 		     Vec3 _v1,
 		     Vec3 _v2,

@@ -1,6 +1,4 @@
-
 #include "Camera.h"
-
 #include "GlobalParameters.h"
 
 Camera::Camera()
@@ -12,7 +10,7 @@ Camera::Camera()
     this->vfov = 30; // in degree
     this->aspect_ratio = 16.0 / 9.0;
 	
-    auto theta = DegreesToRadians(vfov);
+    auto theta = UsefulFunctions::DegreesToRadians(vfov);
 
 	/*
 	tan theta = h / z

@@ -71,13 +71,11 @@ public:
         const override 
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
-        //scattered = Ray3(rec.p, reflected);
         scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
         attenuation = albedo;
 
         // if dot product is zero then the vectors are perpendicular
-        //return (Dot(scattered.Direction(), rec.normal) > 0);
-        return true;
+        return (Dot(scattered.Direction(), rec.normal) > 0);
     }
 
 public:
@@ -109,7 +107,6 @@ public:
 
 public:
     shared_ptr<Texture> emit;
-
 };
 
 #endif

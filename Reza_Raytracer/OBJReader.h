@@ -1,7 +1,6 @@
 #ifndef __OBJ_READER_H__
 #define __OBJ_READER_H__
 
-
 #include "Vec3.h"
 #include <vector>
 #include <string>

@@ -3,22 +3,22 @@
 	<!-- You need to set the path of this xml file on XMLParser.cpp -->
 	
 	<camera>		
-		<lookfrom	x="0.1" y ="1" z="2.8"/>
-		<lookat		x="0" y ="0.1" z="-0.9"/>
+		<lookfrom	x="0.0" y ="2" z="2.0"/>
+		<lookat		x="0" y ="0.0" z="-1.4"/>
 		<vup		x="0" y ="1" z="0"/>
 	</camera>
 
 	<!-- Requires two colors to create a color gradient -->
 	<background_gradient>
 		<color1 r="1.0" g ="1.0" b="1.0"/>
-		<color2 r="1.0" g ="1.0" b="1.0"/>
+		<color2 r="0.5" g ="0.7" b="1.0"/>
 	</background_gradient>
 	
 	<renderer>
 		<image_width value="2000"/>
-		<samples_per_pixel value="1"/>
-		<max_depth value="20"/>
-		<num_thread value="12"/>
+		<samples_per_pixel value="1000"/>
+		<max_depth value="500"/>
+		<num_thread value="16"/>
 	</renderer>
 
 	<!-- if the type is lambertian, fuzzy will be ignored -->
@@ -30,8 +30,18 @@
 
 		<material name="material_side" type="metal">
 			<color	r="0.7" g ="0.3" b="0.3"/>
-			<fuzzy value="0.1"/>
+			<fuzzy value="0.0"/>
 		</material>
+
+    <material name="material_side1" type="metal">
+      <color	r="0.3" g ="0.3" b="0.7"/>
+      <fuzzy value="0.0"/>
+    </material>
+
+    <material name="material_side2" type="metal">
+      <color	r="0.3" g ="0.7" b="0.3"/>
+      <fuzzy value="0.0"/>
+    </material>
 
 		<material name="material_center" type="lambertian">
 			<color	r="0.3" g ="0.3" b="0.7"/>
@@ -41,14 +51,28 @@
 	<objects>
 		<object type="obj" 
 				material_name="material_side" 
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//suzanne.obj">
-			<position	x="0" y ="-0.52" z="-0.7" />
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_n.obj">
+			<position	x="0" y ="-0.52" z="-1.1" />
 			<scale	value="0.75" />
 		</object>
 
-		<!--object type="sphere" radius="100" material_name="material_ground">
+    <!--object type="obj"
+				material_name="material_side1"
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_n.obj">
+      <position	x="-1.0" y ="-0.52" z="-0.3" />
+      <scale	value="0.5" />
+    </object>
+
+    <object type="obj"
+				material_name="material_side2"
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_n.obj">
+      <position	x="1.0" y ="-0.52" z="-0.3" />
+      <scale	value="0.5" />
+    </object-->
+
+		<object type="sphere" radius="100" material_name="material_ground">
 			<position	x="0" y ="-100.5" z="-1"/>
-		</object-->
+		</object>
 		
 	</objects>
 	

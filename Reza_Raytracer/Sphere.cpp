@@ -1,6 +1,4 @@
-
 #include "Sphere.h"
-
 
 bool Sphere::Hit(const Ray3& r, 
 				 double t_min, 

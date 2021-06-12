@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <memory>
 
@@ -10,8 +8,7 @@ int main()
 	RayShooter rShooter;
 
 	rShooter.ShootRaysMultithread();
-	//rShooter.ShootRays();
-
+	//rShooter.ShootRays(); // single thread version
 
 	std::cin.get();
 

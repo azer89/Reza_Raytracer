@@ -1,4 +1,3 @@
-
 #ifndef __BVH_NODE_H__
 #define __BVH_NODE_H__
 

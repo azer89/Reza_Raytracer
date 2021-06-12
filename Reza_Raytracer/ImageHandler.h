@@ -1,4 +1,3 @@
-
 #ifndef __IMAGE_WRAPPER_H__
 #define __IMAGE_WRAPPER_H__
 

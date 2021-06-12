@@ -1,4 +1,3 @@
-
 #include "ImageHandler.h"
 #include "UsefulThings.h"
 
@@ -27,9 +26,9 @@ ImageHandler::~ImageHandler()
 // new, parallelizable
 void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 {
-	r = Clamp(r, 0.0, 0.999);
-	g = Clamp(g, 0.0, 0.999);
-	b = Clamp(b, 0.0, 0.999);
+	r = UsefulFunctions::Clamp(r, 0.0, 0.999);
+	g = UsefulFunctions::Clamp(g, 0.0, 0.999);
+	b = UsefulFunctions::Clamp(b, 0.0, 0.999);
 
 	y = img_height - y - 1;
 	int index = (x + (y * img_width)) * num_channel;
@@ -42,9 +41,9 @@ void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 // old, don't use this
 void ImageHandler::SetPixel(double r, double g, double b)
 {
-	r = Clamp(r, 0.0, 0.999);
-	g = Clamp(g, 0.0, 0.999);
-	b = Clamp(b, 0.0, 0.999);
+	r = UsefulFunctions::Clamp(r, 0.0, 0.999);
+	g = UsefulFunctions::Clamp(g, 0.0, 0.999);
+	b = UsefulFunctions::Clamp(b, 0.0, 0.999);
 	
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * r);
 	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * g);

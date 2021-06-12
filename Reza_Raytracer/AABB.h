@@ -38,7 +38,6 @@ private:
 	Point3 minimum;
 };
 
-
 inline AABB SurroundingBox(const AABB& box0, const AABB& box1)
 {
 	Point3 small(fmin(box0.Min().x(), box1.Min().x()),

@@ -38,16 +38,6 @@ public:
 			int y_start,
 			int y_end);
 
-	// std::thread version
-	//void ShootRaysMultithread();
-
-	// for debugging
-	void ShootRaysNormalOnly();
-	
-	// for debugging
-	//void ShootRaysInSegment(int row_start, int row_end);
-	
-
 private:
 	Color RayColor(const Ray3& r, int depth);
 	Color RayColorNormalOnly(const Ray3& r);

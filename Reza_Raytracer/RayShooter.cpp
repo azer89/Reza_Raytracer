@@ -1,5 +1,3 @@
-
-
 #include "RayShooter.h"
 #include "ImageHandler.h"
 #include "Camera.h"
@@ -10,7 +8,6 @@
 
 #include <iostream>
 #include <algorithm>
-
 #include <future>
 
 using namespace std;
@@ -54,6 +51,7 @@ void RayShooter::ShootRaysMultithread()
 
 	std::cout << "Multithread raytracing\n";
 	std::cout << "Number of threads = " << num_thread << '\n';
+	auto start1 = std::chrono::steady_clock::now();
 
 	vector<atomic<int>>  counter_atoms(num_thread);
 	vector<future<void>> futures(num_thread);
@@ -93,7 +91,8 @@ void RayShooter::ShootRaysMultithread()
 		std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush;
 	}
 
-	std::cout << "\nDone\n";
+	auto end1 = std::chrono::steady_clock::now();
+	std::cout << "Rendering done in " << std::chrono::duration_cast<std::chrono::seconds>(end1 - start1).count() << " s\n\n";
 
 	// save a nice picture
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
@@ -112,11 +111,11 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 			Color pixel_color(0, 0, 0);
 			for (int s = 0; s < samples_per_pixel; s++)
 			{
-				auto u = (double(x) + RandomDouble()) / (image_width - 1);
-				auto v = (double(y) + RandomDouble()) / (image_height - 1);
+				auto u = (double(x) + UsefulFunctions::RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + UsefulFunctions::RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
-				//pixel_color += RayColor(r, max_depth); // recursive function
-				pixel_color += RayColorNormalOnly(r);
+				pixel_color += RayColor(r, max_depth); // recursive function
+				//pixel_color += RayColorNormalOnly(r);
 			}
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
@@ -144,8 +143,8 @@ void RayShooter::ShootRaysSingleThread()
 			Color pixel_color(0, 0, 0);
 			for (int s = 0; s < samples_per_pixel; s++)
 			{
-				auto u = (double(x) + RandomDouble()) / (image_width - 1);
-				auto v = (double(y) + RandomDouble()) / (image_height - 1);
+				auto u = (double(x) + UsefulFunctions::RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + UsefulFunctions::RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
 				pixel_color += RayColor(r, max_depth); // recursive function
 			}
@@ -176,7 +175,7 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 	// Recursive
 	HitRecord rec;
 	// t_min = 0.001 is used to remove shadow acne
-	if (world->Hit(r, 0.001, infinity, rec))
+	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
 		// lighter shadow
 		//Point3 target = rec.p + RandomVec3InHemisphere(rec.normal);
@@ -226,7 +225,7 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 	HitRecord rec;
 
 	// If the ray hits nothing, return the background color.
-	if (!world.Hit(r, 0.001, infinity, rec))
+	if (!world.Hit(r, 0.001, UsefulConstants::infinity, rec))
 		return background;
 
 	Ray3 scattered;
@@ -240,37 +239,10 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 }
 
 // for debugging normal vectors only
-void RayShooter::ShootRaysNormalOnly()
-{
-	for (int y = image_height - 1; y >= 0; --y)
-	{
-		std::cout << "\rScanlines remaining: " << y << ' ' << std::flush;
-
-		for (int x = 0; x < image_width; ++x)
-		{
-			auto u = (double(x) + RandomDouble()) / (image_width - 1);
-			auto v = (double(y) + RandomDouble()) / (image_height - 1);
-			Ray3 r = camera->GetRay(u, v);
-			Color pixel_color = RayColorNormalOnly(r);
-
-			imgHandler->SetPixel(pixel_color.x(),
-				pixel_color.y(),
-				pixel_color.z(),
-				x,
-				y);
-		}
-	}
-
-	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
-
-	std::cout << "\ndone :)\n";
-}
-
-// for debugging normal vectors only
 Color RayShooter::RayColorNormalOnly(const Ray3& r)
 {
 	HitRecord rec;
-	if (world->Hit(r, 0.001, infinity, rec))
+	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
 		Vec3 N = UnitVector(rec.normal);
 		return 0.5 * Color(N.x() + 1, N.y() + 1, N.z() + 1);
