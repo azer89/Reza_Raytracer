@@ -7,7 +7,6 @@
 class Sphere : public Hittable
 {
 public:
-
     // Constructor 
 	Sphere(Point3 cen, double r, shared_ptr<Material>& m)
     {
@@ -24,6 +23,8 @@ public:
 					 HitRecord& rec) const override;
 
     virtual bool BoundingBox(AABB& output_box) const override;
+
+    static void GetSphereUV(const Point3& p, double& u, double& v);
 
 public:    
     double radius;

@@ -121,9 +121,9 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		}
 		else if (StartWith("f", line) && str_array.size() == 4)
 		{
-			auto s1 = Split(str_array[1], "//");
-			auto s2 = Split(str_array[2], "//");
-			auto s3 = Split(str_array[3], "//");
+			auto s1 = Split(str_array[1], '/');
+			auto s2 = Split(str_array[2], '/');
+			auto s3 = Split(str_array[3], '/');
 
 			int i1 = std::stoi(s1[0]);
 			int i2 = std::stoi(s2[0]);
@@ -138,9 +138,9 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			// cannot find normal vectors
 			if(normals.size() > 0)
 			{
-				int n1 = std::stoi(s1[1]);
-				int n2 = std::stoi(s2[1]);
-				int n3 = std::stoi(s3[1]);
+				int n1 = std::stoi(s1[2]);
+				int n2 = std::stoi(s2[2]);
+				int n3 = std::stoi(s3[2]);
 
 				normal_indices.push_back({ n1 - 1,
 										   n2 - 1,

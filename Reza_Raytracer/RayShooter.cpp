@@ -92,7 +92,7 @@ void RayShooter::ShootRaysMultithread()
 	}
 
 	auto end1 = std::chrono::steady_clock::now();
-	std::cout << "Rendering done in " << std::chrono::duration_cast<std::chrono::seconds>(end1 - start1).count() << " s\n\n";
+	std::cout << "\nRendering done in " << std::chrono::duration_cast<std::chrono::seconds>(end1 - start1).count() << " s\n\n";
 
 	// save a nice picture
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
