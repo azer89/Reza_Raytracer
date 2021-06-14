@@ -13,8 +13,8 @@ blob/main/src/oo/Triangle.cpp
 bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
 {	
     // can be precomputed
-    Vec3 v0v1 = v1 - v0;
-    Vec3 v0v2 = v2 - v0;
+    //Vec3 v0v1 = v1 - v0;
+    //Vec3 v0v2 = v2 - v0;
 
     // scalar triple product
     /*
@@ -73,16 +73,15 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     // calculate normal, warning, this is not a unit vector
     Vec3 outward_normal;
     
-    if (has_normals)
-    {
-        double w = 1.0 - u - v;
-        outward_normal = (n0 * w) + (n1 * u) + (n2 * v);
-    }
-    else
-    {
-        outward_normal = Cross(v0v1, v0v2);
-        
-    }
+    //if (has_normals)
+    //{
+    double w = 1.0 - u - v;
+    outward_normal = (n0 * w) + (n1 * u) + (n2 * v);
+    //}
+    //else
+    //{
+    //    outward_normal = Cross(v0v1, v0v2);
+    //}
 
     // if the determinant is negative the triangle is backfacing
     bool backfacing = det < epsilon;

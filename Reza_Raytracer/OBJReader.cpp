@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <string>
 
 inline std::vector<std::string> Split(const std::string& s,  char delim)
 {
@@ -91,11 +92,17 @@ void OBJReader::ReadOBJ(const std::string& filename,
 void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices, // vertex list
 						std::vector<Vec3>& normals,  // normal vector list
-						std::vector< std::vector<int>>& uvs, // texture uvs
+						std::vector< std::vector<double>>& uvs, // texture uvs
 						std::vector< std::vector<int>>& vertex_indices, // triangle faces
 						std::vector< std::vector<int>>& normal_indices, // normal vector indices for triangles
 						std::vector< std::vector<int>>& uv_indices) // uv indices for triangles
 {
+	// Can be "//" or "/"
+	std::string delim = "//";
+
+	// for normal
+	int normal_i = 1;
+
 	std::ifstream f(filename);
 	while (!f.eof())
 	{
@@ -109,6 +116,15 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 		std::vector<std::string> str_array = Split(line, ' ');
 
+		if (StartWith("vt", line) && str_array.size() == 3)
+		{
+			delim = "/";
+			normal_i = 2;
+
+			uvs.push_back({ std::stod(str_array[1]),
+							std::stod(str_array[2]) });
+
+		}
 		if (StartWith("vn", line) && str_array.size() == 4)
 		{
 			normals.push_back(Vec3(std::stod(str_array[1]),
@@ -123,9 +139,9 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		}
 		else if (StartWith("f", line) && str_array.size() == 4)
 		{
-			auto s1 = Split(str_array[1], '/');
-			auto s2 = Split(str_array[2], '/');
-			auto s3 = Split(str_array[3], '/');
+			auto s1 = Split(str_array[1], delim);
+			auto s2 = Split(str_array[2], delim);
+			auto s3 = Split(str_array[3], delim);
 
 			int i1 = std::stoi(s1[0]);
 			int i2 = std::stoi(s2[0]);
@@ -137,12 +153,11 @@ void OBJReader::ReadOBJ(const std::string& filename,
 									   i3 - 1 });
 
 			// TODO code a little bit ugly
-			// cannot find normal vectors
 			if(normals.size() > 0)
 			{
-				int n1 = std::stoi(s1[2]);
-				int n2 = std::stoi(s2[2]);
-				int n3 = std::stoi(s3[2]);
+				int n1 = std::stoi(s1[normal_i]);
+				int n2 = std::stoi(s2[normal_i]);
+				int n3 = std::stoi(s3[normal_i]);
 
 				normal_indices.push_back({ n1 - 1,
 										   n2 - 1,

@@ -18,9 +18,14 @@ public:
         // Copy shared_ptr
         this->material_ptr = mat;
 
-        has_normals = false;
-    };
+        this->v0v1 = v1 - v0;
+        this->v0v2 = v2 - v0;
+        auto normal = Cross(v0v1, v0v2);
 
+        this->n0 = normal;
+        this->n1 = normal;
+        this->n2 = normal;
+    };
 
     Triangle(Vec3 _v0,
 		     Vec3 _v1,
@@ -39,7 +44,8 @@ public:
         // Copy shared_ptr
         this->material_ptr = mat;
 
-        has_normals = true;
+        this->v0v1 = v1 - v0;
+        this->v0v2 = v2 - v0;
     };
 
     virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
@@ -50,6 +56,10 @@ public:
     // Material
     shared_ptr<Material> material_ptr;
     
+    // Triangle axes
+    Vec3 v0v1;
+    Vec3 v0v2;
+
     // Vertex positions
     Vec3 v0;
     Vec3 v1;

@@ -141,16 +141,25 @@ void AddTriangleMesh(XMLElement* elem,
 
     std::vector<Vec3> vertices; // vertex list
     std::vector<Vec3> normals;  // normal vector list
+    std::vector< std::vector<double>> uvs; // texture uvs
     std::vector< std::vector<int>> vertex_indices; // triangle faces
     std::vector< std::vector<int>> normal_indices; // normal vector indices for triangles
-
+    std::vector< std::vector<int>> uv_indices; // uv indices for triangles
 
     string filename = GetString(elem, "filename");
     Point3 pos = GetVec3(elem->FirstChildElement("position"));
     double scale = GetDouble(elem->FirstChildElement("scale"));
 
     OBJReader obj_reader;
-    obj_reader.ReadOBJ(filename, vertices, normals, vertex_indices, normal_indices);
+    obj_reader.ReadOBJ(filename, 
+                       vertices, 
+                       normals, 
+                       uvs,
+                       vertex_indices, 
+                       normal_indices,
+                       uv_indices
+        );
+
     if (normals.size() > 0)
     {
         cout << "Has normals\n";
@@ -181,8 +190,8 @@ void AddTriangleMesh(XMLElement* elem,
                             n2,
                             n3,
                             mat_map[material_str] ));
-        }
-    }
+        } // for (int i = 0; i < vertex_indices.size(); i++)
+    } //  if (normals.size() > 0)
     else
     {
         cout << "Does not have normals\n";
@@ -203,7 +212,7 @@ void AddTriangleMesh(XMLElement* elem,
                             p3,
                             mat_map[material_str] ));
         }
-    }
+    } // else
     // obj ends
 }
 
