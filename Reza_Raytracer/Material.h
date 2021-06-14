@@ -9,7 +9,6 @@ struct HitRecord;
 class Material
 {
 public:
-
 	// pure virtual
     virtual bool Scatter(const Ray3& r_in,
 						 const HitRecord& rec, 
@@ -88,7 +87,7 @@ class DiffuseLight : public Material
 public:
     DiffuseLight(const Color& c) 
     {
-        emit = make_shared<SolidColor>(c);
+        emit = make_shared<SolidColorTexture>(c);
     }
 
     virtual bool Scatter(const Ray3& r_in,
@@ -103,7 +102,6 @@ public:
 	{        
     	return emit->Value(u, v, p);
     }
-
 
 public:
     shared_ptr<Texture> emit;

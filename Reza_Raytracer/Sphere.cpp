@@ -68,7 +68,7 @@ bool Sphere::BoundingBox(AABB& output_box) const
 {
     output_box = AABB(center - Vec3(radius, radius, radius),
 					  center + Vec3(radius, radius, radius));
-	
+
     return true;
 }
 
@@ -78,9 +78,9 @@ void Sphere::GetSphereUV(const Point3& p, double& u, double& v)
     p: a given point on the sphere of radius one, centered at the origin.
     u: returned value [0,1] of angle around the Y axis from X=-1.
     v: returned value [0,1] of angle from Y=-1 to Y=+1.
-        <1 0 0> yields <0.50 0.50>       <-1  0  0> yields <0.00 0.50>
-        <0 1 0> yields <0.50 1.00>       < 0 -1  0> yields <0.50 0.00>
-        <0 0 1> yields <0.25 0.50>       < 0  0 -1> yields <0.75 0.50>
+        <1 0 0> yields <0.50 0.50>      <-1  0  0> yields <0.00 0.50>
+        <0 1 0> yields <0.50 1.00>      < 0 -1  0> yields <0.50 0.00>
+        <0 0 1> yields <0.25 0.50>      < 0  0 -1> yields <0.75 0.50>
     */
 
     auto theta = acos(-p.y());

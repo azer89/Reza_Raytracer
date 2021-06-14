@@ -18,23 +18,23 @@ inline std::vector<std::string> Split(const std::string& s,  char delim)
 	return elems;
 }
 
-// elements can be empty strings if the input is invalid
+// Elements can be empty strings if the input is invalid
 inline std::vector<std::string> Split(const std::string& s, const std::string& delim)
 {
-	std::vector<std::string> s_array;
+	std::vector<std::string> elements;
 
 	auto start = 0;
 	auto end = s.find(delim);
 	while (end != s.npos)
 	{
-		s_array.push_back(s.substr(start, end - start));
+		elements.push_back(s.substr(start, end - start));
 		start = end + delim.size();
 		end = s.find(delim, start);
 	}
 
-	s_array.push_back(s.substr(start, end - start));
+	elements.push_back(s.substr(start, end - start));
 
-	return s_array;
+	return elements;
 }
 
 inline bool StartWith(const std::string& prefix, 
@@ -87,12 +87,14 @@ void OBJReader::ReadOBJ(const std::string& filename,
 	f.close();
 }
 
-// Supports "v", "vn", and "f" 
+// TODO: Need to support "vt"
 void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices, // vertex list
 						std::vector<Vec3>& normals,  // normal vector list
+						std::vector< std::vector<int>>& uvs, // texture uvs
 						std::vector< std::vector<int>>& vertex_indices, // triangle faces
-						std::vector< std::vector<int>>& normal_indices) // normal vector indices for triangles
+						std::vector< std::vector<int>>& normal_indices, // normal vector indices for triangles
+						std::vector< std::vector<int>>& uv_indices) // uv indices for triangles
 {
 	std::ifstream f(filename);
 	while (!f.eof())
