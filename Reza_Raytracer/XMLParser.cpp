@@ -1,5 +1,3 @@
-
-
 #include "Vec3.h"
 #include "XMLParser.h"
 #include "GlobalParameters.h"
@@ -14,7 +12,6 @@
 #include <iostream>
 
 // C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml
-// tinyxml2.docsforge.com/master/examples/#read-attributes-and-text-information
 
 using namespace tinyxml2;
 using namespace std;
@@ -243,14 +240,14 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
 
         if (type_str == "lambertian")
         {
-            mat_map[name_str] = make_shared<Lambertian>(mat_color);
+            mat_map[name_str] = make_shared<LambertianMaterial>(mat_color);
         }
         else if (type_str == "metal")
         {
             XMLElement* fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
             double fuzzy = GetDouble(fuzzy_elem);
 
-            mat_map[name_str] = make_shared<Metal>(mat_color, fuzzy);
+            mat_map[name_str] = make_shared<MetalMaterial>(mat_color, fuzzy);
         }
 
         mat_elem = mat_elem->NextSiblingElement();

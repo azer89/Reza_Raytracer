@@ -1,4 +1,3 @@
-
 #include "AABB.h"
 
 bool AABB::Hit(const Ray3& r, double t_min, double t_max) const

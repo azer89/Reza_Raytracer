@@ -5,11 +5,10 @@
 #include <memory>
 
 // this class handles the output image
+// which also a wrapper for STB library
 class ImageHandler
 {
 private:
-	// need to be able to reset pixel_iterator
-	int pixel_iterator;
 	std::unique_ptr<uint8_t[]> pixels;
 	
 	int img_width;
@@ -28,9 +27,6 @@ public:
 
 	// new
 	void SetPixel(double r, double g, double b, int x, int y);
-
-	// old
-	void SetPixel(double r, double g, double b);	
 };
 
 #endif

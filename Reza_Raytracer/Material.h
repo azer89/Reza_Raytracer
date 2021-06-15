@@ -22,10 +22,10 @@ public:
     }
 };
 
-class Lambertian : public Material
+class LambertianMaterial : public Material
 {
 public:
-    Lambertian(const Color& a) : albedo(a)
+    LambertianMaterial(const Color& a) : albedo(a)
     {	    
     }
 
@@ -54,10 +54,10 @@ public:
     Color albedo;
 };
 
-class Metal : public Material 
+class MetalMaterial : public Material 
 {
 public:
-    Metal(const Color& a, double f) :
+    MetalMaterial(const Color& a, double f) :
         albedo(a),
         fuzzy(f < 1 ? f : 1)
     {
@@ -82,10 +82,10 @@ public:
     double fuzzy;
 };
 
-class DiffuseLight : public Material
+class DiffuseLightMaterial : public Material
 {
 public:
-    DiffuseLight(const Color& c) 
+    DiffuseLightMaterial(const Color& c)
     {
         emit = make_shared<SolidColorTexture>(c);
     }

@@ -8,7 +8,7 @@ int main()
 	RayShooter rShooter;
 
 	rShooter.ShootRaysMultithread();
-	//rShooter.ShootRays(); // single thread version
+	//rShooter.ShootRaysSingleThread(); 
 
 	std::cin.get();
 

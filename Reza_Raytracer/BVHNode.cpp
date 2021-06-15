@@ -1,4 +1,3 @@
-
 #include "BVHNode.h"
 
 #include <algorithm>

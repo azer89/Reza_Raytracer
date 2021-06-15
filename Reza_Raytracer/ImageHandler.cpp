@@ -15,8 +15,7 @@ ImageHandler::ImageHandler(int img_width, int img_height)
 	this->num_channel = 3; // 4 if you want alpha
 	
 	this->pixels = std::make_unique<uint8_t[]>(this->img_width * this->img_height * this->num_channel);
-	//pixels = new uint8_t[img_width * img_height * num_channel];
-	this->pixel_iterator = 0;
+	//pixels = new uint8_t[img_width * img_height * num_channel]; // raw pointer version
 }
 
 ImageHandler::~ImageHandler()
@@ -38,27 +37,15 @@ void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 	pixels[index + 2] = static_cast<uint8_t>(255.0 * b);
 }
 
-// old, don't use this
-void ImageHandler::SetPixel(double r, double g, double b)
-{
-	r = UsefulFunctions::Clamp(r, 0.0, 0.999);
-	g = UsefulFunctions::Clamp(g, 0.0, 0.999);
-	b = UsefulFunctions::Clamp(b, 0.0, 0.999);
-	
-	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * r);
-	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * g);
-	pixels[pixel_iterator++] = static_cast<uint8_t>(255.0 * b);
-}
-
 // STB
 void ImageHandler::WriteToPNG(const std::string& filename)
 {
 	stbi_write_png(filename.c_str(), 
-		img_width,
-		img_height,
-		num_channel,
-		pixels.get(), 
-		img_width * num_channel);
+				   img_width,
+				   img_height,
+				   num_channel,
+				   pixels.get(), 
+				   img_width * num_channel);
 }
 
 
