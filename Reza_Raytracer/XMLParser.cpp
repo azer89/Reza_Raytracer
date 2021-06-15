@@ -75,40 +75,40 @@ void XMLParser::LoadParametersFromXML()
     }
 
     // ===== Root =====
-    XMLNode* root = doc.FirstChild();
+    auto root = doc.FirstChild();
 
     // ===== Background gradient colors =====
-    XMLElement* back_gradient_element = root->FirstChildElement("background_gradient");
-    XMLElement* color1_element = back_gradient_element->FirstChildElement("color1");
-    XMLElement* color2_element = back_gradient_element->FirstChildElement("color2");
+    auto back_gradient_element = root->FirstChildElement("background_gradient");
+    auto color1_element = back_gradient_element->FirstChildElement("color1");
+    auto color2_element = back_gradient_element->FirstChildElement("color2");
 
     GlobalParameters::back_color1 = GetColor(color1_element);
     GlobalParameters::back_color2 = GetColor(color2_element);
     
     // ===== Camera =====
-    XMLElement* camera_element = root->FirstChildElement("camera");
+    auto camera_element = root->FirstChildElement("camera");
     if (camera_element == nullptr)
     {
         cerr << "Cannot find camera in the xml file\n";
     }
-    XMLElement* lookfrom_element = camera_element->FirstChildElement("lookfrom");
-    XMLElement* lookat_element   = camera_element->FirstChildElement("lookat");
-    XMLElement* vup_element      = camera_element->FirstChildElement("vup");
+    auto lookfrom_element = camera_element->FirstChildElement("lookfrom");
+    auto lookat_element   = camera_element->FirstChildElement("lookat");
+    auto vup_element      = camera_element->FirstChildElement("vup");
     
     GlobalParameters::camera_lookfrom = GetVec3(lookfrom_element);
     GlobalParameters::camera_lookat   = GetVec3(lookat_element);
     GlobalParameters::camera_vup      = GetVec3(vup_element);
     
     // ===== Renderer =====
-    XMLElement* renderer_element = root->FirstChildElement("renderer");
+    auto renderer_element = root->FirstChildElement("renderer");
     if (renderer_element == nullptr)
     {
         cerr << "Cannot find renderer in the xml file\n";
     }
-    XMLElement* image_width_element       = renderer_element->FirstChildElement("image_width");
-    XMLElement* samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
-    XMLElement* max_depth_element         = renderer_element->FirstChildElement("max_depth");
-    XMLElement* num_thread_element = renderer_element->FirstChildElement("num_thread");
+    auto image_width_element       = renderer_element->FirstChildElement("image_width");
+    auto* samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
+    auto max_depth_element         = renderer_element->FirstChildElement("max_depth");
+    auto num_thread_element = renderer_element->FirstChildElement("num_thread");
 
     GlobalParameters::renderer_image_width       = GetInt(image_width_element);
     GlobalParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_element);
@@ -226,16 +226,16 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
     }
 
     // ===== Root =====
-    XMLNode* root = doc.FirstChild();
+    auto root = doc.FirstChild();
 
     // ===== materials =====
-    XMLElement* mat_parent_elem = root->FirstChildElement("materials");
-    XMLElement* mat_elem = mat_parent_elem->FirstChildElement("material");
+    auto mat_parent_elem = root->FirstChildElement("materials");
+    auto mat_elem = mat_parent_elem->FirstChildElement("material");
     while (mat_elem != nullptr)
     {
         string name_str = GetString(mat_elem, "name");
         string type_str = GetString(mat_elem, "type");
-        XMLElement* color_elem = mat_elem->FirstChildElement("color");
+        auto color_elem = mat_elem->FirstChildElement("color");
         Color mat_color = GetColor(color_elem);
 
         if (type_str == "lambertian")
@@ -244,7 +244,7 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
         }
         else if (type_str == "metal")
         {
-            XMLElement* fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
+            auto fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
             double fuzzy = GetDouble(fuzzy_elem);
 
             mat_map[name_str] = make_shared<MetalMaterial>(mat_color, fuzzy);
@@ -255,8 +255,8 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
 
      
     // ===== Objects =====
-    XMLElement* obj_parent_elem = root->FirstChildElement("objects");
-    XMLElement* obj_elem = obj_parent_elem->FirstChildElement("object");
+    auto obj_parent_elem = root->FirstChildElement("objects");
+    auto obj_elem = obj_parent_elem->FirstChildElement("object");
     while (obj_elem != nullptr)
     {
         string type_str =  GetString(obj_elem, "type");

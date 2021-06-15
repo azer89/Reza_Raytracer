@@ -48,7 +48,7 @@ inline bool StartWith(const std::string& prefix,
 	return false;
 }
 
-// Supports "v" and "f" 
+// Only supports "v" and "f" 
 void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices,
 						std::vector< std::vector<int>>& faces)
@@ -90,12 +90,12 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 // TODO: Need to support "vt"
 void OBJReader::ReadOBJ(const std::string& filename,
-						std::vector<Vec3>& vertices, // vertex list
-						std::vector<Vec3>& normals,  // normal vector list
-						std::vector< std::vector<double>>& uvs, // texture uvs
+						std::vector<Vec3>& vertices,					// vertex list
+						std::vector<Vec3>& normals,						// normal vector list
+						std::vector< std::vector<double>>& uvs,			// texture uvs
 						std::vector< std::vector<int>>& vertex_indices, // triangle faces
 						std::vector< std::vector<int>>& normal_indices, // normal vector indices for triangles
-						std::vector< std::vector<int>>& uv_indices) // uv indices for triangles
+						std::vector< std::vector<int>>& uv_indices)		// uv indices for triangles
 {
 	// Can be "//" or "/"
 	std::string delim = "//";
@@ -116,6 +116,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 		std::vector<std::string> str_array = Split(line, ' ');
 
+		// Texture coordinates
 		if (StartWith("vt", line) && str_array.size() == 3)
 		{
 			delim = "/";
@@ -125,18 +126,21 @@ void OBJReader::ReadOBJ(const std::string& filename,
 							std::stod(str_array[2]) });
 
 		}
+		// Vertex normals
 		if (StartWith("vn", line) && str_array.size() == 4)
 		{
 			normals.push_back(Vec3(std::stod(str_array[1]),
 								   std::stod(str_array[2]),
 								   std::stod(str_array[3]) ));
 		}
+		// Vertex positions
 		else if (StartWith("v", line) && str_array.size() == 4)
 		{
 			vertices.push_back(Vec3(std::stod(str_array[1]),
 									std::stod(str_array[2]),
 									std::stod(str_array[3]) ));
 		}
+		// Triangles
 		else if (StartWith("f", line) && str_array.size() == 4)
 		{
 			auto s1 = Split(str_array[1], delim);
@@ -152,7 +156,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 									   i2 - 1,
 									   i3 - 1 });
 
-			// TODO code a little bit ugly
+			// TODO: code a little bit ugly
 			if(normals.size() > 0)
 			{
 				int n1 = std::stoi(s1[normal_i]);
