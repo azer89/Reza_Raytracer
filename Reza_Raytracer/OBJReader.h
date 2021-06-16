@@ -10,7 +10,6 @@ class OBJReader
 public:
 	OBJReader()
 	{
-
 	}
 
 	void ReadOBJ(const std::string& filename,

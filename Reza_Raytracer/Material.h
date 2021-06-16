@@ -18,6 +18,7 @@ public:
 	// For light source or a texture, see derived classes
     virtual Color Emitted(double u, double v, const Point3& p) const
 	{
+        // TODO
         return Color(0, 0, 0);
     }
 };
