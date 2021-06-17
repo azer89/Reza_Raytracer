@@ -26,9 +26,11 @@ public:
 class LambertianMaterial : public Material
 {
 public:
-    LambertianMaterial(const Color& a) : albedo(a)
+    /*LambertianMaterial(const Color& a) : albedo(a)
     {	    
-    }
+    }*/
+    LambertianMaterial(const Color& a) : albedo(make_shared<SolidColorTexture>(a)) {}
+    LambertianMaterial(shared_ptr<Texture>& t) : albedo(t) {}
 
     virtual bool Scatter(const Ray3& r_in, 
 						 const HitRecord& rec, 
@@ -47,19 +49,27 @@ public:
         }
     	
         scattered = Ray3(rec.p, scatter_direction);
-        attenuation = albedo;
+        //attenuation = albedo;
+        attenuation = albedo->Value(rec.u, rec.v, rec.p);
         return true;
     }
 
 public:
-    Color albedo;
+    //Color albedo;
+    shared_ptr<Texture> albedo;
 };
 
 class MetalMaterial : public Material 
 {
 public:
     MetalMaterial(const Color& a, double f) :
-        albedo(a),
+        albedo(make_shared<SolidColorTexture>(a)),
+        fuzzy(f < 1 ? f : 1)
+    {
+    }
+
+    MetalMaterial(shared_ptr<Texture>& t, double f) :
+        albedo(t),
         fuzzy(f < 1 ? f : 1)
     {
     }
@@ -72,14 +82,16 @@ public:
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
         scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
-        attenuation = albedo;
+        //attenuation = albedo;
+        attenuation = albedo->Value(rec.u, rec.v, rec.p);
 
         // if dot product is zero then the vectors are perpendicular
         return (Dot(scattered.Direction(), rec.normal) > 0);
     }
 
 public:
-    Color albedo;
+    //Color albedo;
+    shared_ptr<Texture> albedo;
     double fuzzy;
 };
 

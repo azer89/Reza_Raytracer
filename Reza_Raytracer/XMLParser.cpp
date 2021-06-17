@@ -7,6 +7,7 @@
 #include "Hittable.h"
 #include "Sphere.h"
 #include "Triangle.h"
+#include "Texture.h"
 #include "Material.h"
 
 #include <iostream>
@@ -213,8 +214,30 @@ void AddTriangleMesh(XMLElement* elem,
     // obj ends
 }
 
-void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
-                                        std::vector<shared_ptr<Hittable>>& objects)
+shared_ptr<Texture> GetTexture(XMLElement* material_elem)
+{
+    auto color_elem = material_elem->FirstChildElement("color");
+    auto checker_elem = material_elem->FirstChildElement("checker");
+
+    if (checker_elem != nullptr)
+    {
+        auto color1_element = checker_elem->FirstChildElement("color1");
+        auto color2_element = checker_elem->FirstChildElement("color2");
+
+        Color color1 = GetColor(color1_element);
+        Color color2 = GetColor(color2_element);
+
+        return make_shared<CheckerTexture>(color1, color2);
+    }
+
+    // must have color tag or error
+    Color color = GetColor(color_elem);
+    return make_shared<SolidColorTexture>(color);
+}
+
+void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>> texture_map,
+                            std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+                            std::vector<shared_ptr<Hittable>>& objects)
 {
     XMLDocument doc;
     const string file = "C://Users//azer//workspace//Reza_Raytracer//xml_files//main.xml";
@@ -228,6 +251,28 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
     // ===== Root =====
     auto root = doc.FirstChild();
 
+    // ===== textures =====
+    auto tex_parent_elem = root->FirstChildElement("textures");
+    auto tex_elem = tex_parent_elem->FirstChildElement("texture");
+    while (tex_elem != nullptr)
+    {
+        string name_str = GetString(tex_elem, "name");
+        string type_str = GetString(tex_elem, "type");
+
+        if (type_str == "checker")
+        {
+            auto color1_elem = tex_elem->FirstChildElement("color1");
+            auto color2_elem = tex_elem->FirstChildElement("color2");
+
+            Color color1 = GetColor(color1_elem);
+            Color color2 = GetColor(color2_elem);
+
+            texture_map[name_str] = make_shared<CheckerTexture>(color1, color2);
+        }
+
+        tex_elem = tex_elem->NextSiblingElement();
+    }
+
     // ===== materials =====
     auto mat_parent_elem = root->FirstChildElement("materials");
     auto mat_elem = mat_parent_elem->FirstChildElement("material");
@@ -235,24 +280,24 @@ void XMLParser::LoadMaterialsAndObjects(std::unordered_map<std::string, shared_p
     {
         string name_str = GetString(mat_elem, "name");
         string type_str = GetString(mat_elem, "type");
-        auto color_elem = mat_elem->FirstChildElement("color");
-        Color mat_color = GetColor(color_elem);
+
+        auto texture_ptr = GetTexture(mat_elem);
 
         if (type_str == "lambertian")
         {
-            mat_map[name_str] = make_shared<LambertianMaterial>(mat_color);
+            
+            mat_map[name_str] = make_shared<LambertianMaterial>(texture_ptr);
         }
         else if (type_str == "metal")
         {
             auto fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
             double fuzzy = GetDouble(fuzzy_elem);
 
-            mat_map[name_str] = make_shared<MetalMaterial>(mat_color, fuzzy);
+            mat_map[name_str] = make_shared<MetalMaterial>(texture_ptr, fuzzy);
         }
 
         mat_elem = mat_elem->NextSiblingElement();
     }
-
      
     // ===== Objects =====
     auto obj_parent_elem = root->FirstChildElement("objects");

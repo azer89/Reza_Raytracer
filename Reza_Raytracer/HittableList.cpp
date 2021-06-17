@@ -41,11 +41,10 @@ bool HittableList::Hit(const Ray3& r,
 }
 
 void HittableList::CreateWorld()
-{
-    
+{    
     XMLParser xml_parser;
 
-    xml_parser.LoadMaterialsAndObjects(material_map, objects);
+    xml_parser.LoadObjects(texture_map, material_map, objects);
 
     // init BVH
     std::cout << "Building BVH\n";

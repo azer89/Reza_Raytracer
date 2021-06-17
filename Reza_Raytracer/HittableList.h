@@ -12,6 +12,7 @@ using std::shared_ptr;
 using std::vector;
 
 class BVHNode;
+class Texture;
 
 class HittableList : public Hittable
 {
@@ -34,6 +35,9 @@ public:
 private:
     // Root of the BVH
     shared_ptr<BVHNode> bvh_root;
+
+    // List of textures
+    std::unordered_map<std::string, shared_ptr<Texture>> texture_map;
 
     // Materials, you need their names descibed in the main.xml
     std::unordered_map<std::string, shared_ptr<Material>> material_map;
