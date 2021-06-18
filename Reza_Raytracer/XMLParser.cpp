@@ -155,8 +155,7 @@ void AddTriangleMesh(XMLElement* elem,
                        uvs,
                        vertex_indices, 
                        normal_indices,
-                       uv_indices
-        );
+                       uv_indices);
 
     if (normals.size() > 0)
     {
@@ -211,13 +210,27 @@ void AddTriangleMesh(XMLElement* elem,
                             mat_map[material_str] ));
         }
     } // else
+
+    if (uvs.size() > 0)
+    {
+        for (int i = 0; i < vertex_indices.size(); i++)
+        {
+            int i1 = uv_indices[i][0];
+            int i2 = uv_indices[i][1];
+            int i3 = uv_indices[i][2];
+
+            // TODO
+        }
+    }
+
     // obj ends
 }
 
-shared_ptr<Texture> GetTexture(XMLElement* material_elem)
+/*shared_ptr<Texture> GetTexture(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
+                               XMLElement* material_elem)
 {
     auto color_elem = material_elem->FirstChildElement("color");
-    auto checker_elem = material_elem->FirstChildElement("checker");
+    auto checker_elem = material_elem->FirstChildElement("texture");
 
     if (checker_elem != nullptr)
     {
@@ -233,9 +246,9 @@ shared_ptr<Texture> GetTexture(XMLElement* material_elem)
     // must have color tag or error
     Color color = GetColor(color_elem);
     return make_shared<SolidColorTexture>(color);
-}
+}*/
 
-void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>> texture_map,
+void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
                             std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
                             std::vector<shared_ptr<Hittable>>& objects)
 {
@@ -281,11 +294,29 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         string name_str = GetString(mat_elem, "name");
         string type_str = GetString(mat_elem, "type");
 
-        auto texture_ptr = GetTexture(mat_elem);
+        // create texture
+        auto texture_ptr = shared_ptr<Texture>(nullptr);
+        auto texture_elem = mat_elem->FirstChildElement("texture");
+        if (texture_elem != nullptr)
+        {
+            // texture lookup
+            string tex_str = GetString(texture_elem, "name");
+            if (texture_map.find(tex_str) != texture_map.end())
+            {
+                texture_ptr = texture_map[tex_str];
+            }
+        }
+
+        // if texture not found then create a solid color texture
+        if (texture_ptr == nullptr)
+        {
+            auto color_elem = mat_elem->FirstChildElement("color");
+            Color color = GetColor(color_elem);
+            texture_ptr = make_shared<SolidColorTexture>(color);
+        }
 
         if (type_str == "lambertian")
-        {
-            
+        {            
             mat_map[name_str] = make_shared<LambertianMaterial>(texture_ptr);
         }
         else if (type_str == "metal")

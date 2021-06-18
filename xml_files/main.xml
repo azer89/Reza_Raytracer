@@ -1,5 +1,4 @@
 <world>
-
 	<!-- You need to specify the path of this xml file on XMLParser.cpp -->
 	
 	<camera>		
@@ -22,31 +21,30 @@
 	</renderer>
   
   <textures>
+    
 		<texture name="checker1" type="checker">
-			<color1 r="1.0" g ="1.0" b="1.0"/>
-      <color2 r="0.5" g ="0.7" b="1.0"/>
+			<color1 r="0.3" g ="0.7" b="0.3"/>
+			<color2 r="0.7" g ="0.3" b="0.3"/>
+			<frequency value="10"/>
 		</texture>
+    
   </textures>
 
 	<!-- if the type is lambertian, fuzzy will be ignored -->
 	<materials>
 		<material name="material_ground" type="lambertian">
-			<color	r="1.0" g ="1.0" b="1.0"/>
+			<color r="1.0" g ="1.0" b="1.0"/>
 			<fuzzy value="0.5"/>
 		</material>
 
 		<material name="material_side" type="metal">
-			<color	r="0.7" g ="0.3" b="0.3"/>
+			<color r="0.7" g ="0.3" b="0.3"/>
 			<fuzzy value="0.0"/>
 		</material>
 
-    <material name="material_side1" type="metal">
-      <color	r="0.3" g ="0.3" b="0.7"/>
-      <fuzzy value="0.0"/>
-    </material>
-
-    <material name="material_side2" type="metal">
-      <color	r="0.3" g ="0.7" b="0.3"/>
+    <!-- you can assign a texture to a material -->
+    <material name="material_checker" type="lambertian">
+      <texture name="checker1"/>
       <fuzzy value="0.0"/>
     </material>
 
@@ -57,12 +55,12 @@
 	</materials>
 
   <objects>
-		<!--object type="obj" 
-				material_name="material_side" 
+		<object type="obj" 
+				material_name="material_checker" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_casual_effects.obj">
 			<position	x="0" y ="-0.52" z="-1.1" />
 			<scale	value="0.75" />
-		</object-->
+		</object>
 
     <!--object type="obj"
 				material_name="material_side1"
@@ -78,9 +76,9 @@
       <scale	value="0.5" />
     </object-->
 
-    <object type="sphere" radius="0.5" material_name="material_side">
+    <!--object type="sphere" radius="0.5" material_name="material_checker">
       <position	x="0" y ="0.0" z="-1"/>
-    </object>
+    </object-->
 
 		<object type="sphere" radius="100" material_name="material_ground">
 			<position	x="0" y ="-100.5" z="-1"/>

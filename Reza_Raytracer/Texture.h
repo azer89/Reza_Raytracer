@@ -47,7 +47,7 @@ public:
 
     virtual Color Value(double u, double v, const Point3& p) const override 
     {
-        auto sines = sin(10 * p.x()) * sin(10 * p.y()) * sin(10 * p.z());
+        auto sines = sin(40 * p.x()) * sin(40 * p.y()) * sin(40 * p.z());
         if (sines < 0)
         {
             return odd->Value(u, v, p);

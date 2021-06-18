@@ -3,6 +3,7 @@
 
 #include "Hittable.h"
 #include "Material.h"
+#include "Vec2.h"
 
 class Triangle : public Hittable
 {
@@ -69,8 +70,11 @@ public:
     Vec3 n0;
     Vec3 n1;
     Vec3 n2;
-    
-    bool has_normals;
+
+    // UV coordinates
+    Vec2 uv0;
+    Vec2 uv1;
+    Vec2 uv2;
 };
 
 #endif
