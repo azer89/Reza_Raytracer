@@ -70,7 +70,7 @@ public:
 // Type aliases
 using Point2 = Vec2;   // 2D point
 
-// Vec3 Utility Functions
+// Vec2 Utility Functions
 
 inline std::ostream& operator<<(std::ostream& out, const Vec2& v)
 {
