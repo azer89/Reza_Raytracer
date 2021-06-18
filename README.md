@@ -20,3 +20,8 @@ Pretty pictures (click for a higher resolution):
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_stanford_bunny_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_stanford_bunny.png)
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres.png)
+
+References:
+* [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
+* [_Ray Tracing: The Next Week_](https://raytracing.github.io/books/RayTracingTheNextWeek.html)
+* [_Ray Tracing: Rendering a Triangle_](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle)
