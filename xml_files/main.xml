@@ -14,7 +14,7 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="1000"/>
+		<image_width value="400"/>
 		<samples_per_pixel value="100"/>
 		<max_depth value="50"/>
 		<num_thread value="16"/>

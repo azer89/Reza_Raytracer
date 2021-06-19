@@ -137,12 +137,12 @@ void AddTriangleMesh(XMLElement* elem,
 {
     string material_str = GetString(elem, "material_name");
 
-    std::vector<Vec3> vertices; // vertex list
-    std::vector<Vec3> normals;  // normal vector list
-    std::vector< std::vector<double>> uvs; // texture uvs
-    std::vector< std::vector<int>> vertex_indices; // triangle faces
-    std::vector< std::vector<int>> normal_indices; // normal vector indices for triangles
-    std::vector< std::vector<int>> uv_indices; // uv indices for triangles
+    std::vector<Vec3> vertices;                   // vertex list
+    std::vector<Vec3> normals;                    // normal vector list
+    std::vector<Vec2> uvs;                        // texture uvs
+    std::vector<std::vector<int>> vertex_indices; // triangle faces
+    std::vector<std::vector<int>> normal_indices; // normal vector indices for triangles
+    std::vector<std::vector<int>> uv_indices;     // uv indices for triangles
 
     string filename = GetString(elem, "filename");
     Point3 pos = GetVec3(elem->FirstChildElement("position"));
@@ -157,20 +157,18 @@ void AddTriangleMesh(XMLElement* elem,
                        normal_indices,
                        uv_indices);
 
-    if (normals.size() > 0)
+    for (int i = 0; i < vertex_indices.size(); i++)
     {
-        cout << "Has normals\n";
+        int i1 = vertex_indices[i][0];
+        int i2 = vertex_indices[i][1];
+        int i3 = vertex_indices[i][2];
 
-        for (int i = 0; i < vertex_indices.size(); i++)
+        Point3 p1 = vertices[i1] * scale + pos;
+        Point3 p2 = vertices[i2] * scale + pos;
+        Point3 p3 = vertices[i3] * scale + pos;
+
+        if (normals.size() > 0)
         {
-            int i1 = vertex_indices[i][0];
-            int i2 = vertex_indices[i][1];
-            int i3 = vertex_indices[i][2];
-
-            Point3 p1 = vertices[i1] * scale + pos;
-            Point3 p2 = vertices[i2] * scale + pos;
-            Point3 p3 = vertices[i3] * scale + pos;
-
             i1 = normal_indices[i][0];
             i2 = normal_indices[i][1];
             i3 = normal_indices[i][2];
@@ -179,50 +177,55 @@ void AddTriangleMesh(XMLElement* elem,
             Vec3 n2 = normals[i2];
             Vec3 n3 = normals[i3];
 
-            objects.push_back(make_shared<Triangle>(
-                            p1,
-                            p2,
-                            p3,
-                            n1,
-                            n2,
-                            n3,
-                            mat_map[material_str] ));
-        } // for (int i = 0; i < vertex_indices.size(); i++)
-    } //  if (normals.size() > 0)
-    else
-    {
-        cout << "Does not have normals\n";
+            if (uvs.size() > 0)
+            {
+                // has vertices, normals, and uv coordinates
 
-        for (int i = 0; i < vertex_indices.size(); i++)
-        {
-            int i1 = vertex_indices[i][0];
-            int i2 = vertex_indices[i][1];
-            int i3 = vertex_indices[i][2];
+                i1 = uv_indices[i][0];
+                i2 = uv_indices[i][1];
+                i3 = uv_indices[i][2];
 
-            Point3 p1 = vertices[i1] * scale + pos;
-            Point3 p2 = vertices[i2] * scale + pos;
-            Point3 p3 = vertices[i3] * scale + pos;
+                Vec2 uv1 = uvs[i1];
+                Vec2 uv2 = uvs[i2];
+                Vec2 uv3 = uvs[i3];
 
-            objects.push_back(make_shared<Triangle>(
-                            p1,
-                            p2,
-                            p3,
-                            mat_map[material_str] ));
+                objects.push_back(make_shared<Triangle>(
+                    p1,
+                    p2,
+                    p3,
+                    n1,
+                    n2,
+                    n3,
+                    uv1,
+                    uv2,
+                    uv3,
+                    mat_map[material_str]));
+            }
+            else
+            {
+                // has vertices and normals
+
+                objects.push_back(make_shared<Triangle>(
+                    p1,
+                    p2,
+                    p3,
+                    n1,
+                    n2,
+                    n3,
+                    mat_map[material_str]));
+            }
         }
-    } // else
-
-    if (uvs.size() > 0)
-    {
-        for (int i = 0; i < vertex_indices.size(); i++)
+        else
         {
-            int i1 = uv_indices[i][0];
-            int i2 = uv_indices[i][1];
-            int i3 = uv_indices[i][2];
+            // only has vertices
 
-            // TODO
-        }
-    }
-
+            objects.push_back(make_shared<Triangle>(
+                p1,
+                p2,
+                p3,
+                mat_map[material_str] ));
+        } // else
+    } // for (int i = 0; i < vertex_indices.size(); i++)
     // obj ends
 }
 

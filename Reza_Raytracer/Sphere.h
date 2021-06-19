@@ -24,6 +24,8 @@ public:
 
     virtual bool BoundingBox(AABB& output_box) const override;
 
+private:
+    // TODO refactor to return a Vec2
     static void GetSphereUV(const Point3& p, double& u, double& v);
 
 public:    

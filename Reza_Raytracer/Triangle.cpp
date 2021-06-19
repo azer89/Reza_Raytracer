@@ -99,6 +99,11 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     rec.mat_ptr = material_ptr.get();
     rec.p = r.At(t);
 
+    // uv
+    Vec2 uv = GetTriangleUV(u, v, w);
+    rec.u = uv.x();
+    rec.v = uv.y();
+
     return true;
 }
 
@@ -122,4 +127,9 @@ bool Triangle::BoundingBox(AABB& output_box) const
     output_box = AABB(min, max);
 
     return true;
+}
+
+Vec2 Triangle::GetTriangleUV(double u, double v, double w) const
+{
+    return (uv0 * w) + (uv1 * u) + (uv2 * v);
 }
