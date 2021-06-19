@@ -2,7 +2,7 @@ Inspired by https://raytracing.github.io/
 
 Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). Just compile and run. 
 
-Developed using MSVC c++14.
+Developed using MSVC C++14.
 
 Features:
 
