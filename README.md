@@ -11,7 +11,7 @@ Features:
 * Smooth surface normals using barycentric interpolation
 * XML for creating scenes and specifying parameters 
 * Bounded Volume Hierarchy
-* Wavefront OBJ parsing, supports vertex positions, normal vectors, and uv coordinates.
+* Wavefront OBJ parsing, supports vertex positions, normal vectors, and texture coordinates.
 * CPU Multithreading
 
 Pretty pictures (click for a higher resolution):
