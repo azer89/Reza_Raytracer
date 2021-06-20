@@ -279,11 +279,13 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         {
             auto color1_elem = tex_elem->FirstChildElement("color1");
             auto color2_elem = tex_elem->FirstChildElement("color2");
+            auto frequency_elem = tex_elem->FirstChildElement("frequency");
 
             Color color1 = GetColor(color1_elem);
             Color color2 = GetColor(color2_elem);
+            double frequency = GetDouble(frequency_elem);
 
-            texture_map[name_str] = make_shared<CheckerTexture>(color1, color2);
+            texture_map[name_str] = make_shared<CheckerTexture>(color1, color2, frequency);
         }
 
         tex_elem = tex_elem->NextSiblingElement();

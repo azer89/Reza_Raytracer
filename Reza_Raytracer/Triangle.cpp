@@ -28,7 +28,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     det |a2 b2 c2| = (a x b) . c
         |a3 b3 c3|
 
-	x is cross product, . is dot product
+    x is cross product, . is dot product
     */
     Vec3 pvec = Cross(r.Direction(), v0v2);
     double det = Dot(v0v1, pvec); 
@@ -66,8 +66,6 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     }
 	
     // Hit Record
-    rec.u = u;
-    rec.v = v;
     rec.t = t;	
 
     // calculate normal, warning, this is not a unit vector

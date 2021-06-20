@@ -2,6 +2,7 @@
 #define __TEXTURE_H__
 
 #include "Vec3.h"
+//#include <iostream> // debug purpose
 
 class Texture
 {
@@ -11,11 +12,7 @@ public:
 
 class SolidColorTexture : public Texture 
 {
-public:
-    SolidColorTexture()
-    {	    
-    }
-	
+public:	
     SolidColorTexture(Color c) : color_value(c)
     {	    
     }
@@ -35,20 +32,28 @@ private:
 class CheckerTexture : public Texture 
 {
 public:
-    CheckerTexture() {}
+    CheckerTexture(shared_ptr<Texture> _even, shared_ptr<Texture> _odd, double _frequency)
+        : even(_even), 
+          odd(_odd),
+          frequency(_frequency)
+    {
+    }
 
-    CheckerTexture(shared_ptr<Texture> _even, shared_ptr<Texture> _odd)
-        : even(_even), odd(_odd) {}
-
-    CheckerTexture(Color c1, Color c2)
-        : even(make_shared<SolidColorTexture>(c1)), odd(make_shared<SolidColorTexture>(c2)) 
+    CheckerTexture(Color c1, Color c2, double _frequency)
+        : even(make_shared<SolidColorTexture>(c1)), 
+          odd(make_shared<SolidColorTexture>(c2)),
+          frequency(_frequency)
     {
     }
 
     virtual Color Value(double u, double v, const Point3& p) const override 
     {
-        auto sines = sin(40 * p.x()) * sin(40 * p.y()) * sin(40 * p.z());
-        if (sines < 0)
+        //auto sines = sin(frequency * p.x()) * sin(frequency * p.y()) * sin(frequency * p.z());
+        auto sines = sin(frequency * u) * sin(frequency * v);
+
+        //std::cout << u << ", " << v << "\n";
+
+        if (sines < 0.0)
         {
             return odd->Value(u, v, p);
         }
@@ -61,6 +66,8 @@ public:
 public:
     shared_ptr<Texture> odd;
     shared_ptr<Texture> even;
+
+    double frequency;
 };
 
 #endif

@@ -85,10 +85,6 @@ public:
 
         this->v0v1 = v1 - v0;
         this->v0v2 = v2 - v0;
-
-        this->uv0 = Vec2(0, 0);
-        this->uv1 = Vec2(0, 0);
-        this->uv2 = Vec2(0, 0);
     };
 
     virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;

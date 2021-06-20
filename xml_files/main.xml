@@ -14,9 +14,9 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="400"/>
+		<image_width value="1000"/>
 		<samples_per_pixel value="100"/>
-		<max_depth value="50"/>
+		<max_depth value="5"/>
 		<num_thread value="16"/>
 	</renderer>
   
@@ -25,7 +25,7 @@
 		<texture name="checker1" type="checker">
 			<color1 r="0.3" g ="0.7" b="0.3"/>
 			<color2 r="0.7" g ="0.3" b="0.3"/>
-			<frequency value="10"/>
+			<frequency value="100"/>
 		</texture>
     
   </textures>
@@ -55,7 +55,8 @@
 	</materials>
 
   <objects>
-		<object type="obj" 
+
+    <object type="obj" 
 				material_name="material_checker" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_casual_effects.obj">
 			<position	x="0" y ="-0.52" z="-1.1" />
@@ -80,9 +81,9 @@
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
-		<object type="sphere" radius="100" material_name="material_ground">
+    <!--object type="sphere" radius="100" material_name="material_ground">
 			<position	x="0" y ="-100.5" z="-1"/>
-		</object>
+		</object-->
 		
 	</objects>
 	
