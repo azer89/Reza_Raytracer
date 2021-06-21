@@ -1,4 +1,4 @@
-Ray Tracer developed using C++14
+A ray tracer developed using C++14
 
 
 Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). Just compile and run. 
@@ -12,7 +12,7 @@ Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) an
 * Smooth surface normals using barycentric interpolation
 * XML for creating scenes and specifying parameters 
 * Bounded Volume Hierarchy
-* Wavefront OBJ parsing, supports vertex positions, normal vectors, and texture coordinates.
+* Wavefront OBJ parser that supports vertex positions, normal vectors, and texture coordinates.
 * CPU Multithreading
 
 ### Pretty pictures 
