@@ -48,8 +48,50 @@ public:
 
     virtual Color Value(double u, double v, const Point3& p) const override 
     {
-        //auto sines = sin(frequency * p.x()) * sin(frequency * p.y()) * sin(frequency * p.z());
         auto s = sin(frequency * u) * sin(frequency * v);
+
+        if (s < 0.0)
+        {
+            return odd->Value(u, v, p);
+        }
+        else
+        {
+            return even->Value(u, v, p);
+        }
+    }
+
+public:
+    // Color 1
+    shared_ptr<Texture> odd;
+
+    // Color 2
+    shared_ptr<Texture> even;
+
+    // determine how many tiles you get
+    double frequency;
+};
+
+// The original checker texture from Peter Shirley's Raytracing book.
+class CheckerTexture2 : public Texture
+{
+public:
+    CheckerTexture2(shared_ptr<Texture> _even, shared_ptr<Texture> _odd, double _frequency)
+        : even(_even),
+          odd(_odd),
+          frequency(_frequency)
+    {
+    }
+
+    CheckerTexture2(Color c1, Color c2, double _frequency)
+        : even(make_shared<SolidColorTexture>(c1)),
+          odd(make_shared<SolidColorTexture>(c2)),
+          frequency(_frequency)
+    {
+    }
+
+    virtual Color Value(double u, double v, const Point3& p) const override
+    {
+        auto s = sin(frequency * p.x()) * sin(frequency * p.y()) * sin(frequency * p.z());
 
         if (s < 0.0)
         {

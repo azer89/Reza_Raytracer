@@ -253,7 +253,8 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         string name_str = GetString(tex_elem, "name");
         string type_str = GetString(tex_elem, "type");
 
-        if (type_str == "checker")
+        //if (type_str == "checker" || type_str == "checker2")
+        if(type_str.rfind("checker") == 0)
         {
             auto color1_elem = tex_elem->FirstChildElement("color1");
             auto color2_elem = tex_elem->FirstChildElement("color2");
@@ -263,7 +264,14 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
             Color color2 = GetColor(color2_elem);
             double frequency = GetDouble(frequency_elem);
 
-            texture_map[name_str] = make_shared<CheckerTexture>(color1, color2, frequency);
+            if (type_str == "checker")
+            {
+                texture_map[name_str] = make_shared<CheckerTexture>(color1, color2, frequency);
+            }
+            else
+            {
+                texture_map[name_str] = make_shared<CheckerTexture2>(color1, color2, frequency);
+            }
         }
 
         tex_elem = tex_elem->NextSiblingElement();
