@@ -49,11 +49,9 @@ public:
     virtual Color Value(double u, double v, const Point3& p) const override 
     {
         //auto sines = sin(frequency * p.x()) * sin(frequency * p.y()) * sin(frequency * p.z());
-        auto sines = sin(frequency * u) * sin(frequency * v);
+        auto s = sin(frequency * u) * sin(frequency * v);
 
-        //std::cout << u << ", " << v << "\n";
-
-        if (sines < 0.0)
+        if (s < 0.0)
         {
             return odd->Value(u, v, p);
         }
@@ -64,9 +62,13 @@ public:
     }
 
 public:
+    // Color 1
     shared_ptr<Texture> odd;
+
+    // Color 2
     shared_ptr<Texture> even;
 
+    // determine how many tiles you get
     double frequency;
 };
 

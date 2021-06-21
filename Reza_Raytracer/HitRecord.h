@@ -16,7 +16,7 @@ struct HitRecord
     // origin + t * direction
     double t;
 
-    // Texture
+    // TODO: change to Vec2
     double u;
     double v;
 

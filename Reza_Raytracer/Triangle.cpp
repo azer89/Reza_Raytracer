@@ -71,15 +71,9 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     // calculate normal, warning, this is not a unit vector
     Vec3 outward_normal;
     
-    //if (has_normals)
-    //{
+    // Normal
     double w = 1.0 - u - v;
     outward_normal = (n0 * w) + (n1 * u) + (n2 * v);
-    //}
-    //else
-    //{
-    //    outward_normal = Cross(v0v1, v0v2);
-    //}
 
     // if the determinant is negative the triangle is backfacing
     bool backfacing = det < epsilon;
@@ -89,9 +83,6 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     }
 
     rec.normal = outward_normal;
-
-    // less optimal
-    //rec.SetFaceNormal(r, outward_normal);
     
     // Raw pointer
     rec.mat_ptr = material_ptr.get();
@@ -108,6 +99,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 bool Triangle::BoundingBox(AABB& output_box) const
 {
     // need to pad the AABB to avoid zero thickness
+    // TODO: experiment with thinner pads
     Vec3 padding(0.0001, 0.0001, 0.0001);
     
     Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),

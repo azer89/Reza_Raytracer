@@ -20,14 +20,17 @@ public:
         // Copy shared_ptr
         this->material_ptr = mat;
 
+        // Precomputation for MT algorithm
         this->v0v1 = v1 - v0;
         this->v0v2 = v2 - v0;
         auto normal = Cross(v0v1, v0v2);
 
+        // Normal vectors
         this->n0 = normal;
         this->n1 = normal;
         this->n2 = normal;
 
+        // Texture coordinates
         this->uv0 = Vec2(0, 0);
         this->uv1 = Vec2(0, 0);
         this->uv2 = Vec2(0, 0);
@@ -51,9 +54,11 @@ public:
         // Copy shared_ptr
         this->material_ptr = mat;
 
+        // Precomputation for MT algorithm
         this->v0v1 = v1 - v0;
         this->v0v2 = v2 - v0;
 
+        // Texture coordinates
         this->uv0 = Vec2(0, 0);
         this->uv1 = Vec2(0, 0);
         this->uv2 = Vec2(0, 0);
@@ -83,6 +88,7 @@ public:
         // Copy shared_ptr
         this->material_ptr = mat;
 
+        // Precomputation for MT algorithm
         this->v0v1 = v1 - v0;
         this->v0v2 = v2 - v0;
     };
@@ -112,7 +118,7 @@ public:
     Vec3 n1;
     Vec3 n2;
 
-    // UV coordinates
+    // Texture coordinates
     Vec2 uv0;
     Vec2 uv1;
     Vec2 uv2;

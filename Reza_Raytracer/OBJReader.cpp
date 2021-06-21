@@ -88,7 +88,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 	f.close();
 }
 
-// TODO: Need to support "vt"
+// Supports "v", "vn", "vt", and "f"
 void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector<Vec3>& vertices,				   // vertex list
 						std::vector<Vec3>& normals,					   // normal vector list
@@ -151,7 +151,6 @@ void OBJReader::ReadOBJ(const std::string& filename,
 									   i2 - 1,
 									   i3 - 1 });
 
-			// TODO: code a little bit ugly
 			if (uvs.size() > 0)
 			{
 				int uv1 = std::stoi(s1[1]);

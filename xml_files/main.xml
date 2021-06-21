@@ -21,7 +21,8 @@
 	</renderer>
   
   <textures>
-    
+
+    <!--Checker needs two colors and a frequency (how many tiles you get)-->
 		<texture name="checker1" type="checker">
 			<color1 r="0.3" g ="0.7" b="0.3"/>
 			<color2 r="0.7" g ="0.3" b="0.3"/>

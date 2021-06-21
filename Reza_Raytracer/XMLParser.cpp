@@ -106,6 +106,7 @@ void XMLParser::LoadParametersFromXML()
     {
         cerr << "Cannot find renderer in the xml file\n";
     }
+
     auto image_width_element       = renderer_element->FirstChildElement("image_width");
     auto* samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
     auto max_depth_element         = renderer_element->FirstChildElement("max_depth");
@@ -200,7 +201,7 @@ void AddTriangleMesh(XMLElement* elem,
                     uv2,
                     uv3,
                     mat_map[material_str]));
-            }
+            } // if (uvs.size() > 0)
             else
             {
                 // has vertices and normals
@@ -214,7 +215,7 @@ void AddTriangleMesh(XMLElement* elem,
                     n3,
                     mat_map[material_str]));
             }
-        }
+        } // if (normals.size() > 0)
         else
         {
             // only has vertices
@@ -226,30 +227,7 @@ void AddTriangleMesh(XMLElement* elem,
                 mat_map[material_str] ));
         } // else
     } // for (int i = 0; i < vertex_indices.size(); i++)
-    // obj ends
-}
-
-/*shared_ptr<Texture> GetTexture(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
-                               XMLElement* material_elem)
-{
-    auto color_elem = material_elem->FirstChildElement("color");
-    auto checker_elem = material_elem->FirstChildElement("texture");
-
-    if (checker_elem != nullptr)
-    {
-        auto color1_element = checker_elem->FirstChildElement("color1");
-        auto color2_element = checker_elem->FirstChildElement("color2");
-
-        Color color1 = GetColor(color1_element);
-        Color color2 = GetColor(color2_element);
-
-        return make_shared<CheckerTexture>(color1, color2);
-    }
-
-    // must have color tag or error
-    Color color = GetColor(color_elem);
-    return make_shared<SolidColorTexture>(color);
-}*/
+} // function ends here
 
 void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
                             std::unordered_map<std::string, shared_ptr<Material>>& mat_map,

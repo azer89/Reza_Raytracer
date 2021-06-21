@@ -55,7 +55,7 @@ public:
     }
 
 public:
-    //Color albedo;
+    // Color;
     shared_ptr<Texture> albedo;
 };
 

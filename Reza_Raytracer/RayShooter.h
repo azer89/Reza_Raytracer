@@ -17,10 +17,11 @@ private:
 	std::unique_ptr<ImageHandler> imgHandler;
 	std::unique_ptr<HittableList> world;
 
+	double scale;
+
 	int image_width;
 	int image_height;
 	int samples_per_pixel; 
-	double scale;
 	int max_depth; 
 
 public:
