@@ -16,7 +16,7 @@ Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) an
 * CPU Multithreading
 
 ### Pretty pictures 
-_click for a higher resolution_
+_click each image for a higher resolution_
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
 
