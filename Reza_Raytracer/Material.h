@@ -95,6 +95,35 @@ public:
     double fuzzy;
 };
 
+class Dielectric : public Material 
+{
+public:
+    Dielectric(double index_of_refraction) : ir(index_of_refraction) 
+    {
+    }
+
+    virtual bool Scatter(
+        const Ray3& r_in, 
+        const HitRecord& rec, 
+        Color& attenuation, 
+        Ray3& scattered
+    ) const override 
+    {
+        attenuation = Color(1.0, 1.0, 1.0);
+        double refraction_ratio = rec.front_face ? (1.0 / ir) : ir;
+
+        Vec3 unit_direction = UnitVector(r_in.Direction());
+        Vec3 refracted = Refract(unit_direction, rec.normal, refraction_ratio);
+
+        scattered = Ray3(rec.p, refracted);
+        return true;
+    }
+
+public:
+    // Index of Refraction
+    double ir; 
+};
+
 class DiffuseLightMaterial : public Material
 {
 public:
