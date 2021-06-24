@@ -83,6 +83,8 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     }
 
     rec.normal = outward_normal;
+
+    rec.front_face = backfacing;
     
     // Raw pointer
     rec.mat_ptr = material_ptr.get();
@@ -100,7 +102,7 @@ bool Triangle::BoundingBox(AABB& output_box) const
 {
     // need to pad the AABB to avoid zero thickness
     // TODO: experiment with thinner pads
-    Vec3 padding(0.0001, 0.0001, 0.0001);
+    Vec3 padding(1e-5, 1e-5, 1e-5);
     
     Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),
 			 fmin(v0.y(), fmin(v1.y(), v2.y())),

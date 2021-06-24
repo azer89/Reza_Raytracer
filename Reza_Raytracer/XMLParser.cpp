@@ -310,10 +310,12 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         {            
             mat_map[name_str] = make_shared<LambertianMaterial>(texture_ptr);
         }
-        if (type_str == "dielectric")
+        else if (type_str == "dielectric")
         {
-            // TODO fix this
-            mat_map[name_str] = make_shared<DielectricMaterial>(1.5);
+            auto ridx_elem = mat_elem->FirstChildElement("refraction_index");
+            double refraction_index = GetDouble(ridx_elem);
+
+            mat_map[name_str] = make_shared<DielectricMaterial>(refraction_index);
         }
         else if (type_str == "metal")
         {
