@@ -95,10 +95,10 @@ public:
     double fuzzy;
 };
 
-class Dielectric : public Material 
+class DielectricMaterial : public Material 
 {
 public:
-    Dielectric(double index_of_refraction) : ir(index_of_refraction) 
+    DielectricMaterial(double index_of_refraction) : ir(index_of_refraction)
     {
     }
 

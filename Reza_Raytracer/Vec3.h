@@ -188,7 +188,7 @@ inline Vec3 Reflect(const Vec3& v, const Vec3& n)
 
 inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat) 
 {
-    // physics.stackexchange.com/questions/435512/snells-law-in-vector-form
+    // www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-shading/reflection-refraction-fresnel
     auto cos_theta = fmin(Dot(-uv, n), 1.0);
     Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
     Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.LengthSquared())) * n; // change fabs to abs

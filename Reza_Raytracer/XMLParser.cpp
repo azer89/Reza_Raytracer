@@ -310,6 +310,11 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         {            
             mat_map[name_str] = make_shared<LambertianMaterial>(texture_ptr);
         }
+        if (type_str == "dielectric")
+        {
+            // TODO fix this
+            mat_map[name_str] = make_shared<DielectricMaterial>(1.5);
+        }
         else if (type_str == "metal")
         {
             auto fuzzy_elem = mat_elem->FirstChildElement("fuzzy");

@@ -14,9 +14,9 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="2000"/>
-		<samples_per_pixel value="1000"/>
-		<max_depth value="500"/>
+		<image_width value="1000"/>
+		<samples_per_pixel value="100"/>
+		<max_depth value="100"/>
 		<num_thread value="16"/>
 	</renderer>
   
@@ -31,7 +31,8 @@
     
   </textures>
 
-	<!-- if the type is lambertian, fuzzy will be ignored -->
+	<!-- TODO: if the type is lambertian, fuzzy will be ignored -->
+  <!-- TODO: fix the code -->
 	<materials>
 		<material name="material_ground" type="lambertian">
 			<color r="1.0" g ="1.0" b="1.0"/>
@@ -53,12 +54,18 @@
 			<color	r="0.3" g ="0.3" b="0.7"/>
       <fuzzy value="0.0"/>
 		</material>
+
+    <material name="material_glass" type="dielectric">
+      <color	r="0.3" g ="0.3" b="0.7"/>
+      <fuzzy value="0.0"/>
+    </material>
+    
 	</materials>
 
   <objects>
 
     <object type="obj" 
-				material_name="material_side" 
+				material_name="material_glass" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_casual_effects.obj">
 			<position	x="0" y ="-0.52" z="-1.1" />
 			<scale	value="0.75" />
