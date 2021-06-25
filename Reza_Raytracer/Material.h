@@ -112,7 +112,7 @@ public:
     ) const override 
     {
         //attenuation = Color(1.0, 1.0, 1.0);
-        albedo->Value(rec.u, rec.v, rec.p);
+        attenuation = albedo->Value(rec.u, rec.v, rec.p);
         double refraction_ratio = rec.front_face ? (1.0 / ir) : ir;
 
         Vec3 unit_direction = UnitVector(r_in.Direction());
