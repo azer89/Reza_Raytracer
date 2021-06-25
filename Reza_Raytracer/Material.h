@@ -98,7 +98,9 @@ public:
 class DielectricMaterial : public Material 
 {
 public:
-    DielectricMaterial(double index_of_refraction) : ir(index_of_refraction)
+    DielectricMaterial(shared_ptr<Texture> t, double index_of_refraction) : 
+        albedo(t),
+        ir(index_of_refraction)
     {
     }
 
@@ -109,7 +111,8 @@ public:
         Ray3& scattered
     ) const override 
     {
-        attenuation = Color(1.0, 1.0, 1.0);
+        //attenuation = Color(1.0, 1.0, 1.0);
+        albedo->Value(rec.u, rec.v, rec.p);
         double refraction_ratio = rec.front_face ? (1.0 / ir) : ir;
 
         Vec3 unit_direction = UnitVector(r_in.Direction());
@@ -133,6 +136,9 @@ public:
     }
 
 public:
+    //Color albedo;
+    shared_ptr<Texture> albedo;
+
     // Index of Refraction
     double ir; 
 };

@@ -315,7 +315,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
             auto ridx_elem = mat_elem->FirstChildElement("refraction_index");
             double refraction_index = GetDouble(ridx_elem);
 
-            mat_map[name_str] = make_shared<DielectricMaterial>(refraction_index);
+            mat_map[name_str] = make_shared<DielectricMaterial>(texture_ptr, refraction_index);
         }
         else if (type_str == "metal")
         {
