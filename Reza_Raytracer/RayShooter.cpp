@@ -179,14 +179,6 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 	// t_min = 0.001 is used to remove shadow acne
 	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
-		// lighter shadow
-		//Point3 target = rec.p + RandomVec3InHemisphere(rec.normal);
-
-		// better shadow
-		//Point3 target = rec.p + rec.normal + RandomUnitVector();
-
-		// Recursive
-		//return 0.5 * RayColor(Ray3(rec.p, target - rec.p), world, depth - 1);
 
 		Ray3 scattered;
 		Color attenuation;
@@ -195,22 +187,14 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
 		{
 			return attenuation * RayColor(scattered, depth - 1);
-			//return emitted + attenuation * RayColor(scattered, world, depth - 1); // does not work
+			//return emitted + attenuation * RayColor(scattered, world, depth - 1); // work in progress
 		}
 
 		return Color(0, 0, 0);
 	}
 
-	// Non recursive
-	/*HitRecord rec;
-	if (world.Hit(r, 0, infinity, rec))
-	{
-		return 0.5 * (rec.normal + Color(1, 1, 1));
-	}*/
-
 	Vec3 unit_direction = UnitVector(r.Direction());
 	auto t = 0.5 * (unit_direction.y() + 1.0);
-	//return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);
 	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
 
