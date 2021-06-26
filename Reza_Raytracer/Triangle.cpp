@@ -82,8 +82,10 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
         outward_normal = -outward_normal;
     }
 
+    // set normal
     rec.normal = outward_normal;
 
+    // set whether it's front face
     rec.front_face = backfacing;
     
     // Raw pointer

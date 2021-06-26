@@ -49,7 +49,7 @@ void RayShooter::ShootRaysMultithread()
 	// nice trick for a fast ceiling
 	int num_rows_per_thread = image_height / num_thread + (image_height % num_thread != 0);
 
-	std::cout << "Multithread raytracing\n";
+	std::cout << "Multi thread raytracing\n";
 	std::cout << "Number of threads = " << num_thread << '\n';
 	auto start1 = std::chrono::steady_clock::now();
 
@@ -133,6 +133,8 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 
 void RayShooter::ShootRaysSingleThread()
 {
+	std::cout << "Single thread raytracing\n";
+
 	for (int y = image_height - 1; y >= 0; --y)
 	{
 		// adding progress text
