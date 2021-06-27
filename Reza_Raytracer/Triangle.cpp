@@ -75,18 +75,23 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     double w = 1.0 - u - v;
     outward_normal = (n0 * w) + (n1 * u) + (n2 * v);
 
+    // TODO
+    // set whether it's front face
+    rec.front_face = Dot(r.Direction(), outward_normal) < 0;;
+
     // if the determinant is negative the triangle is backfacing
-    bool backfacing = det < epsilon;
+    /*bool backfacing = det < epsilon; // won't give correct result if we have vertex normals
     if (backfacing)
+    {
+        outward_normal = -outward_normal;
+    }*/
+    if (!rec.front_face)
     {
         outward_normal = -outward_normal;
     }
 
     // set normal
     rec.normal = outward_normal;
-
-    // set whether it's front face
-    rec.front_face = Dot(r.Direction(), outward_normal) < 0;;
 
     // Raw pointer
     rec.mat_ptr = material_ptr.get();
