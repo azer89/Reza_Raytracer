@@ -86,8 +86,8 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
     rec.normal = outward_normal;
 
     // set whether it's front face
-    rec.front_face = backfacing;
-    
+    rec.front_face = Dot(r.Direction(), outward_normal) < 0;;
+
     // Raw pointer
     rec.mat_ptr = material_ptr.get();
     rec.p = r.At(t);

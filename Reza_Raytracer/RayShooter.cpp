@@ -179,7 +179,6 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 	// t_min = 0.001 is used to remove shadow acne
 	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
-
 		Ray3 scattered;
 		Color attenuation;
 		//Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p); 

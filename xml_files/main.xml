@@ -17,7 +17,7 @@
 		<image_width value="1000"/>
 		<samples_per_pixel value="100"/>
 		<max_depth value="200"/>
-		<num_thread value="1"/>
+		<num_thread value="16"/>
 	</renderer>
   
   <textures>
