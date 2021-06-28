@@ -111,12 +111,11 @@ public:
         Ray3& scattered
     ) const override 
     {
-        //attenuation = Color(1.0, 1.0, 1.0);
         attenuation = albedo->Value(rec.u, rec.v, rec.p);
         double refraction_ratio = rec.front_face ? (1.0 / ir) : ir;
 
         Vec3 unit_direction = UnitVector(r_in.Direction());
-        /*double cos_theta = fmin(Dot(-unit_direction, rec.normal), 1.0);
+        double cos_theta = fmin(Dot(-unit_direction, rec.normal), 1.0);
         double sin_theta = sqrt(1.0 - cos_theta * cos_theta);
 
         bool cannot_refract = refraction_ratio * sin_theta > 1.0;
@@ -128,15 +127,11 @@ public:
         }
         else
         {
-            //Vec3 dir = UnitVector(unit_direction);
-            //Vec3 n = UnitVector(rec.normal);
-            //direction = Refract(dir, n, refraction_ratio);
             direction = Refract(unit_direction, rec.normal, refraction_ratio);
-        }*/
+        }
 
         // TODO delete this
-        Vec3 direction = Refract(unit_direction, rec.normal, refraction_ratio);
-
+        //Vec3 direction = Refract(unit_direction, rec.normal, refraction_ratio);
 
         scattered = Ray3(rec.p, direction);
         return true;
