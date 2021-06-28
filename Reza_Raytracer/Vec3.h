@@ -189,9 +189,27 @@ inline Vec3 Reflect(const Vec3& v, const Vec3& n)
 inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat) 
 {
     // www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-shading/reflection-refraction-fresnel
+    /*double cosi = UsefulFunctions::Clamp(-1, 1, Dot(uv, n));
+    double etai = 1;
+    double etat = 1.0 / etai_over_etat;
+    Vec3 new_n = n;
+    if (cosi < 0) 
+    { 
+        cosi = -cosi; 
+    }
+    else 
+    { 
+        std::swap(etai, etat); 
+        new_n = -n;
+    }
+    double eta = etai / etat;
+    double k = 1 - eta * eta * (1 - cosi * cosi);
+    return k < 0 ? Vec3() : uv * eta + (eta * cosi - sqrt(k)) * new_n;*/
+    
+    // Peter Shirley
     auto cos_theta = fmin(Dot(-uv, n), 1.0);
     Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
-    Vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.LengthSquared())) * n; // change fabs to abs
+    Vec3 r_out_parallel = -sqrt(abs(1.0 - r_out_perp.LengthSquared())) * n;
     return r_out_perp + r_out_parallel;
 }
 

@@ -8,6 +8,7 @@ class Material;
 
 struct HitRecord
 {
+public:
     Point3 p;
     Vec3 normal;
 
@@ -21,6 +22,16 @@ struct HitRecord
     double v;
 
     bool front_face;
+
+public:
+    HitRecord()
+    {
+        mat_ptr = nullptr;
+        t = 0; 
+        u = 0;
+        v = 0;
+        front_face = false;
+    }
 
     // Make sure the normal always against the ray 
     inline void SetFaceNormal(const Ray3& r, const Vec3& outward_normal)
