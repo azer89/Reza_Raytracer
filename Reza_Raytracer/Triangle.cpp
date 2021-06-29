@@ -105,6 +105,7 @@ bool Triangle::BoundingBox(AABB& output_box) const
     // need to pad the AABB to avoid zero thickness
     // TODO: experiment with thinner pads
     Vec3 padding(1e-5, 1e-5, 1e-5);
+    //Vec3 padding(0, 0, 0);
     
     Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),
 			 fmin(v0.y(), fmin(v1.y(), v2.y())),
