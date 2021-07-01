@@ -128,6 +128,9 @@
     <ClInclude Include="Vec2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\xml_files\main.xml">

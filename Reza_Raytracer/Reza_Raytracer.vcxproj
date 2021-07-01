@@ -170,6 +170,7 @@
     <ClInclude Include="AABB.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
+    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="XMLParser.h" />
     <ClInclude Include="Texture.h" />
