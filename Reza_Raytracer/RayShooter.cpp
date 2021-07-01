@@ -100,11 +100,6 @@ void RayShooter::ShootRaysMultithread()
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 }
 
-// Thread pool
-void RayShooter::ShootRaysThreadPool()
-{
-
-}
 
 void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, 
 									int y_start, 

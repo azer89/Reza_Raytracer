@@ -39,9 +39,6 @@ public:
 	// Multi threads using std::async and std::future
 	void ShootRaysMultithread();
 
-	// Thread pool
-	void ShootRaysThreadPool();
-
 	// thread task
 	void ShootRaysByAThread(std::atomic<int>& counter_atom, 
 			int y_start,
