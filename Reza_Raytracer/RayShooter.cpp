@@ -80,6 +80,8 @@ void RayShooter::ShootRaysMultithread()
 	{
 		// update every 0.5 seconds
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
+		//std::unique_lock<std::mutex> lock(mutex_task);
+		//cv_task.wait(lock);
 
 		sum_rows = 0;
 		for (const auto& ca : counter_atoms)
@@ -96,6 +98,12 @@ void RayShooter::ShootRaysMultithread()
 
 	// save a nice picture
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
+}
+
+// Thread pool
+void RayShooter::ShootRaysThreadPool()
+{
+
 }
 
 void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, 
@@ -124,6 +132,9 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 					sqrt(pixel_color.z() * scale),
 					x,
 					y);
+
+			// notify main thread that we have computed a pixel
+			//cv_task.notify_one();
 		}
 
 		// atomic increment that's slower than regular int but whatever

@@ -2,8 +2,10 @@
 #define __RAY_SHOOTER_H__
 
 #include <memory>
-#include <thread> // is this needed?
+#include <thread> 
 #include <atomic>
+//#include <condition_variable>
+//#include <mutex>
 
 #include "HittableList.h"
 
@@ -17,6 +19,9 @@ private:
 	std::unique_ptr<ImageHandler> imgHandler;
 	std::unique_ptr<HittableList> world;
 
+	//std::condition_variable cv_task;
+	//std::mutex mutex_task;
+
 	double scale;
 
 	int image_width;
@@ -28,13 +33,13 @@ public:
 	RayShooter();
 	~RayShooter();
 			
-	// single thread
+	// Single thread
 	void ShootRaysSingleThread();
 
-	// multi threads
+	// Multi threads using std::async and std::future
 	void ShootRaysMultithread();
 
-	// thread pool
+	// Thread pool
 	void ShootRaysThreadPool();
 
 	// thread task

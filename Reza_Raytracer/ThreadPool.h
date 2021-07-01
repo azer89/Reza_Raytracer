@@ -47,6 +47,7 @@ inline ThreadPool::ThreadPool(size_t threads)
     : stop(false)
 {
     for (size_t i = 0; i < threads; ++i)
+    {
         workers.emplace_back
         (
             [this]
@@ -67,7 +68,8 @@ inline ThreadPool::ThreadPool(size_t threads)
                     task();
                 }
             }
-            );
+        );
+    }
 }
 
 // Submit new work item to the pool
@@ -89,10 +91,10 @@ auto ThreadPool::enqueue(F&& f, Args&&... args)
         // don't allow enqueueing after stopping the pool
         if (stop)
         {
-            throw std::runtime_error("enqueue on stopped ThreadPool");
+            throw std::runtime_error("enqueue on stopped thread pool");
         }
 
-        tasks.emplace([task]() { (*task)(); });
+        task_queue.emplace([task]() { (*task)(); });
     }
     condition.notify_one();
     return res;
