@@ -1,7 +1,6 @@
 #ifndef __XMLPARAMETERS_H__
 #define __XMLPARAMETERS_H__
 
-
 #include "Vec3.h"
 
 #include <unordered_map>

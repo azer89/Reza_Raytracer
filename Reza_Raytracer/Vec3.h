@@ -1,4 +1,3 @@
-
 #ifndef __VEC_3_H__
 #define __VEC_3_H__
 
