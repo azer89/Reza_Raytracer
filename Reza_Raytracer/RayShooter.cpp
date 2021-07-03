@@ -44,13 +44,15 @@ RayShooter::~RayShooter()
 Source
 	www.cplusplus.com/forum/beginner/240592/
 	solarianprogrammer.com/2012/10/17/cpp-11-async-tutorial/
-
-You can also deduce the number of threads isuing the code below:
-	unsigned int n = std::thread::hardware_concurrency() - 1;
 */
 void RayShooter::ShootRaysMultithread()
 {
+	// set up number of thread
 	int num_thread = GlobalParameters::num_thread;
+	if (num_thread < 1)
+	{
+		num_thread = std::thread::hardware_concurrency() - 1;
+	}
 
 	// nice trick for a fast ceiling
 	int num_rows_per_thread = image_height / num_thread + (image_height % num_thread != 0);
@@ -132,7 +134,6 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 					sqrt(pixel_color.z() * scale),
 					x,
 					y);
-
 			// notify main thread that we have computed a pixel
 			//cv_task.notify_one();
 		}
@@ -222,14 +223,18 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 
 	// If the ray hits nothing, return the background color.
 	if (!world.Hit(r, 0.001, UsefulConstants::infinity, rec))
+	{
 		return background;
+	}
 
 	Ray3 scattered;
 	Color attenuation;
 	Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p);
 
 	if (!rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
+	{
 		return emitted;
+	}
 
 	return emitted + attenuation * RayColorWithLightSource(scattered, background, world, depth - 1);
 }
@@ -240,8 +245,8 @@ Color RayShooter::RayColorNormalOnly(const Ray3& r)
 	HitRecord rec;
 	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
-		Vec3 N = UnitVector(rec.normal);
-		return 0.5 * Color(N.x() + 1, N.y() + 1, N.z() + 1);
+		Vec3 normal = UnitVector(rec.normal);
+		return 0.5 * Color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
 	}
 
 	Vec3 unit_direction = UnitVector(r.Direction());
