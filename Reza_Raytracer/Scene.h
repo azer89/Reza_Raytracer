@@ -1,5 +1,5 @@
-#ifndef __HITTABLE_LIST_H__
-#define __HITTABLE_LIST_H__
+#ifndef __SCENE_H__
+#define __SCENE_H__
 
 #include "Hittable.h"
 
@@ -14,16 +14,16 @@ using std::vector;
 class BVHNode;
 class Texture;
 
-class HittableList : public Hittable
+class Scene : public Hittable
 {
 public:
-    HittableList()
+    Scene()
     {	    
     }
 
     void Clear() { objects.clear(); }
 
-    void CreateWorld();
+    void CreateScene();
 
     virtual bool Hit(const Ray3& r, 
 					 double t_min, 

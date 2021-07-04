@@ -1,4 +1,4 @@
-#include "HittableList.h"
+#include "Scene.h"
 
 #include "Sphere.h"
 #include "Triangle.h"
@@ -12,10 +12,10 @@
 
 using std::make_unique;
 
-bool HittableList::Hit(const Ray3& r, 
-					   double t_min, 
-					   double t_max, 
-                       HitRecord& rec) const
+bool Scene::Hit(const Ray3& r,
+				double t_min, 
+				double t_max, 
+                HitRecord& rec) const
 {
     
 
@@ -40,7 +40,7 @@ bool HittableList::Hit(const Ray3& r,
     return hit_anything;
 }
 
-void HittableList::CreateWorld()
+void Scene::CreateScene()
 {    
     XMLParser xml_parser;
 
@@ -54,7 +54,7 @@ void HittableList::CreateWorld()
     std::cout << "BVH done in " << std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1).count() << " ms\n\n";
 }
 
-bool HittableList::BoundingBox(AABB& output_box) const
+bool Scene::BoundingBox(AABB& output_box) const
 {
     AABB temp_box;
     bool first_box = true;

@@ -7,7 +7,7 @@
 //#include <condition_variable>
 //#include <mutex>
 
-#include "HittableList.h"
+#include "Scene.h"
 
 class ImageHandler;
 class Camera;
@@ -17,7 +17,7 @@ class RayShooter
 private:
 	std::unique_ptr<Camera> camera;
 	std::unique_ptr<ImageHandler> imgHandler;
-	std::unique_ptr<HittableList> world;
+	std::unique_ptr<Scene> scene;
 
 	//std::condition_variable cv_task;
 	//std::mutex mutex_task;
@@ -49,7 +49,7 @@ private:
 	Color RayColorNormalOnly(const Ray3& r);
 	Color RayColorWithLightSource(const Ray3& r, 
 								  const Color& background, 
-								  const HittableList& world, int depth);
+								  const Scene& scene, int depth);
 };
 
 #endif

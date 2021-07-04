@@ -32,8 +32,8 @@ RayShooter::RayShooter()
 	imgHandler = make_unique<ImageHandler>(image_width, image_height); // set up image handler
 
 	 // World
-	world = make_unique<HittableList>();
-	world->CreateWorld();
+	scene = make_unique<Scene>();
+	scene->CreateScene();
 }
 
 RayShooter::~RayShooter()
@@ -189,7 +189,7 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 	// Recursive
 	HitRecord rec;
 	// t_min = 0.001 is used to remove shadow acne
-	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
+	if (scene->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
 		Ray3 scattered;
 		Color attenuation;
@@ -210,7 +210,7 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 }
 
 // This is a recursive function
-Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background, const HittableList& world, int depth)
+Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background, const Scene& scene, int depth)
 {
 	// If we've exceeded the ray bounce limit, no more light is gathered.
 	if (depth <= 0)
@@ -222,7 +222,7 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 	HitRecord rec;
 
 	// If the ray hits nothing, return the background color.
-	if (!world.Hit(r, 0.001, UsefulConstants::infinity, rec))
+	if (!scene.Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
 		return background;
 	}
@@ -236,14 +236,14 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 		return emitted;
 	}
 
-	return emitted + attenuation * RayColorWithLightSource(scattered, background, world, depth - 1);
+	return emitted + attenuation * RayColorWithLightSource(scattered, background, scene, depth - 1);
 }
 
 // for debugging normal vectors only
 Color RayShooter::RayColorNormalOnly(const Ray3& r)
 {
 	HitRecord rec;
-	if (world->Hit(r, 0.001, UsefulConstants::infinity, rec))
+	if (scene->Hit(r, 0.001, UsefulConstants::infinity, rec))
 	{
 		Vec3 normal = UnitVector(rec.normal);
 		return 0.5 * Color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
