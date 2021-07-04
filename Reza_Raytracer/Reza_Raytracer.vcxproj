@@ -147,7 +147,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImageHandler.cpp" />
     <ClCompile Include="OBJReader.cpp" />
-    <ClCompile Include="RayShooter.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="XMLParser.cpp" />
@@ -165,7 +165,7 @@
     <ClInclude Include="OBJReader.h" />
     <ClInclude Include="Ray3.h" />
     <ClInclude Include="ImageHandler.h" />
-    <ClInclude Include="RayShooter.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="AABB.h" />
     <ClInclude Include="stb_image.h" />

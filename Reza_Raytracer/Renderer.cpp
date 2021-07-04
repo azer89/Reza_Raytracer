@@ -1,4 +1,4 @@
-#include "RayShooter.h"
+#include "Renderer.h"
 #include "ImageHandler.h"
 #include "Camera.h"
 #include "Material.h"
@@ -12,7 +12,7 @@
 
 using namespace std;
 
-RayShooter::RayShooter()
+Renderer::Renderer()
 {
 	// XML
 	XMLParser xml_parser;
@@ -36,7 +36,7 @@ RayShooter::RayShooter()
 	scene->CreateScene();
 }
 
-RayShooter::~RayShooter()
+Renderer::~Renderer()
 {
 }
 
@@ -45,7 +45,7 @@ Source
 	www.cplusplus.com/forum/beginner/240592/
 	solarianprogrammer.com/2012/10/17/cpp-11-async-tutorial/
 */
-void RayShooter::ShootRaysMultithread()
+void Renderer::ShootRaysMultithread()
 {
 	// set up number of thread
 	int num_thread = GlobalParameters::num_thread;
@@ -73,7 +73,7 @@ void RayShooter::ShootRaysMultithread()
 		futures.push_back(
 			std::async(
 				std::launch::async,
-				&RayShooter::ShootRaysByAThread,
+				&Renderer::ShootRaysByAThread,
 				this,
 				std::ref(counter_atoms[i]),
 				y_start,
@@ -108,7 +108,7 @@ void RayShooter::ShootRaysMultithread()
 	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 }
 
-void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom, 
+void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 									int y_start, 
 									int y_end)
 {
@@ -143,7 +143,7 @@ void RayShooter::ShootRaysByAThread(atomic<int>& counter_atom,
 	}
 }
 
-void RayShooter::ShootRaysSingleThread()
+void Renderer::ShootRaysSingleThread()
 {
 	std::cout << "Single thread raytracing\n";
 
@@ -178,7 +178,7 @@ void RayShooter::ShootRaysSingleThread()
 }
 
 // This is a recursive function
-Color RayShooter::RayColor(const Ray3& r, int depth)
+Color Renderer::RayColor(const Ray3& r, int depth)
 {
 	// If we've exceeded the ray bounce limit, no more light is gathered.
 	if (depth <= 0)
@@ -210,7 +210,7 @@ Color RayShooter::RayColor(const Ray3& r, int depth)
 }
 
 // This is a recursive function
-Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background, const Scene& scene, int depth)
+Color Renderer::RayColorWithLightSource(const Ray3& r, const Color& background, const Scene& scene, int depth)
 {
 	// If we've exceeded the ray bounce limit, no more light is gathered.
 	if (depth <= 0)
@@ -240,7 +240,7 @@ Color RayShooter::RayColorWithLightSource(const Ray3& r, const Color& background
 }
 
 // for debugging normal vectors only
-Color RayShooter::RayColorNormalOnly(const Ray3& r)
+Color Renderer::RayColorNormalOnly(const Ray3& r)
 {
 	HitRecord rec;
 	if (scene->Hit(r, 0.001, UsefulConstants::infinity, rec))

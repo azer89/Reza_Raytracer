@@ -1,5 +1,5 @@
-#ifndef __RAY_SHOOTER_H__
-#define __RAY_SHOOTER_H__
+#ifndef __RENDERER_H__
+#define __RENDERER_H__
 
 #include <memory>
 #include <thread> 
@@ -12,7 +12,7 @@
 class ImageHandler;
 class Camera;
 
-class RayShooter
+class Renderer
 {
 private:
 	std::unique_ptr<Camera> camera;
@@ -30,8 +30,8 @@ private:
 	int max_depth; 
 
 public:
-	RayShooter();
-	~RayShooter();
+	Renderer();
+	~Renderer();
 			
 	// Single thread
 	void ShootRaysSingleThread();

@@ -1,20 +1,20 @@
 #include <iostream>
 #include <memory>
 
-#include "RayShooter.h"
+#include "Renderer.h"
 #include "GlobalParameters.h"
 
 int main()
 {
-	RayShooter rShooter;
+	Renderer renderer;
 
-	if (GlobalParameters::num_thread > 1)
+	if (GlobalParameters::num_thread == 1)
 	{
-		rShooter.ShootRaysMultithread();
+		renderer.ShootRaysSingleThread();
 	}
 	else
 	{
-		rShooter.ShootRaysSingleThread(); 
+		renderer.ShootRaysMultithread();
 	}
 
 	std::cin.get();
