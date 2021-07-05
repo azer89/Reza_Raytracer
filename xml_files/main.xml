@@ -17,6 +17,12 @@
 		<image_width value="2000"/>
 		<samples_per_pixel value="100"/>
 		<max_depth value="200"/>
+
+    <!--
+			if num_thread >  0 the program will use multiple threads
+      if num_thread =  1 the program will run on a single thread
+      if num_thread <= 0 the program will use max number of logical cpus
+    -->
 		<num_thread value="0"/>
 	</renderer>
   

@@ -15,7 +15,6 @@ ImageHandler::ImageHandler(int img_width, int img_height)
 	this->num_channel = 3; // 4 if you want alpha
 	
 	this->pixels = std::make_unique<uint8_t[]>(this->img_width * this->img_height * this->num_channel);
-	//pixels = new uint8_t[img_width * img_height * num_channel]; // raw pointer version
 }
 
 ImageHandler::~ImageHandler()
@@ -25,9 +24,9 @@ ImageHandler::~ImageHandler()
 // new, parallelizable
 void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 {
-	r = UsefulFunctions::Clamp(r, 0.0, 0.999);
-	g = UsefulFunctions::Clamp(g, 0.0, 0.999);
-	b = UsefulFunctions::Clamp(b, 0.0, 0.999);
+	r = UsefulFunctions::Clamp(r, 0.0, 1.0);
+	g = UsefulFunctions::Clamp(g, 0.0, 1.0);
+	b = UsefulFunctions::Clamp(b, 0.0, 1.0);
 
 	y = img_height - y - 1;
 	int index = (x + (y * img_width)) * num_channel;

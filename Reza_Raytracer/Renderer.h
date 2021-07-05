@@ -23,7 +23,6 @@ private:
 	//std::mutex mutex_task;
 
 	double scale;
-
 	int image_width;
 	int image_height;
 	int samples_per_pixel; 
