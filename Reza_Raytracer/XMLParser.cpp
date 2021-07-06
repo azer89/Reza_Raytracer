@@ -2,13 +2,13 @@
 #include "XMLParser.h"
 #include "GlobalParameters.h"
 #include "OBJReader.h"
-#include "tinyxml2.h"
-
 #include "Hittable.h"
 #include "Sphere.h"
 #include "Triangle.h"
 #include "Texture.h"
 #include "Material.h"
+
+#include "tinyxml2.h"
 
 #include <iostream>
 
@@ -49,7 +49,6 @@ inline int GetInt(const XMLElement* element, string name = "value")
     element->QueryIntAttribute(name.c_str(), &i);
     return i;
 }
-
 
 inline double GetDouble(const XMLElement* element, string name = "value")
 {
@@ -108,9 +107,9 @@ void XMLParser::LoadParametersFromXML()
     }
 
     auto image_width_element       = renderer_element->FirstChildElement("image_width");
-    auto* samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
+    auto samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
     auto max_depth_element         = renderer_element->FirstChildElement("max_depth");
-    auto num_thread_element = renderer_element->FirstChildElement("num_thread");
+    auto num_thread_element        = renderer_element->FirstChildElement("num_thread");
 
     GlobalParameters::renderer_image_width       = GetInt(image_width_element);
     GlobalParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_element);
