@@ -25,12 +25,12 @@ public:
 
     void CreateScene();
 
-    virtual bool Hit(const Ray3& r, 
-					 double t_min, 
-					 double t_max, 
-					 HitRecord& rec) const override;
+    bool Hit(const Ray3& r, 
+			 double t_min, 
+			 double t_max, 
+			 HitRecord& rec) const override;
 
-    virtual bool BoundingBox(AABB& output_box) const override;
+    bool BoundingBox(AABB& output_box) const override;
 
 private:
     // Root of the BVH
