@@ -20,7 +20,7 @@ public:
     SolidColorTexture(double red, double green, double blue)
         : SolidColorTexture(Color(red, green, blue)) {}
 
-    virtual Color Value(double u, double v, const Vec3& p) const override
+    Color Value(double u, double v, const Vec3& p) const override
 	{
         return color_value;
     }
@@ -46,7 +46,7 @@ public:
     {
     }
 
-    virtual Color Value(double u, double v, const Point3& p) const override 
+    Color Value(double u, double v, const Point3& p) const override 
     {
         auto s = sin(frequency * u) * sin(frequency * v);
 
@@ -89,7 +89,7 @@ public:
     {
     }
 
-    virtual Color Value(double u, double v, const Point3& p) const override
+    Color Value(double u, double v, const Point3& p) const override
     {
         auto s = sin(frequency * p.x()) * sin(frequency * p.y()) * sin(frequency * p.z());
 

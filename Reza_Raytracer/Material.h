@@ -17,7 +17,7 @@ public:
 
 	// For light source or a texture, see derived classes
     virtual Color Emitted(double u, double v, const Point3& p) const
-	{
+    {
         // TODO
         return Color(0, 0, 0);
     }
@@ -26,16 +26,13 @@ public:
 class LambertianMaterial : public Material
 {
 public:
-    /*LambertianMaterial(const Color& a) : albedo(a)
-    {	    
-    }*/
     LambertianMaterial(const Color& a) : albedo(make_shared<SolidColorTexture>(a)) {}
     LambertianMaterial(shared_ptr<Texture>& t) : albedo(t) {}
 
-    virtual bool Scatter(const Ray3& r_in, 
-						 const HitRecord& rec, 
-						 Color& attenuation, 
-						 Ray3& scattered) 
+    bool Scatter(const Ray3& r_in, 
+				 const HitRecord& rec, 
+				 Color& attenuation, 
+				 Ray3& scattered) 
         const override
 	{
         //Point3 scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
@@ -74,10 +71,10 @@ public:
     {
     }
 
-    virtual bool Scatter(const Ray3& r_in, 
-                         const HitRecord& rec, 
-                         Color& attenuation, 
-                         Ray3& scattered ) 
+    bool Scatter(const Ray3& r_in, 
+                 const HitRecord& rec, 
+                 Color& attenuation, 
+                 Ray3& scattered ) 
         const override 
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
@@ -104,11 +101,10 @@ public:
     {
     }
 
-    virtual bool Scatter(
-        const Ray3& r_in, 
-        const HitRecord& rec, 
-        Color& attenuation, 
-        Ray3& scattered
+    bool Scatter(const Ray3& r_in, 
+                 const HitRecord& rec, 
+                 Color& attenuation, 
+                 Ray3& scattered
     ) const override 
     {
         attenuation = albedo->Value(rec.u, rec.v, rec.p);
@@ -162,15 +158,16 @@ public:
         emit = make_shared<SolidColorTexture>(c);
     }
 
-    virtual bool Scatter(const Ray3& r_in,
-        const HitRecord& rec,
-        Color& attenuation,
-        Ray3& scattered) const override
+    bool Scatter(const Ray3& r_in,
+                 const HitRecord& rec,
+                 Color& attenuation,
+                 Ray3& scattered) const override
     {
         return false;
     }
 
-    virtual Color Emitted(double u, double v, const Point3& p) const override
+    // TODO
+    Color Emitted(double u, double v, const Point3& p) const override
 	{        
     	return emit->Value(u, v, p);
     }

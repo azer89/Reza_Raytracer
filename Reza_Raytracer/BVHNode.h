@@ -28,9 +28,9 @@ public:
             size_t start,
             size_t end);
 
-    virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
+    bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
 
-    virtual bool BoundingBox(AABB& output_box) const override;
+    bool BoundingBox(AABB& output_box) const override;
 };
 
 inline bool BoxCompare(const shared_ptr<Hittable>& a, const shared_ptr<Hittable>& b, int axis)
