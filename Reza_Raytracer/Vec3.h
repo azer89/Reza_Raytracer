@@ -210,6 +210,9 @@ inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat)
     Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
     Vec3 r_out_parallel = -sqrt(abs(1.0 - r_out_perp.LengthSquared())) * n;
     return r_out_perp + r_out_parallel;
+
+    // Another version is in 
+    // github.com/RayTracing/TheRestOfYourLife/blob/master/src/material.h
 }
 
 #endif

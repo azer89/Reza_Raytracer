@@ -1,6 +1,9 @@
 #include "BVHNode.h"
+#include "Triangle.h"
 
 #include <algorithm>
+
+static shared_ptr<Hittable> empty_object = make_shared<NullHittable>();
 
 // improved constructor without random
 // github.com/RayTracing/TheRestOfYourLife/blob/master/src/bvh.h
@@ -38,8 +41,14 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     // creating a tree
     if (object_span == 1)
     {
+        // Option 1
         // pointing to the same object
-        left_node = right_node = src_objects[start];
+        //left_node = right_node = src_objects[start];
+
+        // Option 2
+        // github.com/RayTracing/raytracing.github.io/issues/804
+        left_node = src_objects[start];
+        right_node = empty_object;
     }
     else if (object_span == 2)
     {
