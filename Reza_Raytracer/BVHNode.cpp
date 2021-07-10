@@ -39,7 +39,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     size_t object_span = end - start;
 
     // creating a tree
-    if (object_span == 1)
+    /*if (object_span == 1)
     {
         // Option 1
         // pointing to the same object
@@ -50,7 +50,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         left_node = src_objects[start];
         right_node = empty_object;
     }
-    else if (object_span == 2)
+    else*/ if (object_span == 2)
     {
         if (comparator(src_objects[start], src_objects[start + 1]))
         {
@@ -62,6 +62,14 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
             left_node  = src_objects[start + 1];
             right_node = src_objects[start];
         }
+    }
+    else if (object_span == 3)
+    {
+        // binary partitioning
+        std::sort(src_objects.begin() + start, src_objects.begin() + end, comparator);
+
+        left_node = src_objects[start];
+        right_node = make_shared<BVHNode>(src_objects, start + 1, end);
     }
     else
     {
