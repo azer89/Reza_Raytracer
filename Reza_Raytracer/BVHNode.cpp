@@ -3,8 +3,6 @@
 
 #include <algorithm>
 
-static shared_ptr<Hittable> empty_object = make_shared<NullHittable>();
-
 // improved constructor without random
 // github.com/RayTracing/TheRestOfYourLife/blob/master/src/bvh.h
 BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects, 

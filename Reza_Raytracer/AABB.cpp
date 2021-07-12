@@ -21,12 +21,12 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 	// optimized version
 	for (int a = 0; a < 3; a++)
 	{
-		auto invDir = 1.0f / r.Direction()[a];
+		auto invDir = 1.0f / r.Direction()[a]; 
 		auto t0 = (Min()[a] - r.Origin()[a]) * invDir;
 		auto t1 = (Max()[a] - r.Origin()[a]) * invDir;
 
 		// if direction is reversed
-		if (invDir < 0.0)
+		if (t1 < t0)
 		{
 			std::swap(t0, t1);
 		}

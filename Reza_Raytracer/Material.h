@@ -79,11 +79,24 @@ public:
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
         scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
-        //attenuation = albedo;
-        attenuation = albedo->Value(rec.u, rec.v, rec.p);
+
+        //attenuation = albedo->Value(rec.u, rec.v, rec.p); // Original
+        Vec3 unit_direction = UnitVector(r_in.Direction()); // Schlick's approximation
+        double cos_theta = fmin(Dot(-unit_direction, rec.normal), 1.0);
+        attenuation = MetalReflectance(cos_theta, albedo->Value(rec.u, rec.v, rec.p));
 
         // if dot product is zero then the vectors are perpendicular
         return (Dot(scattered.Direction(), rec.normal) > 0);
+    }
+
+    /*
+        Schlick's approximation for metal
+        github.com/RayTracing/raytracing.github.io/issues/844
+    */
+    Color MetalReflectance(double cosine, const Color& albedo) const
+    {
+        const Color white = Color(1, 1, 1);
+        return albedo + (white - albedo) * pow(1 - cosine, 5);
     }
 
 public:
