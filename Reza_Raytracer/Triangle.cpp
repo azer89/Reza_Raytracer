@@ -1,5 +1,7 @@
 #include "Triangle.h"
 
+#include <limits>
+
 /*
 www.scratchapixel.com/lessons/3d-basic-rendering/
 ray-tracing-rendering-a-triangle/
@@ -105,7 +107,6 @@ bool Triangle::BoundingBox(AABB& output_box) const
     // need to pad the AABB to avoid zero thickness
     // TODO: experiment with thinner pads
     Vec3 padding(1e-5, 1e-5, 1e-5);
-    //Vec3 padding(0, 0, 0);
     
     Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),
 			 fmin(v0.y(), fmin(v1.y(), v2.y())),
@@ -118,7 +119,28 @@ bool Triangle::BoundingBox(AABB& output_box) const
              fmax(v0.z(), fmax(v1.z(), v2.z())));
 
     max = max + padding;
+
+    /*constexpr double eps = std::numeric_limits<double>::epsilon();
+    Vec3 padding(0, 0, 0);
+
+    if (abs(min.x() - max.x()) < eps )
+    {
+        padding.e[0] = 1e-5;
+    }
+
+    if (abs(min.y() - max.y()) < eps)
+    {
+        padding.e[1] = 1e-5;
+    }
+
+    if (abs(min.z() - max.z()) < eps)
+    {
+        padding.e[2] = 1e-5;
+    }
 	
+    min = min - padding;
+    max = max - padding;*/
+
     output_box = AABB(min, max);
 
     return true;
