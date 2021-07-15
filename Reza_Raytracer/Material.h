@@ -81,9 +81,10 @@ public:
         scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
 
         //attenuation = albedo->Value(rec.u, rec.v, rec.p); // Original
-        Vec3 unit_direction = UnitVector(r_in.Direction()); // Schlick's approximation
+
+        Vec3 unit_direction = UnitVector(r_in.Direction()); 
         double cos_theta = fmin(Dot(-unit_direction, rec.normal), 1.0);
-        attenuation = MetalReflectance(cos_theta, albedo->Value(rec.u, rec.v, rec.p));
+        attenuation = MetalReflectance(cos_theta, albedo->Value(rec.u, rec.v, rec.p)); // Schlick's approximation
 
         // if dot product is zero then the vectors are perpendicular
         return (Dot(scattered.Direction(), rec.normal) > 0);
@@ -138,9 +139,6 @@ public:
         {
             direction = Refract(unit_direction, rec.normal, refraction_ratio);
         }
-
-        // TODO delete this
-        //Vec3 direction = Refract(unit_direction, rec.normal, refraction_ratio);
 
         scattered = Ray3(rec.p, direction);
         return true;
