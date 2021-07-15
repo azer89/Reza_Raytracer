@@ -68,7 +68,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 		if (StartWith("v", line) && str_array.size() == 4)
 		{
-			vertices.push_back(Vec3(std::stod(str_array[1]),
+			vertices.emplace_back(Vec3(std::stod(str_array[1]),
 									std::stod(str_array[2]),
 									std::stod(str_array[3]) ));
 		}
@@ -118,22 +118,22 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		{
 			delim = "/";
 
-			uvs.push_back(Vec2(std::stod(str_array[1]), std::stod(str_array[2])));
+			uvs.emplace_back(std::stod(str_array[1]), std::stod(str_array[2]));
 
 		}
 		// Vertex normals
 		if (StartWith("vn", line) && str_array.size() == 4)
 		{
-			normals.push_back(Vec3(std::stod(str_array[1]),
-								   std::stod(str_array[2]),
-								   std::stod(str_array[3]) ));
+			normals.emplace_back(std::stod(str_array[1]),
+								 std::stod(str_array[2]),
+								 std::stod(str_array[3]));
 		}
 		// Vertex positions
 		else if (StartWith("v", line) && str_array.size() == 4)
 		{
-			vertices.push_back(Vec3(std::stod(str_array[1]),
-									std::stod(str_array[2]),
-									std::stod(str_array[3]) ));
+			vertices.emplace_back(std::stod(str_array[1]),
+								  std::stod(str_array[2]),
+								  std::stod(str_array[3]));
 		}
 		// Triangles
 		else if (StartWith("f", line) && str_array.size() == 4)

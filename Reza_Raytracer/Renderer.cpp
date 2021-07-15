@@ -70,7 +70,7 @@ void Renderer::ShootRaysMultithread()
 		int y_end = y_start + num_rows_per_thread - 1;
 		if (y_end >= image_height) { y_end = image_height - 1; }
 
-		futures.push_back(
+		futures.emplace_back(
 			std::async(
 				std::launch::async,
 				&Renderer::ShootRaysByAThread,
