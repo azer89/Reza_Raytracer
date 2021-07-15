@@ -128,7 +128,7 @@ void AddSphere(XMLElement* elem,
     Point3 pos = GetVec3(elem->FirstChildElement("position"));
     double radius = stod(GetString(elem, "radius"));
 
-    objects.push_back(make_shared<Sphere>(pos, radius, mat_map[material_str] ));
+    objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str] ));
 }
 
 void AddTriangleMesh(XMLElement* elem, 
@@ -189,7 +189,7 @@ void AddTriangleMesh(XMLElement* elem,
                 Vec2 uv2 = uvs[i2];
                 Vec2 uv3 = uvs[i3];
 
-                objects.push_back(make_shared<Triangle>(
+                objects.emplace_back(make_shared<Triangle>(
                     p1,
                     p2,
                     p3,
@@ -205,7 +205,7 @@ void AddTriangleMesh(XMLElement* elem,
             {
                 // has vertices and normals
 
-                objects.push_back(make_shared<Triangle>(
+                objects.emplace_back(make_shared<Triangle>(
                     p1,
                     p2,
                     p3,
@@ -219,7 +219,7 @@ void AddTriangleMesh(XMLElement* elem,
         {
             // only has vertices
 
-            objects.push_back(make_shared<Triangle>(
+            objects.emplace_back(make_shared<Triangle>(
                 p1,
                 p2,
                 p3,
