@@ -68,9 +68,9 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 		if (StartWith("v", line) && str_array.size() == 4)
 		{
-			vertices.emplace_back(Vec3(std::stod(str_array[1]),
-									std::stod(str_array[2]),
-									std::stod(str_array[3]) ));
+			vertices.emplace_back(std::stod(str_array[1]),
+								  std::stod(str_array[2]),
+								  std::stod(str_array[3]));
 		}
 		else if (StartWith("f", line) && str_array.size() == 4)
 		{
