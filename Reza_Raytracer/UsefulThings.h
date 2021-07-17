@@ -15,6 +15,7 @@ using std::sqrt;
 // Constants
 namespace UsefulConstants
 {
+    const double epsilon = std::numeric_limits<double>::epsilon();
     const double infinity = std::numeric_limits<double>::infinity();
     const double pi = std::acos(-1);
 }
