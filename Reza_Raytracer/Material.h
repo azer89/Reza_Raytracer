@@ -4,6 +4,8 @@
 #include "UsefulThings.h"
 #include "Texture.h"
 
+#include <iostream>
+
 struct HitRecord;
 
 class Material
@@ -78,6 +80,7 @@ public:
         const override 
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
+        Point3 scatter_direction = reflected + fuzzy * RandomVec3InUnitSphere();
         scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
 
         //attenuation = albedo->Value(rec.u, rec.v, rec.p); // Original
@@ -129,18 +132,18 @@ public:
         double sin_theta = sqrt(1.0 - cos_theta * cos_theta);
 
         bool cannot_refract = refraction_ratio * sin_theta > 1.0;
-        Vec3 direction;
+        Vec3 scatter_direction;
 
         if (cannot_refract || Reflectance(cos_theta, refraction_ratio) > UsefulFunctions::RandomDouble())
         {
-            direction = Reflect(unit_direction, rec.normal);
+            scatter_direction = Reflect(unit_direction, rec.normal);
         }
         else
         {
-            direction = Refract(unit_direction, rec.normal, refraction_ratio);
+            scatter_direction = Refract(unit_direction, rec.normal, refraction_ratio);
         }
 
-        scattered = Ray3(rec.p, direction);
+        scattered = Ray3(rec.p, scatter_direction);
         return true;
     }
 
