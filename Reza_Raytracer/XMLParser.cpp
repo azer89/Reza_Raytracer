@@ -157,7 +157,7 @@ void AddTriangleMesh(XMLElement* elem,
                        normal_indices,
                        uv_indices);
 
-    for (int i = 0; i < vertex_indices.size(); i++)
+    for (size_t i = 0; i < vertex_indices.size(); i++)
     {
         int i1 = vertex_indices[i][0];
         int i2 = vertex_indices[i][1];
@@ -225,7 +225,7 @@ void AddTriangleMesh(XMLElement* elem,
                 p3,
                 mat_map[material_str] ));
         } // else
-    } // for (int i = 0; i < vertex_indices.size(); i++)
+    } // for (size_t i = 0; i < vertex_indices.size(); i++)
 } // function ends here
 
 void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,

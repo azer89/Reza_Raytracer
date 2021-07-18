@@ -1,7 +1,9 @@
 #ifndef __AA_RECT__
 #define __AA_RECT__
 
-class XZRect : public hittable
+#include "Hittable.h"
+
+class XZRect : public Hittable
 {
 	
 };

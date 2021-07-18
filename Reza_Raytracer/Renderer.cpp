@@ -64,7 +64,7 @@ void Renderer::ShootRaysMultithread()
 	vector<atomic<int>>  counter_atoms(num_thread);
 	vector<future<void>> futures(num_thread);
 
-	for(int i = 0; i < num_thread; i++)
+	for(size_t i = 0; i < num_thread; i++)
 	{
 		int y_start = i * num_rows_per_thread;
 		int y_end = y_start + num_rows_per_thread - 1;
