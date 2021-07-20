@@ -132,6 +132,7 @@ public:
         double sin_theta = sqrt(1.0 - cos_theta * cos_theta);
 
         bool cannot_refract = refraction_ratio * sin_theta > 1.0;
+
         Vec3 scatter_direction;
 
         if (cannot_refract || Reflectance(cos_theta, refraction_ratio) > UsefulFunctions::RandomDouble())

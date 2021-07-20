@@ -21,6 +21,9 @@ namespace GlobalParameters
 
 	// Multithreading
 	extern int num_thread;
+
+	// Thin object padding
+	extern double thin_padding;
 }
 
 #endif
