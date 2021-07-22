@@ -3,8 +3,6 @@
 
 #include "Hittable.h"
 
-// github.com/RayTracing/raytracing.github.io/blob/master/src/TheNextWeek/aarect.h
-
 class XZRect : public Hittable
 {
 public:
