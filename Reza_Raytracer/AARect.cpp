@@ -9,7 +9,10 @@ bool XZRect::Hit(const Ray3& r,
     double t_min,
     double t_max, HitRecord& rec) const
 {
+    // r.Origin.y + t r.Direction.y = y
+    // t = (y - r.Origin.y) / r.Direction.y
     auto t = (y - r.Origin().y()) / r.Direction().y();
+
     if (t < t_min || t > t_max)
     {
         return false;
@@ -17,6 +20,7 @@ bool XZRect::Hit(const Ray3& r,
 
     auto x = r.Origin().x() + t * r.Direction().x();
     auto z = r.Origin().z() + t * r.Direction().z();
+
     if (x < x0 || x > x1 || z < z0 || z > z1)
     {
         return false;
