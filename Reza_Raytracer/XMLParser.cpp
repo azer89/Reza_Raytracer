@@ -120,6 +120,17 @@ void XMLParser::LoadParametersFromXML()
     cout << "Done parsing\n\n";
 }
 
+void AddXZRect(XMLElement* elem,
+    std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+    std::vector<shared_ptr<Hittable>>& objects)
+{
+    string material_str = GetString(elem, "material_name");
+    //Point3 pos = GetVec3(elem->FirstChildElement("position"));
+    //double radius = stod(GetString(elem, "radius"));
+
+    //objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
+}
+
 void AddSphere(XMLElement* elem, 
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)

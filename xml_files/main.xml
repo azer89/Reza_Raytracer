@@ -58,7 +58,7 @@
 
     <material name="material_glass" type="dielectric">
       <color	r="0.1" g ="0.7" b="0.7"/>
-      <refraction_index value="1.2"/>
+      <refraction_index value="-0.4"/>
     </material>
     
 	</materials>
@@ -66,7 +66,7 @@
   <objects>
 
     <object type="obj" 
-				material_name="material_glass" 
+				material_name="material_metal" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="0" y ="-0.52" z="-1.1" />
 			<scale	value="0.75" />
@@ -90,9 +90,13 @@
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
-    <object type="sphere" radius="100" material_name="material_checker">
-			<position	x="0" y ="-100.5" z="-1"/>
+    <object type="xzrect">
+			<position	x0="-1" x1="1" z0="-1" z1="1" y ="0.5"/>
 		</object>
+
+    <!--object type="sphere" radius="100" material_name="material_checker">
+			<position	x="0" y ="-100.5" z="-1"/>
+		</object-->
 		
 	</objects>
 	
