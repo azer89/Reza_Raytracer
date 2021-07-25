@@ -14,9 +14,9 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="2000"/>
-		<samples_per_pixel value="100"/>
-		<max_depth value="200"/>
+		<image_width value="1000"/>
+		<samples_per_pixel value="10"/>
+		<max_depth value="20"/>
 
     <!--
 			if num_thread >  0 the program will use multiple threads.
@@ -32,7 +32,7 @@
 		<texture name="checkerA" type="checker2">
 			<color1 r="0.7" g ="0.7" b="1.0"/>
 			<color2 r="1.0" g ="1.0" b="1.0"/>
-			<frequency value="5"/>
+			<frequency value="2"/>
 		</texture>
     
   </textures>
@@ -90,8 +90,8 @@
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
-    <object type="xzrect">
-			<position	x0="-1" x1="1" z0="-1" z1="1" y ="0.5"/>
+    <object type="xzrect" material_name="material_checker">
+			<boundary	x0="-1" x1="1" z0="-2" z1="0" y ="-0.5"/>
 		</object>
 
     <!--object type="sphere" radius="100" material_name="material_checker">

@@ -5,6 +5,7 @@
 #include "Hittable.h"
 #include "Sphere.h"
 #include "Triangle.h"
+#include "AARect.h"
 #include "Texture.h"
 #include "Material.h"
 
@@ -125,10 +126,14 @@ void AddXZRect(XMLElement* elem,
     std::vector<shared_ptr<Hittable>>& objects)
 {
     string material_str = GetString(elem, "material_name");
-    //Point3 pos = GetVec3(elem->FirstChildElement("position"));
-    //double radius = stod(GetString(elem, "radius"));
+    auto boundary_elem = elem->FirstChildElement("boundary");
+    double x0 = GetDouble(boundary_elem, "x0");
+    double x1 = GetDouble(boundary_elem, "x1");
+    double z0 = GetDouble(boundary_elem, "z0");
+    double z1 = GetDouble(boundary_elem, "z1");
+    double y  = GetDouble(boundary_elem, "y");
 
-    //objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
+    objects.emplace_back(make_shared<XZRect>(x0, x1, z0, z1, y, mat_map[material_str]));
 }
 
 void AddSphere(XMLElement* elem, 
@@ -354,6 +359,10 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         {
             AddTriangleMesh(obj_elem, mat_map, objects);
         } 
+        else if (type_str == "xzrect")
+        {
+            AddXZRect(obj_elem, mat_map, objects);
+        }
 
         obj_elem = obj_elem->NextSiblingElement();
     }
