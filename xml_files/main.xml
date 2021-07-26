@@ -91,7 +91,7 @@
     </object-->
 
     <object type="xzrect" material_name="material_checker">
-			<boundary	x0="-1" x1="1" z0="-2" z1="0" y ="-0.5"/>
+			<boundary	x0="-1" x1="1" z0="-2" z1="0" y="-0.5"/>
 		</object>
 
     <!--object type="sphere" radius="100" material_name="material_checker">

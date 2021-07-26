@@ -12,7 +12,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     // assign first object's BB to box
     src_objects[start]->BoundingBox(node_box);
     AABB dummy_box;
-    for(int i = start + 1; i < end; i++)
+    for (size_t i = start + 1; i < end; i++)
     {
         bool has_bb = src_objects[i]->BoundingBox(dummy_box);
         if (!has_bb)

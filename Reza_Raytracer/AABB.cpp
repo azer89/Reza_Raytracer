@@ -19,7 +19,7 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 	return true;*/
 
 	// optimized version
-	for (int a = 0; a < 3; a++)
+	for (size_t a = 0; a < 3; a++)
 	{
 		auto invDir = 1.0f / r.Direction()[a]; 
 		auto t0 = (Min()[a] - r.Origin()[a]) * invDir;

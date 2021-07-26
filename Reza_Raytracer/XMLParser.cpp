@@ -136,7 +136,7 @@ void AddXZRect(XMLElement* elem,
     objects.emplace_back(make_shared<XZRect>(x0, x1, z0, z1, y, mat_map[material_str]));
 }
 
-void AddSphere(XMLElement* elem, 
+void AddSphere(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
@@ -144,10 +144,10 @@ void AddSphere(XMLElement* elem,
     Point3 pos = GetVec3(elem->FirstChildElement("position"));
     double radius = stod(GetString(elem, "radius"));
 
-    objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str] ));
+    objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
 }
 
-void AddTriangleMesh(XMLElement* elem, 
+void AddTriangleMesh(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
@@ -165,13 +165,13 @@ void AddTriangleMesh(XMLElement* elem,
     double scale = GetDouble(elem->FirstChildElement("scale"));
 
     OBJReader obj_reader;
-    obj_reader.ReadOBJ(filename, 
-                       vertices, 
-                       normals, 
-                       uvs,
-                       vertex_indices, 
-                       normal_indices,
-                       uv_indices);
+    obj_reader.ReadOBJ(filename,
+        vertices,
+        normals,
+        uvs,
+        vertex_indices,
+        normal_indices,
+        uv_indices);
 
     for (size_t i = 0; i < vertex_indices.size(); i++)
     {
@@ -239,7 +239,7 @@ void AddTriangleMesh(XMLElement* elem,
                 p1,
                 p2,
                 p3,
-                mat_map[material_str] ));
+                mat_map[material_str]));
         } // else
     } // for (size_t i = 0; i < vertex_indices.size(); i++)
 } // function ends here
@@ -369,4 +369,5 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
 
     cout << "Done parsing objects\n\n";
 }
+
 

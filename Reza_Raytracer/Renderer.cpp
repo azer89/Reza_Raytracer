@@ -64,7 +64,7 @@ void Renderer::ShootRaysMultithread()
 	vector<atomic<int>>  counter_atoms(num_thread);
 	vector<future<void>> futures(num_thread);
 
-	for(size_t i = 0; i < num_thread; i++)
+	for (size_t i = 0; i < num_thread; i++)
 	{
 		int y_start = i * num_rows_per_thread;
 		int y_end = y_start + num_rows_per_thread - 1;
@@ -116,10 +116,10 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 
 	for (int y = y_end; y >= y_start; --y)
 	{
-		for (int x = 0; x < image_width; ++x)
+		for (size_t x = 0; x < image_width; ++x)
 		{
 			Color pixel_color(0, 0, 0);
-			for (int s = 0; s < samples_per_pixel; s++)
+			for (size_t s = 0; s < samples_per_pixel; s++)
 			{
 				auto u = (double(x) + UsefulFunctions::RandomDouble()) / (image_width - 1);
 				auto v = (double(y) + UsefulFunctions::RandomDouble()) / (image_height - 1);
@@ -152,10 +152,10 @@ void Renderer::ShootRaysSingleThread()
 		// adding progress text
 		std::cout << "\rScanlines remaining: " << y << ' ' << std::flush;
 
-		for (int x = 0; x < image_width; ++x)
+		for (size_t x = 0; x < image_width; x++)
 		{
 			Color pixel_color(0, 0, 0);
-			for (int s = 0; s < samples_per_pixel; s++)
+			for (size_t s = 0; s < samples_per_pixel; s++)
 			{
 				auto u = (double(x) + UsefulFunctions::RandomDouble()) / (image_width - 1);
 				auto v = (double(y) + UsefulFunctions::RandomDouble()) / (image_height - 1);
