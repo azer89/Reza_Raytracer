@@ -116,7 +116,7 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 
 	for (int y = y_end; y >= y_start; --y)
 	{
-		for (size_t x = 0; x < image_width; ++x)
+		for (int x = 0; x < image_width; ++x)
 		{
 			Color pixel_color(0, 0, 0);
 			for (size_t s = 0; s < samples_per_pixel; s++)
@@ -152,7 +152,7 @@ void Renderer::ShootRaysSingleThread()
 		// adding progress text
 		std::cout << "\rScanlines remaining: " << y << ' ' << std::flush;
 
-		for (size_t x = 0; x < image_width; x++)
+		for (int x = 0; x < image_width; x++)
 		{
 			Color pixel_color(0, 0, 0);
 			for (size_t s = 0; s < samples_per_pixel; s++)
