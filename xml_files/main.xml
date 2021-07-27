@@ -18,12 +18,19 @@
 		<samples_per_pixel value="10"/>
 		<max_depth value="20"/>
 
+    <!--Thin object padding (planes or triangles)-->
+    <thin_padding value="0.00001"/>
+
+    <!-- Minimum distance for ray intersections -->
+    <min_t value="0.001"/>
+
     <!--
 			if num_thread >  0 the program will use multiple threads.
       if num_thread =  1 the program will run on a single thread.
       if num_thread <= 0 the program will use max number of logical cpus.
     -->
 		<num_thread value="0"/>
+    
 	</renderer>
   
   <textures>
