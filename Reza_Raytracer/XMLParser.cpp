@@ -110,13 +110,16 @@ void XMLParser::LoadParametersFromXML()
     auto image_width_element       = renderer_element->FirstChildElement("image_width");
     auto samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
     auto max_depth_element         = renderer_element->FirstChildElement("max_depth");
+    auto thin_padding_element      = renderer_element->FirstChildElement("thin_padding");
+    auto min_t_element             = renderer_element->FirstChildElement("min_t");
     auto num_thread_element        = renderer_element->FirstChildElement("num_thread");
 
     GlobalParameters::renderer_image_width       = GetInt(image_width_element);
     GlobalParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_element);
     GlobalParameters::renderer_max_depth         = GetInt(max_depth_element);
-
-    GlobalParameters::num_thread = GetInt(num_thread_element);
+    GlobalParameters::thin_padding               = GetDouble(thin_padding_element);
+    GlobalParameters::min_t                      = GetDouble(min_t_element);
+    GlobalParameters::num_thread                 = GetInt(num_thread_element);
 
     cout << "Done parsing\n\n";
 }

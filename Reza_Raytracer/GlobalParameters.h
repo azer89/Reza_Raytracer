@@ -22,8 +22,11 @@ namespace GlobalParameters
 	// Multithreading
 	extern int num_thread;
 
-	// Thin object padding
+	// Thin object padding (planes or triangles)
 	extern double thin_padding;
+
+	// Minimum distance for ray intersections
+	extern double min_t;
 }
 
 #endif

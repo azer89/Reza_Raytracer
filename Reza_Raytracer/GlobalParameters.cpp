@@ -14,3 +14,5 @@ int GlobalParameters::renderer_max_depth = 0;
 int GlobalParameters::num_thread = 1;
 
 double GlobalParameters::thin_padding = 1e-5;
+
+double GlobalParameters::min_t = 0.001;
