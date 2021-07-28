@@ -18,49 +18,49 @@
 using namespace tinyxml2;
 using namespace std;
 
-inline Vec3 GetVec3(const XMLElement* element)
+inline Vec3 GetVec3(const XMLElement* elem)
 {
     double x;
     double y;
     double z;
 
-    element->QueryDoubleAttribute("x", &x);
-    element->QueryDoubleAttribute("y", &y);
-    element->QueryDoubleAttribute("z", &z);
+    elem->QueryDoubleAttribute("x", &x);
+    elem->QueryDoubleAttribute("y", &y);
+    elem->QueryDoubleAttribute("z", &z);
 
     return Vec3(x, y, z);
 }
 
-inline Color GetColor(const XMLElement* element)
+inline Color GetColor(const XMLElement* elem)
 {
     double r;
     double g;
     double b;
 
-    element->QueryDoubleAttribute("r", &r);
-    element->QueryDoubleAttribute("g", &g);
-    element->QueryDoubleAttribute("b", &b);
+    elem->QueryDoubleAttribute("r", &r);
+    elem->QueryDoubleAttribute("g", &g);
+    elem->QueryDoubleAttribute("b", &b);
 
     return Color(r, g, b);
 }
 
-inline int GetInt(const XMLElement* element, string name = "value")
+inline int GetInt(const XMLElement* elem, string name = "value")
 {
     int i;
-    element->QueryIntAttribute(name.c_str(), &i);
+    elem->QueryIntAttribute(name.c_str(), &i);
     return i;
 }
 
-inline double GetDouble(const XMLElement* element, string name = "value")
+inline double GetDouble(const XMLElement* elem, string name = "value")
 {
     double d;
-    element->QueryDoubleAttribute(name.c_str(), &d);
+    elem->QueryDoubleAttribute(name.c_str(), &d);
     return d;
 }
 
-inline string GetString(const XMLElement* element, string name)
+inline string GetString(const XMLElement* elem, string name)
 {
-    return element->Attribute(name.c_str());
+    return elem->Attribute(name.c_str());
 }
 
 void XMLParser::LoadParametersFromXML()
@@ -79,47 +79,47 @@ void XMLParser::LoadParametersFromXML()
     auto root = doc.FirstChild();
 
     // ===== Background gradient colors =====
-    auto back_gradient_element = root->FirstChildElement("background_gradient");
-    auto color1_element = back_gradient_element->FirstChildElement("color1");
-    auto color2_element = back_gradient_element->FirstChildElement("color2");
+    auto back_gradient_elem = root->FirstChildElement("background_gradient");
+    auto color1_elem = back_gradient_elem->FirstChildElement("color1");
+    auto color2_elem = back_gradient_elem->FirstChildElement("color2");
 
-    GlobalParameters::back_color1 = GetColor(color1_element);
-    GlobalParameters::back_color2 = GetColor(color2_element);
+    GlobalParameters::back_color1 = GetColor(color1_elem);
+    GlobalParameters::back_color2 = GetColor(color2_elem);
     
     // ===== Camera =====
-    auto camera_element = root->FirstChildElement("camera");
-    if (camera_element == nullptr)
+    auto camera_elem = root->FirstChildElement("camera");
+    if (camera_elem == nullptr)
     {
         cerr << "Cannot find camera in the xml file\n";
     }
-    auto lookfrom_element = camera_element->FirstChildElement("lookfrom");
-    auto lookat_element   = camera_element->FirstChildElement("lookat");
-    auto vup_element      = camera_element->FirstChildElement("vup");
+    auto lookfrom_elem = camera_elem->FirstChildElement("lookfrom");
+    auto lookat_elem   = camera_elem->FirstChildElement("lookat");
+    auto vup_elem      = camera_elem->FirstChildElement("vup");
     
-    GlobalParameters::camera_lookfrom = GetVec3(lookfrom_element);
-    GlobalParameters::camera_lookat   = GetVec3(lookat_element);
-    GlobalParameters::camera_vup      = GetVec3(vup_element);
+    GlobalParameters::camera_lookfrom = GetVec3(lookfrom_elem);
+    GlobalParameters::camera_lookat   = GetVec3(lookat_elem);
+    GlobalParameters::camera_vup      = GetVec3(vup_elem);
     
     // ===== Renderer =====
-    auto renderer_element = root->FirstChildElement("renderer");
-    if (renderer_element == nullptr)
+    auto renderer_elem = root->FirstChildElement("renderer");
+    if (renderer_elem == nullptr)
     {
         cerr << "Cannot find renderer in the xml file\n";
     }
 
-    auto image_width_element       = renderer_element->FirstChildElement("image_width");
-    auto samples_per_pixel_element = renderer_element->FirstChildElement("samples_per_pixel");
-    auto max_depth_element         = renderer_element->FirstChildElement("max_depth");
-    auto thin_padding_element      = renderer_element->FirstChildElement("thin_padding");
-    auto min_t_element             = renderer_element->FirstChildElement("min_t");
-    auto num_thread_element        = renderer_element->FirstChildElement("num_thread");
+    auto image_width_elem       = renderer_elem->FirstChildElement("image_width");
+    auto samples_per_pixel_elem = renderer_elem->FirstChildElement("samples_per_pixel");
+    auto max_depth_elem         = renderer_elem->FirstChildElement("max_depth");
+    auto thin_padding_elem      = renderer_elem->FirstChildElement("thin_padding");
+    auto min_t_elem             = renderer_elem->FirstChildElement("min_t");
+    auto num_thread_elem        = renderer_elem->FirstChildElement("num_thread");
 
-    GlobalParameters::renderer_image_width       = GetInt(image_width_element);
-    GlobalParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_element);
-    GlobalParameters::renderer_max_depth         = GetInt(max_depth_element);
-    GlobalParameters::thin_padding               = GetDouble(thin_padding_element);
-    GlobalParameters::min_t                      = GetDouble(min_t_element);
-    GlobalParameters::num_thread                 = GetInt(num_thread_element);
+    GlobalParameters::renderer_image_width       = GetInt(image_width_elem);
+    GlobalParameters::renderer_samples_per_pixel = GetInt(samples_per_pixel_elem);
+    GlobalParameters::renderer_max_depth         = GetInt(max_depth_elem);
+    GlobalParameters::thin_padding               = GetDouble(thin_padding_elem);
+    GlobalParameters::min_t                      = GetDouble(min_t_elem);
+    GlobalParameters::num_thread                 = GetInt(num_thread_elem);
 
     cout << "Done parsing\n\n";
 }
