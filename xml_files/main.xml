@@ -2,7 +2,7 @@
 	<!-- You need to specify the path of this xml file on XMLParser.cpp -->
 	
 	<camera>		
-		<lookfrom	x="-0.1" y ="2" z="1.5"/>
+		<lookfrom	x="-0.1" y ="2" z="5.5"/>
 		<lookat		x="-0.1" y ="0.0" z="-1.3"/>
 		<vup		x="0" y ="1" z="0"/>
 	</camera>
@@ -14,8 +14,8 @@
 	</background_gradient>
 	
 	<renderer>
-		<image_width value="1000"/>
-		<samples_per_pixel value="10"/>
+		<image_width value="2000"/>
+		<samples_per_pixel value="50"/>
 		<max_depth value="20"/>
 
     <!--Thin object padding (planes or triangles)-->
@@ -46,7 +46,7 @@
   
 	<materials>
 		<material name="material_ground" type="lambertian">
-      <color r="0.7" g ="0.3" b="0.3"/>
+      <color r="1.0" g ="1.0" b="1.0"/>
 		</material>
 
 		<material name="material_metal" type="metal">
@@ -59,13 +59,13 @@
       <texture name="checkerA"/>
     </material>
 
-		<material name="material_center" type="lambertian">
-			<color	r="0.3" g ="0.3" b="0.7"/>
+		<material name="material_plastic" type="lambertian">
+			<color	r="0.7" g ="0.3" b="0.3"/>
 		</material>
 
     <material name="material_glass" type="dielectric">
       <color	r="0.1" g ="0.7" b="0.7"/>
-      <refraction_index value="-0.4"/>
+      <refraction_index value="1.1"/>
     </material>
     
 	</materials>
@@ -73,32 +73,32 @@
   <objects>
 
     <object type="obj" 
-				material_name="material_metal" 
+				material_name="material_plastic" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
-			<position	x="0" y ="-0.52" z="-1.1" />
+			<position	x="0" y ="-0.52" z=" 0.4" />
 			<scale	value="0.75" />
 		</object>
 
-    <!--object type="obj"
-				material_name="material_side1"
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_n.obj">
-      <position	x="-1.0" y ="-0.52" z="-0.3" />
-      <scale	value="0.5" />
+    <object type="obj"
+				material_name="material_plastic"
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
+      <position	x="-0.7" y ="-0.52" z="-1.1" />
+      <scale	value="0.75" />
     </object>
 
     <object type="obj"
-				material_name="material_side2"
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_n.obj">
-      <position	x="1.0" y ="-0.52" z="-0.3" />
-      <scale	value="0.5" />
-    </object-->
+				material_name="material_plastic"
+				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
+      <position	x="0.7" y ="-0.52" z="-1.1" />
+      <scale	value="0.75" />
+    </object>
 
     <!--object type="sphere" radius="0.5" material_name="material_checker">
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
-    <object type="xzrect" material_name="material_checker">
-			<boundary	x0="-1" x1="1" z0="-2" z1="0" y="-0.5"/>
+    <object type="xzrect" material_name="material_ground">
+			<boundary	x0="-10" x1="10" z0="-20" z1="20" y="-0.5"/>
 		</object>
 
     <!--object type="sphere" radius="100" material_name="material_checker">
