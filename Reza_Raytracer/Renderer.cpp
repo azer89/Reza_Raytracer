@@ -192,13 +192,13 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 	if (scene->Hit(r, GlobalParameters::min_t, UsefulConstants::infinity, rec))
 	{
 		Ray3 scattered;
-		Color attenuation;
-		//Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p); 
+		Color attenuation; 
+		Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p); 
 
 		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
 		{
-			return attenuation * RayColor(scattered, depth - 1);
-			//return emitted + attenuation * RayColor(scattered, world, depth - 1); // work in progress
+			//return attenuation * RayColor(scattered, depth - 1);
+			return emitted + attenuation * RayColor(scattered, depth - 1); // work in progress
 		}
 
 		return Color(0, 0, 0);
