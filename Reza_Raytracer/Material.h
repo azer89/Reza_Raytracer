@@ -49,7 +49,6 @@ public:
         }
     	
         scattered = Ray3(rec.p, scatter_direction);
-        //attenuation = albedo;
         attenuation = albedo->Value(rec.u, rec.v, rec.p);
         return true;
     }
@@ -58,6 +57,37 @@ public:
     // Color;
     shared_ptr<Texture> albedo;
 };
+
+class Lambertian2Material : public Material
+{
+public:
+    Lambertian2Material(const Color& a) : albedo(make_shared<SolidColorTexture>(a)) {}
+    Lambertian2Material(shared_ptr<Texture>& t) : albedo(t) {}
+
+    bool Scatter(const Ray3& r_in,
+        const HitRecord& rec,
+        Color& attenuation,
+        Ray3& scattered)
+        const override
+    {
+        Point3 scatter_direction = rec.normal + RandomUnitVector();
+
+        // Catch degenerate scatter direction
+        if (scatter_direction.IsNearZero())
+        {
+            scatter_direction = rec.normal;
+        }
+
+        scattered = Ray3(rec.p, scatter_direction);
+        attenuation = albedo->Value(rec.u, rec.v, rec.p);
+        return true;
+    }
+
+public:
+    // Color;
+    shared_ptr<Texture> albedo;
+};
+
 
 class MetalMaterial : public Material 
 {
