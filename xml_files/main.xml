@@ -67,13 +67,17 @@
       <color	r="0.1" g ="0.7" b="0.7"/>
       <refraction_index value="1.1"/>
     </material>
+
+    <material name="material_light" type="diffuselight">
+      <color	r="1.0" g ="1.0" b="1.0"/>
+    </material>
     
 	</materials>
 
   <objects>
 
     <object type="obj" 
-				material_name="material_plastic" 
+				material_name="material_light" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="0" y ="-0.52" z=" 0.4" />
 			<scale	value="0.75" />

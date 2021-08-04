@@ -199,9 +199,9 @@ public:
 class DiffuseLightMaterial : public Material
 {
 public:
-    DiffuseLightMaterial(const Color& c)
+    DiffuseLightMaterial(shared_ptr<Texture> t)
     {
-        emit = make_shared<SolidColorTexture>(c);
+        emit = t;
     }
 
     bool Scatter(const Ray3& r_in,

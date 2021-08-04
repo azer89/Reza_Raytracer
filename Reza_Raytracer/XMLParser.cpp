@@ -328,6 +328,10 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         {            
             mat_map[name_str] = make_shared<LambertianMaterial>(texture_ptr);
         }
+        else if (type_str == "diffuselight")
+        {
+            mat_map[name_str] = make_shared<DiffuseLightMaterial>(texture_ptr);
+        }
         else if (type_str == "dielectric")
         {
             auto ridx_elem = mat_elem->FirstChildElement("refraction_index");
