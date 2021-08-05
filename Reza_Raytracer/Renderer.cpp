@@ -201,7 +201,7 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 			return emitted + attenuation * RayColor(scattered, depth - 1); // work in progress
 		}
 
-		return emitted;
+		return emitted; // this is probably wrong
 	}
 
 	Vec3 unit_direction = UnitVector(r.Direction());
