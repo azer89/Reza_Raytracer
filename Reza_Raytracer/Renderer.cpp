@@ -209,36 +209,6 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
 
-// This is a recursive function
-Color Renderer::RayColorWithLightSource(const Ray3& r, const Color& background, const Scene& scene, int depth)
-{
-	// If we've exceeded the ray bounce limit, no more light is gathered.
-	if (depth <= 0)
-	{
-		return Color(0, 0, 0);
-	}
-
-	// Recursive
-	HitRecord rec;
-
-	// If the ray hits nothing, return the background color.
-	if (!scene.Hit(r, GlobalParameters::min_t, UsefulConstants::infinity, rec))
-	{
-		return background;
-	}
-
-	Ray3 scattered;
-	Color attenuation;
-	Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p);
-
-	if (!rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
-	{
-		return emitted;
-	}
-
-	return emitted + attenuation * RayColorWithLightSource(scattered, background, scene, depth - 1);
-}
-
 // for debugging normal vectors only
 Color Renderer::RayColorNormalOnly(const Ray3& r)
 {

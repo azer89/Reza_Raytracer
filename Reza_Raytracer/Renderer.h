@@ -46,9 +46,6 @@ public:
 private:
 	Color RayColor(const Ray3& r, int depth);
 	Color RayColorNormalOnly(const Ray3& r);
-	Color RayColorWithLightSource(const Ray3& r, 
-								  const Color& background, 
-								  const Scene& scene, int depth);
 };
 
 #endif
