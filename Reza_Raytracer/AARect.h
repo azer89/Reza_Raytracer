@@ -3,6 +3,7 @@
 
 #include "Hittable.h"
 
+// XZ
 class XZRect : public Hittable
 {
 public:
@@ -38,6 +39,38 @@ public:
 	double z1;
 
 	double y;
+};
+
+// XY
+class XYRect : public Hittable
+{
+public:
+
+public:
+	shared_ptr<Material> material_ptr;
+
+	double x0;
+	double x1;
+	double y0;
+	double y1;
+
+	double z;
+};
+
+// YZ
+class YZRect : public Hittable
+{
+public:
+
+public:
+	shared_ptr<Material> material_ptr;
+
+	double y0;
+	double y1;
+	double z0;
+	double z1;
+
+	double x;
 };
 
 #endif
