@@ -45,6 +45,28 @@ public:
 class XYRect : public Hittable
 {
 public:
+	// Constructor
+	XYRect(double _x0, 
+		   double _x1, 
+		   double _y0, 
+		   double _y1, 
+		   double _z, 
+		   shared_ptr<Material>& mat) :
+		x0(_x0),
+		x1(_x1),
+		y0(_y0),
+		y1(_y1),
+		z(_z),
+		material_ptr(mat)
+	{
+	}
+
+	bool Hit(const Ray3& r,
+			 double t_min,
+			 double t_max,
+			 HitRecord& rec) const override;
+
+	bool BoundingBox(AABB& output_box) const override;
 
 public:
 	shared_ptr<Material> material_ptr;
@@ -61,6 +83,28 @@ public:
 class YZRect : public Hittable
 {
 public:
+	// Constructor
+	YZRect(double _y0, 
+		   double _y1, 
+		   double _z0, 
+		   double _z1, 
+		   double _x, 
+		   shared_ptr<Material>& mat) :
+		y0(_y0),
+		y1(_y1),
+		z0(_z0),
+		z1(_z1),
+		x(_x),
+		material_ptr(mat)
+	{
+	}
+
+	bool Hit(const Ray3& r,
+			 double t_min,
+			 double t_max,
+			 HitRecord& rec) const override;
+
+	bool BoundingBox(AABB& output_box) const override;
 
 public:
 	shared_ptr<Material> material_ptr;
