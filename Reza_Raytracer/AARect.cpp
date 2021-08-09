@@ -43,6 +43,11 @@ bool XYRect::Hit(const Ray3& r,
 {
     auto t = (z - r.Origin().z()) / r.Direction().z();
 
+    if (t < t_min || t > t_max)
+    {
+        return false;
+    }
+
     // TODO
 
     return true;
@@ -53,6 +58,11 @@ bool YZRect::Hit(const Ray3& r,
                  double t_max, HitRecord& rec) const
 {
     auto t = (x - r.Origin().x()) / r.Direction().x();
+
+    if (t < t_min || t > t_max)
+    {
+        return false;
+    }
 
     // TODO
 
