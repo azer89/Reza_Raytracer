@@ -48,6 +48,14 @@ bool XYRect::Hit(const Ray3& r,
         return false;
     }
 
+    auto x = r.Origin().x() + t * r.Direction().x();
+    auto y = r.Origin().y() + t * r.Direction().y();
+
+    if (x < x0 || x > x1 || y < y0 || y > y1)
+    {
+        return false;
+    }
+
     // TODO
 
     return true;
@@ -60,6 +68,14 @@ bool YZRect::Hit(const Ray3& r,
     auto t = (x - r.Origin().x()) / r.Direction().x();
 
     if (t < t_min || t > t_max)
+    {
+        return false;
+    }
+
+    auto y = r.Origin().x() + t * r.Direction().y();
+    auto z = r.Origin().z() + t * r.Direction().z();
+
+    if (y < y0 || y > y1 || z < z0 || z > z1)
     {
         return false;
     }
