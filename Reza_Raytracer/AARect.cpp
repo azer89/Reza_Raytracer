@@ -56,7 +56,13 @@ bool XYRect::Hit(const Ray3& r,
         return false;
     }
 
-    // TODO
+    rec.u = (x - x0) / (x1 - x0);
+    rec.v = (y - y0) / (y1 - y0);
+    rec.t = t;
+    auto outward_normal = Vec3(0, 0, 1);
+    rec.SetFaceNormal(r, outward_normal);
+    rec.mat_ptr = material_ptr.get();
+    rec.p = r.At(t);
 
     return true;
 }
@@ -80,7 +86,13 @@ bool YZRect::Hit(const Ray3& r,
         return false;
     }
 
-    // TODO
+    rec.u = (y - y0) / (y1 - y0);
+    rec.v = (z - z0) / (z1 - z0);
+    rec.t = t;
+    auto outward_normal = Vec3(1, 0, 0); // is this correct ?
+    rec.SetFaceNormal(r, outward_normal);
+    rec.mat_ptr = material_ptr.get();
+    rec.p = r.At(t);
 
     return true;
 }
