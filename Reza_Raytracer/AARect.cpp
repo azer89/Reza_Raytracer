@@ -89,7 +89,7 @@ bool YZRect::Hit(const Ray3& r,
     rec.u = (y - y0) / (y1 - y0);
     rec.v = (z - z0) / (z1 - z0);
     rec.t = t;
-    auto outward_normal = Vec3(1, 0, 0); // is this correct ?
+    auto outward_normal = Vec3(1, 0, 0); 
     rec.SetFaceNormal(r, outward_normal);
     rec.mat_ptr = material_ptr.get();
     rec.p = r.At(t);
