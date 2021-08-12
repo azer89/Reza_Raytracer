@@ -36,10 +36,6 @@ Renderer::Renderer()
 	scene->CreateScene();
 }
 
-Renderer::~Renderer()
-{
-}
-
 /*
 Source
 	www.cplusplus.com/forum/beginner/240592/
@@ -88,8 +84,6 @@ void Renderer::ShootRaysMultithread()
 	{
 		// update every 0.5 seconds
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
-		//std::unique_lock<std::mutex> lock(mutex_task);
-		//cv_task.wait(lock);
 
 		sum_rows = 0;
 		for (const auto& ca : counter_atoms)
@@ -134,11 +128,9 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 					sqrt(pixel_color.z() * scale),
 					x,
 					y);
-			// notify main thread that we have computed a pixel
-			//cv_task.notify_one();
 		}
 
-		// atomic increment that's slower than regular int but whatever
+		// atomic increment is slower than regular int
 		counter_atom++;
 	}
 }
@@ -197,7 +189,6 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 
 		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
 		{
-			//return attenuation * RayColor(scattered, depth - 1);
 			return emitted + attenuation * RayColor(scattered, depth - 1); // work in progress
 		}
 
@@ -209,7 +200,7 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
 
-// for debugging normal vectors only
+// For debugging normal vectors only
 Color Renderer::RayColorNormalOnly(const Ray3& r)
 {
 	HitRecord rec;
@@ -223,4 +214,3 @@ Color Renderer::RayColorNormalOnly(const Ray3& r)
 	auto t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
-

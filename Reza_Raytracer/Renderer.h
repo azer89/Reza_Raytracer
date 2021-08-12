@@ -19,9 +19,6 @@ private:
 	std::unique_ptr<ImageHandler> imgHandler;
 	std::unique_ptr<Scene> scene;
 
-	//std::condition_variable cv_task;
-	//std::mutex mutex_task;
-
 	double scale;
 	int image_width;
 	int image_height;
@@ -30,7 +27,6 @@ private:
 
 public:
 	Renderer();
-	~Renderer();
 			
 	// Single thread
 	void ShootRaysSingleThread();
@@ -38,13 +34,16 @@ public:
 	// Multi threads using std::async and std::future
 	void ShootRaysMultithread();
 
-	// thread task
+	// Thread task
 	void ShootRaysByAThread(std::atomic<int>& counter_atom, 
 			int y_start,
 			int y_end);
 
 private:
+	// Calculate a color of a ray
 	Color RayColor(const Ray3& r, int depth);
+
+	// For debugging normal vectors only
 	Color RayColorNormalOnly(const Ray3& r);
 };
 

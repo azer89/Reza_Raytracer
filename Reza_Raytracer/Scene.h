@@ -42,8 +42,7 @@ private:
     // Materials, you need their names descibed in the main.xml
     std::unordered_map<std::string, shared_ptr<Material>> material_map;
 
-    // List of objects
-    // They have to be shared_ptrs because they're shared with BHV nodes
+    // List of objects that have to be shared_ptrs because they're shared with BHV nodes
     vector<shared_ptr<Hittable>> objects;
 };
 
