@@ -124,6 +124,7 @@ void XMLParser::LoadParametersFromXML()
     cout << "Done parsing\n\n";
 }
 
+// XZ
 void AddXZRect(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
@@ -137,6 +138,38 @@ void AddXZRect(XMLElement* elem,
     double y  = GetDouble(boundary_elem, "y");
 
     objects.emplace_back(make_shared<XZRect>(x0, x1, z0, z1, y, mat_map[material_str]));
+}
+
+// XY
+void AddXYRect(XMLElement* elem,
+    std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+    std::vector<shared_ptr<Hittable>>& objects)
+{
+    string material_str = GetString(elem, "material_name");
+    auto boundary_elem = elem->FirstChildElement("boundary");
+    double x0 = GetDouble(boundary_elem, "x0");
+    double x1 = GetDouble(boundary_elem, "x1");
+    double y0 = GetDouble(boundary_elem, "y0");
+    double y1 = GetDouble(boundary_elem, "y1");
+    double z  = GetDouble(boundary_elem, "z");
+
+    objects.emplace_back(make_shared<XZRect>(x0, x1, y0, y1, z, mat_map[material_str]));
+}
+
+// YZ
+void AddYZRect(XMLElement* elem,
+    std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+    std::vector<shared_ptr<Hittable>>& objects)
+{
+    string material_str = GetString(elem, "material_name");
+    auto boundary_elem = elem->FirstChildElement("boundary");
+    double y0 = GetDouble(boundary_elem, "y0");
+    double y1 = GetDouble(boundary_elem, "y1");
+    double z0 = GetDouble(boundary_elem, "z0");
+    double z1 = GetDouble(boundary_elem, "z1");
+    double x  = GetDouble(boundary_elem, "y");
+
+    objects.emplace_back(make_shared<XZRect>(y0, y1, z0, z1, x, mat_map[material_str]));
 }
 
 void AddSphere(XMLElement* elem,
@@ -369,6 +402,14 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         else if (type_str == "xzrect")
         {
             AddXZRect(obj_elem, mat_map, objects);
+        }
+        else if (type_str == "xyrect")
+        {
+            AddXYRect(obj_elem, mat_map, objects);
+        }
+        else if (type_str == "yzrect")
+        {
+            AddYZRect(obj_elem, mat_map, objects);
         }
 
         obj_elem = obj_elem->NextSiblingElement();
