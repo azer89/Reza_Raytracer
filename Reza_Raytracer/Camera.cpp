@@ -7,7 +7,8 @@ Camera::Camera()
     lookat   = GlobalParameters::camera_lookat;
     vup      = GlobalParameters::camera_vup;
 
-    this->vfov = 30; // in degree
+    // TODO: to XML
+    this->vfov = 40; // in degree
     this->aspect_ratio = 16.0 / 9.0;
 	
     auto theta = UsefulFunctions::DegreesToRadians(vfov);
