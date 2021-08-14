@@ -145,7 +145,7 @@ void AddXYRect(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    string material_str = GetString(elem, "material_name");
+    /*string material_str = GetString(elem, "material_name");
     auto boundary_elem = elem->FirstChildElement("boundary");
     double x0 = GetDouble(boundary_elem, "x0");
     double x1 = GetDouble(boundary_elem, "x1");
@@ -153,7 +153,7 @@ void AddXYRect(XMLElement* elem,
     double y1 = GetDouble(boundary_elem, "y1");
     double z  = GetDouble(boundary_elem, "z");
 
-    objects.emplace_back(make_shared<XZRect>(x0, x1, y0, y1, z, mat_map[material_str]));
+    objects.emplace_back(make_shared<XZRect>(x0, x1, y0, y1, z, mat_map[material_str]));*/
 }
 
 // YZ
@@ -161,7 +161,7 @@ void AddYZRect(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    string material_str = GetString(elem, "material_name");
+    /*string material_str = GetString(elem, "material_name");
     auto boundary_elem = elem->FirstChildElement("boundary");
     double y0 = GetDouble(boundary_elem, "y0");
     double y1 = GetDouble(boundary_elem, "y1");
@@ -169,7 +169,7 @@ void AddYZRect(XMLElement* elem,
     double z1 = GetDouble(boundary_elem, "z1");
     double x  = GetDouble(boundary_elem, "y");
 
-    objects.emplace_back(make_shared<XZRect>(y0, y1, z0, z1, x, mat_map[material_str]));
+    objects.emplace_back(make_shared<XZRect>(y0, y1, z0, z1, x, mat_map[material_str]));*/
 }
 
 void AddSphere(XMLElement* elem,
@@ -182,6 +182,24 @@ void AddSphere(XMLElement* elem,
 
     objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
 }
+/*
+void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
+    std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+    std::vector<shared_ptr<Hittable>>& objects)
+{
+    
+    texture_map["cornell_red_tex"] = make_shared<SolidColorTexture>(Color(0.65, 0.05, 0.05)); // red
+    texture_map["cornell_white_tex"] = make_shared<SolidColorTexture>(Color(0.73, 0.73, 0.73)); // white
+    texture_map["cornell_green_tex"] = make_shared<SolidColorTexture>(Color(0.12, 0.45, 0.15)); // green
+    texture_map["cornell_light_tex"] = make_shared<SolidColorTexture>(Color(15, 15, 15)); // light
+
+    mat_map["cornell_red_mat"] = make_shared<LambertianMaterial>(texture_map["cornell_red_tex"]); // red
+    mat_map["cornell_white_mat"] = make_shared<LambertianMaterial>(texture_map["cornell_white_tex"]); // white
+    mat_map["cornell_green_mat"] = make_shared<LambertianMaterial>(texture_map["cornell_green_tex"]); // green
+    mat_map["cornell_light_mat"] = make_shared<DiffuseLightMaterial>(texture_map["cornell_light_tex"]); // light
+    
+}
+*/
 
 void AddTriangleMesh(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
