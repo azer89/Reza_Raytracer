@@ -29,16 +29,16 @@ Renderer::Renderer()
 	this->max_depth			= GlobalParameters::renderer_max_depth;
 
 	// Image IO
-	imgHandler = make_unique<ImageHandler>(image_width, image_height); // set up image handler
+	img_handler = make_unique<ImageHandler>(image_width, image_height); // set up image handler
 
 	 // World
 	scene = make_unique<Scene>();
 	scene->CreateScene();
 }
 
-Renderer::~Renderer()
-{
-}
+//Renderer::~Renderer()
+//{
+//}
 
 /*
 Source
@@ -103,7 +103,7 @@ void Renderer::ShootRaysMultithread()
 	std::cout << "\nRendering done in " << std::chrono::duration_cast<std::chrono::seconds>(end1 - start1).count() << " s\n\n";
 
 	// save a nice picture
-	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
+	img_handler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 }
 
 void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
@@ -127,7 +127,7 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 			}
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
-			imgHandler->SetPixel(sqrt(pixel_color.x() * scale),
+			img_handler->SetPixel(sqrt(pixel_color.x() * scale),
 					sqrt(pixel_color.y() * scale),
 					sqrt(pixel_color.z() * scale),
 					x,
@@ -160,7 +160,7 @@ void Renderer::ShootRaysSingleThread()
 			}
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
-			imgHandler->SetPixel(sqrt(pixel_color.x() * scale),
+			img_handler->SetPixel(sqrt(pixel_color.x() * scale),
 								sqrt(pixel_color.y() * scale),
 								sqrt(pixel_color.z() * scale),
 								x,
@@ -168,7 +168,7 @@ void Renderer::ShootRaysSingleThread()
 		}
 	}
 
-	imgHandler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
+	img_handler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 
 	std::cout << "\nDone :)\n";
 }

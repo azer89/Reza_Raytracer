@@ -8,15 +8,17 @@
 //#include <mutex>
 
 #include "Scene.h"
+#include "ImageHandler.h"
+#include "Camera.h"
 
-class ImageHandler;
-class Camera;
+//class ImageHandler;
+//class Camera;
 
 class Renderer
 {
 private:
+	std::unique_ptr<ImageHandler> img_handler;
 	std::unique_ptr<Camera> camera;
-	std::unique_ptr<ImageHandler> imgHandler;
 	std::unique_ptr<Scene> scene;
 
 	double scale;
@@ -27,7 +29,7 @@ private:
 
 public:
 	Renderer();
-	~Renderer(); // Need a destructor for unique_ptrs ?
+	//~Renderer(); // Need a destructor for unique_ptrs ?
 			
 	// Single thread
 	void ShootRaysSingleThread();
