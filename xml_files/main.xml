@@ -21,7 +21,7 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="50"/>
+		<samples_per_pixel value="200"/>
 		<max_depth value="200"/>
 
     <!--Thin object padding (planes or triangles)-->

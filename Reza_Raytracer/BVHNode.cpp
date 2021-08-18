@@ -37,18 +37,18 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     size_t object_span = end - start;
 
     // creating a tree
-    /*if (object_span == 1)
+    if (object_span == 1)
     {
         // Option 1
         // pointing to the same object
-        //left_node = right_node = src_objects[start];
+        left_node = right_node = src_objects[start];
 
         // Option 2
         // github.com/RayTracing/raytracing.github.io/issues/804
-        left_node = src_objects[start];
-        right_node = empty_object;
+        //left_node = src_objects[start];
+        //right_node = empty_object;
     }
-    else*/ if (object_span == 2)
+    else if (object_span == 2)
     {
         if (comparator(src_objects[start], src_objects[start + 1]))
         {
