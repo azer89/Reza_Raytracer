@@ -183,6 +183,7 @@ void AddSphere(XMLElement* elem,
     objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
 }
 
+// raytracing.github.io/books/RayTracingTheNextWeek.html#rectanglesandlights/creatinganempty%E2%80%9Ccornellbox%E2%80%9D
 void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)

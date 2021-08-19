@@ -99,6 +99,8 @@ bool YZRect::Hit(const Ray3& r,
 
 bool XYRect::BoundingBox(AABB& output_box) const
 {
+    // The bounding box must have non-zero width in each dimension, 
+    // so pad the Z dimension a small amount.
     output_box = AABB(Point3(x0, y0, z - GlobalParameters::thin_padding),
                       Point3(x1, y1, z + GlobalParameters::thin_padding));
     return true;
@@ -106,6 +108,8 @@ bool XYRect::BoundingBox(AABB& output_box) const
 
 bool XZRect::BoundingBox(AABB& output_box) const
 {
+    // The bounding box must have non-zero width in each dimension, 
+    // so pad the Y dimension a small amount.
     output_box = AABB(Point3(x0, y - GlobalParameters::thin_padding, z0), 
                       Point3(x1, y + GlobalParameters::thin_padding, z1));
     return true;
@@ -113,6 +117,8 @@ bool XZRect::BoundingBox(AABB& output_box) const
 
 bool YZRect::BoundingBox(AABB& output_box) const
 {
+    // The bounding box must have non-zero width in each dimension, 
+    // so pad the X dimension a small amount.
     output_box = AABB(Point3(x - GlobalParameters::thin_padding, y0, z0),
                       Point3(x + GlobalParameters::thin_padding, y1, z1));
     return true;
