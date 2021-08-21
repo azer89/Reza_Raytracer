@@ -72,15 +72,13 @@ bool YZRect::Hit(const Ray3& r,
                  double t_max, HitRecord& rec) const
 {
     auto t = (x - r.Origin().x()) / r.Direction().x();
-
     if (t < t_min || t > t_max)
     {
         return false;
     }
 
-    auto y = r.Origin().x() + t * r.Direction().y();
+    auto y = r.Origin().y() + t * r.Direction().y();
     auto z = r.Origin().z() + t * r.Direction().z();
-
     if (y < y0 || y > y1 || z < z0 || z > z1)
     {
         return false;
@@ -89,7 +87,7 @@ bool YZRect::Hit(const Ray3& r,
     rec.u = (y - y0) / (y1 - y0);
     rec.v = (z - z0) / (z1 - z0);
     rec.t = t;
-    auto outward_normal = Vec3(1, 0, 0); 
+    auto outward_normal = Vec3(1, 0, 0);
     rec.SetFaceNormal(r, outward_normal);
     rec.mat_ptr = material_ptr.get();
     rec.p = r.At(t);
