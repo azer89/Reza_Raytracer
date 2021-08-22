@@ -195,17 +195,17 @@ void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture
     texture_map["cornell_green_tex"] = make_shared<SolidColorTexture>(Color(0.12, 0.45, 0.15)); // green
     texture_map["cornell_light_tex"] = make_shared<SolidColorTexture>(Color(15, 15, 15)); // light
 
-    mat_map["cornell_red_mat"] = make_shared<LambertianMaterial>(texture_map["cornell_red_tex"]); // red
-    mat_map["cornell_white_mat"] = make_shared<LambertianMaterial>(texture_map["cornell_white_tex"]); // white
-    mat_map["cornell_green_mat"] = make_shared<LambertianMaterial>(texture_map["cornell_green_tex"]); // green
+    mat_map["cornell_red_mat"] = make_shared<MetalMaterial>(texture_map["cornell_red_tex"], 0.0); // red
+    mat_map["cornell_white_mat"] = make_shared<MetalMaterial>(texture_map["cornell_white_tex"], 0.0); // white
+    mat_map["cornell_green_mat"] = make_shared<MetalMaterial>(texture_map["cornell_green_tex"], 0.0); // green
     mat_map["cornell_light_mat"] = make_shared<DiffuseLightMaterial>(texture_map["cornell_light_tex"]); // light
 
     objects.emplace_back(make_shared<YZRect>(0, 555, 0, 555, 555, mat_map["cornell_green_mat"]));
-    //objects.emplace_back(make_shared<YZRect>(0, 555, 0, 555, 0, mat_map["cornell_red_mat"]));
-    //objects.emplace_back(make_shared<XZRect>(213, 343, 227, 332, 554, mat_map["cornell_light_mat"]));
+    objects.emplace_back(make_shared<YZRect>(0, 555, 0, 555, 0, mat_map["cornell_red_mat"]));
+    objects.emplace_back(make_shared<XZRect>(213, 343, 227, 332, 554, mat_map["cornell_light_mat"]));
     objects.emplace_back(make_shared<XZRect>(0, 555, 0, 555, 0, mat_map["cornell_white_mat"]));
     objects.emplace_back(make_shared<XZRect>(0, 555, 0, 555, 555, mat_map["cornell_white_mat"]));
-    //objects.emplace_back(make_shared<XYRect>(0, 555, 0, 555, 555, mat_map["cornell_white_mat"]));
+    objects.emplace_back(make_shared<XYRect>(0, 555, 0, 555, 555, mat_map["cornell_white_mat"]));
 }
 
 void AddTriangleMesh(XMLElement* elem,
