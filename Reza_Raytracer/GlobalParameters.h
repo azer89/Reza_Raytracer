@@ -9,6 +9,8 @@ namespace GlobalParameters
 	extern Point3 camera_lookfrom;
 	extern Point3 camera_lookat;
 	extern Vec3   camera_vup;
+	extern double camera_vfov;
+	extern double camera_aspect_ratio;
 
 	// Background gradient colors
 	extern Color back_color1;

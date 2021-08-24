@@ -18,6 +18,17 @@
 using namespace tinyxml2;
 using namespace std;
 
+inline Vec2 GetVec2(const XMLElement* elem)
+{
+    double x;
+    double y;
+
+    elem->QueryDoubleAttribute("x", &x);
+    elem->QueryDoubleAttribute("y", &y);
+
+    return Vec2(x, y);
+}
+
 inline Vec3 GetVec3(const XMLElement* elem)
 {
     double x;
@@ -92,9 +103,11 @@ void XMLParser::LoadParametersFromXML()
     {
         cerr << "Cannot find camera in the xml file\n";
     }
-    auto lookfrom_elem = camera_elem->FirstChildElement("lookfrom");
-    auto lookat_elem   = camera_elem->FirstChildElement("lookat");
-    auto vup_elem      = camera_elem->FirstChildElement("vup");
+    auto lookfrom_elem     = camera_elem->FirstChildElement("lookfrom");
+    auto lookat_elem       = camera_elem->FirstChildElement("lookat");
+    auto vup_elem          = camera_elem->FirstChildElement("vup");
+    auto vfov_elem         = camera_elem->FirstChildElement("vfov");
+    auto aspect_ratio_elem = camera_elem->FirstChildElement("vfov");
     
     GlobalParameters::camera_lookfrom = GetVec3(lookfrom_elem);
     GlobalParameters::camera_lookat   = GetVec3(lookat_elem);
