@@ -108,10 +108,14 @@ void XMLParser::LoadParametersFromXML()
     auto vup_elem          = camera_elem->FirstChildElement("vup");
     auto vfov_elem         = camera_elem->FirstChildElement("vfov");
     auto aspect_ratio_elem = camera_elem->FirstChildElement("vfov");
-    
+
     GlobalParameters::camera_lookfrom = GetVec3(lookfrom_elem);
     GlobalParameters::camera_lookat   = GetVec3(lookat_elem);
     GlobalParameters::camera_vup      = GetVec3(vup_elem);
+    GlobalParameters::camera_vfov = GetDouble(vfov_elem);
+
+    Vec2 ar_vec = GetVec2(aspect_ratio_elem);
+    GlobalParameters::camera_aspect_ratio = ar_vec.x() / ar_vec.y();
     
     // ===== Renderer =====
     auto renderer_elem = root->FirstChildElement("renderer");
