@@ -107,7 +107,7 @@ void XMLParser::LoadParametersFromXML()
     auto lookat_elem       = camera_elem->FirstChildElement("lookat");
     auto vup_elem          = camera_elem->FirstChildElement("vup");
     auto vfov_elem         = camera_elem->FirstChildElement("vfov");
-    auto aspect_ratio_elem = camera_elem->FirstChildElement("vfov");
+    auto aspect_ratio_elem = camera_elem->FirstChildElement("aspect_ratio");
 
     GlobalParameters::camera_lookfrom = GetVec3(lookfrom_elem);
     GlobalParameters::camera_lookat   = GetVec3(lookat_elem);
