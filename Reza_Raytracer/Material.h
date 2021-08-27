@@ -37,10 +37,8 @@ public:
 				 Ray3& scattered) 
         const override
 	{
-        // We have three alternatives
         //Point3 scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
         Point3 scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
-        //Point3 scatter_direction = rec.normal + RandomUnitVector();
 
         // Catch degenerate scatter direction
         if (scatter_direction.IsNearZero())
@@ -58,11 +56,12 @@ public:
     shared_ptr<Texture> albedo;
 };
 
-class Lambertian2Material : public Material
+// Alternative lambertian material
+class LambertianAltMaterial : public Material
 {
 public:
-    Lambertian2Material(const Color& a) : albedo(make_shared<SolidColorTexture>(a)) {}
-    Lambertian2Material(shared_ptr<Texture>& t) : albedo(t) {}
+    LambertianAltMaterial(const Color& a) : albedo(make_shared<SolidColorTexture>(a)) {}
+    LambertianAltMaterial(shared_ptr<Texture>& t) : albedo(t) {}
 
     bool Scatter(const Ray3& r_in,
         const HitRecord& rec,
