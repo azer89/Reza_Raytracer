@@ -5,19 +5,21 @@
 		<lookfrom	x="-0.1" y ="2" z="5.5"/>
 		<lookat		x="-0.1" y ="0.0" z="-1.3"/>
 		<vup		x="0" y ="1" z="0"/>
+    <vfov		value="40"/>
+    <aspect_ratio		x="16" y ="9"/>
 	</camera>
 
 	<!-- Requires two colors to create a color gradient -->
-  <!--background_gradient>
+  <background_gradient>
 		<color1 r="1.0" g ="1.0" b="1.0"/>
 		<color2 r="0.5" g ="0.7" b="1.0"/>
-	</background_gradient-->
+	</background_gradient>
 
   <!-- In order to have light sources, you need to set the colors to be black -->
-  <background_gradient>
+  <!--background_gradient>
 		<color1 r="0.0" g ="0.0" b="0.0"/>
 		<color2 r="0.0" g ="0.0" b="0.0"/>
-	</background_gradient>
+	</background_gradient-->
 	
 	<renderer>
 		<image_width value="2000"/>
@@ -83,7 +85,7 @@
   <objects>
 
     <object type="obj" 
-				material_name="material_light" 
+				material_name="material_plastic" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="0" y ="-0.52" z=" 0.4" />
 			<scale	value="0.75" />
