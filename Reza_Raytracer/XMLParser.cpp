@@ -205,8 +205,6 @@ void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    // TODO: Tidying
-
     texture_map["cornell_red_tex"] = make_shared<SolidColorTexture>(Color(0.65, 0.05, 0.05)); // red
     texture_map["cornell_white_tex"] = make_shared<SolidColorTexture>(Color(0.73, 0.73, 0.73)); // white
     texture_map["cornell_green_tex"] = make_shared<SolidColorTexture>(Color(0.12, 0.45, 0.15)); // green
