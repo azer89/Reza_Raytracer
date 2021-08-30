@@ -109,9 +109,18 @@
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
+    <object type="yzrect" material_name="material_ground">
+      <boundary	y0="-1" y1="1" z0="-2" z1="2" x="-0.5"/>
+    </object>
+
     <object type="xzrect" material_name="material_ground">
 			<boundary	x0="-10" x1="10" z0="-20" z1="20" y="-0.5"/>
 		</object>
+
+    <object type="xyrect" material_name="material_ground">
+      <boundary	x0="-1" x1="1" y0="-2" y1="2" z="-0.5"/>
+    </object>
+
 
     <!--object type="sphere" radius="100" material_name="material_checker">
 			<position	x="0" y ="-100.5" z="-1"/>
