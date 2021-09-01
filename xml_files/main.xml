@@ -109,16 +109,16 @@
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
-    <object type="yzrect" material_name="material_ground">
+    <object type="yzrect" material_name="material_checker">
       <boundary	y0="-1" y1="1" z0="-1" z1="1" x="-1.5"/>
     </object>
 
-    <object type="xzrect" material_name="material_ground">
+    <object type="xzrect" material_name="material_checker">
 			<boundary	x0="-1" x1="1" z0="-2" z1="2" y="-0.5"/>
 		</object>
 
-    <object type="xyrect" material_name="material_ground">
-      <boundary	x0="-1" x1="1" y0="-2" y1="2" z="-0.5"/>
+    <object type="xyrect" material_name="material_checker">
+      <boundary	x0="-1" x1="1" y0="-1" y1="1" z="-1.5"/>
     </object>
 
 
