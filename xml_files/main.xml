@@ -2,8 +2,8 @@
 	<!-- You need to specify the path of this xml file on XMLParser.cpp -->
 	
 	<camera>		
-		<lookfrom	x="-0.1" y ="2" z="12.5"/>
-		<lookat		x="-0.1" y ="2.0" z="-1.3"/>
+		<lookfrom	x="2.78" y ="2.78" z="14"/>
+		<lookat		x="2.78" y ="2.78" z="0"/>
 		<vup		x="0" y ="1" z="0"/>
     <vfov		value="40"/>
     <aspect_ratio		x="16" y ="9"/>
@@ -71,10 +71,14 @@
 			<color	r="0.7" g ="0.3" b="0.3"/>
 		</material>
 
-    <material name="material_glass" type="dielectric">
+    <material name="material_plastic_blue" type="lambertian_alt">
+      <color	r="0.3" g ="0.3" b="0.7"/>
+    </material>
+
+    <!--<material name="material_glass" type="dielectric">
       <color	r="0.1" g ="0.7" b="0.7"/>
       <refraction_index value="1.1"/>
-    </material>
+    </material>-->
 
     <material name="material_light" type="diffuselight">
       <color	r="1.0" g ="1.0" b="1.0"/>
@@ -84,14 +88,14 @@
 
   <objects>
 
-    <object type="obj" 
+    <!--object type="obj" 
 				material_name="material_plastic" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="0" y ="-0.52" z=" 0.4" />
 			<scale	value="0.75" />
-		</object>
+		</object-->
 
-    <object type="obj"
+    <!--<object type="obj"
 				material_name="material_plastic"
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
       <position	x="-0.7" y ="-0.52" z="-1.1" />
@@ -103,28 +107,34 @@
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
       <position	x="0.7" y ="-0.52" z="-1.1" />
       <scale	value="0.75" />
-    </object>
+    </object>-->
 
     <!--object type="sphere" radius="0.5" material_name="material_checker">
       <position	x="0" y ="0.0" z="-1"/>
     </object-->
 
-    <object type="yzrect" material_name="material_checker">
-      <boundary	y0="-1" y1="1" z0="-5" z1="5" x="-1.5"/>
+    <!--object type="yzrect" material_name="material_plastic_blue">
+      <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="5.55"/>
+    </object>
+    <object type="yzrect" material_name="material_plastic_blue">
+      <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="0"/>
     </object>
 
-    <object type="xzrect" material_name="material_checker">
-			<boundary	x0="-5" x1="5" z0="-5" z1="5" y="-0.5"/>
-		</object>
-
-    <object type="xyrect" material_name="material_checker">
-      <boundary	x0="-1" x1="1" y0="-5" y1="5" z="-1.5"/>
+    <object type="xzrect" material_name="material_plastic_blue">
+      <boundary	x0="2.13" x1="3.43" z0="2.27" z1="3.32" y="5.54"/>
+    </object-->
+    
+    <object type="xzrect" material_name="material_plastic_blue">
+      <boundary	x0="0" x1="5.55" z0="0" z1="5.55" y="0"/>
+    </object>
+    
+    <object type="xzrect" material_name="material_plastic_blue">
+      <boundary	x0="0" x1="5.55" z0="0" z1="5.55" y="5.55"/>
     </object>
 
-
-    <!--object type="sphere" radius="100" material_name="material_checker">
-			<position	x="0" y ="-100.5" z="-1"/>
-		</object-->
+    <object type="xyrect" material_name="material_plastic_blue">
+      <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="0"/>
+    </object>
 		
 	</objects>
 	

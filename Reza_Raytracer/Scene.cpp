@@ -20,10 +20,10 @@ bool Scene::Hit(const Ray3& r,
     
 
     // BVH version
-    bool hit_anything = bvh_root->Hit(r, t_min, t_max, rec);
+    //bool hit_anything = bvh_root->Hit(r, t_min, t_max, rec);
 
     // Brute force version
-    /*HitRecord temp_rec;
+    HitRecord temp_rec;
     bool hit_anything = false;
     auto closest_so_far = t_max; // very clever!
 
@@ -35,7 +35,7 @@ bool Scene::Hit(const Ray3& r,
             closest_so_far = temp_rec.t;
             rec = temp_rec;
         }
-    }*/
+    }
 
     return hit_anything;
 }

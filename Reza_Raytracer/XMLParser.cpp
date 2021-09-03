@@ -218,14 +218,38 @@ void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture
     //                                       y0   y1    z0    z1    x
     objects.emplace_back(make_shared<YZRect>(0,   5.55, 0,    5.55, 5.55, mat_map["cornell_green_mat"]));
     objects.emplace_back(make_shared<YZRect>(0,   5.55, 0,    5.55, 0,    mat_map["cornell_red_mat"]));
+    /*
+    <object type="yzrect" material_name="material_checker">
+      <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="5.55"/>
+    </object>
+    <object type="yzrect" material_name="material_checker">
+      <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="0"/>
+    </object>
+    */
     
     //                                       x0   x1    z0    z1    y
-    objects.emplace_back(make_shared<XZRect>(213, 3.43, 2.27, 3.32, 5.54, mat_map["cornell_light_mat"]));
+    objects.emplace_back(make_shared<XZRect>(2.13, 3.43, 2.27, 3.32, 5.54, mat_map["cornell_light_mat"]));
     objects.emplace_back(make_shared<XZRect>(0,   5.55, 0,    5.55, 0,    mat_map["cornell_white_mat"]));
     objects.emplace_back(make_shared<XZRect>(0,   5.55, 0,    5.55, 5.55, mat_map["cornell_white_mat"]));
+    /*
+    <object type="xzrect" material_name="material_checker">
+		<boundary	x0="2.13" x1="3.43" z0="2.27" z1="3.32" y="5.54"/>
+	</object>
+    <object type="xzrect" material_name="material_checker">
+        <boundary	x0="0" x1="5.55" z0="0" z1="5.55" y="0"/>
+    </object>
+    <object type="xzrect" material_name="material_checker">
+        <boundary	x0="0" x1="5.55" z0="0" z1="5.55" y="5.55"/>
+    </object>
+    */
 
     //                                       x0   x1    y0    y1    z
     objects.emplace_back(make_shared<XYRect>(0,   5.55, 0,    5.55, 5.55, mat_map["cornell_white_mat"]));
+    /*
+    <object type="xyrect" material_name="material_checker">
+      <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="5.55"/>
+    </object>
+    */
 }
 
 void AddTriangleMesh(XMLElement* elem,
@@ -405,6 +429,10 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         if (type_str == "lambertian")
         {            
             mat_map[name_str] = make_shared<LambertianMaterial>(texture_ptr);
+        }
+        else if (type_str == "lambertian_alt")
+        {
+            mat_map[name_str] = make_shared<LambertianAltMaterial>(texture_ptr);
         }
         else if (type_str == "diffuselight")
         {

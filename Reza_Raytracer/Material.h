@@ -37,8 +37,8 @@ public:
 				 Ray3& scattered) 
         const override
 	{
-        //Point3 scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
-        Point3 scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
+        Point3 scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
+        //Point3 scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
 
         // Catch degenerate scatter direction
         if (scatter_direction.IsNearZero())
