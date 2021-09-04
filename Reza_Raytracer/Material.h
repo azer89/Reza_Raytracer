@@ -37,8 +37,9 @@ public:
 				 Ray3& scattered) 
         const override
 	{
-        Point3 scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
-        //Point3 scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
+        auto scatter_direction = rec.normal + RandomUnitVector();
+        //auto scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
+        //auto scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
 
         // Catch degenerate scatter direction
         if (scatter_direction.IsNearZero())
@@ -69,7 +70,10 @@ public:
         Ray3& scattered)
         const override
     {
-        Point3 scatter_direction = rec.normal + RandomUnitVector();
+        //auto scatter_direction = rec.normal + RandomUnitVector();
+        auto scatter_direction = RandomVec3InHemisphere(rec.normal);
+        //auto scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
+        //auto scatter_direction = rec.p + rec.normal + RandomUnitVector();   
 
         // Catch degenerate scatter direction
         if (scatter_direction.IsNearZero())
@@ -110,7 +114,7 @@ public:
         const override 
     {
         Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal) );
-        Point3 scatter_direction = reflected + fuzzy * RandomVec3InUnitSphere();
+        //Point3 scatter_direction = reflected + fuzzy * RandomVec3InUnitSphere();
         scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
 
         //attenuation = albedo->Value(rec.u, rec.v, rec.p); // Original
