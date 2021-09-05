@@ -91,8 +91,7 @@ public:
     shared_ptr<Texture> albedo;
 };
 
-
-class MetalMaterial : public Material 
+class MetalMaterial : public Material
 {
 public:
     MetalMaterial(const Color& a, double f) :
@@ -102,6 +101,43 @@ public:
     }
 
     MetalMaterial(shared_ptr<Texture>& t, double f) :
+        albedo(t),
+        fuzzy(f < 1 ? f : 1)
+    {
+    }
+
+    bool Scatter(const Ray3& r_in,
+        const HitRecord& rec,
+        Color& attenuation,
+        Ray3& scattered)
+        const override
+    {
+        Vec3 reflected = Reflect(UnitVector(r_in.Direction()), UnitVector(rec.normal));
+        scattered = Ray3(rec.p, reflected + fuzzy * RandomVec3InUnitSphere());
+
+        attenuation = albedo->Value(rec.u, rec.v, rec.p); // Original
+
+        // if dot product is zero then the vectors are perpendicular
+        return (Dot(scattered.Direction(), rec.normal) > 0);
+    }
+
+public:
+    //Color albedo;
+    shared_ptr<Texture> albedo;
+    double fuzzy;
+};
+
+
+class ShlickMetalMaterial : public Material 
+{
+public:
+    ShlickMetalMaterial(const Color& a, double f) :
+        albedo(make_shared<SolidColorTexture>(a)),
+        fuzzy(f < 1 ? f : 1)
+    {
+    }
+
+    ShlickMetalMaterial(shared_ptr<Texture>& t, double f) :
         albedo(t),
         fuzzy(f < 1 ? f : 1)
     {

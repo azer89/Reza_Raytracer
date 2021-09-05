@@ -25,10 +25,13 @@ namespace UsefulFunctions
 {
     inline double RandomDouble()
     {
+        // Option 1
         /*static std::uniform_real_distribution<double> distribution(0.0, 1.0);
         static std::mt19937 generator;
         return distribution(generator);*/
         // Returns a random real in [0,1).
+
+        // Option 2
         return rand() / (RAND_MAX + 1.0);
     }
 
