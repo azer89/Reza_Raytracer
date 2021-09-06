@@ -47,7 +47,7 @@
 		<texture name="checkerA" type="checker2">
 			<color1 r="0.7" g ="0.7" b="1.0"/>
 			<color2 r="1.0" g ="1.0" b="1.0"/>
-			<frequency value="2"/>
+			<frequency value="10"/>
 		</texture>
     
   </textures>
@@ -109,30 +109,30 @@
       <scale	value="0.75" />
     </object>-->
 
-    <!--object type="sphere" radius="0.5" material_name="material_checker">
-      <position	x="0" y ="0.0" z="-1"/>
-    </object-->
+    <object type="sphere" radius="1.5" material_name="material_metal">
+      <position	x="2.78" y ="2.78" z="2.78"/>
+    </object>
 
-    <!--object type="yzrect" material_name="material_plastic_blue">
+    <object type="yzrect" material_name="material_checker">
       <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="5.55"/>
     </object>
-    <object type="yzrect" material_name="material_plastic_blue">
+    <object type="yzrect" material_name="material_checker">
       <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="0"/>
     </object>
 
-    <object type="xzrect" material_name="material_plastic_blue">
+    <!--<object type="xzrect" material_name="material_plastic_blue">
       <boundary	x0="2.13" x1="3.43" z0="2.27" z1="3.32" y="5.54"/>
     </object-->
     
-    <object type="xzrect" material_name="material_plastic_blue">
+    <object type="xzrect" material_name="material_checker">
       <boundary	x0="0" x1="5.55" z0="0" z1="5.55" y="0"/>
     </object>
     
-    <object type="xzrect" material_name="material_plastic_blue">
+    <object type="xzrect" material_name="material_checker">
       <boundary	x0="0" x1="5.55" z0="0" z1="5.55" y="5.55"/>
     </object>
 
-    <object type="xyrect" material_name="material_plastic_blue">
+    <object type="xyrect" material_name="material_checker">
       <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="0"/>
     </object>
 		
