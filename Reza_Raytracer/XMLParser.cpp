@@ -390,6 +390,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
             }
             else
             {
+                std::cout << "checker 2\n";
                 texture_map[name_str] = make_shared<CheckerTexture2>(color1, color2, frequency);
             }
         }

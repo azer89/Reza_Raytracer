@@ -2,11 +2,11 @@
 	<!-- You need to specify the path of this xml file on XMLParser.cpp -->
 	
 	<camera>		
-		<lookfrom	x="2.78" y ="2.78" z="14"/>
+		<lookfrom	x="2.78" y ="2.78" z="13"/>
 		<lookat		x="2.78" y ="2.78" z="0"/>
 		<vup		x="0" y ="1" z="0"/>
     <vfov		value="40"/>
-    <aspect_ratio		x="16" y ="9"/>
+    <aspect_ratio		x="1" y ="1"/>
 	</camera>
 
 	<!-- Requires two colors to create a color gradient -->
@@ -44,10 +44,10 @@
   <textures>
 
     <!--Checker needs two colors and a frequency (how many tiles you get)-->
-		<texture name="checkerA" type="checker2">
+		<texture name="checkerA" type="checker">
 			<color1 r="0.7" g ="0.7" b="1.0"/>
 			<color2 r="1.0" g ="1.0" b="1.0"/>
-			<frequency value="10"/>
+			<frequency value="20"/>
 		</texture>
     
   </textures>
