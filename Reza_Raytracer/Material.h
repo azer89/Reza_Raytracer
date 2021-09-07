@@ -8,6 +8,8 @@
 
 struct HitRecord;
 
+// github.com/RayTracing/raytracing.github.io/blob/master/src/TheNextWeek/material.h
+
 class Material
 {
 public:
@@ -38,8 +40,6 @@ public:
         const override
 	{
         auto scatter_direction = rec.normal + RandomUnitVector();
-        //auto scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
-        //auto scatter_direction = rec.p + rec.normal + RandomUnitVector();    	
 
         // Catch degenerate scatter direction
         if (scatter_direction.IsNearZero())
@@ -70,7 +70,6 @@ public:
         Ray3& scattered)
         const override
     {
-        //auto scatter_direction = rec.normal + RandomUnitVector();
         auto scatter_direction = RandomVec3InHemisphere(rec.normal);
         //auto scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
         //auto scatter_direction = rec.p + rec.normal + RandomUnitVector();   
