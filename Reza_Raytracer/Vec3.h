@@ -15,7 +15,7 @@ public:
 
 public:
     Vec3() : e{ 0,0,0 }
-    {	    
+    {
     }
 
     Vec3(double e0) : e{ e0, e0, e0 }
@@ -23,7 +23,7 @@ public:
     }
 	
     Vec3(double e0, double e1, double e2) : e{ e0, e1, e2 }
-    {	    
+    {
     }
 
     double x() const { return e[0]; }
@@ -86,7 +86,7 @@ public:
 };
 
 // Type aliases for Vec3
-using Point3 = Vec3;   // 3D point
+using Point3 = Vec3;    // 3D point
 using Color  = Vec3;    // RGB color
 
 // Vec3 Utility Functions
@@ -193,7 +193,8 @@ inline Vec3 Reflect(const Vec3& v, const Vec3& n)
 inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat) 
 {
     // www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-shading/reflection-refraction-fresnel
-    /*double cosi = UsefulFunctions::Clamp(-1, 1, Dot(uv, n));
+    /*
+    double cosi = UsefulFunctions::Clamp(-1, 1, Dot(uv, n));
     double etai = 1;
     double etat = 1.0 / etai_over_etat;
     Vec3 new_n = n;
