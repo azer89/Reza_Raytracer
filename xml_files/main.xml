@@ -108,16 +108,16 @@
 
   <objects>
 
-    <!--object type="obj" 
-				material_name="material_plastic" 
+    <object type="obj" 
+				material_name="material_ground" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
-			<position	x="0" y ="-0.52" z=" 0.4" />
-			<scale	value="0.75" />
-		</object-->
+			<position	x="2.78" y ="-0.2" z=" 2.78" />
+			<scale	value="2.5" />
+		</object>
 
-    <object type="sphere" radius="1.0" material_name="material_ground">
+    <!--object type="sphere" radius="1.0" material_name="material_ground">
       <position	x="2.78" y ="2.78" z="2.78"/>
-    </object>
+    </object-->
 
     <object type="xzrect" material_name="material_light">
       <boundary	x0="1.13" x1="4.43" z0="1.27" z1="4.32" y="5.54"/>
