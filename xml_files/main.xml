@@ -15,7 +15,7 @@
 		<color2 r="0.5" g ="0.7" b="1.0"/>
 	</background_gradient-->
 
-  <!-- In order to have light sources, you need to set the colors to be black -->
+  <!-- In order to have light sources, you need to set the background colors to be black -->
   <background_gradient>
 		<color1 r="0.0" g ="0.0" b="0.0"/>
 		<color2 r="0.0" g ="0.0" b="0.0"/>
@@ -43,7 +43,7 @@
   
   <textures>
 
-    <!--Checker needs two colors and a frequency (how many tiles you get)-->
+    <!--Checker pattern needs two colors and a frequency (how many tiles you get)-->
     <texture name="red_checker_texture" type="checker">
       <color1 r="1.0" g ="0.7" b="0.7"/>
       <color2 r="1.0" g ="1.0" b="1.0"/>
@@ -78,6 +78,7 @@
       <texture name="blue_checker_texture"/>
     </material>
 
+    <!-- Remember to set the background colors black -->
     <material name="material_light" type="diffuselight">
       <color	r="1.0" g ="1.0" b="1.0"/>
     </material>
@@ -99,6 +100,7 @@
       <fuzzy value="0.01"/>
     </material>
 
+    <!-- Dielectric material is currently not great for triangle meshes -->
     <!--<material name="material_glass" type="dielectric">
       <color	r="0.1" g ="0.7" b="0.7"/>
       <refraction_index value="1.1"/>
@@ -108,6 +110,7 @@
 
   <objects>
 
+    <!-- Wavefront obj format -->
     <object type="obj" 
 				material_name="material_ground" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
@@ -119,6 +122,7 @@
       <position	x="2.78" y ="2.78" z="2.78"/>
     </object-->
 
+    <!-- The famous cornell box -->
     <object type="xzrect" material_name="material_light">
       <boundary	x0="1.13" x1="4.43" z0="1.27" z1="4.32" y="5.54"/>
     </object>
