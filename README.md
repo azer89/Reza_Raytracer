@@ -7,7 +7,7 @@ Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) an
 
 ### Features
 
-* Lambertian, metal, light source materials
+* Lambertian, metal, dielectric, light source materials
 * Triangle mesh rendering
 * Smooth surface normals using barycentric interpolation
 * XML for creating scenes and specifying parameters 
