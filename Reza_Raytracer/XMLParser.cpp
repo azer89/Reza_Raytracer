@@ -244,7 +244,7 @@ void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture
     */
 
     //                                       x0   x1    y0    y1    z
-    objects.emplace_back(make_shared<XYRect>(0,   5.55, 0,    5.55, 5.55, mat_map["cornell_white_mat"]));
+    objects.emplace_back(make_shared<XYRect>(0,   5.55, 0,    5.55, 0, mat_map["cornell_white_mat"]));
     /*
     <object type="xyrect" material_name="material_checker">
       <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="5.55"/>

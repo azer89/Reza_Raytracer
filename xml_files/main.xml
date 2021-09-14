@@ -23,8 +23,8 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="2000"/>
-		<max_depth value="1000"/>
+		<samples_per_pixel value="200"/>
+		<max_depth value="100"/>
 
     <!--Thin object padding (planes or triangles)-->
     <thin_padding value="0.00001"/>
@@ -123,13 +123,14 @@
     </object-->
 
     <!-- The famous cornell box -->
-    <object type="xzrect" material_name="material_light">
+    <!--object type="xzrect" material_name="material_light">
       <boundary	x0="1.13" x1="4.43" z0="1.27" z1="4.32" y="5.54"/>
     </object>
 
     <object type="yzrect" material_name="red_checker_material">
       <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="5.55"/>
     </object>
+    
     <object type="yzrect" material_name="red_checker_material">
       <boundary	y0="0" y1="5.55" z0="0" z1="5.55" x="0"/>
     </object>
@@ -144,6 +145,9 @@
 
     <object type="xyrect" material_name="green_checker_material">
       <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="0"/>
+    </object-->
+
+    <object type="cornell_box">
     </object>
 		
 	</objects>
