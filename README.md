@@ -1,13 +1,13 @@
 A ray tracer developed using C++14
 
 
-Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). Just compile and run. 
+Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). 
 
 
 
 ### Features
 
-* Lambertian and metal materials
+* Lambertian, metal, dielectric, light source materials
 * Triangle mesh rendering
 * Smooth surface normals using barycentric interpolation
 * XML for creating scenes and specifying parameters 
