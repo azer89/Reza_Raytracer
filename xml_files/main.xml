@@ -23,8 +23,8 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="2000"/>
-		<max_depth value="1000"/>
+		<samples_per_pixel value="200"/>
+		<max_depth value="100"/>
 
     <!--Thin object padding (planes or triangles)-->
     <thin_padding value="0.00001"/>
@@ -33,9 +33,9 @@
     <min_t value="0.001"/>
 
     <!--
-			if num_thread >  0 the program will use multiple threads.
+			if num_thread >  0 the program will use n threads.
       if num_thread =  1 the program will run on a single thread.
-      if num_thread <= 0 the program will use max number of logical cpus.
+      if num_thread <= 0 the program will use max number of logical cpus minus one.
     -->
 		<num_thread value="0"/>
     
@@ -91,13 +91,14 @@
       <color	r="0.3" g ="0.3" b="0.7"/>
     </material>
 
-    <material name="material_ground" type="lambertian">
-      <color r="1.0" g ="1.0" b="1.0"/>
-    </material>
-
-    <material name="material_metal" type="metal">
+    <material name="material_red_metal" type="metal">
       <color r="0.7" g ="0.3" b="0.3"/>
       <fuzzy value="0.01"/>
+    </material>
+
+    <material name="material_white_metal" type="shlick_metal">
+      <color r="1.0" g ="1.0" b="1.0"/>
+      <fuzzy value="0.0"/>
     </material>
 
     <!-- Dielectric material is currently not great for triangle meshes -->
@@ -112,7 +113,7 @@
 
     <!-- Wavefront obj format -->
     <object type="obj" 
-				material_name="material_ground" 
+				material_name="material_white_metal" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="2.78" y ="-0.2" z=" 2.78" />
 			<scale	value="2.5" />

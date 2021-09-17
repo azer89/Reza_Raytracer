@@ -426,6 +426,13 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
 
             mat_map[name_str] = make_shared<MetalMaterial>(texture_ptr, fuzzy);
         }
+        else if (type_str == "shlick_metal")
+        {
+            auto fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
+            double fuzzy = GetDouble(fuzzy_elem);
+
+            mat_map[name_str] = make_shared<ShlickMetalMaterial>(texture_ptr, fuzzy);
+        }
 
         mat_elem = mat_elem->NextSiblingElement();
     }
