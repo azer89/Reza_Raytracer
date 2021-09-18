@@ -143,6 +143,7 @@
     <ClCompile Include="AARect.cpp" />
     <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Disk.cpp" />
     <ClCompile Include="GlobalParameters.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="AARect.h" />
     <ClInclude Include="BVHNode.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Disk.h" />
     <ClInclude Include="GlobalParameters.h" />
     <ClInclude Include="HitRecord.h" />
     <ClInclude Include="Hittable.h" />

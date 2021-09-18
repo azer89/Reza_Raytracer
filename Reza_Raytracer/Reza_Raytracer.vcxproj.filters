@@ -63,6 +63,9 @@
     <ClCompile Include="AARect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Disk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec3.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AARect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Disk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
