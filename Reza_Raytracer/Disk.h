@@ -10,7 +10,7 @@ public:
     Disk(Point3 cen, Vec3 n, double r, shared_ptr<Material>& m)
     {
         center = cen;
-        normal = normal;
+        normal = n;
         radius = r;
         radius_squared = radius * radius;
 

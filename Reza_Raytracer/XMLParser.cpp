@@ -217,7 +217,7 @@ void AddCornellBox(std::unordered_map<std::string, shared_ptr<Texture>>& texture
 
     mat_map["cornell_light_mat"] = make_shared<DiffuseLightMaterial>(texture_map["cornell_light_tex"]); // light
 
-    objects.emplace_back(make_shared<Disk>(Point3(2.775, 5.54, 2.775), Vec3(0, -1, 0), 2.775, mat_map["cornell_light_mat"]));
+    objects.emplace_back(make_shared<Disk>(Point3(2.775, 5.54, 2.775), Vec3(0, -1, 0), 1, mat_map["cornell_light_mat"]));
     //objects.emplace_back(make_shared<XZRect>(2.13, 3.43, 2.27, 3.32, 5.54, mat_map["cornell_light_mat"]));
     //objects.emplace_back(make_shared<XZRect>(1.13, 4.43, 1.27, 4.32, 5.54, mat_map["cornell_light_mat"])); // bigger light
 

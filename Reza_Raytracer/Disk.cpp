@@ -49,21 +49,13 @@ bool Disk::Hit(const Ray3& r,
 
 bool Disk::BoundingBox(AABB& output_box) const
 {
-    /*Vec3 padding(GlobalParameters::thin_padding);
+    // www.iquilezles.org/www/articles/diskbbox/diskbbox.htm
+    auto e_x = radius * sqrt(1.0 - normal.x() * normal.x());
+    auto e_y = radius * sqrt(1.0 - normal.y() * normal.y());
+    auto e_z = radius * sqrt(1.0 - normal.z() * normal.z());
+    Vec3 e(e_x, e_y, e_z);
 
-    Vec3 min(fmin(v0.x(), fmin(v1.x(), v2.x())),
-        fmin(v0.y(), fmin(v1.y(), v2.y())),
-        fmin(v0.z(), fmin(v1.z(), v2.z())));
-
-    min = min - padding;
-
-    Vec3 max(fmax(v0.x(), fmax(v1.x(), v2.x())),
-        fmax(v0.y(), fmax(v1.y(), v2.y())),
-        fmax(v0.z(), fmax(v1.z(), v2.z())));
-
-    max = max + padding;
-
-    output_box = AABB(min, max);*/
+    output_box = AABB(center - e, center + e);
 
     return true;
 }

@@ -23,8 +23,8 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="200"/>
-		<max_depth value="100"/>
+		<samples_per_pixel value="1000"/>
+		<max_depth value="500"/>
 
     <!--Thin object padding (planes or triangles)-->
     <thin_padding value="0.00001"/>
@@ -112,12 +112,12 @@
   <objects>
 
     <!-- Wavefront obj format -->
-    <object type="obj" 
+    <!--object type="obj" 
 				material_name="material_white_metal" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="2.78" y ="-0.2" z=" 2.78" />
 			<scale	value="2.5" />
-		</object>
+		</object-->
 
     <!--object type="sphere" radius="1.0" material_name="material_ground">
       <position	x="2.78" y ="2.78" z="2.78"/>
