@@ -36,10 +36,6 @@ Renderer::Renderer()
 	scene->CreateScene();
 }
 
-//Renderer::~Renderer()
-//{
-//}
-
 /*
 Source
 	www.cplusplus.com/forum/beginner/240592/
