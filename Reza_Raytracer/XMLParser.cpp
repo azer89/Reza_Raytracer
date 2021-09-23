@@ -14,10 +14,15 @@
 
 #include <iostream>
 
-// C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml
-
 using namespace tinyxml2;
 using namespace std;
+
+/*
+    This code is looking for
+    C://Users//azer//workspace//Reza_Raytracer//scenes//main.xml
+*/
+
+const string XML_FILE = "C://Users//azer//workspace//Reza_Raytracer//xml_files//main.xml";
 
 inline Vec2 GetVec2(const XMLElement* elem)
 {
@@ -78,13 +83,12 @@ inline string GetString(const XMLElement* elem, string name)
 void XMLParser::LoadParametersFromXML()
 {
     XMLDocument doc;
-
-    const string file = "C://Users//azer//workspace//Reza_Raytracer//xml_files//main.xml";
-    cout << "Parsing " << file << '\n';
-    XMLError eResult = doc.LoadFile(file.c_str());
+    
+    cout << "Parsing " << XML_FILE << '\n';
+    XMLError eResult = doc.LoadFile(XML_FILE.c_str());
     if (eResult != XML_SUCCESS)
     {
-        cerr << "Cannot find " << file << '\n';
+        cerr << "Cannot find " << XML_FILE << '\n';
     }
 
     // ===== Root =====
@@ -330,12 +334,11 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
                             std::vector<shared_ptr<Hittable>>& objects)
 {
     XMLDocument doc;
-    const string file = "C://Users//azer//workspace//Reza_Raytracer//xml_files//main.xml";
-    cout << "Parsing object on " << file << '\n';
-    XMLError eResult = doc.LoadFile(file.c_str());
+    cout << "Parsing object on " << XML_FILE << '\n';
+    XMLError eResult = doc.LoadFile(XML_FILE.c_str());
     if (eResult != XML_SUCCESS)
     {
-        cerr << "Cannot find " << file << '\n';
+        cerr << "Cannot find " << XML_FILE << '\n';
     }
 
     // ===== Root =====
@@ -478,5 +481,3 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
 
     cout << "Done parsing objects\n\n";
 }
-
-
