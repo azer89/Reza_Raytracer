@@ -85,7 +85,7 @@ void XMLParser::LoadParametersFromXML()
     XMLDocument doc;
     
     cout << "Parsing " << XML_FILE << '\n';
-    XMLError eResult = doc.LoadFile(XML_FILE.c_str());
+    auto eResult = doc.LoadFile(XML_FILE.c_str());
     if (eResult != XML_SUCCESS)
     {
         cerr << "Cannot find " << XML_FILE << '\n';
@@ -119,7 +119,7 @@ void XMLParser::LoadParametersFromXML()
     GlobalParameters::camera_vup      = GetVec3(vup_elem);
     GlobalParameters::camera_vfov     = GetDouble(vfov_elem);
 
-    Vec2 ar_vec = GetVec2(aspect_ratio_elem);
+    auto ar_vec = GetVec2(aspect_ratio_elem);
     GlobalParameters::camera_aspect_ratio = ar_vec.x() / ar_vec.y();
     
     // ===== Renderer =====
@@ -151,13 +151,13 @@ void AddXZRect(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    string material_str = GetString(elem, "material_name");
+    auto material_str = GetString(elem, "material_name");
     auto boundary_elem = elem->FirstChildElement("boundary");
-    double x0 = GetDouble(boundary_elem, "x0");
-    double x1 = GetDouble(boundary_elem, "x1");
-    double z0 = GetDouble(boundary_elem, "z0");
-    double z1 = GetDouble(boundary_elem, "z1");
-    double y  = GetDouble(boundary_elem, "y");
+    auto x0 = GetDouble(boundary_elem, "x0");
+    auto x1 = GetDouble(boundary_elem, "x1");
+    auto z0 = GetDouble(boundary_elem, "z0");
+    auto z1 = GetDouble(boundary_elem, "z1");
+    auto y  = GetDouble(boundary_elem, "y");
 
     objects.emplace_back(make_shared<XZRect>(x0, x1, z0, z1, y, mat_map[material_str]));
 }
@@ -167,13 +167,13 @@ void AddXYRect(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    string material_str = GetString(elem, "material_name");
+    auto material_str = GetString(elem, "material_name");
     auto boundary_elem = elem->FirstChildElement("boundary");
-    double x0 = GetDouble(boundary_elem, "x0");
-    double x1 = GetDouble(boundary_elem, "x1");
-    double y0 = GetDouble(boundary_elem, "y0");
-    double y1 = GetDouble(boundary_elem, "y1");
-    double z  = GetDouble(boundary_elem, "z");
+    auto x0 = GetDouble(boundary_elem, "x0");
+    auto x1 = GetDouble(boundary_elem, "x1");
+    auto y0 = GetDouble(boundary_elem, "y0");
+    auto y1 = GetDouble(boundary_elem, "y1");
+    auto z  = GetDouble(boundary_elem, "z");
 
     objects.emplace_back(make_shared<XYRect>(x0, x1, y0, y1, z, mat_map[material_str]));
 }
@@ -183,13 +183,13 @@ void AddYZRect(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    string material_str = GetString(elem, "material_name");
+    auto material_str = GetString(elem, "material_name");
     auto boundary_elem = elem->FirstChildElement("boundary");
-    double y0 = GetDouble(boundary_elem, "y0");
-    double y1 = GetDouble(boundary_elem, "y1");
-    double z0 = GetDouble(boundary_elem, "z0");
-    double z1 = GetDouble(boundary_elem, "z1");
-    double x  = GetDouble(boundary_elem, "x");
+    auto y0 = GetDouble(boundary_elem, "y0");
+    auto y1 = GetDouble(boundary_elem, "y1");
+    auto z0 = GetDouble(boundary_elem, "z0");
+    auto z1 = GetDouble(boundary_elem, "z1");
+    auto x  = GetDouble(boundary_elem, "x");
 
     objects.emplace_back(make_shared<YZRect>(y0, y1, z0, z1, x, mat_map[material_str]));
 }
@@ -198,9 +198,9 @@ void AddSphere(XMLElement* elem,
     std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
     std::vector<shared_ptr<Hittable>>& objects)
 {
-    string material_str = GetString(elem, "material_name");
-    Point3 pos = GetVec3(elem->FirstChildElement("position"));
-    double radius = stod(GetString(elem, "radius"));
+    auto material_str = GetString(elem, "material_name");
+    auto pos = GetVec3(elem->FirstChildElement("position"));
+    auto radius = stod(GetString(elem, "radius"));
 
     objects.emplace_back(make_shared<Sphere>(pos, radius, mat_map[material_str]));
 }
@@ -245,9 +245,9 @@ void AddTriangleMesh(XMLElement* elem,
     std::vector<std::vector<int>> normal_indices; // normal vector indices for triangles
     std::vector<std::vector<int>> uv_indices;     // uv indices for triangles
 
-    string filename = GetString(elem, "filename");
-    Point3 pos = GetVec3(elem->FirstChildElement("position"));
-    double scale = GetDouble(elem->FirstChildElement("scale"));
+    auto filename = GetString(elem, "filename");
+    auto pos = GetVec3(elem->FirstChildElement("position"));
+    auto scale = GetDouble(elem->FirstChildElement("scale"));
 
     OBJReader obj_reader;
     obj_reader.ReadOBJ(filename,
@@ -335,7 +335,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
 {
     XMLDocument doc;
     cout << "Parsing object on " << XML_FILE << '\n';
-    XMLError eResult = doc.LoadFile(XML_FILE.c_str());
+    auto eResult = doc.LoadFile(XML_FILE.c_str());
     if (eResult != XML_SUCCESS)
     {
         cerr << "Cannot find " << XML_FILE << '\n';
