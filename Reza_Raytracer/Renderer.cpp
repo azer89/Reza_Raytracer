@@ -17,19 +17,19 @@ Renderer::Renderer()
 	// XML
 	XMLParser xml_parser;
 	xml_parser.LoadParametersFromXML();
-
-	// Camera
-	camera = std::make_unique<Camera>();
-
-	// renderer setting
+	
+	// Renderer setting
 	this->image_width		= GlobalParameters::renderer_image_width;
-	this->image_height		= static_cast<int>(this->image_width / camera->GetAspectRatio());
+	this->image_height		= static_cast<int>(this->image_width / GlobalParameters::camera_aspect_ratio);
 	this->samples_per_pixel = GlobalParameters::renderer_samples_per_pixel;
 	this->scale				= 1.0 / samples_per_pixel;
 	this->max_depth			= GlobalParameters::renderer_max_depth;
 
 	// Image IO
 	img_handler = make_unique<ImageHandler>(image_width, image_height); // set up image handler
+
+	// Camera
+	camera = std::make_unique<Camera>();
 
 	 // World
 	scene = make_unique<Scene>();
