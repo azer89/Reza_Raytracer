@@ -197,11 +197,10 @@ public:
         double refraction_ratio = rec.front_face ? (1.0 / ir) : ir;
 
         Vec3 unit_direction = UnitVector(r_in.Direction());
-        double cos_theta = fmin(Dot(-unit_direction, rec.normal), 1.0);
+        double cos_theta = min(Dot(-unit_direction, rec.normal), 1.0);
         double sin_theta = sqrt(1.0 - cos_theta * cos_theta);
 
         bool cannot_refract = refraction_ratio * sin_theta > 1.0;
-
         Vec3 scatter_direction;
 
         if (cannot_refract || Reflectance(cos_theta, refraction_ratio) > UsefulFunctions::RandomDouble())
