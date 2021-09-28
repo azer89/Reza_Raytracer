@@ -1,18 +1,21 @@
 #ifndef __Y_ROTATED_HITTABLE_H__
 #define __Y_ROTATED_HITTABLE_H__
 
-#include "HitRecord.h"
+/*#include "HitRecord.h"
 #include "Ray3.h"
 #include "AABB.h"
+#include "Hittable.h"
 
 class Material;
 
-class Hittable
+class YRotatedHittable : Hittable
 {
 public:
-    virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const = 0;
+    YRotatedHittable(shared_ptr<Hittable> obj, double angle);
 
-    virtual bool BoundingBox(AABB& output_box) const = 0;
+    virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
+
+    virtual bool BoundingBox(AABB& output_box) const override;
 };
-
+*/
 #endif
