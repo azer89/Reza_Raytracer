@@ -1,7 +1,7 @@
 #ifndef __Y_ROTATED_HITTABLE_H__
 #define __Y_ROTATED_HITTABLE_H__
 
-/*#include "HitRecord.h"
+#include "HitRecord.h"
 #include "Ray3.h"
 #include "AABB.h"
 #include "Hittable.h"
@@ -17,5 +17,4 @@ public:
 
     virtual bool BoundingBox(AABB& output_box) const override;
 };
-*/
 #endif
