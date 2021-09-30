@@ -16,5 +16,9 @@ public:
     virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
 
     virtual bool BoundingBox(AABB& output_box) const override;
+
+public:
+    double sin_theta;
+    double cos_theta;
 };
 #endif
