@@ -20,5 +20,7 @@ public:
 public:
     double sin_theta;
     double cos_theta;
+
+    shared_ptr<Hittable> objPtr;
 };
 #endif
