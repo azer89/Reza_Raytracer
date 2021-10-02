@@ -22,5 +22,7 @@ public:
     double cos_theta;
 
     shared_ptr<Hittable> objPtr;
+
+    bool has_box;
 };
 #endif
