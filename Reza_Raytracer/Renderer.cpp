@@ -181,7 +181,7 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 	// Recursive
 	HitRecord rec;
 	// GlobalParameters::min_t is used to remove shadow acne
-	if (scene->Hit(r, GlobalParameters::min_t, UsefulConstants::infinity, rec))
+	if (scene->Hit(r, GlobalParameters::min_t, UsefulConst::infinity, rec))
 	{
 		Ray3 scattered;
 		Color attenuation; 
@@ -204,7 +204,7 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 Color Renderer::RayColorNormalOnly(const Ray3& r)
 {
 	HitRecord rec;
-	if (scene->Hit(r, GlobalParameters::min_t, UsefulConstants::infinity, rec))
+	if (scene->Hit(r, GlobalParameters::min_t, UsefulConst::infinity, rec))
 	{
 		Vec3 normal = UnitVector(rec.normal);
 		return 0.5 * Color(normal.x() + 1, normal.y() + 1, normal.z() + 1);

@@ -21,8 +21,9 @@ public:
     double sin_theta;
     double cos_theta;
 
-    shared_ptr<Hittable> objPtr;
+    shared_ptr<Hittable> hittable_ptr;
 
     bool has_box;
+    AABB bbox;
 };
 #endif

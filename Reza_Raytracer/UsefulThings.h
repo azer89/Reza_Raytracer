@@ -13,7 +13,7 @@ using std::make_shared;
 using std::sqrt;
 
 // Constants
-namespace UsefulConstants
+namespace UsefulConst
 {
     const double epsilon = std::numeric_limits<double>::epsilon();
     const double infinity = std::numeric_limits<double>::infinity();
@@ -49,7 +49,7 @@ namespace UsefulFunctions
 
     inline double DegreesToRadians(double degrees)
     {
-        return degrees * UsefulConstants::pi / 180.0;
+        return degrees * UsefulConst::pi / 180.0;
     }
 
     inline double Clamp(double x, double min, double max)

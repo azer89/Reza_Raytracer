@@ -79,9 +79,9 @@ public:
     bool IsNearZero() const
 	{
         // Return true if the vector is close to zero in all dimensions.
-        return (fabs(e[0]) < UsefulConstants::epsilon) && 
-               (fabs(e[1]) < UsefulConstants::epsilon) && 
-               (fabs(e[2]) < UsefulConstants::epsilon);
+        return (fabs(e[0]) < UsefulConst::epsilon) && 
+               (fabs(e[1]) < UsefulConst::epsilon) && 
+               (fabs(e[2]) < UsefulConst::epsilon);
     }
 };
 

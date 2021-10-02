@@ -84,8 +84,8 @@ void Sphere::GetSphereUV(const Point3& p, double& u, double& v)
     */
 
     auto theta = acos(-p.y());
-    auto phi = atan2(-p.z(), p.x()) + UsefulConstants::pi;
+    auto phi = atan2(-p.z(), p.x()) + UsefulConst::pi;
 
-    u = phi / (2 * UsefulConstants::pi);
-    v = theta / UsefulConstants::pi;
+    u = phi / (2 * UsefulConst::pi);
+    v = theta / UsefulConst::pi;
 }
