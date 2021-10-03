@@ -24,9 +24,9 @@ ImageHandler::~ImageHandler()
 // new, parallelizable
 void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 {
-	r = UsefulFunctions::Clamp(r, 0.0, 1.0);
-	g = UsefulFunctions::Clamp(g, 0.0, 1.0);
-	b = UsefulFunctions::Clamp(b, 0.0, 1.0);
+	r = UsefulFunct::Clamp(r, 0.0, 1.0);
+	g = UsefulFunct::Clamp(g, 0.0, 1.0);
+	b = UsefulFunct::Clamp(b, 0.0, 1.0);
 
 	y = img_height - y - 1;
 	int index = (x + (y * img_width)) * num_channel;

@@ -115,8 +115,8 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 			Color pixel_color(0, 0, 0);
 			for (size_t s = 0; s < samples_per_pixel; s++)
 			{
-				auto u = (double(x) + UsefulFunctions::RandomDouble()) / (image_width - 1);
-				auto v = (double(y) + UsefulFunctions::RandomDouble()) / (image_height - 1);
+				auto u = (double(x) + UsefulFunct::RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + UsefulFunct::RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
 				pixel_color += RayColor(r, max_depth); // recursive function
 				//pixel_color += RayColorNormalOnly(r);
@@ -149,8 +149,8 @@ void Renderer::ShootRaysSingleThread()
 			Color pixel_color(0, 0, 0);
 			for (size_t s = 0; s < samples_per_pixel; s++)
 			{
-				auto u = (double(x) + UsefulFunctions::RandomDouble()) / (image_width - 1);
-				auto v = (double(y) + UsefulFunctions::RandomDouble()) / (image_height - 1);
+				auto u = (double(x) + UsefulFunct::RandomDouble()) / (image_width - 1);
+				auto v = (double(y) + UsefulFunct::RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
 				pixel_color += RayColor(r, max_depth); // recursive function
 			}

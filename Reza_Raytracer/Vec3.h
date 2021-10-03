@@ -147,16 +147,16 @@ inline Vec3 UnitVector(Vec3 v)
 
 inline Vec3 RandomVec3()
 {
-    return Vec3(UsefulFunctions::RandomDouble(), 
-                UsefulFunctions::RandomDouble(), 
-                UsefulFunctions::RandomDouble());
+    return Vec3(UsefulFunct::RandomDouble(), 
+                UsefulFunct::RandomDouble(), 
+                UsefulFunct::RandomDouble());
 }
 
 inline Vec3 RandomVec3(double min, double max)
 {
-    return Vec3(UsefulFunctions::RandomDouble(min, max), 
-                UsefulFunctions::RandomDouble(min, max), 
-                UsefulFunctions::RandomDouble(min, max));
+    return Vec3(UsefulFunct::RandomDouble(min, max), 
+                UsefulFunct::RandomDouble(min, max), 
+                UsefulFunct::RandomDouble(min, max));
 }
 
 inline Vec3 RandomVec3InUnitSphere()

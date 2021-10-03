@@ -204,7 +204,7 @@ public:
         bool cannot_refract = refraction_ratio * sin_theta > 1.0;
         Vec3 scatter_direction;
 
-        if (cannot_refract || Reflectance(cos_theta, refraction_ratio) > UsefulFunctions::RandomDouble())
+        if (cannot_refract || Reflectance(cos_theta, refraction_ratio) > UsefulFunct::RandomDouble())
         {
             scatter_direction = Reflect(unit_direction, rec.normal);
         }

@@ -21,7 +21,7 @@ namespace UsefulConst
 }
 
 // Utility Functions
-namespace UsefulFunctions
+namespace UsefulFunct
 {
     inline double RandomDouble()
     {

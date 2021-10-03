@@ -11,7 +11,7 @@ Camera::Camera()
     vfov = GlobalParameters::camera_vfov;
     aspect_ratio = GlobalParameters::camera_aspect_ratio;
 
-    auto theta = UsefulFunctions::DegreesToRadians(vfov);
+    auto theta = UsefulFunct::DegreesToRadians(vfov);
 
 	/*
 	tan theta = h / z

@@ -2,7 +2,7 @@
 
 YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hittable_ptr(obj)
 {
-    auto radians = UsefulFunctions::DegreesToRadians(angle);
+    auto radians = UsefulFunct::DegreesToRadians(angle);
     sin_theta = sin(radians);
     cos_theta = cos(radians);
 
