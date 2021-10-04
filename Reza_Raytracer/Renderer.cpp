@@ -92,7 +92,8 @@ void Renderer::ShootRaysMultithread()
 		}
 
 		// print progress
-		std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush;
+		//std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush;
+		std::clog << "\rRows processsed = " << sum_rows << '/' << image_height;
 	}
 
 	auto end1 = std::chrono::steady_clock::now();
@@ -142,7 +143,7 @@ void Renderer::ShootRaysSingleThread()
 	for (int y = image_height - 1; y >= 0; --y)
 	{
 		// adding progress text
-		std::cout << "\rScanlines remaining: " << y << ' ' << std::flush;
+		std::clog << "\rScanlines remaining: " << y;
 
 		for (int x = 0; x < image_width; x++)
 		{
