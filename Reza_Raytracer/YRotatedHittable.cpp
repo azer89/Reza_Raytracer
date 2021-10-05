@@ -34,6 +34,8 @@ YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hit
             }
         }
     }
+
+    bbox = AABB(min, max);
 }
 
 bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
