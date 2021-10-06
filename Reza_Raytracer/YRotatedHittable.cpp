@@ -40,7 +40,11 @@ YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hit
 
 bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
 {
+    auto origin = r.Origin();
+    auto direction = r.Direction();
 
+    origin[0] = cos_theta * r.Origin()[0] - sin_theta * r.Origin()[2];
+    origin[2] = sin_theta * r.Origin()[0] + cos_theta * r.Origin()[2];
 }
 
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
