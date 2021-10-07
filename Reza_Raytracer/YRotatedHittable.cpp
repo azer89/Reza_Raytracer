@@ -45,6 +45,11 @@ bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord&
 
     origin[0] = cos_theta * r.Origin()[0] - sin_theta * r.Origin()[2];
     origin[2] = sin_theta * r.Origin()[0] + cos_theta * r.Origin()[2];
+
+    direction[0] = cos_theta * r.Direction()[0] - sin_theta * r.Direction()[2];
+    direction[2] = sin_theta * r.Direction()[0] + cos_theta * r.Direction()[2];
+
+    Ray3 rotated_r(origin, direction);
 }
 
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
