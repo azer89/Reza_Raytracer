@@ -49,7 +49,13 @@ bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord&
     direction[0] = cos_theta * r.Direction()[0] - sin_theta * r.Direction()[2];
     direction[2] = sin_theta * r.Direction()[0] + cos_theta * r.Direction()[2];
 
-    Ray3 rotated_r(origin, direction);
+    Ray3 rotated_ray(origin, direction);
+
+
+    if (!hittable_ptr->Hit(rotated_ray, t_min, t_max, rec))
+    {
+        return false;
+    }
 }
 
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
