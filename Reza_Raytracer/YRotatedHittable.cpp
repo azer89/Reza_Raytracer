@@ -40,22 +40,25 @@ YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hit
 
 bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
 {
+    // Rotate origin
     auto origin = r.Origin();
-    auto direction = r.Direction();
-
     origin[0] = cos_theta * r.Origin()[0] - sin_theta * r.Origin()[2];
     origin[2] = sin_theta * r.Origin()[0] + cos_theta * r.Origin()[2];
 
+    // Rotate direction
+    auto direction = r.Direction();
     direction[0] = cos_theta * r.Direction()[0] - sin_theta * r.Direction()[2];
     direction[2] = sin_theta * r.Direction()[0] + cos_theta * r.Direction()[2];
 
     Ray3 rotated_ray(origin, direction);
 
-
     if (!hittable_ptr->Hit(rotated_ray, t_min, t_max, rec))
     {
         return false;
     }
+
+    auto p = rec.p;
+    auto normal = rec.normal;
 }
 
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
