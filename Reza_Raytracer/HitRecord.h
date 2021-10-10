@@ -9,9 +9,13 @@ class Material;
 struct HitRecord
 {
 public:
+    // Hit point
     Point3 p;
+
+    // Hit normal
     Vec3 normal;
 
+    // Hit material
     Material* mat_ptr;
 
     // origin + t * direction

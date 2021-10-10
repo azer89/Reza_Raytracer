@@ -57,8 +57,8 @@ bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord&
         return false;
     }
 
-    auto p = rec.p;
-    auto normal = rec.normal;
+    auto p = rec.p; // hit point
+    auto normal = rec.normal; // hit normal
 }
 
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
