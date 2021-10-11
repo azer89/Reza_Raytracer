@@ -59,6 +59,17 @@ bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord&
 
     auto p = rec.p; // hit point
     auto normal = rec.normal; // hit normal
+
+    p[0] = cos_theta * rec.p[0] + sin_theta * rec.p[2];
+    p[2] = -sin_theta * rec.p[0] + cos_theta * rec.p[2];
+
+    normal[0] = cos_theta * rec.normal[0] + sin_theta * rec.normal[2];
+    normal[2] = -sin_theta * rec.normal[0] + cos_theta * rec.normal[2];
+
+    rec.p = p;
+    rec.SetFaceNormal(rotated_ray, normal);
+
+    return true;
 }
 
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
