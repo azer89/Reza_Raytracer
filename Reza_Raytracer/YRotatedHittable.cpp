@@ -75,5 +75,5 @@ bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord&
 bool YRotatedHittable::BoundingBox(AABB& output_box) const
 {
     output_box = bbox;
-    return true;
+    return has_box;
 }
