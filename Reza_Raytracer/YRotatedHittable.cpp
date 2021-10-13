@@ -11,6 +11,7 @@ YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hit
     Point3 min(UsefulConst::infinity, UsefulConst::infinity, UsefulConst::infinity);
     Point3 max(-UsefulConst::infinity, -UsefulConst::infinity, -UsefulConst::infinity);
 
+    // 0 <= i, j, k <= 1
     for (int i = 0; i < 2; i++) 
     {
         for (int j = 0; j < 2; j++) 
@@ -60,9 +61,11 @@ bool YRotatedHittable::Hit(const Ray3& r, double t_min, double t_max, HitRecord&
     auto p = rec.p; // hit point
     auto normal = rec.normal; // hit normal
 
+    // Rotate hit point
     p[0] = cos_theta * rec.p[0] + sin_theta * rec.p[2];
     p[2] = -sin_theta * rec.p[0] + cos_theta * rec.p[2];
 
+    // Rotate normal
     normal[0] = cos_theta * rec.normal[0] + sin_theta * rec.normal[2];
     normal[2] = -sin_theta * rec.normal[0] + cos_theta * rec.normal[2];
 
