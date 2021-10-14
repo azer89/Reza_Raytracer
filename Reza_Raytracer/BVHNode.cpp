@@ -26,7 +26,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     // it seems that in order to make the splitting work,
     // the AABBs for thin objects should be padded 
     int axis = node_box.LongestAxis();
-    auto comparator = [axis](const shared_ptr<Hittable>& a, 
+    auto comparator = [axis](const shared_ptr<Hittable>& a,  // lambda
                              const shared_ptr<Hittable>& b)
     {
         return (axis == 0) ? BoxXCompare(a, b)
