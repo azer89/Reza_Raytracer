@@ -1,11 +1,16 @@
 <world>
 	<!-- You need to specify the path of this xml file on XMLParser.cpp -->
 	
-	<camera>		
+	<camera>
+    <!--Camera position-->
 		<lookfrom	x="2.78" y ="2.78" z="13"/>
+    <!--Camera target-->
 		<lookat		x="2.78" y ="2.78" z="0"/>
+    <!--Camera up vector-->
 		<vup		x="0" y ="1" z="0"/>
+    <!--Camera field of view-->
     <vfov		value="40"/>
+    <!--Camera aspect ratio-->
     <aspect_ratio		x="1" y ="1"/>
 	</camera>
 
