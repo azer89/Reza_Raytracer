@@ -83,7 +83,7 @@
       <texture name="blue_checker_texture"/>
     </material>
 
-    <!-- Remember to set the background colors black -->
+    <!-- List source, need to set the background colors black -->
     <material name="material_light" type="diffuselight">
       <color	r="1.0" g ="1.0" b="1.0"/>
     </material>
@@ -153,6 +153,7 @@
       <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="0"/>
     </object-->
 
+    <!-- You can easily get a cornell box-->
     <object type="cornell_box">
     </object>
 		
