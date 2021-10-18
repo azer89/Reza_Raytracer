@@ -101,6 +101,7 @@
       <fuzzy value="0.01"/>
     </material>
 
+    <!-- A modification of metal material with added shlick approx. -->
     <material name="material_white_metal" type="shlick_metal">
       <color r="1.0" g ="1.0" b="1.0"/>
       <fuzzy value="0.0"/>
