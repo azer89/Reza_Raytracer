@@ -92,6 +92,7 @@
       <color	r="0.7" g ="0.3" b="0.3"/>
     </material>
 
+    <!-- A different version of lambertian -->
     <material name="material_plastic_blue" type="lambertian_alt">
       <color	r="0.3" g ="0.3" b="0.7"/>
     </material>
