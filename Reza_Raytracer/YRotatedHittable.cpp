@@ -8,7 +8,7 @@ YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hit
 
     has_box = hittable_ptr->BoundingBox(bbox);
 
-    Point3 min(UsefulConst::infinity, UsefulConst::infinity, UsefulConst::infinity);
+    Point3 min( UsefulConst::infinity,  UsefulConst::infinity,  UsefulConst::infinity);
     Point3 max(-UsefulConst::infinity, -UsefulConst::infinity, -UsefulConst::infinity);
 
     // 0 <= i, j, k <= 1
