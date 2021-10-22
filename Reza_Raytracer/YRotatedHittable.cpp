@@ -1,5 +1,6 @@
 #include "YRotatedHittable.h"
 
+// Constructor
 YRotatedHittable::YRotatedHittable(shared_ptr<Hittable> obj, double angle) : hittable_ptr(obj)
 {
     auto radians = UsefulFunct::DegreesToRadians(angle);
