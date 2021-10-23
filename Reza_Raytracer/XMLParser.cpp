@@ -259,13 +259,13 @@ void AddTriangleMesh(XMLElement* elem,
 
     for (size_t i = 0; i < vertex_indices.size(); i++)
     {
-        int i1 = vertex_indices[i][0];
-        int i2 = vertex_indices[i][1];
-        int i3 = vertex_indices[i][2];
+        auto i1 = vertex_indices[i][0];
+        auto i2 = vertex_indices[i][1];
+        auto i3 = vertex_indices[i][2];
 
-        Point3 p1 = vertices[i1] * scale + pos;
-        Point3 p2 = vertices[i2] * scale + pos;
-        Point3 p3 = vertices[i3] * scale + pos;
+        auto p1 = vertices[i1] * scale + pos;
+        auto p2 = vertices[i2] * scale + pos;
+        auto p3 = vertices[i3] * scale + pos;
 
         if (normals.size() > 0)
         {
@@ -273,9 +273,9 @@ void AddTriangleMesh(XMLElement* elem,
             i2 = normal_indices[i][1];
             i3 = normal_indices[i][2];
 
-            Vec3 n1 = normals[i1];
-            Vec3 n2 = normals[i2];
-            Vec3 n3 = normals[i3];
+            auto n1 = normals[i1];
+            auto n2 = normals[i2];
+            auto n3 = normals[i3];
 
             if (uvs.size() > 0)
             {
@@ -285,9 +285,9 @@ void AddTriangleMesh(XMLElement* elem,
                 i2 = uv_indices[i][1];
                 i3 = uv_indices[i][2];
 
-                Vec2 uv1 = uvs[i1];
-                Vec2 uv2 = uvs[i2];
-                Vec2 uv3 = uvs[i3];
+                auto uv1 = uvs[i1];
+                auto uv2 = uvs[i2];
+                auto uv3 = uvs[i3];
 
                 objects.emplace_back(make_shared<Triangle>(
                     p1,
@@ -348,8 +348,8 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
     auto tex_elem = tex_parent_elem->FirstChildElement("texture");
     while (tex_elem != nullptr)
     {
-        string name_str = GetString(tex_elem, "name");
-        string type_str = GetString(tex_elem, "type");
+        auto name_str = GetString(tex_elem, "name");
+        auto type_str = GetString(tex_elem, "type");
 
         //if (type_str == "checker" || type_str == "checker2")
         if(type_str.rfind("checker") == 0)
@@ -358,9 +358,9 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
             auto color2_elem = tex_elem->FirstChildElement("color2");
             auto frequency_elem = tex_elem->FirstChildElement("frequency");
 
-            Color color1 = GetColor(color1_elem);
-            Color color2 = GetColor(color2_elem);
-            double frequency = GetDouble(frequency_elem);
+            auto color1 = GetColor(color1_elem);
+            auto color2 = GetColor(color2_elem);
+            auto frequency = GetDouble(frequency_elem);
 
             if (type_str == "checker")
             {
@@ -381,8 +381,8 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
     auto mat_elem = mat_parent_elem->FirstChildElement("material");
     while (mat_elem != nullptr)
     {
-        string name_str = GetString(mat_elem, "name");
-        string type_str = GetString(mat_elem, "type");
+        auto name_str = GetString(mat_elem, "name");
+        auto type_str = GetString(mat_elem, "type");
 
         // create texture
         auto texture_ptr = shared_ptr<Texture>(nullptr);
@@ -401,7 +401,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         if (texture_ptr == nullptr)
         {
             auto color_elem = mat_elem->FirstChildElement("color");
-            Color color = GetColor(color_elem);
+            auto color = GetColor(color_elem);
             texture_ptr = make_shared<SolidColorTexture>(color);
         }
 
@@ -420,21 +420,21 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         else if (type_str == "dielectric")
         {
             auto ridx_elem = mat_elem->FirstChildElement("refraction_index");
-            double refraction_index = GetDouble(ridx_elem);
+            auto refraction_index = GetDouble(ridx_elem);
 
             mat_map[name_str] = make_shared<DielectricMaterial>(texture_ptr, refraction_index);
         }
         else if (type_str == "metal")
         {
             auto fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
-            double fuzzy = GetDouble(fuzzy_elem);
+            auto fuzzy = GetDouble(fuzzy_elem);
 
             mat_map[name_str] = make_shared<MetalMaterial>(texture_ptr, fuzzy);
         }
         else if (type_str == "shlick_metal")
         {
             auto fuzzy_elem = mat_elem->FirstChildElement("fuzzy");
-            double fuzzy = GetDouble(fuzzy_elem);
+            auto fuzzy = GetDouble(fuzzy_elem);
 
             mat_map[name_str] = make_shared<ShlickMetalMaterial>(texture_ptr, fuzzy);
         }
