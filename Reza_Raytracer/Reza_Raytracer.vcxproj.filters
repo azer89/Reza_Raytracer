@@ -146,6 +146,9 @@
     <ClInclude Include="YRotatedHittable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PIEstimator.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\xml_files\main.xml">

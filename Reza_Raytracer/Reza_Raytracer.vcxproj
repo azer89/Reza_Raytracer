@@ -165,6 +165,7 @@
     <ClInclude Include="GlobalParameters.h" />
     <ClInclude Include="HitRecord.h" />
     <ClInclude Include="Hittable.h" />
+    <ClInclude Include="PIEstimator.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="OBJReader.h" />

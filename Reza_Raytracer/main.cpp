@@ -3,9 +3,12 @@
 
 #include "Renderer.h"
 #include "GlobalParameters.h"
+#include "PIEstimator.h"
 
 int main()
 {
+	// PIEstimator::Calculate();
+
 	Renderer renderer;
 
 	if (GlobalParameters::num_thread == 1)

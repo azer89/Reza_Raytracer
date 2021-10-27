@@ -3,8 +3,12 @@
 
 #include "UsefulThings.h"
 
+#include <iostream>
+#include <iomanip>
+
 class PIEstimator
 {
+public:
 	static void Calculate()
 	{
 		int inside_circle = 0;
@@ -21,14 +25,24 @@ class PIEstimator
                 {
                     inside_circle++;
                 }
+                
                 x = 2 * ((i + UsefulFunct::RandomDouble()) / sqrt_N) - 1;
                 y = 2 * ((j + UsefulFunct::RandomDouble()) / sqrt_N) - 1;
+                
                 if (x * x + y * y < 1)
                 {
                     inside_circle_stratified++;
                 }
             }
         }
+
+        auto N = static_cast<double>(sqrt_N) * sqrt_N;
+        std::cout << std::fixed << std::setprecision(12);
+        std::cout
+            << "Regular    Estimate of Pi = "
+            << 4 * double(inside_circle) / (sqrt_N * sqrt_N) << '\n'
+            << "Stratified Estimate of Pi = "
+            << 4 * double(inside_circle_stratified) / (sqrt_N * sqrt_N) << '\n';
 	}
 };
 
