@@ -21,9 +21,7 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 	// optimized version
 	for (size_t a = 0; a < 3; a++)
 	{
-		// Div by zero, will become -infinity
-		// github.com/RayTracing/raytracing.github.io/issues/927
-		// www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-box-intersection
+		// Div by zero, will become infinity
 		auto invDir = 1.0f / r.Direction()[a]; 
 		auto t0 = (Min()[a] - r.Origin()[a]) * invDir;
 		auto t1 = (Max()[a] - r.Origin()[a]) * invDir;
