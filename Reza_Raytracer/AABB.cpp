@@ -2,7 +2,7 @@
 
 bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 {
-	// readable version
+	// Original version
 	/*for (int a = 0; a < 3; a++)
 	{
 		auto t0 = fmin((minimum[a] - r.Origin()[a]) / r.Direction()[a], (maximum[a] - r.Origin()[a]) / r.Direction()[a]);
@@ -21,8 +21,7 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 	// optimized version
 	for (size_t a = 0; a < 3; a++)
 	{
-		// Div by zero, will become infinity
-		auto invDir = 1.0f / r.Direction()[a]; 
+		auto invDir = 1.0f / r.Direction()[a]; // Div by zero will become infinity
 		auto t0 = (Min()[a] - r.Origin()[a]) * invDir;
 		auto t1 = (Max()[a] - r.Origin()[a]) * invDir;
 
