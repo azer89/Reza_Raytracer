@@ -21,7 +21,7 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 	// optimized version
 	for (size_t a = 0; a < 3; a++)
 	{
-		auto invDir = 1.0f / r.Direction()[a]; // Div by zero will become infinity
+		auto invDir = 1.0f / r.Direction()[a]; // Div by zero will become inf
 		auto t0 = (Min()[a] - r.Origin()[a]) * invDir;
 		auto t1 = (Max()[a] - r.Origin()[a]) * invDir;
 
@@ -32,6 +32,7 @@ bool AABB::Hit(const Ray3& r, double t_min, double t_max) const
 		}
 
 		// if AABB intersects [t_min, t_max]
+		// Note that initially t_min is a small number and t_max is inf
 		t_min = t0 > t_min ? t0 : t_min;
 		t_max = t1 < t_max ? t1 : t_max;
 		if (t_max <= t_min)
