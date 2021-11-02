@@ -7,7 +7,6 @@
 #include <random>
 
 // Usings
-
 using std::shared_ptr;
 using std::make_shared;
 using std::sqrt;
@@ -54,8 +53,16 @@ namespace UsefulFunct
 
     inline double Clamp(double x, double min, double max)
     {
-        if (x < min) return min;
-        if (x > max) return max;
+        if (x < min)
+        {
+            return min;
+        }
+
+        if (x > max)
+        {
+            return max;
+        }
+
         return x;
     }
 }
