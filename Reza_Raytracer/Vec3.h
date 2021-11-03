@@ -164,7 +164,10 @@ inline Vec3 RandomVec3InUnitSphere()
     while (true)
     {
         auto p = RandomVec3(-1, 1);
-        if (p.LengthSquared() >= 1) continue;
+        if (p.LengthSquared() >= 1)
+        {
+            continue;
+        }
         return p;
     }
 }
