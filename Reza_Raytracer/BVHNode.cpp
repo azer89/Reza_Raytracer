@@ -9,7 +9,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
                  size_t start, 
                  size_t end)
 {
-    // assign first object's BB to box
+    // Assign first object's BB to box
     src_objects[start]->BoundingBox(node_box);
     AABB dummy_box;
     for (size_t i = start + 1; i < end; i++)
@@ -19,14 +19,15 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
         {
             std::cerr << "No bounding box in bvh_node constructor.\n";
         }
-        // update box
+
+        // Update box
         node_box = SurroundingBox(node_box, dummy_box);
     }
 
-    // it seems that in order to make the splitting work,
+    // It seems that in order to make the splitting work,
     // the AABBs for thin objects should be padded 
     int axis = node_box.LongestAxis();
-    auto comparator = [axis](const shared_ptr<Hittable>& a,  // lambda
+    auto comparator = [axis](const shared_ptr<Hittable>& a, 
                              const shared_ptr<Hittable>& b)
     {
         return (axis == 0) ? BoxXCompare(a, b)
@@ -36,11 +37,11 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
 
     size_t object_span = end - start;
 
-    // creating a tree
+    // Creating a tree
     if (object_span == 1)
     {
         // Option 1
-        // pointing to the same object
+        // Pointing to the same object
         left_node = right_node = src_objects[start];
 
         // Option 2
@@ -63,7 +64,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     }
     else if (object_span == 3)
     {
-        // binary partitioning
+        // Binary partitioning
         std::sort(src_objects.begin() + start, src_objects.begin() + end, comparator);
 
         left_node = src_objects[start];
@@ -71,7 +72,7 @@ BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
     }
     else
     {
-        // binary partitioning
+        // Binary partitioning
         std::sort(src_objects.begin() + start, src_objects.begin() + end, comparator);
 
         auto mid = start + object_span / 2;
@@ -87,7 +88,7 @@ bool BVHNode::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) con
         return false;
     }
 
-    // recursive
+    // Recursive
     bool hit_left  = left_node->Hit( r, t_min, t_max,                    rec);
     bool hit_right = right_node->Hit(r, t_min, hit_left ? rec.t : t_max, rec);
 
