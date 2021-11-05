@@ -1,6 +1,8 @@
 #ifndef __AA_RECT__
 #define __AA_RECT__
 
+/*Axis Aligned Rectangles*/
+
 #include "Hittable.h"
 
 // XZ
