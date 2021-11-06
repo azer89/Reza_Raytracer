@@ -17,7 +17,7 @@ public:
 	}
 
 private:   
-    double vfov;
+    double vfov; // vertical field-of-view in degrees
     double aspect_ratio;
 
     double viewport_height;
@@ -31,7 +31,7 @@ private:
 
     Point3 lookfrom;
     Point3 lookat;
-    Vec3   vup;
+    Vec3   vup; // Vector up
 };
 
 #endif
