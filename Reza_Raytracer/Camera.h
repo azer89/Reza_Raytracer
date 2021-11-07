@@ -17,7 +17,7 @@ public:
 	}
 
 private:   
-    double vfov; // vertical field-of-view in degrees
+    double vfov; // Vertical field-of-view in degrees
     double aspect_ratio;
 
     double viewport_height;

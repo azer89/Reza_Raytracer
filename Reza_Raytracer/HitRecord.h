@@ -25,6 +25,7 @@ public:
     double u;
     double v;
 
+    // Does the ray hit from the front?
     bool front_face;
 
 public:
