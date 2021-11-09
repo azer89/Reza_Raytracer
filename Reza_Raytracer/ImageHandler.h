@@ -4,8 +4,7 @@
 #include <string>
 #include <memory>
 
-// this class handles the output image
-// which also a wrapper for STB library
+// A wrapper for STB library that handles the output image
 class ImageHandler
 {
 private:
@@ -16,16 +15,15 @@ private:
 	int num_channel;
 	
 public:
-	// constructor
+	// Constructor
 	ImageHandler(int img_width, int img_height);
 	
-	// destructor
+	// Destructor
 	~ImageHandler();
 
 	// using STB
 	void WriteToPNG(const std::string& filename);
 
-	// new
 	void SetPixel(double r, double g, double b, int x, int y);
 };
 
