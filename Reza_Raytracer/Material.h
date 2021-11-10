@@ -11,10 +11,10 @@ struct HitRecord;
 
 // github.com/RayTracing/raytracing.github.io/blob/master/src/TheNextWeek/material.h
 
+// Pure virtual class
 class Material
 {
 public:
-	// pure virtual
     virtual bool Scatter(const Ray3& r_in,
                          const HitRecord& rec, 
                          Color& attenuation, 
@@ -126,7 +126,6 @@ public:
     shared_ptr<Texture> albedo;
     double fuzzy;
 };
-
 
 class ShlickMetalMaterial : public Material 
 {
