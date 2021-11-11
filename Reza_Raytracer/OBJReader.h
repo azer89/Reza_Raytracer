@@ -13,7 +13,7 @@ public:
 	{
 	}
 
-	// Only supports "v" and "f" 
+	// Supports "v" and "f" 
 	void ReadOBJ(const std::string& filename,
 				 std::vector<Vec3>& vertices,
 				 std::vector< std::vector<int>>& faces);
