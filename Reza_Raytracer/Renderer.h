@@ -29,7 +29,7 @@ private:
 
 public:
 	Renderer();
-	//~Renderer(); // Need a destructor for unique_ptrs ?
+	//~Renderer();
 			
 	// Single thread
 	void ShootRaysSingleThread();
