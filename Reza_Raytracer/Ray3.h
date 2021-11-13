@@ -10,12 +10,12 @@ public:
     Vec3 direction;
 	
 public:
-	// constructor
+	// Constructor
     Ray3()
     {	    
     }
 
-    // constructor
+    // Constructor
     Ray3(const Point3& orig, const Vec3& dir)
         : origin(orig),
 		  direction(dir)
@@ -31,6 +31,7 @@ public:
         return direction; 
     }
 
+    // t = [0, 1]
     Point3 At(double t) const
 	{
         return origin + t * direction;
