@@ -29,6 +29,7 @@ private:
     Color color_value;
 };
 
+// UV based checker texture on surface
 class CheckerTexture : public Texture 
 {
 public:
@@ -67,11 +68,12 @@ public:
     // Color 2
     shared_ptr<Texture> even;
 
-    // determine how many tiles you get
+    // How many tiles you get
     double frequency;
 };
 
 // The original checker texture from Peter Shirley's Raytracing book.
+// 3D volumetric checker pattern. 
 class CheckerTexture2 : public Texture
 {
 public:
@@ -110,7 +112,7 @@ public:
     // Color 2
     shared_ptr<Texture> even;
 
-    // determine how many tiles you get
+    // How many tiles you get
     double frequency;
 };
 
