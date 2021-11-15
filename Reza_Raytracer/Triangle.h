@@ -64,7 +64,7 @@ public:
         this->uv2 = Vec2(0, 0);
     };
 
-    // Oh man I have too many costructors
+    // Oh man, I have too many costructors
     Triangle(Vec3 _v0,
 		     Vec3 _v1,
 		     Vec3 _v2,
