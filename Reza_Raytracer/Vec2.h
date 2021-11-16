@@ -69,7 +69,9 @@ public:
 // Type aliases
 using Point2 = Vec2;   // 2D point
 
-// Vec2 Utility Functions
+/*
+    Operator overloading
+*/
 
 inline std::ostream& operator<<(std::ostream& out, const Vec2& v)
 {
@@ -105,6 +107,10 @@ inline Vec2 operator/(Vec2 v, double t)
 {
     return (1 / t) * v;
 }
+
+/*
+    Utility functions
+*/
 
 inline double Dot(const Vec2& u, const Vec2& v)
 {
