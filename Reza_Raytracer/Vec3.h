@@ -89,7 +89,9 @@ public:
 using Point3 = Vec3;    // 3D point
 using Color  = Vec3;    // RGB color
 
-// Vec3 Utility Functions
+/*
+    Vec3 operator overloading
+*/
 
 inline std::ostream& operator<<(std::ostream& out, const Vec3& v)
 {
@@ -125,6 +127,10 @@ inline Vec3 operator/(Vec3 v, double t)
 {
     return (1 / t) * v;
 }
+
+/*
+    Vec3 Utility Functions
+*/
 
 inline double Dot(const Vec3& u, const Vec3& v)
 {
