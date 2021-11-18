@@ -1,4 +1,4 @@
-A ray tracer developed using C++14
+A ray tracer developed using C++14 and Visual Studio 2019
 
 
 Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). 
