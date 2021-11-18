@@ -2,6 +2,10 @@
 
 #include "GlobalParameters.h"
 
+/*
+    Axis aligned rectangles
+*/
+
 // github.com/RayTracing/raytracing.github.io/blob/master/src/TheNextWeek/aarect.h
 // www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-box-intersection
 
