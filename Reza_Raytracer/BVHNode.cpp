@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-// improved constructor without random
+// Improved constructor without random
 // github.com/RayTracing/TheRestOfYourLife/blob/master/src/bvh.h
 BVHNode::BVHNode(std::vector<shared_ptr<Hittable>>& src_objects, 
                  size_t start, 
