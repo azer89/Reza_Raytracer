@@ -27,8 +27,8 @@ Camera::Camera()
     viewport_height = 2.0 * h;
     viewport_width = aspect_ratio * viewport_height;
 
-	// u, v, w are the orthonormal basis
-	// note that vup,v, w lie on the same plane
+	// u, v, w are the orthonormal basis.
+	// Note that vup, v, w lie on the same plane
     auto w = UnitVector(lookfrom - lookat); // z
     auto u = UnitVector(Cross(vup, w));     // x
     auto v = Cross(w, u);                   // y
