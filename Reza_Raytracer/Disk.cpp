@@ -3,9 +3,10 @@
 #include "Sphere.h"
 #include "GlobalParameters.h"
 
+// Get the value of t if the function returns true
 bool Disk::IntersectPlane(const Ray3& ray, double& t) const
 {
-    // assuming vectors are all normalized
+    // Assuming vectors are all normalized
     float denom = Dot(normal, ray.Direction());
     if (denom > 1e-6) 
     {
