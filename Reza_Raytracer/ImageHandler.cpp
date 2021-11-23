@@ -21,7 +21,7 @@ ImageHandler::~ImageHandler()
 {
 }
 
-// new, parallelizable
+// Parallelizable
 void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 {
 	r = UsefulFunct::Clamp(r, 0.0, 1.0);
