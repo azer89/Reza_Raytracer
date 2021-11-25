@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-inline std::vector<std::string> Split(const std::string& s,  char delim)
+inline std::vector<std::string> Split(const std::string& s, char delim)
 {
 	std::vector<std::string> elems;
 
@@ -38,8 +38,7 @@ inline std::vector<std::string> Split(const std::string& s, const std::string& d
 	return elements;
 }
 
-inline bool StartWith(const std::string& prefix, 
-					  const std::string& argument)
+inline bool StartWith(const std::string& prefix, const std::string& argument)
 {
 	if (argument.substr(0, prefix.size()) == prefix)
 	{
@@ -90,12 +89,12 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 // Supports "v", "vn", "vt", and "f"
 void OBJReader::ReadOBJ(const std::string& filename,
-						std::vector<Vec3>& vertices,				   // vertex list
-						std::vector<Vec3>& normals,					   // normal vector list
-						std::vector<Vec2>& uvs,						   // texture uvs
-						std::vector<std::vector<int>>& vertex_indices, // triangle faces
-						std::vector<std::vector<int>>& normal_indices, // normal vector indices for triangles
-						std::vector<std::vector<int>>& uv_indices)	   // uv indices for triangles
+						std::vector<Vec3>& vertices,				   // Vertex list
+						std::vector<Vec3>& normals,					   // Normal vector list
+						std::vector<Vec2>& uvs,						   // Texture UVs
+						std::vector<std::vector<int>>& vertex_indices, // Triangle faces
+						std::vector<std::vector<int>>& normal_indices, // Normal vector indices for triangles
+						std::vector<std::vector<int>>& uv_indices)	   // UV indices for triangles
 {
 	// Can be "//" or "/"
 	std::string delim = "//";
