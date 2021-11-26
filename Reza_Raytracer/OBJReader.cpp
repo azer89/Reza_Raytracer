@@ -112,7 +112,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 
 		std::vector<std::string> str_array = Split(line, ' ');
 
-		// Texture coordinates
+		// Texture coordinate
 		if (StartWith("vt", line) && str_array.size() == 3)
 		{
 			delim = "/";
@@ -120,21 +120,21 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			uvs.emplace_back(std::stod(str_array[1]), std::stod(str_array[2]));
 
 		}
-		// Vertex normals
-		if (StartWith("vn", line) && str_array.size() == 4)
+		// Vertex normal
+		else if (StartWith("vn", line) && str_array.size() == 4)
 		{
 			normals.emplace_back(std::stod(str_array[1]),
 								 std::stod(str_array[2]),
 								 std::stod(str_array[3]));
 		}
-		// Vertex positions
+		// Vertex position
 		else if (StartWith("v", line) && str_array.size() == 4)
 		{
 			vertices.emplace_back(std::stod(str_array[1]),
 								  std::stod(str_array[2]),
 								  std::stod(str_array[3]));
 		}
-		// Triangles
+		// Triangle
 		else if (StartWith("f", line) && str_array.size() == 4)
 		{
 			auto s1 = Split(str_array[1], delim);
