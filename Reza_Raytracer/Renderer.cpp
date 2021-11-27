@@ -92,8 +92,8 @@ void Renderer::ShootRaysMultithread()
 		}
 
 		// print progress
-		//std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush;
-		std::clog << "\rRows processsed = " << sum_rows << '/' << image_height;
+		//std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush; // using cout and flush
+		std::clog << "\rRows processsed = " << sum_rows << '/' << image_height; // using clog
 	}
 
 	auto end1 = std::chrono::steady_clock::now();
