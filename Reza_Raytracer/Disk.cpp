@@ -18,6 +18,7 @@ bool Disk::IntersectPlane(const Ray3& ray, double& t) const
     return false;
 }
 
+// TODO: There seem to be a rectangle artifact
 bool Disk::Hit(const Ray3& r,
     double t_min,
     double t_max, HitRecord& rec) const
