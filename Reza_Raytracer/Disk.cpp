@@ -49,6 +49,7 @@ bool Disk::Hit(const Ray3& r,
     return true;
 }
 
+// TODO: There seem to be a rectangle artifact
 bool Disk::BoundingBox(AABB& output_box) const
 {
     // www.gamedev.net/forums/topic/583417-disc-axis-aligned-bounding-box/
