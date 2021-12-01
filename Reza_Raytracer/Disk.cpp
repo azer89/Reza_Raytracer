@@ -54,6 +54,7 @@ bool Disk::BoundingBox(AABB& output_box) const
 {
     // www.gamedev.net/forums/topic/583417-disc-axis-aligned-bounding-box/
     // www.iquilezles.org/www/articles/diskbbox/diskbbox.htm
+    // e = r·sqrt(1-n^2)
     auto e_x = radius * sqrt(1.0 - normal.x() * normal.x());
     auto e_y = radius * sqrt(1.0 - normal.y() * normal.y());
     auto e_z = radius * sqrt(1.0 - normal.z() * normal.z());
