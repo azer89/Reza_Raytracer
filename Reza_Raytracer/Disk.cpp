@@ -62,5 +62,7 @@ bool Disk::BoundingBox(AABB& output_box) const
 
     output_box = AABB(center - e, center + e);
 
+    // TODO: requires padding
+
     return true;
 }
