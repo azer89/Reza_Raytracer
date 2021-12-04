@@ -60,9 +60,9 @@ bool Disk::BoundingBox(AABB& output_box) const
     auto e_z = radius * sqrt(1.0 - normal.z() * normal.z());
     Vec3 e(e_x, e_y, e_z);
 
+    //Vec3 padding(GlobalParameters::thin_padding);
+    //output_box = AABB(center - e - padding, center + e + padding);
     output_box = AABB(center - e, center + e);
-
-    // TODO: requires padding
 
     return true;
 }
