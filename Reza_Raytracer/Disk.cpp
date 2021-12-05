@@ -64,5 +64,7 @@ bool Disk::BoundingBox(AABB& output_box) const
     //output_box = AABB(center - e - padding, center + e + padding);
     output_box = AABB(center - e, center + e);
 
+    //std::cout << output_box.Min() << " - " << output_box.Max() << '\n';
+
     return true;
 }
