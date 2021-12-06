@@ -28,7 +28,7 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="1000"/>
+		<samples_per_pixel value="100"/>
 		<max_depth value="500"/>
 
     <!--Thin object padding (planes or triangles)-->
@@ -93,6 +93,10 @@
       <color	r="0.7" g ="0.3" b="0.3"/>
     </material>
 
+    <material name="material_plastic_white" type="lambertian">
+      <color	r="1.0" g ="1.0" b="1.0"/>
+    </material>
+
     <!-- A different version of lambertian -->
     <material name="material_plastic_blue" type="lambertian_alt">
       <color	r="0.3" g ="0.3" b="0.7"/>
@@ -120,14 +124,14 @@
   <objects>
 
     <!-- Wavefront obj format -->
-    <!--object type="obj" 
-				material_name="material_white_metal" 
+    <object type="obj" 
+				material_name="material_plastic_white" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="2.78" y ="-0.2" z=" 2.78" />
 			<scale	value="2.5" />
-		</object-->
+		</object>
 
-    <!--object type="sphere" radius="1.0" material_name="material_ground">
+    <!--object type="sphere" radius="1.75" material_name="material_plastic_white">
       <position	x="2.78" y ="2.78" z="2.78"/>
     </object-->
 
