@@ -28,7 +28,7 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="100"/>
+		<samples_per_pixel value="500"/>
 		<max_depth value="500"/>
 
     <!--Thin object padding (planes or triangles)-->
@@ -125,7 +125,7 @@
 
     <!-- Wavefront obj format -->
     <object type="obj" 
-				material_name="material_plastic_white" 
+				material_name="material_white_metal" 
 				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="2.78" y ="-0.2" z=" 2.78" />
 			<scale	value="2.5" />
