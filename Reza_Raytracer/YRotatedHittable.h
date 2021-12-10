@@ -8,6 +8,7 @@
 
 class Material;
 
+// Rotate an object by y axis
 class YRotatedHittable : Hittable
 {
 public:
