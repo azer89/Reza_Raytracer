@@ -11,7 +11,7 @@ using std::sqrt;
 class Vec3
 {
 public:
-	double e[3];
+    double e[3];
 
 public:
     Vec3() : e{ 0,0,0 }
@@ -21,7 +21,7 @@ public:
     Vec3(double e0) : e{ e0, e0, e0 }
     {
     }
-	
+
     Vec3(double e0, double e1, double e2) : e{ e0, e1, e2 }
     {
     }
@@ -32,21 +32,21 @@ public:
 
     Vec3 operator-() const
     {
-	    return Vec3(-e[0], -e[1], -e[2]);
+        return Vec3(-e[0], -e[1], -e[2]);
     }
-	
+
     double operator[](int i) const
     {
-	    return e[i];
+        return e[i];
     }
-	
+
     double& operator[](int i)
     {
-	    return e[i];
+        return e[i];
     }
 
     Vec3& operator+=(const Vec3& v)
-	{
+    {
         e[0] += v.e[0];
         e[1] += v.e[1];
         e[2] += v.e[2];
@@ -54,7 +54,7 @@ public:
     }
 
     Vec3& operator*=(const double t)
-	{
+    {
         e[0] *= t;
         e[1] *= t;
         e[2] *= t;
@@ -62,32 +62,32 @@ public:
     }
 
     Vec3& operator/=(const double t)
-	{
+    {
         return *this *= 1 / t;
     }
 
     double Length() const
-	{
+    {
         return sqrt(LengthSquared());
     }
 
     double LengthSquared() const
-	{
+    {
         return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
     }
 
     bool IsNearZero() const
-	{
+    {
         // Return true if the vector is close to zero in all dimensions.
-        return (fabs(e[0]) < UsefulConst::epsilon) && 
-               (fabs(e[1]) < UsefulConst::epsilon) && 
-               (fabs(e[2]) < UsefulConst::epsilon);
+        return (fabs(e[0]) < UsefulConst::epsilon) &&
+            (fabs(e[1]) < UsefulConst::epsilon) &&
+            (fabs(e[2]) < UsefulConst::epsilon);
     }
 };
 
 // Type aliases for Vec3
 using Point3 = Vec3;    // 3D point
-using Color  = Vec3;    // RGB color
+using Color = Vec3;    // RGB color
 
 /*
     Vec3 operator overloading
@@ -153,16 +153,16 @@ inline Vec3 UnitVector(Vec3 v)
 
 inline Vec3 RandomVec3()
 {
-    return Vec3(UsefulFunct::RandomDouble(), 
-                UsefulFunct::RandomDouble(), 
-                UsefulFunct::RandomDouble());
+    return Vec3(UsefulFunct::RandomDouble(),
+        UsefulFunct::RandomDouble(),
+        UsefulFunct::RandomDouble());
 }
 
 inline Vec3 RandomVec3(double min, double max)
 {
-    return Vec3(UsefulFunct::RandomDouble(min, max), 
-                UsefulFunct::RandomDouble(min, max), 
-                UsefulFunct::RandomDouble(min, max));
+    return Vec3(UsefulFunct::RandomDouble(min, max),
+        UsefulFunct::RandomDouble(min, max),
+        UsefulFunct::RandomDouble(min, max));
 }
 
 inline Vec3 RandomVec3InUnitSphere()
@@ -194,12 +194,12 @@ inline Vec3 RandomVec3InHemisphere(const Vec3& normal)
     return -in_unit_sphere;
 }
 
-inline Vec3 Reflect(const Vec3& v, const Vec3& n) 
+inline Vec3 Reflect(const Vec3& v, const Vec3& n)
 {
     return v - 2 * Dot(v, n) * n;
 }
 
-inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat) 
+inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat)
 {
     // www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-shading/reflection-refraction-fresnel
     /*
@@ -207,19 +207,19 @@ inline Vec3 Refract(const Vec3& uv, const Vec3& n, double etai_over_etat)
     double etai = 1;
     double etat = 1.0 / etai_over_etat;
     Vec3 new_n = n;
-    if (cosi < 0) 
-    { 
-        cosi = -cosi; 
+    if (cosi < 0)
+    {
+        cosi = -cosi;
     }
-    else 
-    { 
-        std::swap(etai, etat); 
+    else
+    {
+        std::swap(etai, etat);
         new_n = -n;
     }
     double eta = etai / etat;
     double k = 1 - eta * eta * (1 - cosi * cosi);
     return k < 0 ? Vec3() : uv * eta + (eta * cosi - sqrt(k)) * new_n;*/
-    
+
     // Peter Shirley
     auto cos_theta = fmin(Dot(-uv, n), 1.0);
     Vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n);
