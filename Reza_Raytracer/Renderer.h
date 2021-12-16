@@ -24,13 +24,13 @@ private:
 	double scale;
 	int image_width;
 	int image_height;
-	int samples_per_pixel; 
-	int max_depth; 
+	int samples_per_pixel;
+	int max_depth;
 
 public:
 	Renderer();
 	//~Renderer();
-			
+
 	// Single thread
 	void ShootRaysSingleThread();
 
@@ -38,9 +38,9 @@ public:
 	void ShootRaysMultithread();
 
 	// Thread task
-	void ShootRaysByAThread(std::atomic<int>& counter_atom, 
-			int y_start,
-			int y_end);
+	void ShootRaysByAThread(std::atomic<int>& counter_atom,
+		int y_start,
+		int y_end);
 
 private:
 	// Calculate a color of a ray
