@@ -18,7 +18,7 @@ public:
     virtual bool Scatter(const Ray3& r_in,
                          const HitRecord& rec, 
                          Color& attenuation, 
-                         Ray3& scattered ) const = 0;
+                         Ray3& scattered ) const = 0; // // Pure virtual class
 
 	// For light source or a texture, see derived classes
     virtual Color Emitted(double u, double v, const Point3& p) const
