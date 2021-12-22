@@ -32,7 +32,7 @@ public:
     HitRecord()
     {
         mat_ptr = nullptr;
-        t = 0; 
+        t = 0;
         u = 0;
         v = 0;
         front_face = false;
