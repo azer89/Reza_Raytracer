@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-class BVHNode : public Hittable 
+class BVHNode : public Hittable
 {
 private:
     // only the leaf that has an actual object,
@@ -25,8 +25,8 @@ public:
 
     // constructor
     BVHNode(std::vector<shared_ptr<Hittable>>& src_objects,
-            size_t start,
-            size_t end);
+        size_t start,
+        size_t end);
 
     bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
 
