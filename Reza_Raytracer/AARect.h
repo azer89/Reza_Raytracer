@@ -10,12 +10,12 @@ class XZRect : public Hittable
 {
 public:
 	// Constructor
-	XZRect(double _x0, 
-		   double _x1, 
-		   double _z0, 
-		   double _z1, 
-		   double _y, 
-		   shared_ptr<Material>& mat) :
+	XZRect(double _x0,
+		double _x1,
+		double _z0,
+		double _z1,
+		double _y,
+		shared_ptr<Material>& mat) :
 		x0(_x0),
 		x1(_x1),
 		z0(_z0),
@@ -26,9 +26,9 @@ public:
 	}
 
 	bool Hit(const Ray3& r,
-			 double t_min,
-			 double t_max,
-			 HitRecord& rec) const override;
+		double t_min,
+		double t_max,
+		HitRecord& rec) const override;
 
 	bool BoundingBox(AABB& output_box) const override;
 
@@ -48,12 +48,12 @@ class XYRect : public Hittable
 {
 public:
 	// Constructor
-	XYRect(double _x0, 
-		   double _x1, 
-		   double _y0, 
-		   double _y1, 
-		   double _z, 
-		   shared_ptr<Material>& mat) :
+	XYRect(double _x0,
+		double _x1,
+		double _y0,
+		double _y1,
+		double _z,
+		shared_ptr<Material>& mat) :
 		x0(_x0),
 		x1(_x1),
 		y0(_y0),
@@ -64,9 +64,9 @@ public:
 	}
 
 	bool Hit(const Ray3& r,
-			 double t_min,
-			 double t_max,
-			 HitRecord& rec) const override;
+		double t_min,
+		double t_max,
+		HitRecord& rec) const override;
 
 	bool BoundingBox(AABB& output_box) const override;
 
@@ -86,12 +86,12 @@ class YZRect : public Hittable
 {
 public:
 	// Constructor
-	YZRect(double _y0, 
-		   double _y1, 
-		   double _z0, 
-		   double _z1, 
-		   double _x, 
-		   shared_ptr<Material>& mat) :
+	YZRect(double _y0,
+		double _y1,
+		double _z0,
+		double _z1,
+		double _x,
+		shared_ptr<Material>& mat) :
 		y0(_y0),
 		y1(_y1),
 		z0(_z0),
@@ -102,9 +102,9 @@ public:
 	}
 
 	bool Hit(const Ray3& r,
-			 double t_min,
-			 double t_max,
-			 HitRecord& rec) const override;
+		double t_min,
+		double t_max,
+		HitRecord& rec) const override;
 
 	bool BoundingBox(AABB& output_box) const override;
 
