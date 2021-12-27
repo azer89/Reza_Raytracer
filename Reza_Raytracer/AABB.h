@@ -30,7 +30,7 @@ public:
 	int LongestAxis() const;
 
 	double Area() const;
-	
+
 	bool Hit(const Ray3& r, double t_min, double t_max) const;
 
 private:
@@ -41,12 +41,12 @@ private:
 inline AABB SurroundingBox(const AABB& box0, const AABB& box1)
 {
 	Point3 small(fmin(box0.Min().x(), box1.Min().x()),
-				 fmin(box0.Min().y(), box1.Min().y()),
-				 fmin(box0.Min().z(), box1.Min().z()));
+		fmin(box0.Min().y(), box1.Min().y()),
+		fmin(box0.Min().z(), box1.Min().z()));
 
 	Point3 big(fmax(box0.Max().x(), box1.Max().x()),
-			   fmax(box0.Max().y(), box1.Max().y()),
-			   fmax(box0.Max().z(), box1.Max().z()));
+		fmax(box0.Max().y(), box1.Max().y()),
+		fmax(box0.Max().z(), box1.Max().z()));
 
 	return AABB(small, big);
 }
