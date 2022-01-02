@@ -4,10 +4,8 @@
 Camera::Camera()
 {
     lookfrom = GlobalParameters::camera_lookfrom;
-    lookat   = GlobalParameters::camera_lookat;
-    vup      = GlobalParameters::camera_vup;
-
-    // TODO: to XML
+    lookat = GlobalParameters::camera_lookat;
+    vup = GlobalParameters::camera_vup;
     vfov = GlobalParameters::camera_vfov;
     aspect_ratio = GlobalParameters::camera_aspect_ratio;
 
