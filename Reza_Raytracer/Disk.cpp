@@ -8,7 +8,7 @@ bool Disk::IntersectPlane(const Ray3& ray, double& t) const
 {
     // Assuming vectors are all normalized
     float denom = Dot(normal, ray.Direction());
-    if (denom > 1e-6) 
+    if (denom > 1e-6)
     {
         auto ray_to_center = center - ray.Origin();
         t = Dot(ray_to_center, normal) / denom;
@@ -40,8 +40,8 @@ bool Disk::Hit(const Ray3& r,
     rec.SetFaceNormal(r, normal);
 
     // TODO: calculate uv
-    //rec.u = ?
-    //rec.v = ?
+    //rec.u =
+    //rec.v =
 
     // raw pointer
     rec.mat_ptr = material_ptr.get();
@@ -63,8 +63,6 @@ bool Disk::BoundingBox(AABB& output_box) const
     //Vec3 padding(GlobalParameters::thin_padding);
     //output_box = AABB(center - e - padding, center + e + padding);
     output_box = AABB(center - e, center + e);
-
-    //std::cout << output_box.Min() << " - " << output_box.Max() << '\n';
 
     return true;
 }
