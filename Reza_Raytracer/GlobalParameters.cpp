@@ -19,6 +19,8 @@ int GlobalParameters::renderer_max_depth = 0;
 // Multi threading
 int GlobalParameters::num_thread = 1;
 
+// Padding for BVH bug?
 double GlobalParameters::thin_padding = 1e-5;
 
+// Padding for hit result
 double GlobalParameters::min_t = 0.001;
