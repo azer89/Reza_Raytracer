@@ -46,6 +46,3 @@ void ImageHandler::WriteToPNG(const std::string& filename)
 				   pixels.get(), 
 				   img_width * num_channel);
 }
-
-
-
