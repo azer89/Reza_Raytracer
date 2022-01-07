@@ -44,6 +44,7 @@ inline bool StartWith(const std::string& prefix, const std::string& argument)
 	{
 		return true;
 	}
+
 	return false;
 }
 
@@ -53,6 +54,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 						std::vector< std::vector<int>>& faces)
 {
 	std::ifstream f(filename);
+
 	while (!f.eof())
 	{
 		std::string line;
