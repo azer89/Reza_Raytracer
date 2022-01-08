@@ -17,13 +17,13 @@ Renderer::Renderer()
 	// XML
 	XMLParser xml_parser;
 	xml_parser.LoadParametersFromXML();
-	
+
 	// Renderer setting
-	this->image_width		= GlobalParameters::renderer_image_width;
-	this->image_height		= static_cast<int>(this->image_width / GlobalParameters::camera_aspect_ratio);
+	this->image_width = GlobalParameters::renderer_image_width;
+	this->image_height = static_cast<int>(this->image_width / GlobalParameters::camera_aspect_ratio);
 	this->samples_per_pixel = GlobalParameters::renderer_samples_per_pixel;
-	this->scale				= 1.0 / samples_per_pixel;
-	this->max_depth			= GlobalParameters::renderer_max_depth;
+	this->scale = 1.0 / samples_per_pixel;
+	this->max_depth = GlobalParameters::renderer_max_depth;
 
 	// Image IO
 	img_handler = make_unique<ImageHandler>(image_width, image_height); // set up image handler
@@ -31,7 +31,7 @@ Renderer::Renderer()
 	// Camera
 	camera = std::make_unique<Camera>();
 
-	 // World
+	// World
 	scene = make_unique<Scene>();
 	scene->CreateScene();
 }
@@ -80,7 +80,7 @@ void Renderer::ShootRaysMultithread()
 
 	// keep looping until all image rows are rendered
 	int sum_rows = 0;
-	while(sum_rows < image_height)
+	while (sum_rows < image_height)
 	{
 		// update every 0.5 seconds
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -104,8 +104,8 @@ void Renderer::ShootRaysMultithread()
 }
 
 void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
-									int y_start, 
-									int y_end)
+	int y_start,
+	int y_end)
 {
 	counter_atom = 0;
 
@@ -125,10 +125,10 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
 			img_handler->SetPixel(sqrt(pixel_color.x() * scale),
-					sqrt(pixel_color.y() * scale),
-					sqrt(pixel_color.z() * scale),
-					x,
-					y);
+				sqrt(pixel_color.y() * scale),
+				sqrt(pixel_color.z() * scale),
+				x,
+				y);
 		}
 
 		// atomic increment is slower than regular int
@@ -158,10 +158,10 @@ void Renderer::ShootRaysSingleThread()
 
 			// Divide the color by the number of samples and gamma-correct for gamma=2.0.
 			img_handler->SetPixel(sqrt(pixel_color.x() * scale),
-								sqrt(pixel_color.y() * scale),
-								sqrt(pixel_color.z() * scale),
-								x,
-								y);
+				sqrt(pixel_color.y() * scale),
+				sqrt(pixel_color.z() * scale),
+				x,
+				y);
 		}
 	}
 
@@ -185,8 +185,8 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 	if (scene->Hit(r, GlobalParameters::min_t, UsefulConst::infinity, rec))
 	{
 		Ray3 scattered;
-		Color attenuation; 
-		Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p); 
+		Color attenuation;
+		Color emitted = rec.mat_ptr->Emitted(rec.u, rec.v, rec.p);
 
 		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
 		{
