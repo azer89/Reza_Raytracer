@@ -178,8 +178,7 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 	{
 		return Color(0, 0, 0);
 	}
-
-	// Recursive
+	
 	HitRecord rec;
 	// GlobalParameters::min_t is used to remove shadow acne
 	if (scene->Hit(r, GlobalParameters::min_t, UsefulConst::infinity, rec))
@@ -190,13 +189,13 @@ Color Renderer::RayColor(const Ray3& r, int depth)
 
 		if (rec.mat_ptr->Scatter(r, rec, attenuation, scattered))
 		{
-			return emitted + attenuation * RayColor(scattered, depth - 1); 
+			return emitted + attenuation * RayColor(scattered, depth - 1); // Recursive
 		}
 
 		return emitted; 
 	}
 
-	Vec3 unit_direction = UnitVector(r.Direction());
+	auto unit_direction = UnitVector(r.Direction());
 	auto t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
@@ -211,7 +210,7 @@ Color Renderer::RayColorNormalOnly(const Ray3& r)
 		return 0.5 * Color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
 	}
 
-	Vec3 unit_direction = UnitVector(r.Direction());
+	auto unit_direction = UnitVector(r.Direction());
 	auto t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * GlobalParameters::back_color1 + t * GlobalParameters::back_color2;
 }
