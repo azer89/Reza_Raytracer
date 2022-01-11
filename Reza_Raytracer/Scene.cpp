@@ -17,8 +17,6 @@ bool Scene::Hit(const Ray3& r,
 				double t_max, 
                 HitRecord& rec) const
 {
-    
-
     // BVH version
     bool hit_anything = bvh_root->Hit(r, t_min, t_max, rec);
 
@@ -46,7 +44,7 @@ void Scene::CreateScene()
 
     xml_parser.LoadObjects(texture_map, material_map, objects);
 
-    // init BVH
+    // Init BVH
     std::cout << "Building BVH\n";
     auto start1 = std::chrono::steady_clock::now();
     bvh_root = make_shared<BVHNode>(objects);
@@ -72,4 +70,3 @@ bool Scene::BoundingBox(AABB& output_box) const
 
     return true;
 }
-
