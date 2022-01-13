@@ -4,14 +4,14 @@
 #include <limits>
 
 /*
-www.scratchapixel.com/lessons/3d-basic-rendering/
-ray-tracing-rendering-a-triangle/
-moller-trumbore-ray-triangle-intersection
+    www.scratchapixel.com/lessons/3d-basic-rendering/
+    ray-tracing-rendering-a-triangle/
+    moller-trumbore-ray-triangle-intersection
 */
 
 /*
-github.com/mattgodbolt/pt-three-ways/
-blob/main/src/oo/Triangle.cpp
+    github.com/mattgodbolt/pt-three-ways/
+    blob/main/src/oo/Triangle.cpp
 */
 bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const
 {	
@@ -105,7 +105,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 
 bool Triangle::BoundingBox(AABB& output_box) const
 {
-    // need to pad the AABB to avoid zero thickness
+    // Need to pad the AABB to avoid zero thickness
     // TODO: experiment with thinner pads
     Vec3 padding(GlobalParameters::thin_padding);
     
