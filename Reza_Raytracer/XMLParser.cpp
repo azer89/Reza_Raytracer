@@ -279,7 +279,7 @@ void AddTriangleMesh(XMLElement* elem,
 
             if (uvs.size() > 0)
             {
-                // has vertices, normals, and uv coordinates
+                // Has vertices, normals, and uv coordinates
 
                 i1 = uv_indices[i][0];
                 i2 = uv_indices[i][1];
@@ -343,7 +343,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
     // ===== Root =====
     auto root = doc.FirstChild();
 
-    // ===== textures =====
+    // ===== Textures =====
     auto tex_parent_elem = root->FirstChildElement("textures");
     auto tex_elem = tex_parent_elem->FirstChildElement("texture");
     while (tex_elem != nullptr)
@@ -376,7 +376,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         tex_elem = tex_elem->NextSiblingElement();
     }
 
-    // ===== materials =====
+    // ===== Materials =====
     auto mat_parent_elem = root->FirstChildElement("materials");
     auto mat_elem = mat_parent_elem->FirstChildElement("material");
     while (mat_elem != nullptr)
@@ -384,12 +384,12 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         auto name_str = GetString(mat_elem, "name");
         auto type_str = GetString(mat_elem, "type");
 
-        // create texture
+        // Create texture
         auto texture_ptr = shared_ptr<Texture>(nullptr);
         auto texture_elem = mat_elem->FirstChildElement("texture");
         if (texture_elem != nullptr)
         {
-            // texture lookup
+            // Texture lookup
             string tex_str = GetString(texture_elem, "name");
             if (texture_map.find(tex_str) != texture_map.end())
             {
@@ -397,7 +397,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
             }
         }
 
-        // if texture not found then create a solid color texture
+        // If texture not found then create a solid color texture
         if (texture_ptr == nullptr)
         {
             auto color_elem = mat_elem->FirstChildElement("color");
