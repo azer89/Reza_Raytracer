@@ -447,7 +447,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
     auto obj_elem = obj_parent_elem->FirstChildElement("object");
     while (obj_elem != nullptr)
     {
-        string type_str =  GetString(obj_elem, "type");
+        auto type_str =  GetString(obj_elem, "type");
         
         // TODO: create individual function for each object type
         if (type_str == "sphere")
