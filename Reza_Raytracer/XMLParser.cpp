@@ -413,7 +413,7 @@ void XMLParser::LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>
         {
             mat_map[name_str] = make_shared<LambertianAltMaterial>(texture_ptr);
         }
-        else if (type_str == "diffuselight")
+        else if (type_str == "diffuse_light")
         {
             mat_map[name_str] = make_shared<DiffuseLightMaterial>(texture_ptr);
         }

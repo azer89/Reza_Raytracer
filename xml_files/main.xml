@@ -28,8 +28,8 @@
 	
 	<renderer>
 		<image_width value="1000"/>
-		<samples_per_pixel value="500"/>
-		<max_depth value="500"/>
+		<samples_per_pixel value="100"/>
+		<max_depth value="100"/>
 
     <!--Thin object padding (planes or triangles)-->
     <thin_padding value="0.00001"/>
@@ -84,7 +84,7 @@
     </material>
 
     <!-- Light source, need to set the background colors black -->
-    <material name="material_light" type="diffuselight">
+    <material name="material_light" type="diffuse_light">
       <color	r="1.0" g ="1.0" b="1.0"/>
     </material>
 
