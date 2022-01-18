@@ -5,7 +5,6 @@ bool Sphere::Hit(const Ray3& r,
 				 double t_max, HitRecord& rec) const
 {
     /*
-    Equation
         b * b t^2 +
         2 b * (A - C) t +
         (A - C) * (A - C) - r^2
@@ -19,13 +18,13 @@ bool Sphere::Hit(const Ray3& r,
 
     Vec3 oc = r.Origin() - center;
 	
-    // original version
+    // Original version
     /*auto a = Dot(r.Direction(), r.Direction());
     auto b = 2.0 * Dot(oc, r.Direction());
     auto c = Dot(oc, oc) - radius * radius;
     auto discriminant = b * b - 4 * a * c;*/
 
-	// improved version    
+	// Improved version    
     auto a = r.Direction().LengthSquared();
     auto half_b = Dot(oc, r.Direction());
     auto c = oc.LengthSquared() - radius * radius;
@@ -36,7 +35,7 @@ bool Sphere::Hit(const Ray3& r,
         return false;
     }
     
-    // original version
+    // Original version
     //return (-b - sqrt(discriminant)) / (2.0 * a);
     
     // Find the nearest root that lies in the acceptable range.
@@ -44,7 +43,7 @@ bool Sphere::Hit(const Ray3& r,
     auto root = (-half_b - sqrtd) / a;
     if (root < t_min || t_max < root) 
     {
-    	// not good, compute the other root
+    	// Not good, compute the other root
         root = (-half_b + sqrtd) / a;
         if (root < t_min || t_max < root)
         {
@@ -58,7 +57,7 @@ bool Sphere::Hit(const Ray3& r,
     rec.SetFaceNormal(r, outward_normal);
     GetSphereUV(outward_normal, rec.u, rec.v);
 
-    // raw pointer
+    // Raw pointer
     rec.mat_ptr = material_ptr.get();
 	
     return true;
