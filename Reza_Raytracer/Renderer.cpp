@@ -78,7 +78,7 @@ void Renderer::ShootRaysMultithread()
 		);
 	}
 
-	// keep looping until all image rows are rendered
+	// Keep looping until all image rows are rendered
 	int sum_rows = 0;
 	while (sum_rows < image_height)
 	{
@@ -91,7 +91,7 @@ void Renderer::ShootRaysMultithread()
 			sum_rows += ca.load();
 		}
 
-		// print progress
+		// Print progress
 		//std::cout << "\rRows processsed = " << sum_rows << '/' << image_height << std::flush; // using cout and flush
 		std::clog << "\rRows processsed = " << sum_rows << '/' << image_height; // using clog
 	}
@@ -99,7 +99,7 @@ void Renderer::ShootRaysMultithread()
 	auto end1 = std::chrono::steady_clock::now();
 	std::cout << "\nRendering done in " << std::chrono::duration_cast<std::chrono::seconds>(end1 - start1).count() << " s\n\n";
 
-	// save a nice picture
+	// Save a nice picture
 	img_handler->WriteToPNG("C://Users//azer//workspace//Reza_Raytracer//render.png");
 }
 
@@ -119,7 +119,7 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 				auto u = (double(x) + UsefulFunct::RandomDouble()) / (image_width - 1);
 				auto v = (double(y) + UsefulFunct::RandomDouble()) / (image_height - 1);
 				Ray3 r = camera->GetRay(u, v);
-				pixel_color += RayColor(r, max_depth); // recursive function
+				pixel_color += RayColor(r, max_depth); // Recursive function
 				//pixel_color += RayColorNormalOnly(r);
 			}
 
@@ -131,7 +131,7 @@ void Renderer::ShootRaysByAThread(atomic<int>& counter_atom,
 				y);
 		}
 
-		// atomic increment is slower than regular int
+		// Atomic increment is slower than regular int
 		counter_atom++;
 	}
 }
@@ -142,7 +142,7 @@ void Renderer::ShootRaysSingleThread()
 
 	for (int y = image_height - 1; y >= 0; --y)
 	{
-		// adding progress text
+		// Adding progress text
 		std::clog << "\rScanlines remaining: " << y;
 
 		for (int x = 0; x < image_width; x++)
