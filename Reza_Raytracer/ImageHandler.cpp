@@ -36,7 +36,7 @@ void ImageHandler::SetPixel(double r, double g, double b, int x, int y)
 	pixels[index + 2] = static_cast<uint8_t>(255.0 * b);
 }
 
-// STB
+// STB wrapper
 void ImageHandler::WriteToPNG(const std::string& filename)
 {
 	stbi_write_png(filename.c_str(), 
