@@ -1,4 +1,3 @@
-
 #include "Disk.h"
 #include "Sphere.h"
 #include "GlobalParameters.h"
