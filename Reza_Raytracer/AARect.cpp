@@ -1,5 +1,4 @@
 #include "AARect.h"
-
 #include "GlobalParameters.h"
 
 /*
