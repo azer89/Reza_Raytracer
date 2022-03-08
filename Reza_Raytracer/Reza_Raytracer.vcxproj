@@ -145,6 +145,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Disk.cpp" />
     <ClCompile Include="GlobalParameters.cpp" />
+    <ClCompile Include="Perlin.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ImageHandler.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="GlobalParameters.h" />
     <ClInclude Include="HitRecord.h" />
     <ClInclude Include="Hittable.h" />
+    <ClInclude Include="Perlin.h" />
     <ClInclude Include="PIEstimator.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Material.h" />

@@ -69,6 +69,9 @@
     <ClCompile Include="YRotatedHittable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Perlin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec3.h">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="PIEstimator.h">
       <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Perlin.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
