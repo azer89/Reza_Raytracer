@@ -11,6 +11,8 @@ A raytracing app that models the path of individual rays of light as they travel
 * CPU Multithreading
 
 ### Pictures 
+<div align="center">
+  
 ![bunnies](https://github.com/azer89/Reza_Raytracer/assets/790432/54a6e6a2-21a6-4703-a124-3536c1b9d5d7)
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies.png)
@@ -18,6 +20,7 @@ A raytracing app that models the path of individual rays of light as they travel
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres.png)
+</div>
 
 ### References
 * [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
