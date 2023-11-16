@@ -1,142 +1,142 @@
 <world>
 	<!-- You need to specify the path of this xml file on XMLParser.cpp -->
-	
+
 	<camera>
-    <!--Camera position-->
+		<!--Camera position-->
 		<lookfrom	x="2.78" y ="2.78" z="13"/>
-    <!--Camera target-->
+		<!--Camera target-->
 		<lookat		x="2.78" y ="2.78" z="0"/>
-    <!--Camera up vector-->
+		<!--Camera up vector-->
 		<vup		x="0" y ="1" z="0"/>
-    <!--Camera field of view-->
-    <vfov		value="40"/>
-    <!--Camera aspect ratio-->
-    <aspect_ratio		x="1" y ="1"/>
+		<!--Camera field of view-->
+		<vfov		value="40"/>
+		<!--Camera aspect ratio-->
+		<aspect_ratio		x="1" y ="1"/>
 	</camera>
 
 	<!--Requires two colors to create a color gradient -->
-  <!--background_gradient>
+	<!--background_gradient>
 		<color1 r="1.0" g ="1.0" b="1.0"/>
 		<color2 r="0.5" g ="0.7" b="1.0"/>
 	</background_gradient-->
 
-  <!-- In order to have light sources, you need to set the background colors to be black -->
-  <background_gradient>
+	<!-- In order to have light sources, you need to set the background colors to be black -->
+	<background_gradient>
 		<color1 r="0.0" g ="0.0" b="0.0"/>
 		<color2 r="0.0" g ="0.0" b="0.0"/>
 	</background_gradient>
-	
+
 	<renderer>
 		<image_width value="1000"/>
 		<samples_per_pixel value="100"/>
 		<max_depth value="100"/>
 
-    <!--Thin object padding (planes or triangles)-->
-    <thin_padding value="0.00001"/>
+		<!--Thin object padding (planes or triangles)-->
+		<thin_padding value="0.00001"/>
 
-    <!-- Minimum distance for ray intersections -->
-    <min_t value="0.001"/>
+		<!-- Minimum distance for ray intersections -->
+		<min_t value="0.001"/>
 
-    <!--
+		<!--
 			if num_thread >  0 the program will use n threads.
       if num_thread =  1 the program will run on a single thread.
       if num_thread <= 0 the program will use max number of logical cpus minus one.
     -->
 		<num_thread value="0"/>
-    
+
 	</renderer>
-  
-  <textures>
 
-    <!--Checker pattern needs two colors and a frequency (how many tiles you get)-->
-    <texture name="red_checker_texture" type="checker">
-      <color1 r="1.0" g ="0.7" b="0.7"/>
-      <color2 r="1.0" g ="1.0" b="1.0"/>
-      <frequency value="20"/>
-    </texture>
+	<textures>
 
-    <texture name="green_checker_texture" type="checker">
-      <color1 r="0.7" g ="1.0" b="0.7"/>
-      <color2 r="1.0" g ="1.0" b="1.0"/>
-      <frequency value="20"/>
-    </texture>
+		<!--Checker pattern needs two colors and a frequency (how many tiles you get)-->
+		<texture name="red_checker_texture" type="checker">
+			<color1 r="1.0" g ="0.7" b="0.7"/>
+			<color2 r="1.0" g ="1.0" b="1.0"/>
+			<frequency value="20"/>
+		</texture>
 
-    <texture name="blue_checker_texture" type="checker">
-      <color1 r="0.7" g ="0.7" b="1.0"/>
-      <color2 r="1.0" g ="1.0" b="1.0"/>
-      <frequency value="20"/>
-    </texture>
-    
-  </textures>
-  
+		<texture name="green_checker_texture" type="checker">
+			<color1 r="0.7" g ="1.0" b="0.7"/>
+			<color2 r="1.0" g ="1.0" b="1.0"/>
+			<frequency value="20"/>
+		</texture>
+
+		<texture name="blue_checker_texture" type="checker">
+			<color1 r="0.7" g ="0.7" b="1.0"/>
+			<color2 r="1.0" g ="1.0" b="1.0"/>
+			<frequency value="20"/>
+		</texture>
+
+	</textures>
+
 	<materials>
-    <!-- you can assign a texture to a material -->
-    <material name="red_checker_material" type="lambertian">
-      <texture name="red_checker_texture"/>
-    </material>
+		<!-- you can assign a texture to a material -->
+		<material name="red_checker_material" type="lambertian">
+			<texture name="red_checker_texture"/>
+		</material>
 
-    <material name="green_checker_material" type="lambertian">
-      <texture name="green_checker_texture"/>
-    </material>
-    
-    <material name="blue_checker_material" type="lambertian">
-      <texture name="blue_checker_texture"/>
-    </material>
+		<material name="green_checker_material" type="lambertian">
+			<texture name="green_checker_texture"/>
+		</material>
 
-    <!-- Light source, need to set the background colors black -->
-    <material name="material_light" type="diffuse_light">
-      <color	r="1.0" g ="1.0" b="1.0"/>
-    </material>
+		<material name="blue_checker_material" type="lambertian">
+			<texture name="blue_checker_texture"/>
+		</material>
 
-    <!-- Lambertian material -->
-    <material name="material_plastic" type="lambertian">
-      <color	r="0.7" g ="0.3" b="0.3"/>
-    </material>
+		<!-- Light source, need to set the background colors black -->
+		<material name="material_light" type="diffuse_light">
+			<color	r="1.0" g ="1.0" b="1.0"/>
+		</material>
 
-    <material name="material_plastic_white" type="lambertian">
-      <color	r="1.0" g ="1.0" b="1.0"/>
-    </material>
+		<!-- Lambertian material -->
+		<material name="material_plastic" type="lambertian">
+			<color	r="0.7" g ="0.3" b="0.3"/>
+		</material>
 
-    <!-- A different version of lambertian -->
-    <material name="material_plastic_blue" type="lambertian_alt">
-      <color	r="0.3" g ="0.3" b="0.7"/>
-    </material>
+		<material name="material_plastic_white" type="lambertian">
+			<color	r="1.0" g ="1.0" b="1.0"/>
+		</material>
 
-    <material name="material_red_metal" type="metal">
-      <color r="0.7" g ="0.3" b="0.3"/>
-      <fuzzy value="0.01"/>
-    </material>
+		<!-- A different version of lambertian -->
+		<material name="material_plastic_blue" type="lambertian_alt">
+			<color	r="0.3" g ="0.3" b="0.7"/>
+		</material>
 
-    <!-- A modification of metal material with added shlick approx. -->
-    <material name="material_white_metal" type="shlick_metal">
-      <color r="1.0" g ="1.0" b="1.0"/>
-      <fuzzy value="0.0"/>
-    </material>
+		<material name="material_red_metal" type="metal">
+			<color r="0.7" g ="0.3" b="0.3"/>
+			<fuzzy value="0.01"/>
+		</material>
 
-    <!-- Dielectric material is currently not great for triangle meshes -->
-    <!--<material name="material_glass" type="dielectric">
+		<!-- A modification of metal material with added shlick approx. -->
+		<material name="material_white_metal" type="shlick_metal">
+			<color r="1.0" g ="1.0" b="1.0"/>
+			<fuzzy value="0.0"/>
+		</material>
+
+		<!-- Dielectric material is currently not great for triangle meshes -->
+		<!--<material name="material_glass" type="dielectric">
       <color	r="0.1" g ="0.7" b="0.7"/>
       <refraction_index value="1.1"/>
     </material>-->
-    
+
 	</materials>
 
-  <objects>
+	<objects>
 
-    <!-- Wavefront obj format -->
-    <object type="obj" 
-				material_name="material_white_metal" 
-				filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
+		<!-- Wavefront obj format -->
+		<object type="obj"
+					material_name="material_white_metal"
+					filename="C://Users//azer//workspace//Reza_Raytracer//objs//stanford_bunny_vn_vt.obj">
 			<position	x="2.78" y ="-0.2" z=" 2.78" />
 			<scale	value="2.5" />
 		</object>
 
-    <!--object type="sphere" radius="1.75" material_name="material_plastic_white">
+		<!--object type="sphere" radius="1.75" material_name="material_plastic_white">
       <position	x="2.78" y ="2.78" z="2.78"/>
     </object-->
 
-    <!-- The famous cornell box -->
-    <!--object type="xzrect" material_name="material_light">
+		<!-- The famous cornell box -->
+		<!--object type="xzrect" material_name="material_light">
       <boundary	x0="1.13" x1="4.43" z0="1.27" z1="4.32" y="5.54"/>
     </object>
 
@@ -160,10 +160,10 @@
       <boundary	x0="0" x1="5.55" y0="0" y1="5.55" z="0"/>
     </object-->
 
-    <!-- You can easily get a cornell box-->
-    <object type="cornell_box">
-    </object>
-		
+		<!-- You can easily get a cornell box-->
+		<object type="cornell_box">
+		</object>
+
 	</objects>
-	
+
 </world>

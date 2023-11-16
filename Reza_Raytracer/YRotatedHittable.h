@@ -12,19 +12,19 @@ class Material;
 class YRotatedHittable : Hittable
 {
 public:
-    YRotatedHittable(shared_ptr<Hittable> obj, double angle);
+	YRotatedHittable(shared_ptr<Hittable> obj, double angle);
 
-    virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
+	virtual bool Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) const override;
 
-    virtual bool BoundingBox(AABB& output_box) const override;
+	virtual bool BoundingBox(AABB& output_box) const override;
 
 public:
-    double sin_theta;
-    double cos_theta;
+	double sin_theta;
+	double cos_theta;
 
-    shared_ptr<Hittable> hittable_ptr;
+	shared_ptr<Hittable> hittable_ptr;
 
-    bool has_box;
-    AABB bbox;
+	bool has_box;
+	AABB bbox;
 };
 #endif

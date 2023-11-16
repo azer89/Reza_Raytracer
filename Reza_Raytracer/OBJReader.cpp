@@ -50,8 +50,8 @@ inline bool StartWith(const std::string& prefix, const std::string& argument)
 
 // Only supports "v" and "f" 
 void OBJReader::ReadOBJ(const std::string& filename,
-						std::vector<Vec3>& vertices,
-						std::vector< std::vector<int>>& faces)
+	std::vector<Vec3>& vertices,
+	std::vector< std::vector<int>>& faces)
 {
 	std::ifstream f(filename);
 
@@ -60,9 +60,9 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		std::string line;
 		std::getline(f, line);
 
-		if (line.size() == 0) 
-		{ 
-			continue; 
+		if (line.size() == 0)
+		{
+			continue;
 		}
 
 		std::vector<std::string> str_array = Split(line, ' ');
@@ -70,33 +70,33 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		if (StartWith("v", line) && str_array.size() == 4)
 		{
 			vertices.emplace_back(std::stod(str_array[1]),
-								  std::stod(str_array[2]),
-								  std::stod(str_array[3]));
+				std::stod(str_array[2]),
+				std::stod(str_array[3]));
 		}
 		else if (StartWith("f", line) && str_array.size() == 4)
 		{
-			int i1 = std::stoi( Split(str_array[1], '/')[0] );
-			int i2 = std::stoi( Split(str_array[2], '/')[0] );
-			int i3 = std::stoi( Split(str_array[3], '/')[0] );
+			int i1 = std::stoi(Split(str_array[1], '/')[0]);
+			int i2 = std::stoi(Split(str_array[2], '/')[0]);
+			int i3 = std::stoi(Split(str_array[3], '/')[0]);
 
 			// OBJ indexing starts with 1
-			faces.push_back({i1 - 1, 
-							 i2 - 1, 
-							 i3 - 1});
+			faces.push_back({ i1 - 1,
+							 i2 - 1,
+							 i3 - 1 });
 		}
 	}
-	
+
 	f.close();
 }
 
 // Supports "v", "vn", "vt", and "f"
 void OBJReader::ReadOBJ(const std::string& filename,
-						std::vector<Vec3>& vertices,				   // Vertex list
-						std::vector<Vec3>& normals,					   // Normal vector list
-						std::vector<Vec2>& uvs,						   // Texture UVs
-						std::vector<std::vector<int>>& vertex_indices, // Triangle faces
-						std::vector<std::vector<int>>& normal_indices, // Normal vector indices for triangles
-						std::vector<std::vector<int>>& uv_indices)	   // UV indices for triangles
+	std::vector<Vec3>& vertices,				   // Vertex list
+	std::vector<Vec3>& normals,					   // Normal vector list
+	std::vector<Vec2>& uvs,						   // Texture UVs
+	std::vector<std::vector<int>>& vertex_indices, // Triangle faces
+	std::vector<std::vector<int>>& normal_indices, // Normal vector indices for triangles
+	std::vector<std::vector<int>>& uv_indices)	   // UV indices for triangles
 {
 	// Can be "//" or "/"
 	std::string delim = "//";
@@ -126,15 +126,15 @@ void OBJReader::ReadOBJ(const std::string& filename,
 		else if (StartWith("vn", line) && str_array.size() == 4)
 		{
 			normals.emplace_back(std::stod(str_array[1]),
-								 std::stod(str_array[2]),
-								 std::stod(str_array[3]));
+				std::stod(str_array[2]),
+				std::stod(str_array[3]));
 		}
 		// Vertex position
 		else if (StartWith("v", line) && str_array.size() == 4)
 		{
 			vertices.emplace_back(std::stod(str_array[1]),
-								  std::stod(str_array[2]),
-								  std::stod(str_array[3]));
+				std::stod(str_array[2]),
+				std::stod(str_array[3]));
 		}
 		// Triangle
 		else if (StartWith("f", line) && str_array.size() == 4)
@@ -146,7 +146,7 @@ void OBJReader::ReadOBJ(const std::string& filename,
 			int i1 = std::stoi(s1[0]);
 			int i2 = std::stoi(s2[0]);
 			int i3 = std::stoi(s3[0]);
-			
+
 			// OBJ indexing starts with 1
 			vertex_indices.push_back({ i1 - 1,
 									   i2 - 1,

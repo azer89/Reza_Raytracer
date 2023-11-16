@@ -21,8 +21,8 @@ public:
 	void LoadParametersFromXML();
 
 	void LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
-					 std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
-					 std::vector<shared_ptr<Hittable>>& objects);
+		std::unordered_map<std::string, shared_ptr<Material>>& mat_map,
+		std::vector<shared_ptr<Hittable>>& objects);
 };
 
 #endif
