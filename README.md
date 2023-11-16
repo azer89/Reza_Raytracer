@@ -1,9 +1,4 @@
-A ray tracer developed using C++14 and Visual Studio 2019
-
-
-Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). 
-
-
+A raytracing app that models the path of individual rays of light as they travel through a virtual 3D environment, calculating how they reflect, refract, and interact with surfaces and materials to produce lifelike lighting and shadows. 
 
 ### Features
 
@@ -15,16 +10,22 @@ Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) an
 * Wavefront OBJ parser that supports vertex positions, normal vectors, and texture coordinates.
 * CPU Multithreading
 
-### Pretty pictures 
-_click each image for a higher resolution_
-
-[<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
+### Pictures 
+<div align="center">
+  
+![bunnies](https://github.com/azer89/Reza_Raytracer/assets/790432/54a6e6a2-21a6-4703-a124-3536c1b9d5d7)
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies.png)
 
+[<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
+
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres.png)
+</div>
 
 ### References
 * [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 * [_Ray Tracing: The Next Week_](https://raytracing.github.io/books/RayTracingTheNextWeek.html)
 * [_Ray Tracing: Rendering a Triangle_](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle)
+
+This app was developed using C++14 and Visual Studio 2019.
+Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). 
