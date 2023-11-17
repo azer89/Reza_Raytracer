@@ -12,8 +12,8 @@ A raytracing app that models the path of individual rays of light as they travel
 
 ### Pictures 
 <div align="center">
-  
-![bunnies](https://github.com/azer89/Reza_Raytracer/assets/790432/54a6e6a2-21a6-4703-a124-3536c1b9d5d7)
+
+![bunnies](https://github.com/azer89/Reza_Raytracer/assets/790432/24ebdc7c-2337-44b4-9ad9-54ef2378e41b)
 
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies.png)
 
