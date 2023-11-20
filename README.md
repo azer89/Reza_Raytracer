@@ -2,25 +2,31 @@ A raytracing app that models the path of individual rays of light as they travel
 
 ### Features
 
-* Lambertian, metal, dielectric, light source materials
-* Triangle mesh rendering
-* Smooth surface normals using barycentric interpolation
-* XML for creating scenes and specifying parameters 
-* Bounded Volume Hierarchy
+* Lambertian (matte), metal, dielectric (glass), materials.
+* Surface normal interpolation using barycentric coordinate.
+* CPU Multithreading. Each thread is responsible to calculate rows of pixels
+* Bounded Volume Hierarchy for faster ray intersections.
+* Triangle mesh rendering.
 * Wavefront OBJ parser that supports vertex positions, normal vectors, and texture coordinates.
-* CPU Multithreading
+* XML for creating scenes and specifying parameters 
+
 
 ### Pictures 
 <div align="center">
 
+ A glass/dielectric dragon </br>
 <img width="400" src="https://github.com/azer89/Reza_Raytracer/assets/790432/8b12c0c2-9815-4d15-9afa-e853df42ad24">
 
+Bunnies with metal and lambertian material </br>
 ![bunnies](https://github.com/azer89/Reza_Raytracer/assets/790432/24ebdc7c-2337-44b4-9ad9-54ef2378e41b)
 
+Bunnies with a red metal material </br>
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_bunnies.png)
 
+Another dragon </br>
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/metal_dragon.png)
 
+Metal spheres </br>
 [<img src="https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres_600.png">](https://raw.githubusercontent.com/azer89/Reza_Raytracer/master/results/three_spheres.png)
 </div>
 
