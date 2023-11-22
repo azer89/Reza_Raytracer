@@ -15,7 +15,7 @@ A raytracing app that models the path of individual rays of light as they travel
 <div align="center">
 
  A glass/dielectric dragon </br>
-<img width="400" src="https://github.com/azer89/Reza_Raytracer/assets/790432/8b12c0c2-9815-4d15-9afa-e853df42ad24">
+<img width="400" src="https://github.com/azer89/Reza_Raytracer/assets/790432/4ddef6d6-c506-4738-b09c-35d9933a60e4">
 
 Bunnies with metal and lambertian material </br>
 ![bunnies](https://github.com/azer89/Reza_Raytracer/assets/790432/24ebdc7c-2337-44b4-9ad9-54ef2378e41b)
