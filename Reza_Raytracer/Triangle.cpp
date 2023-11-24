@@ -91,7 +91,7 @@ bool Triangle::Hit(const Ray3& r, double t_min, double t_max, HitRecord& rec) co
 	// set normal
 	rec.normal = outward_normal;
 
-	// Raw pointer
+	// Get pointer
 	rec.mat_ptr = material_ptr.get();
 	rec.p = r.At(t);
 

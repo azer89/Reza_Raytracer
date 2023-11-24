@@ -47,7 +47,7 @@ void Scene::CreateScene()
 	// Init BVH
 	std::cout << "Building BVH\n";
 	auto start1 = std::chrono::steady_clock::now();
-	bvh_root = make_shared<BVHNode>(objects);
+	bvh_root = make_unique<BVHNode>(objects);
 	auto end1 = std::chrono::steady_clock::now();
 	std::cout << "BVH done in " << std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1).count() << " ms\n\n";
 }

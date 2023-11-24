@@ -2,6 +2,8 @@
 #define __SCENE_H__
 
 #include "Hittable.h"
+#include "BVHNode.h"
+#include "Texture.h"
 
 #include <memory>
 #include <vector>
@@ -10,9 +12,6 @@
 using std::unique_ptr;
 using std::shared_ptr;
 using std::vector;
-
-class BVHNode;
-class Texture;
 
 class Scene : public Hittable
 {
@@ -34,7 +33,7 @@ public:
 
 private:
 	// Root of the BVH
-	shared_ptr<BVHNode> bvh_root;
+	unique_ptr<BVHNode> bvh_root;
 
 	// List of textures
 	std::unordered_map<std::string, shared_ptr<Texture>> texture_map;
