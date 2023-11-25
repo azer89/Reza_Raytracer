@@ -15,9 +15,6 @@ class Hittable;
 class XMLParser
 {
 public:
-	//XMLParser();
-	//~XMLParser();
-
 	void LoadParametersFromXML();
 
 	void LoadObjects(std::unordered_map<std::string, shared_ptr<Texture>>& texture_map,
