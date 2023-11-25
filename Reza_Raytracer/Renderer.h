@@ -4,15 +4,10 @@
 #include <memory>
 #include <thread> 
 #include <atomic>
-//#include <condition_variable>
-//#include <mutex>
 
 #include "Scene.h"
 #include "ImageHandler.h"
 #include "Camera.h"
-
-//class ImageHandler;
-//class Camera;
 
 class Renderer
 {

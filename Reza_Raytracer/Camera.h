@@ -22,7 +22,6 @@ private:
 
 	double viewport_height;
 	double viewport_width;
-	//double focal_length;
 
 	Point3 origin;
 	Point3 lower_left_corner;

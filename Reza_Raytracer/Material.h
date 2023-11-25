@@ -18,9 +18,9 @@ public:
 	virtual bool Scatter(const Ray3& r_in,
 		const HitRecord& rec,
 		Color& attenuation,
-		Ray3& scattered) const = 0; // Causing pure virtual class
+		Ray3& scattered) const = 0; // Abstract class
 
-// For light source or a texture, see derived classes
+	// For light source or a texture, see derived classes
 	virtual Color Emitted(double u, double v, const Point3& p) const
 	{
 		// TODO
@@ -73,7 +73,7 @@ public:
 	{
 		auto scatter_direction = RandomVec3InHemisphere(rec.normal);
 		//auto scatter_direction = rec.p + RandomVec3InHemisphere(rec.normal);
-		//auto scatter_direction = rec.p + rec.normal + RandomUnitVector();   
+		//auto scatter_direction = rec.p + rec.normal + RandomUnitVector();
 
 		// Catch degenerate scatter direction
 		if (scatter_direction.IsNearZero())
@@ -87,7 +87,6 @@ public:
 	}
 
 public:
-	// Color;
 	shared_ptr<Texture> albedo;
 };
 
@@ -122,7 +121,6 @@ public:
 	}
 
 public:
-	//Color albedo;
 	shared_ptr<Texture> albedo;
 	double fuzzy;
 };
@@ -173,7 +171,6 @@ public:
 	}
 
 public:
-	//Color albedo;
 	shared_ptr<Texture> albedo;
 	double fuzzy;
 };
@@ -226,7 +223,6 @@ private:
 	}
 
 public:
-	//Color albedo;
 	shared_ptr<Texture> albedo;
 
 	// Index of Refraction
