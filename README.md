@@ -35,5 +35,5 @@ Metal spheres </br>
 * [_Ray Tracing: The Next Week_](https://raytracing.github.io/books/RayTracingTheNextWeek.html)
 * [_Ray Tracing: Rendering a Triangle_](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle)
 
-This app was developed using C++14 and Visual Studio 2019.
+This app was developed using C++20 and Visual Studio 2020 x64.
 Included dependencies are [tinyxml2](https://github.com/leethomason/tinyxml2) and [stb](https://github.com/nothings/stb). 
