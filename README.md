@@ -1,4 +1,4 @@
-A raytracing demo that models the path of individual rays of light as they travel through a virtual 3D environment, calculating how they reflect, refract, and interact with surfaces and materials to produce lifelike lighting and shadows. 
+A raytracing demo that models the path of individual rays of light as they travel through a virtual 3D scene, calculating how they reflect, refract, and interact with surfaces and materials to produce realistic lighting and shadows. 
 
 ### Features
 
@@ -9,7 +9,6 @@ A raytracing demo that models the path of individual rays of light as they trave
 * Wavefront OBJ parser that supports vertex positions, normal vectors, and texture coordinates.
 * Surface normal interpolation using barycentric coordinate.
 * XML for creating scenes and specifying parameters 
-
 
 ### Pictures 
 <div align="center">
