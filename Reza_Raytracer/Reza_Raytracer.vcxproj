@@ -114,8 +114,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../External/stb;../External/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,8 +129,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../External/stb;../External/tinyxml2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\External\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="AARect.cpp" />
     <ClCompile Include="BVHNode.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -154,11 +157,11 @@
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="AABB.cpp" />
     <ClCompile Include="XMLParser.cpp" />
-    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="YRotatedHittable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\External\tinyxml2\tinyxml2.h" />
     <ClInclude Include="AARect.h" />
     <ClInclude Include="BVHNode.h" />
     <ClInclude Include="Camera.h" />
@@ -176,12 +179,9 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="AABB.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="XMLParser.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="UsefulThings.h" />
     <ClInclude Include="Vec3.h" />
